@@ -39,7 +39,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P1-05](phase-1/P1-05-parser-constants-and-types.md) | Parser constants and handler types | P1-04 | S | todo |
+| [P1-05](phase-1/P1-05-parser-constants-and-types.md) | Parser constants and handler types | P1-04 | S | done |
 | [P1-06](phase-1/P1-06-osc-parser.md) | `OscParser` and `OscHandler` | P1-05, P1-03 | S | todo |
 | [P1-07](phase-1/P1-07-dcs-parser.md) | `DcsParser` and `DcsHandler` | P1-06 | S | todo |
 | [P1-08](phase-1/P1-08-transition-table.md) | `TransitionTable` and the VT500 transition table | P1-05 | S | todo |

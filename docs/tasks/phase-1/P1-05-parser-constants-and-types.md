@@ -1,6 +1,6 @@
 # P1-05 — Parser constants and handler types
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-04
 - **Size:** S
 
@@ -51,10 +51,10 @@ None (types only). The build must stay warning-free.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map: `parser/Constants.ts`, `parser/Types.ts` (✅ P1-05, note "stack types not ported")
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map: `parser/Constants.ts`, `parser/Types.ts` (✅ P1-05, note "stack types not ported")
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
