@@ -1,0 +1,31 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="ARM64" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="src/LoomTerminal.Core/LoomTerminal.Core.csproj" />
+    <Project Path="src/LoomTerminal.Pty/LoomTerminal.Pty.csproj" />
+    <Project Path="src/LoomTerminal.Presentation/LoomTerminal.Presentation.csproj" />
+    <Project Path="src/LoomTerminal.WinUI/LoomTerminal.WinUI.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/LoomTerminal.Gallery/LoomTerminal.Gallery.csproj">
+      <!-- A WinUI app needs a real platform: "Any CPU" builds of the solution build the gallery as x64. -->
+      <Platform Solution="*|Any CPU" Project="x64" />
+    </Project>
+    <Project Path="samples/LoomTerminal.PtyConsole/LoomTerminal.PtyConsole.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/LoomTerminal.Pty.Tests/LoomTerminal.Pty.Tests.csproj" />
+    <Project Path="tests/LoomTerminal.Architecture.Tests/LoomTerminal.Architecture.Tests.csproj" />
+  </Folder>
+  <Folder Name="/solution items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+  </Folder>
+</Solution>

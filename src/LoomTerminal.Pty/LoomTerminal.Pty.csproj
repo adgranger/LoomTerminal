@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    LoomTerminal.Pty: starts a shell behind a pseudo terminal and moves bytes in both directions.
+    RULE: no UI, no project references. Plain net11.0: platform code lives in a folder per OS (Windows/ = ConPTY)
+    and is guarded by [SupportedOSPlatform] + OperatingSystem checks, so the package also loads on macOS and Linux.
+  -->
+  <PropertyGroup>
+    <TargetFramework>$(LoomNetTargetFramework)</TargetFramework>
+    <RootNamespace>LoomTerminal.Pty</RootNamespace>
+    <Description>Pseudo terminal for LoomTerminal: Windows ConPTY (macOS and Linux planned), Native AOT-compatible.</Description>
+    <!-- Source-generated [LibraryImport] stubs use pointers. -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+</Project>

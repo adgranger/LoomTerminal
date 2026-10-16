@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    LoomTerminal.Core: the terminal emulator. VT parser, escape sequence handlers, screen buffers, scrollback, reflow.
+    Ported from xterm.js (src/common). RULE: no UI, no Windows, no project references; runs headless.
+  -->
+  <PropertyGroup>
+    <TargetFramework>$(LoomNetTargetFramework)</TargetFramework>
+    <RootNamespace>LoomTerminal.Core</RootNamespace>
+    <Description>Platform-independent terminal emulator of LoomTerminal (VT parser and buffers, ported from xterm.js).</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="LoomTerminal.Presentation" />
+  </ItemGroup>
+</Project>

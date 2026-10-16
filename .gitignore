@@ -55,3 +55,14 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Visual Studio
+.vs/
+*.user
+
+# BenchmarkDotNet
+BenchmarkDotNet.Artifacts/
+
+
+# Claude Code: personal settings (the shared .claude/settings.json and .claude/skills/ are committed)
+.claude/settings.local.json

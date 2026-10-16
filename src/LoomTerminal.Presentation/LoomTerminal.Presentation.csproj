@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    LoomTerminal.Presentation: everything between the emulator and the pixels that does not depend on a UI framework.
+    Render model (dirty rows, attribute runs, cursor, selection, links), key and mouse encoding, selection, search,
+    viewport and scrollback navigation, and the interfaces each UI backend implements (text measurer, render surface,
+    clipboard). RULE: no UI, no Windows. Shared by LoomTerminal.WinUI and (later) LoomTerminal.Avalonia.
+  -->
+  <PropertyGroup>
+    <TargetFramework>$(LoomNetTargetFramework)</TargetFramework>
+    <RootNamespace>LoomTerminal.Presentation</RootNamespace>
+    <Description>UI-independent presentation layer of LoomTerminal: render model, input encoding, selection.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoomTerminal.Core\LoomTerminal.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LoomTerminal.WinUI" />
+  </ItemGroup>
+</Project>

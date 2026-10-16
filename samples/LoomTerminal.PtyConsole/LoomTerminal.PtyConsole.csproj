@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Test harness for LoomTerminal.Pty: runs a shell behind a pseudo terminal inside the current console window, which
+    interprets the VT output itself. No emulator involved: when this works, the Pty layer works.
+
+    Run:      dotnet run (project samples/LoomTerminal.PtyConsole), optionally followed by a command line
+    Publish:  dotnet publish samples/LoomTerminal.PtyConsole -c Release -r win-x64   (Native AOT)
+    See README.md for the exact commands.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>$(LoomNetTargetFramework)</TargetFramework>
+    <RootNamespace>LoomTerminal.PtyConsole</RootNamespace>
+    <PublishAot>true</PublishAot>
+    <IsAotCompatible>true</IsAotCompatible>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LoomTerminal.Pty\LoomTerminal.Pty.csproj" />
+  </ItemGroup>
+</Project>

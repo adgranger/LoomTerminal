@@ -1,0 +1,53 @@
+#nullable enable
+const LoomTerminal.Pty.ShellIds.Cmd = "cmd" -> string!
+const LoomTerminal.Pty.ShellIds.GitBash = "git-bash" -> string!
+const LoomTerminal.Pty.ShellIds.PowerShell7 = "pwsh" -> string!
+const LoomTerminal.Pty.ShellIds.WindowsPowerShell = "powershell" -> string!
+const LoomTerminal.Pty.ShellIds.WslPrefix = "wsl:" -> string!
+LoomTerminal.Pty.IPtyConnection
+LoomTerminal.Pty.IPtyConnection.Exited.get -> System.Threading.Tasks.Task<int>!
+LoomTerminal.Pty.IPtyConnection.Output.get -> System.Threading.Channels.ChannelReader<byte[]!>!
+LoomTerminal.Pty.IPtyConnection.Resize(int columns, int rows) -> void
+LoomTerminal.Pty.IPtyConnection.Write(System.ReadOnlySpan<byte> data) -> void
+LoomTerminal.Pty.PseudoTerminal
+LoomTerminal.Pty.PtyStartOptions
+LoomTerminal.Pty.PtyStartOptions.<Clone>$() -> LoomTerminal.Pty.PtyStartOptions!
+LoomTerminal.Pty.PtyStartOptions.Columns.get -> int
+LoomTerminal.Pty.PtyStartOptions.Columns.init -> void
+LoomTerminal.Pty.PtyStartOptions.CommandLine.get -> string!
+LoomTerminal.Pty.PtyStartOptions.CommandLine.init -> void
+LoomTerminal.Pty.PtyStartOptions.Deconstruct(out string! CommandLine) -> void
+LoomTerminal.Pty.PtyStartOptions.Environment.get -> System.Collections.Generic.IReadOnlyDictionary<string!, string?>?
+LoomTerminal.Pty.PtyStartOptions.Environment.init -> void
+LoomTerminal.Pty.PtyStartOptions.Equals(LoomTerminal.Pty.PtyStartOptions? other) -> bool
+LoomTerminal.Pty.PtyStartOptions.PtyStartOptions(string! CommandLine) -> void
+LoomTerminal.Pty.PtyStartOptions.Rows.get -> int
+LoomTerminal.Pty.PtyStartOptions.Rows.init -> void
+LoomTerminal.Pty.PtyStartOptions.WorkingDirectory.get -> string?
+LoomTerminal.Pty.PtyStartOptions.WorkingDirectory.init -> void
+LoomTerminal.Pty.ShellIds
+LoomTerminal.Pty.ShellInfo
+LoomTerminal.Pty.ShellInfo.<Clone>$() -> LoomTerminal.Pty.ShellInfo!
+LoomTerminal.Pty.ShellInfo.CommandLine.get -> string!
+LoomTerminal.Pty.ShellInfo.CommandLine.init -> void
+LoomTerminal.Pty.ShellInfo.Deconstruct(out string! Id, out string! Name, out string! CommandLine) -> void
+LoomTerminal.Pty.ShellInfo.Equals(LoomTerminal.Pty.ShellInfo? other) -> bool
+LoomTerminal.Pty.ShellInfo.Id.get -> string!
+LoomTerminal.Pty.ShellInfo.Id.init -> void
+LoomTerminal.Pty.ShellInfo.Name.get -> string!
+LoomTerminal.Pty.ShellInfo.Name.init -> void
+LoomTerminal.Pty.ShellInfo.ShellInfo(string! Id, string! Name, string! CommandLine) -> void
+LoomTerminal.Pty.Shells
+override LoomTerminal.Pty.PtyStartOptions.Equals(object? obj) -> bool
+override LoomTerminal.Pty.PtyStartOptions.GetHashCode() -> int
+override LoomTerminal.Pty.PtyStartOptions.ToString() -> string!
+override LoomTerminal.Pty.ShellInfo.Equals(object? obj) -> bool
+override LoomTerminal.Pty.ShellInfo.GetHashCode() -> int
+override LoomTerminal.Pty.ShellInfo.ToString() -> string!
+static LoomTerminal.Pty.PseudoTerminal.IsSupported.get -> bool
+static LoomTerminal.Pty.PseudoTerminal.Start(LoomTerminal.Pty.PtyStartOptions! options) -> LoomTerminal.Pty.IPtyConnection!
+static LoomTerminal.Pty.PtyStartOptions.operator !=(LoomTerminal.Pty.PtyStartOptions? left, LoomTerminal.Pty.PtyStartOptions? right) -> bool
+static LoomTerminal.Pty.PtyStartOptions.operator ==(LoomTerminal.Pty.PtyStartOptions? left, LoomTerminal.Pty.PtyStartOptions? right) -> bool
+static LoomTerminal.Pty.ShellInfo.operator !=(LoomTerminal.Pty.ShellInfo? left, LoomTerminal.Pty.ShellInfo? right) -> bool
+static LoomTerminal.Pty.ShellInfo.operator ==(LoomTerminal.Pty.ShellInfo? left, LoomTerminal.Pty.ShellInfo? right) -> bool
+static LoomTerminal.Pty.Shells.Detect() -> System.Collections.Generic.IReadOnlyList<LoomTerminal.Pty.ShellInfo!>!

@@ -1,0 +1,8 @@
+#nullable enable
+~LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(string fullName) -> Microsoft.UI.Xaml.Markup.IXamlType
+~LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type type) -> Microsoft.UI.Xaml.Markup.IXamlType
+~LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions() -> Microsoft.UI.Xaml.Markup.XmlnsDefinition[]
+LoomTerminal.WinUI.Controls.TerminalControl
+LoomTerminal.WinUI.Controls.TerminalControl.TerminalControl() -> void
+LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider
+LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider.XamlMetaDataProvider() -> void
