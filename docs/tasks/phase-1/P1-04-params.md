@@ -1,6 +1,6 @@
 # P1-04 — `Params` (CSI / DCS parameters with sub-parameters)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-01
 - **Size:** S
 
@@ -37,16 +37,16 @@ Port the parameter accumulator used by the parser for CSI and DCS sequences, inc
 
 ## Tests
 
-- [ ] Port all of `Params.test.ts`: the top-level tests, `parse tests`, `should not overflow to negative`,
+- [x] Port all of `Params.test.ts`: the top-level tests, `parse tests`, `should not overflow to negative`,
       `issue 2389`. The `parse` helper at the top of the test file (lines 1–45) becomes a private static helper in
       the test class.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-04)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-04)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

@@ -31,6 +31,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 |---|---|---|---|
 | `src/common/CircularList.ts` (+ test) | `Core/Common/CircularList.cs` | ✅ | P1-02 |
 | `src/common/input/TextDecoder.ts` (+ test) | `Core/Input/TextDecoder.cs`, `StringToUtf32.cs`, `Utf8ToUtf32.cs` | ✅ | P1-03 |
+| `src/common/parser/Params.ts`, `Types.ts` (`IParams`) (+ test) | `Core/Parser/Params.cs`, `IParams.cs` | ✅ | P1-04 |
 
 ## What is not ported
 
