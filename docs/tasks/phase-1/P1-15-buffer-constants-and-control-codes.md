@@ -1,6 +1,6 @@
 # P1-15 — Buffer constants, `CharData`, C0/C1 control codes
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-01
 - **Size:** S
 
@@ -35,15 +35,15 @@ Port the bit layouts of cell content and attributes, the legacy `CharData` tuple
 
 ## Tests
 
-- [ ] New: a few values checked against the JS file (`Attributes.CmRgb`, `FgFlags.Inverse`, `BgFlags.Italic`,
+- [x] New: a few values checked against the JS file (`Attributes.CmRgb`, `FgFlags.Inverse`, `BgFlags.Italic`,
       `DEFAULT_ATTR == 256 | (0 << 9)`, `C0.Esc == "\u001b"`, `C1.Csi == "\u009b"`).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-15)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-15)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
