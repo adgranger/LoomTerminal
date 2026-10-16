@@ -35,7 +35,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/parser/Constants.ts`, `Types.ts` (handler types) | `Core/Parser/ParserConstants.cs`, `ParserTypes.cs`, `IOscHandler.cs`, `IDcsHandler.cs` | ✅ (stack types not ported) | P1-05 |
 | `src/common/parser/OscParser.ts` (+ test) | `Core/Parser/OscParser.cs`, `OscHandler.cs` | ✅ | P1-06 |
 | `src/common/parser/DcsParser.ts` (+ test) | `Core/Parser/DcsParser.cs`, `DcsHandler.cs` | ✅ | P1-07 |
-| `src/common/parser/EscapeSequenceParser.ts` (+ test) | `Core/Parser/TransitionTable.cs`, `Vt500TransitionTable.cs`, `EscapeSequenceParser.cs` (registry; parse loop in P1-10), `IEscapeSequenceParser.cs` | 🔶 | P1-08, P1-09 |
+| `src/common/parser/EscapeSequenceParser.ts` (+ test) | `Core/Parser/TransitionTable.cs`, `Vt500TransitionTable.cs`, `EscapeSequenceParser.cs`, `EscapeSequenceParser.Parse.cs`, `IEscapeSequenceParser.cs` | ✅ (tests: P1-11 … P1-14) | P1-08, P1-09, P1-10 |
 
 ## What is not ported
 
@@ -53,6 +53,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | Area | xterm.js | LoomTerminal | Why |
 |---|---|---|---|
 | OSC and DCS handlers | `end` / `unhook` may return a `Promise`; the parser pauses and resumes | Handlers are synchronous (`bool`); `End` / `Unhook` return `void`, no stack state | ADR 0002 |
+| Parser | `parse` may return a `Promise` and resume later | `Parse` is synchronous and returns `void`: no handler can pause the parser; `_parseStack` is not ported | ADR 0002 |
 
 ## Tests not ported
 

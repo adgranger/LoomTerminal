@@ -1,6 +1,6 @@
 # P1-10 — `EscapeSequenceParser` (2/2): the parse loop
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-09
 - **Size:** M
 
@@ -33,17 +33,17 @@ dispatching to the handlers registered in P1-09. Synchronous only.
 
 ## Tests
 
-- [ ] Covered by P1-11 … P1-14. In this card, add one smoke test: a parser with a print handler collecting text and
+- [x] Covered by P1-11 … P1-14. In this card, add one smoke test: a parser with a print handler collecting text and
       a CSI handler for `m`; `Parse("\x1b[1;31mHello")` (decoded with `StringToUtf32`) calls the CSI handler once
       with params `[1, 31]` and prints `Hello`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map: `parser/EscapeSequenceParser.ts` (✅ P1-10) and "Behavior differences":
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map: `parser/EscapeSequenceParser.ts` (✅ P1-10) and "Behavior differences":
       "parse is synchronous; no handler can pause the parser"
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
