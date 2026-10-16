@@ -1,6 +1,6 @@
 # P1-03 — Text decoders: `StringToUtf32`, `Utf8ToUtf32`, `Utf32ToString`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-01
 - **Size:** S
 
@@ -34,17 +34,17 @@ parser, keeping incomplete sequences between chunks.
 
 ## Tests
 
-- [ ] Port `text encodings` › `StringToUtf32 decoder` (full codepoint test, stream handling) and
+- [x] Port `text encodings` › `StringToUtf32 decoder` (full codepoint test, stream handling) and
       `Utf8ToUtf32 decoder` (full codepoint test, stream handling).
-- [ ] The "full codepoint test" loops over all code points: keep it, but run it in a single `[Fact]` (it must stay
+- [x] The "full codepoint test" loops over all code points: keep it, but run it in a single `[Fact]` (it must stay
       under ~2 s in Release; if not, split the range into a `[Theory]` with 16 slices).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-03)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-03)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
