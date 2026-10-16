@@ -1,6 +1,6 @@
 # P1-09 — `EscapeSequenceParser` (1/2): fields, identifiers, handler registry
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-06, P1-07, P1-08
 - **Size:** M
 
@@ -40,15 +40,15 @@ handler registration for print / execute / ESC / CSI / OSC / DCS with fallbacks,
 
 ## Tests
 
-- [ ] Covered by P1-11…P1-14 (the parser tests need the parse loop). In this card, add only: registering and
+- [x] Covered by P1-11…P1-14 (the parser tests need the parse loop). In this card, add only: registering and
       disposing a CSI handler leaves no entry; `IdentToString` of `_identifier(new(Prefix: "?", Intermediates: "$", Final: "p"))` is `"?$p"`;
       invalid identifiers throw (`Final` of two characters, prefix outside `0x3c–0x3f`, intermediates outside `0x20–0x2f`).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

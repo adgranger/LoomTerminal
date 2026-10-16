@@ -43,7 +43,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-06](phase-1/P1-06-osc-parser.md) | `OscParser` and `OscHandler` | P1-05, P1-03 | S | done |
 | [P1-07](phase-1/P1-07-dcs-parser.md) | `DcsParser` and `DcsHandler` | P1-06 | S | done |
 | [P1-08](phase-1/P1-08-transition-table.md) | `TransitionTable` and the VT500 transition table | P1-05 | S | done |
-| [P1-09](phase-1/P1-09-escape-sequence-parser-registry.md) | `EscapeSequenceParser` (1/2): fields, identifiers, handler registry | P1-06, P1-07, P1-08 | M | todo |
+| [P1-09](phase-1/P1-09-escape-sequence-parser-registry.md) | `EscapeSequenceParser` (1/2): fields, identifiers, handler registry | P1-06, P1-07, P1-08 | M | done |
 | [P1-10](phase-1/P1-10-escape-sequence-parser-parse.md) | `EscapeSequenceParser` (2/2): the parse loop | P1-09 | M | todo |
 | [P1-11](phase-1/P1-11-parser-tests-1.md) | Parser tests (1/4): test terminal, init, transitions GROUND … CSI | P1-10 | M | todo |
 | [P1-12](phase-1/P1-12-parser-tests-2.md) | Parser tests (2/4): transitions CSI_IGNORE … DCS_PASSTHROUGH | P1-11 | M | todo |
