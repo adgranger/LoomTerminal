@@ -48,7 +48,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-11](phase-1/P1-11-parser-tests-1.md) | Parser tests (1/4): test terminal, init, transitions GROUND … CSI | P1-10 | M | done |
 | [P1-12](phase-1/P1-12-parser-tests-2.md) | Parser tests (2/4): transitions CSI_IGNORE … DCS_PASSTHROUGH | P1-11 | M | done |
 | [P1-13](phase-1/P1-13-parser-tests-3.md) | Parser tests (3/4): examples, coverage, set/clear handlers | P1-12 | M | done |
-| [P1-14](phase-1/P1-14-parser-tests-4.md) | Parser tests (4/4): function identifiers | P1-13 | S | todo |
+| [P1-14](phase-1/P1-14-parser-tests-4.md) | Parser tests (4/4): function identifiers | P1-13 | S | done |
 
 ### Step C — Cells and lines
 

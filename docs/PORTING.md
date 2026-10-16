@@ -35,7 +35,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/parser/Constants.ts`, `Types.ts` (handler types) | `Core/Parser/ParserConstants.cs`, `ParserTypes.cs`, `IOscHandler.cs`, `IDcsHandler.cs` | ✅ (stack types not ported) | P1-05 |
 | `src/common/parser/OscParser.ts` (+ test) | `Core/Parser/OscParser.cs`, `OscHandler.cs` | ✅ | P1-06 |
 | `src/common/parser/DcsParser.ts` (+ test) | `Core/Parser/DcsParser.cs`, `DcsHandler.cs` | ✅ | P1-07 |
-| `src/common/parser/EscapeSequenceParser.ts` (+ test) | `Core/Parser/TransitionTable.cs`, `Vt500TransitionTable.cs`, `EscapeSequenceParser.cs`, `EscapeSequenceParser.Parse.cs`, `IEscapeSequenceParser.cs` | ✅ (tests: P1-11 … P1-14) | P1-08, P1-09, P1-10 |
+| `src/common/parser/EscapeSequenceParser.ts` (+ test) | `Core/Parser/TransitionTable.cs`, `Vt500TransitionTable.cs`, `EscapeSequenceParser.cs`, `EscapeSequenceParser.Parse.cs`, `IEscapeSequenceParser.cs` | ✅ | P1-08 … P1-14 |
 
 ## What is not ported
 

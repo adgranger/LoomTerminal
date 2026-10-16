@@ -1,6 +1,6 @@
 # P1-14 — Parser tests (4/4): function identifiers
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-13
 - **Size:** S (tests only)
 
@@ -26,14 +26,14 @@ Port the function identifier tests (registration limits, identifier invocation) 
 
 ## Tests
 
-- [ ] Port every `it` of `function identifiers`.
+- [x] Port every `it` of `function identifiers`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` updated: the whole `src/common/parser/` folder ✅
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` updated: the whole `src/common/parser/` folder ✅
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
