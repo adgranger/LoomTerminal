@@ -1,6 +1,6 @@
 # P1-16 — `AttributeData` and `ExtendedAttrs`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-15
 - **Size:** S
 
@@ -38,14 +38,14 @@ Port the cell attribute model: `fg`/`bg` bit fields (colors, color modes, flags)
 
 ## Tests
 
-- [ ] Port `AttributeData` › `extended attributes` (all `it`s).
+- [x] Port `AttributeData` › `extended attributes` (all `it`s).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-16)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-16)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

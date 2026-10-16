@@ -55,7 +55,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P1-15](phase-1/P1-15-buffer-constants-and-control-codes.md) | Buffer constants, `CharData`, C0/C1 control codes | P1-01 | S | done |
-| [P1-16](phase-1/P1-16-attribute-data.md) | `AttributeData` and `ExtendedAttrs` | P1-15 | S | todo |
+| [P1-16](phase-1/P1-16-attribute-data.md) | `AttributeData` and `ExtendedAttrs` | P1-15 | S | done |
 | [P1-17](phase-1/P1-17-cell-data.md) | `CellData` | P1-16 | S | todo |
 | [P1-18](phase-1/P1-18-buffer-line-1.md) | `BufferLine` (1/2): storage and cell access | P1-17 | M | todo |
 | [P1-19](phase-1/P1-19-buffer-line-2.md) | `BufferLine` (2/2): editing, resize, copy, strings | P1-18 | M | todo |

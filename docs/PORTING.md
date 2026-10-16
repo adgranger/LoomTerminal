@@ -37,6 +37,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/parser/DcsParser.ts` (+ test) | `Core/Parser/DcsParser.cs`, `DcsHandler.cs` | ✅ | P1-07 |
 | `src/common/parser/EscapeSequenceParser.ts` (+ test) | `Core/Parser/TransitionTable.cs`, `Vt500TransitionTable.cs`, `EscapeSequenceParser.cs`, `EscapeSequenceParser.Parse.cs`, `IEscapeSequenceParser.cs` | ✅ | P1-08 … P1-14 |
 | `src/common/buffer/Constants.ts`, `Types.ts` (`CharData`), `data/EscapeSequences.ts` | `Core/Buffer/BufferConstants.cs`, `CharData.cs`, `Core/Data/EscapeSequences.cs` | ✅ | P1-15 |
+| `src/common/buffer/AttributeData.ts` (+ `BufferLine.test.ts` AttributeData suite) | `Core/Buffer/AttributeData.cs`, `ExtendedAttrs.cs` | ✅ | P1-16 |
 
 ## What is not ported
 
