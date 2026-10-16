@@ -26,7 +26,7 @@ namespace LoomTerminal.Core.Parser;
 internal partial class EscapeSequenceParser : Disposable, IEscapeSequenceParser
 {
     // buffers over several parse calls
-    protected readonly Params _params;
+    protected Params _params;
     protected int _collect;
 
     // handler lookup containers
@@ -34,7 +34,7 @@ internal partial class EscapeSequenceParser : Disposable, IEscapeSequenceParser
     protected Dictionary<int, ExecuteHandler> _executeHandlers = [];
     protected Dictionary<int, List<CsiHandler>> _csiHandlers = [];
     protected Dictionary<int, List<EscHandler>> _escHandlers = [];
-    protected readonly OscParser _oscParser;
+    protected IOscParser _oscParser;
     protected readonly DcsParser _dcsParser;
     protected Func<ParsingState, ParsingState> _errorHandler;
 

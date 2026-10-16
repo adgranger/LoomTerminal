@@ -1,6 +1,6 @@
 # P1-11 — Parser tests (1/4): test terminal, init, transitions GROUND … CSI
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-10
 - **Size:** M (tests only)
 
@@ -32,15 +32,15 @@ Port the parser test harness and the first half of `state transitions and action
 
 ## Tests
 
-- [ ] Port `Parser init and methods` (all `it`s).
-- [ ] Port `state transitions and actions` lines 242–622 (GROUND, ANYWHERE, ESCAPE, ESCAPE_INTERMEDIATE,
+- [x] Port `Parser init and methods` (all `it`s).
+- [x] Port `state transitions and actions` lines 242–622 (GROUND, ANYWHERE, ESCAPE, ESCAPE_INTERMEDIATE,
       CSI_ENTRY, CSI_PARAM, CSI_INTERMEDIATE), one C# test per `it`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

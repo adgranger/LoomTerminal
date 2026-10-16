@@ -13,7 +13,7 @@ namespace LoomTerminal.Core.Parser;
 /// Threading: not thread-safe; used from the parser thread only. Handlers are synchronous (ADR 0002): the xterm.js
 /// stack state used to resume after a <c>Promise</c> is not ported.
 /// </remarks>
-internal sealed class OscParser : IDisposable
+internal sealed class OscParser : IOscParser
 {
     private static readonly List<IOscHandler> EmptyHandlers = [];
 
