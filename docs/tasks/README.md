@@ -31,7 +31,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P1-01](phase-1/P1-01-core-test-project-and-lifecycle.md) | Core test project, `Disposable`, `Emitter`, ported-file header rule | — | S | done |
-| [P1-02](phase-1/P1-02-circular-list.md) | `CircularList<T>` | P1-01 | S | todo |
+| [P1-02](phase-1/P1-02-circular-list.md) | `CircularList<T>` | P1-01 | S | done |
 | [P1-03](phase-1/P1-03-text-decoder.md) | Text decoders: `StringToUtf32`, `Utf8ToUtf32`, `Utf32ToString` | P1-01 | S | todo |
 | [P1-04](phase-1/P1-04-params.md) | `Params` (CSI / DCS parameters with sub-parameters) | P1-01 | S | todo |
 

@@ -29,7 +29,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 
 | xterm.js | LoomTerminal | Status | Card |
 |---|---|---|---|
-| — | — | — | — |
+| `src/common/CircularList.ts` (+ test) | `Core/Common/CircularList.cs` | ✅ | P1-02 |
 
 ## What is not ported
 
