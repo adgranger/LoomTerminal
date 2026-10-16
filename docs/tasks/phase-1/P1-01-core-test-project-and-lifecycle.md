@@ -1,6 +1,6 @@
 # P1-01 — Core test project, `Disposable`, `Emitter`, ported-file header rule
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** —
 - **Size:** S
 
@@ -55,19 +55,19 @@ and mark both files `// Inspired by xtermjs/xterm.js: src/vs/base/common/lifecyc
 
 ## Tests
 
-- [ ] New: disposing a `Disposable` disposes registered objects once, in reverse registration order; a second
+- [x] New: disposing a `Disposable` disposes registered objects once, in reverse registration order; a second
       `Dispose` does nothing; `Register` after dispose disposes the argument immediately.
-- [ ] New: `Disposables.Create` runs its action once.
-- [ ] New: `MutableDisposable.Value` setter disposes the previous value; `Clear` disposes and sets null.
-- [ ] New: `Emitter` calls listeners in order; unsubscribing (disposing the subscription) stops calls; unsubscribe
+- [x] New: `Disposables.Create` runs its action once.
+- [x] New: `MutableDisposable.Value` setter disposes the previous value; `Clear` disposes and sets null.
+- [x] New: `Emitter` calls listeners in order; unsubscribing (disposing the subscription) stops calls; unsubscribe
       during `Fire`; subscribe during `Fire`; `Fire` after `Dispose` is a no-op.
-- [ ] New: `PortedFileHeaderTests` passes on the repository (and fails if you temporarily break a header — check by hand once).
+- [x] New: `PortedFileHeaderTests` passes on the repository (and fails if you temporarily break a header — check by hand once).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
