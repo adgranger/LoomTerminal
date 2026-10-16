@@ -1,6 +1,6 @@
 # P1-17 — `CellData`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-16
 - **Size:** S
 
@@ -30,14 +30,14 @@ Port the cell value object used to read and write buffer cells (content word + a
 
 ## Tests
 
-- [ ] Port `CellData` (all `it`s).
+- [x] Port `CellData` (all `it`s).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-17)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-17)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
