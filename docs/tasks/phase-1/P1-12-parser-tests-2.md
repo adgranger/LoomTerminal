@@ -1,6 +1,6 @@
 # P1-12 — Parser tests (2/4): transitions CSI_IGNORE … DCS_PASSTHROUGH
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-11
 - **Size:** M (tests only)
 
@@ -25,13 +25,13 @@ Port the second half of `state transitions and actions`.
 
 ## Tests
 
-- [ ] Port every `it` between lines 623 and 1032.
+- [x] Port every `it` between lines 623 and 1032.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
