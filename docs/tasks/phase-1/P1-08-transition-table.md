@@ -1,6 +1,6 @@
 # P1-08 — `TransitionTable` and the VT500 transition table
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-05
 - **Size:** S
 
@@ -29,7 +29,7 @@ Port the table-driven state machine data (Paul Williams' DEC VT500 parser, as ad
 
 ## Tests
 
-- [ ] New (xterm.js tests this table only through the parser): check a handful of entries against the JS source:
+- [x] New (xterm.js tests this table only through the parser): check a handful of entries against the JS source:
       `GROUND` + `0x1b` → `ESCAPE` / `CLEAR`; `GROUND` + `0x41` → `GROUND` / `PRINT`; `ESCAPE` + `0x5b` → `CSI_ENTRY`
       / `CLEAR`; `CSI_ENTRY` + `0x3f` → `CSI_PARAM` / `COLLECT`; `CSI_PARAM` + `0x6d` → `GROUND` / `CSI_DISPATCH`;
       `OSC_STRING` + `0x07` → `GROUND` / `OSC_END`; any state + `0x18` → `GROUND` / `EXECUTE`;
@@ -38,10 +38,10 @@ Port the table-driven state machine data (Paul Williams' DEC VT500 parser, as ad
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map: `parser/EscapeSequenceParser.ts` (🔶 in progress, P1-08)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map: `parser/EscapeSequenceParser.ts` (🔶 in progress, P1-08)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
