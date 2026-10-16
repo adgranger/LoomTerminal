@@ -1,6 +1,6 @@
 # P1-13 — Parser tests (3/4): examples, coverage, set/clear handlers
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-12
 - **Size:** M (tests only)
 
@@ -29,14 +29,14 @@ Port the end-to-end parser examples, the coverage tests and the custom handler t
 
 ## Tests
 
-- [ ] Port every synchronous `it` of the three suites above.
+- [x] Port every synchronous `it` of the three suites above.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` "Tests not ported" updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` "Tests not ported" updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

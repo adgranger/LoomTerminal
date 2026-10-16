@@ -61,3 +61,4 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 |---|---|
 | `OscParser - async tests` (`OscParser.test.ts`, lines 280–453) | Async handlers are not ported (ADR 0002) |
 | `DcsParser - async tests` (`DcsParser.test.ts`, lines 284–459) | Async handlers are not ported (ADR 0002) |
+| `EscapeSequenceParser - async` (`EscapeSequenceParser.test.ts`, lines 1744–2220) | Async handlers are not ported (ADR 0002) |

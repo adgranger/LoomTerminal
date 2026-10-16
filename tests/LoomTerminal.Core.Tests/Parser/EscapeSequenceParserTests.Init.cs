@@ -78,6 +78,7 @@ public sealed partial class EscapeSequenceParserTests : IDisposable
     public void Dispose()
     {
         _parser.Dispose();
+        _parser2.Dispose();
         GC.SuppressFinalize(this);
     }
 
@@ -92,6 +93,9 @@ public sealed partial class EscapeSequenceParserTests : IDisposable
 
         return arr;
     }
+
+    // sub-parameters of a parameter in a params array
+    private static int[] S(params ReadOnlySpan<int> items) => items.ToArray();
 
     // one recorded call or parameter list
     private static object[] A(params ReadOnlySpan<object> items) => items.ToArray();
