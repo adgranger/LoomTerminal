@@ -1,6 +1,6 @@
 # P1-07 — `DcsParser` and `DcsHandler`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-06
 - **Size:** S
 
@@ -31,15 +31,15 @@ Port the DCS sub-parser (hook / put / unhook with handler fallthrough) and the s
 
 ## Tests
 
-- [ ] Port `DcsParser` › `handler registration`, `DcsHandlerFactory` (lines 73–283).
-- [ ] Not ported: `DcsParser - async tests` (lines 284–459). List them in `docs/PORTING.md`.
+- [x] Port `DcsParser` › `handler registration`, `DcsHandlerFactory` (lines 73–283).
+- [x] Not ported: `DcsParser - async tests` (lines 284–459). List them in `docs/PORTING.md`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-07)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-07)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
