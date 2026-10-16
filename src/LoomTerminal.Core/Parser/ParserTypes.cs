@@ -32,8 +32,8 @@ internal enum OscFallbackAction
     End,
 }
 
-/// <summary>Fallback called for OSC commands without handler. The payload is a string for Put and End.</summary>
-internal delegate void OscFallbackHandler(int ident, OscFallbackAction action, string? payload);
+/// <summary>Fallback called for OSC commands without handler. The payload is a <see cref="string"/> for Put and a <see cref="bool"/> (success) for End.</summary>
+internal delegate void OscFallbackHandler(int ident, OscFallbackAction action, object? payload);
 
 /// <summary>The phase of a DCS command reported to <see cref="DcsFallbackHandler"/>.</summary>
 internal enum DcsFallbackAction

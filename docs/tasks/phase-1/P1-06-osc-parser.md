@@ -1,6 +1,6 @@
 # P1-06 — `OscParser` and `OscHandler`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-05, P1-03
 - **Size:** S
 
@@ -36,17 +36,17 @@ Port the OSC sub-parser (identifier parsing, handler dispatch with fallthrough, 
 
 ## Tests
 
-- [ ] Port `OscParser` › `identifier parsing`, `handler registration`, `OscHandlerFactory` (lines 35–279).
+- [x] Port `OscParser` › `identifier parsing`, `handler registration`, `OscHandlerFactory` (lines 35–279).
       The test helper at the top of the file (lines 1–34: a `TestHandler` recording calls, `toUtf32`) goes to
       `tests/LoomTerminal.Core.Tests/Parser/ParserTestHelpers.cs` (shared with P1-07 and P1-11).
-- [ ] Not ported: `OscParser - async tests` (lines 280–453), see ADR 0002. List them in `docs/PORTING.md`.
+- [x] Not ported: `OscParser - async tests` (lines 280–453), see ADR 0002. List them in `docs/PORTING.md`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-06) and "Behavior differences": "OSC handlers are synchronous"
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-06) and "Behavior differences": "OSC handlers are synchronous"
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

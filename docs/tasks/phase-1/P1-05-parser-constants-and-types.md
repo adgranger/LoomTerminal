@@ -31,7 +31,7 @@ and the escape sequence parser share.
   `delegate bool ExecuteHandler()`, `delegate void ExecuteFallbackHandler(int ident)`,
   `delegate void PrintHandler(uint[] data, int start, int end)` (an array, not a span, to stay one-to-one with the
   xterm.js call sites).
-  `delegate void OscFallbackHandler(int ident, OscFallbackAction action, string? payload)` with
+  `delegate void OscFallbackHandler(int ident, OscFallbackAction action, object? payload)` with
   `enum OscFallbackAction { Start, Put, End }`;
   `delegate void DcsFallbackHandler(int ident, DcsFallbackAction action, object? payload)` with
   `enum DcsFallbackAction { Hook, Put, Unhook }` (payload is `IParams` for Hook, `string` for Put, `bool` for Unhook,
