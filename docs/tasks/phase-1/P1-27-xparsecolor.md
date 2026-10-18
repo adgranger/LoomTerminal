@@ -1,6 +1,6 @@
 # P1-27 — `XParseColor`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-01
 - **Size:** S
 
@@ -28,14 +28,14 @@ Port the X11 color specification parser and formatter used by OSC 4/10/11/12 (`r
 
 ## Tests
 
-- [ ] Port `XParseColor` › `parseColor`, `toXColorRgb`.
+- [x] Port `XParseColor` › `parseColor`, `toXColorRgb`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-27)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-27)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
