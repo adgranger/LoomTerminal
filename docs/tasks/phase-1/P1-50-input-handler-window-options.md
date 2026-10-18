@@ -1,6 +1,6 @@
 # P1-50 — `InputHandler.WindowOptions`: XTWINOPS and title stacks
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-49
 - **Size:** S
 
@@ -28,15 +28,21 @@ Port `CSI Ps t` (window manipulation reports, push/pop title), gated by the `win
 - `DECCOLM` (`CSI ? 3 h/l`, in `setModePrivate`, P1-45) only works with `SetWinLines`: the test at 1569 checks it
   here.
 
+## Deviation from the card (found while porting)
+
+`PopTitle` calls `setTitle` / `setIconName` and the tests drive the title with OSC 0, so this card also created
+`InputHandler.Osc.cs` with the `_windowTitle` / `_iconName` fields, `SetTitle`, `SetIconName` and `RegisterOscHandlers`
+(OSC 0, 1, 2 only). P1-51 adds the other OSC handlers to that file.
+
 ## Tests
 
-- [ ] Port `windowOptions` (all `it`s).
+- [x] Port `windowOptions` (all `it`s).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
