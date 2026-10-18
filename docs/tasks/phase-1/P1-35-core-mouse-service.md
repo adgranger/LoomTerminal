@@ -1,6 +1,6 @@
 # P1-35 — `CoreMouseService` (mouse protocols and encodings)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-34
 - **Size:** M
 
@@ -39,14 +39,14 @@ filtering and the bytes sent to the application. The UI backends only fill a `Co
 
 ## Tests
 
-- [ ] Port all of `CoreMouseService.test.ts` (`triggerMouseEvent`, `coords`, protocol/encoding tests).
+- [x] Port all of `CoreMouseService.test.ts` (`triggerMouseEvent`, `coords`, protocol/encoding tests).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-35)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-35)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

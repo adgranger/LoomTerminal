@@ -84,7 +84,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-32](phase-1/P1-32-buffer-reflow-cases.md) | `Buffer` tests: `reflowLarger` and `reflowSmaller` cases | P1-31 | M | done |
 | [P1-33](phase-1/P1-33-buffer-set-and-buffer-service.md) | `BufferSet` and `BufferService` | P1-32 | M | done |
 | [P1-34](phase-1/P1-34-core-service-and-osc-link-service.md) | `CoreService` and `OscLinkService` | P1-33 | S | done |
-| [P1-35](phase-1/P1-35-core-mouse-service.md) | `CoreMouseService` (mouse protocols and encodings) | P1-34 | M | todo |
+| [P1-35](phase-1/P1-35-core-mouse-service.md) | `CoreMouseService` (mouse protocols and encodings) | P1-34 | M | done |
 
 ### Step F — InputHandler (one family of sequences per card)
 

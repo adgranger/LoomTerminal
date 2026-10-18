@@ -35,13 +35,15 @@ internal sealed class MockCoreService : ICoreService, IDisposable
     {
     }
 
-    public void TriggerDataEvent(string data, bool wasUserInput = false)
-    {
-    }
+    /// <summary>Called by <see cref="TriggerDataEvent"/>; the JS tests replace the method the same way.</summary>
+    public Action<string, bool>? DataEventHandler { get; set; }
 
-    public void TriggerBinaryEvent(string data)
-    {
-    }
+    /// <summary>Called by <see cref="TriggerBinaryEvent"/>.</summary>
+    public Action<string>? BinaryEventHandler { get; set; }
+
+    public void TriggerDataEvent(string data, bool wasUserInput = false) => DataEventHandler?.Invoke(data, wasUserInput);
+
+    public void TriggerBinaryEvent(string data) => BinaryEventHandler?.Invoke(data);
 
     public void Dispose()
     {
