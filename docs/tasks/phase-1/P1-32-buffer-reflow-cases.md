@@ -1,6 +1,6 @@
 # P1-32 — `Buffer` tests: `reflowLarger` and `reflowSmaller` cases
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-31
 - **Size:** M (tests only)
 
@@ -27,14 +27,14 @@ Port the viewport / scrollback matrix of reflow tests and fix the port where the
 
 ## Tests
 
-- [ ] Port every `it` of lines 657–1053.
+- [x] Port every `it` of lines 657–1053.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map: `buffer/Buffer.ts`, `BufferReflow.ts`, `Marker.ts`, `BufferRange.ts` ✅
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map: `buffer/Buffer.ts`, `BufferReflow.ts`, `Marker.ts`, `BufferRange.ts` ✅
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
