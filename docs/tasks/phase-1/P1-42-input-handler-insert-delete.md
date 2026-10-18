@@ -1,6 +1,6 @@
 # P1-42 — `InputHandler.InsertDelete`: IL, DL, ICH, DCH, SU, SD, SL, SR, DECIC, DECDC
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-41
 - **Size:** M
 
@@ -29,13 +29,13 @@ Port the line and character insertion/deletion handlers and the vertical/horizon
 
 ## Tests
 
-- [ ] Port the tests listed in the sources table.
+- [x] Port the tests listed in the sources table.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
