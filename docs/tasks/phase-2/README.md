@@ -23,7 +23,7 @@ One JSON document per fixture, written with 2-space indentation, `\n` line endin
 
 - `lines` holds the **viewport** rows (`ybase … ybase + rows - 1`), each `translateToString(true)`.
 - `runs` group consecutive cells with the same attributes; only cells up to the trimmed length are included.
-- Colors: `"default"`, `"p16:<n>"`, `"p256:<n>"`, `"rgb:<rrggbb>"`. Flags, sorted: `bold`, `dim`, `italic`,
+- Colors: `"default"`, `"p16:<n>"`, `"p256:<n>"`, `"rgb:<rrggbb>"`. Flags, in this order: `bold`, `dim`, `italic`,
   `underline:<style>`, `blink`, `inverse`, `invisible`, `strikethrough`, `overline`.
 - Wide characters: the cell after a wide character has width 0 and is part of the same run.
 

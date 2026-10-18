@@ -124,7 +124,7 @@ Differential tests against xterm.js headless, recorded sessions, benchmarks. **R
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P2-01](phase-2/P2-01-screen-snapshot.md) | Screen snapshots of `TerminalCore` | P1-57 | M | todo |
+| [P2-01](phase-2/P2-01-screen-snapshot.md) | Screen snapshots of `TerminalCore` | P1-57 | M | done |
 | [P2-02](phase-2/P2-02-xterm-oracle.md) | `tools/xterm-oracle`: expected snapshots from xterm.js itself | P2-01 | M | todo |
 | [P2-03](phase-2/P2-03-scenario-fixtures.md) | Scenario fixtures and the differential test runner | P2-02 | M | todo |
 | [P2-04](phase-2/P2-04-session-recorder.md) | Record real ConPTY sessions (`PtyConsole --record`) | P2-01 | S | todo |

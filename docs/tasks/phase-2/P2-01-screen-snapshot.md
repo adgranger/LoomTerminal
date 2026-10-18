@@ -1,6 +1,6 @@
 # P2-01 — Screen snapshots of `TerminalCore`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-57
 - **Size:** M
 
@@ -27,17 +27,23 @@ Produce the JSON screen snapshot described in [the phase 2 conventions](README.m
 - Use source-generated `System.Text.Json` only (no reflection-based serializer: banned by `src/BannedSymbols.txt`
   rules in spirit, even in tests).
 
+## Implementation notes
+
+- `ScreenSnapshot.Capture(core, title)` takes the title as a parameter: `TerminalCore` does not expose it, `FixtureReader.Replay` tracks `OnTitleChange`.
+- Flags are written in the order of the conventions (bold, dim, italic, underline, blink, inverse, invisible, strikethrough, overline), not alphabetically.
+- Helper types are `internal` (`TerminalCore` is internal).
+
 ## Tests
 
-- [ ] New: snapshot of `hello\r\n\e[1;31mred\e[0m` has two lines, the second with one run `p16:1` + `bold`.
-- [ ] New: a wide character produces one run covering two cells; `#!resize 40 10` in an `.input` file resizes.
-- [ ] New: `.vtrec` with `O aGVsbG8=` writes `hello`.
+- [x] New: snapshot of `hello\r\n\e[1;31mred\e[0m` has two lines, the second with one run `p16:1` + `bold`.
+- [x] New: a wide character produces one run covering two cells; `#!resize 40 10` in an `.input` file resizes.
+- [x] New: `.vtrec` with `O aGVsbG8=` writes `hello`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings (not run: the Windows projects do not build on Linux; Core.Tests builds with 0 warnings in Release)
+- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (Core.Tests: 774 green)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
