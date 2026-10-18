@@ -24,9 +24,8 @@ internal sealed partial class Buffer : IBuffer
         new CharData(0, BufferConstants.NullCellChar, BufferConstants.NullCellWidth, BufferConstants.NullCellCode));
     private readonly CellData _whitespaceCell = CellData.FromCharData(
         new CharData(0, BufferConstants.WhitespaceCellChar, BufferConstants.WhitespaceCellWidth, BufferConstants.WhitespaceCellCode));
-    // P1-30 (Resize) makes _cols and _rows mutable
-    private readonly int _cols;
-    private readonly int _rows;
+    private int _cols;
+    private int _rows;
     private bool _isClearing;
 
     /// <summary>Creates a buffer sized after the buffer service.</summary>

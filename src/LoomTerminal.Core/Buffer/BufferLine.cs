@@ -61,6 +61,12 @@ internal partial class BufferLine : IBufferLine
         Length = cols;
     }
 
+    /// <summary>
+    /// The size of the underlying array in cells (3 items each), which can exceed <see cref="Length"/> after a resize
+    /// until <see cref="CleanupMemory"/> runs (JS: the byte length of the buffer of the typed array).
+    /// </summary>
+    public int Capacity => _data.Length / CellSize;
+
     /// <inheritdoc />
     public int Length { get; set; }
 
