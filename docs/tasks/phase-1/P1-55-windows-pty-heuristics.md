@@ -1,6 +1,6 @@
 # P1-55 — Windows PTY heuristics (`windowsPty`, `windowsMode`)
 
-- **Status:** in progress
+- **Status:** done
 - **Depends on:** P1-54
 - **Size:** S
 
@@ -28,30 +28,24 @@ wrapped from the character before a line feed; and reflow is disabled when the P
 - Keep the JS condition literally, including its duplicated `buildNumber !== undefined` check (line 256): with
   `WindowsPtyOptions.BuildNumber` an `int?`, write `windowsPty.BuildNumber is not null`.
 - VIGO passes `{ Backend = "conpty", BuildNumber = <Windows build> }` (≥ 22000 on supported Windows 11): the
-  heuristics are then **off** and reflow is **off** (ConPTY rewraps). Document this in the XML doc of `WindowsPtyOptions`.
-
-## Open question (stopped here, needs a decision)
-
-The card says that with `ConPTY ≥ 22000` reflow is **off** (ConPTY rewraps) and asks for a test that resizing narrower
-does not reflow. The pinned source (and the port of `Buffer._isReflowEnabled`, P1-30) does the opposite: with a
-`BuildNumber` set, reflow is `hasScrollback && Backend == "conpty" && BuildNumber >= 21376`, so reflow is **on** for a
-recent ConPTY and off for an old one or winpty. The second test and the XML doc sentence of `WindowsPtyOptions` were
-therefore **not** written. Decide which behavior VIGO wants (keep the port, or change `IsReflowEnabled` — a deviation
-from xterm.js to record in `docs/PORTING.md`), then finish the card.
+  heuristics are then **off** and reflow is **on** (`hasScrollback && conpty && BuildNumber >= 21376`, exactly as
+  `Buffer._isReflowEnabled` in the pinned source: ConPTY marks wrapped lines itself). Reflow is off only for an old
+  ConPTY, winpty or `windowsMode`. Documented in the XML doc of `WindowsPtyOptions`.
 
 ## Tests
 
 - [x] New: with `WindowsPty = new("conpty", 19041)`, writing 80 non-space chars then `\n` marks the next line
       `IsWrapped`; with `BuildNumber = 22631` it does not; with `WindowsMode = true` it does; changing the option at
       run time switches the behavior (the subscription disposes the heuristics).
-- [ ] New: with `WindowsPty = new("conpty", 22631)`, resizing narrower does not reflow (lines keep their content).
+- [x] New: with `WindowsPty = new("conpty", 22631)`, resizing narrower reflows (the long line is split and the second
+      part is wrapped); with `new("conpty", 19041)` it does not.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map: `WindowsMode.ts` ✅, `CoreTerminal.ts` ✅ (except `write`)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map: `WindowsMode.ts` ✅, `CoreTerminal.ts` ✅ (except `write`)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
