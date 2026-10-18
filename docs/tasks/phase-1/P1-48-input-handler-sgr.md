@@ -34,6 +34,8 @@ overline, 16/256/RGB colors, colon notation, SGR 0 with hyperlinks, extended und
 
 ## Tests
 
+- [ ] Deferred from P1-45: port `alt screen` (all six tests, InputHandler.test.ts 624–678; they use SGR colors).
+
 - [ ] Port the five suites listed in the sources table.
 
 ## Acceptance criteria
