@@ -46,6 +46,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/data/Charsets.ts`, `services/CharsetService.ts`, `Services.ts` (`ICharsetService`) | `Core/Data/Charsets.cs`, `Core/Services/CharsetService.cs`, `ICharsetService.cs` | ✅ | P1-25 |
 | `src/common/Color.ts`, `Types.ts` (`IColor`) (+ test) | `Core/Common/Color.cs` (`TerminalColor`, `Channels`, `ColorOps`, `Css`, `Rgb`, `Rgba`, `ColorMath`) | ✅ | P1-26 |
 | `src/common/input/XParseColor.ts` (+ test) | `Core/Input/XParseColor.cs` | ✅ | P1-27 |
+| `src/common/buffer/Marker.ts`, `BufferRange.ts`, `BufferReflow.ts` (+ `BufferRange` and `BufferReflow` tests), `Types.ts` (`IMarker`) | `Core/Buffer/Marker.cs`, `IMarker.cs`, `BufferRange.cs`, `BufferReflow.cs` | 🔶 (the rest of `Buffer` comes with P1-29 … P1-32) | P1-28 |
 
 ## What is not ported
 

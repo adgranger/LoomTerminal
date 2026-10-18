@@ -42,6 +42,9 @@ internal sealed class CircularList<T> : Disposable where T : class
         _length = 0;
     }
 
+    /// <summary>The emitter behind <see cref="OnDelete"/>; <c>BufferReflow</c> fires it to tell markers about removed lines.</summary>
+    internal Emitter<DeleteEvent> OnDeleteEmitter => _onDeleteEmitter;
+
     /// <summary>Raised after items were deleted by <see cref="Splice"/>.</summary>
     public IEvent<DeleteEvent> OnDelete => _onDeleteEmitter.Event;
 

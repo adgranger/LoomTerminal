@@ -1,6 +1,6 @@
 # P1-28 — `Marker`, `BufferRange`, reflow helper functions
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-02, P1-20
 - **Size:** M
 
@@ -38,15 +38,15 @@ new line layouts when the terminal width changes.
 
 ## Tests
 
-- [ ] Port `BufferRange` › `getRangeLength`.
-- [ ] Port `BufferReflow` › `reflowSmallerGetNewLineLengths`.
+- [x] Port `BufferRange` › `getRangeLength`.
+- [x] Port `BufferReflow` › `reflowSmallerGetNewLineLengths`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-28)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-28)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
