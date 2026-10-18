@@ -98,7 +98,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-41](phase-1/P1-41-input-handler-erase.md) | `InputHandler.Erase`: ED, EL, ECH, DECSCA, DECSED, DECSEL | P1-39 | M | done |
 | [P1-42](phase-1/P1-42-input-handler-insert-delete.md) | `InputHandler.InsertDelete`: IL, DL, ICH, DCH, SU, SD, SL, SR, DECIC, DECDC | P1-41 | M | done |
 | [P1-43](phase-1/P1-43-input-handler-rep-and-device-attributes.md) | `InputHandler.DeviceAttributes`: REP, DA1, DA2 | P1-37 | S | done |
-| [P1-44](phase-1/P1-44-input-handler-esc.md) | `InputHandler.Esc`: DECSC/DECRC, IND, NEL, RI, keypad modes, charsets, RIS, DECALN | P1-38, P1-25 | M | todo |
+| [P1-44](phase-1/P1-44-input-handler-esc.md) | `InputHandler.Esc`: DECSC/DECRC, IND, NEL, RI, keypad modes, charsets, RIS, DECALN | P1-38, P1-25 | M | done |
 | [P1-45](phase-1/P1-45-input-handler-modes.md) | `InputHandler.Modes`: SM, RM, DECSET, DECRST (incl. alternate screen, mouse, bracketed paste) | P1-44, P1-35 | M | todo |
 | [P1-46](phase-1/P1-46-input-handler-request-mode.md) | `InputHandler.RequestMode`: DECRQM (ANSI and DEC private) | P1-45 | S | todo |
 | [P1-47](phase-1/P1-47-input-handler-sgr-colors.md) | `InputHandler.Sgr` (1/2): color and underline helpers | P1-36 | M | todo |
