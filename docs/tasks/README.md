@@ -78,7 +78,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P1-28](phase-1/P1-28-marker-range-reflow.md) | `Marker`, `BufferRange`, reflow helper functions | P1-02, P1-20 | M | done |
-| [P1-29](phase-1/P1-29-buffer-1.md) | `Buffer` (1/3): structure, cells, tab stops, markers, strings | P1-28, P1-23, P1-24, P1-25 | M | todo |
+| [P1-29](phase-1/P1-29-buffer-1.md) | `Buffer` (1/3): structure, cells, tab stops, markers, strings | P1-28, P1-23, P1-24, P1-25 | M | done |
 | [P1-30](phase-1/P1-30-buffer-2.md) | `Buffer` (2/3): resize without reflow, memory cleanup | P1-29 | M | todo |
 | [P1-31](phase-1/P1-31-buffer-3-reflow.md) | `Buffer` (3/3): reflow | P1-30 | M | todo |
 | [P1-32](phase-1/P1-32-buffer-reflow-cases.md) | `Buffer` tests: `reflowLarger` and `reflowSmaller` cases | P1-31 | M | todo |

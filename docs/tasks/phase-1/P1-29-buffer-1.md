@@ -1,6 +1,6 @@
 # P1-29 — `Buffer` (1/3): structure, cells, tab stops, markers, strings
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-28, P1-23, P1-24, P1-25
 - **Size:** M
 
@@ -42,15 +42,15 @@ Port `Buffer` without resize and reflow: lines, cursor and scroll region fields,
 
 ## Tests
 
-- [ ] Port `Buffer` › `constructor`, `fillViewportRows`, `getWrappedRangeForLine` (lines 18–109).
-- [ ] Port `Buffer` › `addMarker` (lines 1069–1181).
+- [x] Port `Buffer` › `constructor`, `fillViewportRows`, `getWrappedRangeForLine` (lines 18–109).
+- [x] Port `Buffer` › `addMarker` (lines 1069–1181).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map: `buffer/Buffer.ts` (🔶 P1-29)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map: `buffer/Buffer.ts` (🔶 P1-29)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
