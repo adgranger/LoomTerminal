@@ -1,6 +1,6 @@
 # P1-23 — `TerminalOptions` and `OptionsService`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-01
 - **Size:** M
 
@@ -56,16 +56,16 @@ notifies listeners — without reflection (ADR 0002, decision 4).
 
 ## Tests
 
-- [ ] Port `OptionsService` tests (`constructor`, `setOption`, `onOptionChange`, `onSpecificOptionChange`,
+- [x] Port `OptionsService` tests (`constructor`, `setOption`, `onOptionChange`, `onSpecificOptionChange`,
       `onMultipleOptionChange`) for options in the subset; JS tests about UI options (font, theme) are skipped and
       listed in the card's PR description. `setOption('x', v)` becomes `SetOptions(service.RawOptions with { X = v })`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-23) and "Behavior differences": "options are an immutable record; UI options live in Presentation"
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-23) and "Behavior differences": "options are an immutable record; UI options live in Presentation"
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

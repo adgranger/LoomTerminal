@@ -42,6 +42,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/buffer/BufferLine.ts` (+ `IBufferLine` of `Types.ts`) | `Core/Buffer/BufferLine*.cs`, `IBufferLine.cs` | ✅ | P1-18, P1-19 |
 | `src/common/services/UnicodeService.ts`, `Services.ts` (Unicode types), `src/common/input/UnicodeV6.ts` (+ tests) | `Core/Services/UnicodeService.cs`, `IUnicodeService.cs`, `IUnicodeVersionProvider.cs`, `Core/Input/UnicodeV6.cs` | ✅ | P1-21 |
 | `addons/addon-unicode11/src/UnicodeV11.ts`, `Unicode11Addon.ts` | `Core/Input/UnicodeV11.cs` (registered and active in `UnicodeService`) | ✅ | P1-22 |
+| `src/common/services/OptionsService.ts` (+ test), `Services.ts` (`IOptionsService`) | `Core/Services/TerminalOptions.cs`, `TerminalOption.cs`, `IOptionsService.cs`, `OptionsService.cs` | ✅ (Core subset) | P1-23 |
 
 ## What is not ported
 
@@ -61,6 +62,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | OSC and DCS handlers | `end` / `unhook` may return a `Promise`; the parser pauses and resumes | Handlers are synchronous (`bool`); `End` / `Unhook` return `void`, no stack state | ADR 0002 |
 | Parser | `parse` may return a `Promise` and resume later | `Parse` is synchronous and returns `void`: no handler can pause the parser; `_parseStack` is not ported | ADR 0002 |
 | Unicode version | `UnicodeService` starts on version 6; Unicode 11 comes from `addon-unicode11` | Unicode 11 widths are the default (`"6"` stays registered) | ADR 0002, decision 7 |
+| Options | A mutable `options` object with getters/setters and `onOptionChange(key)` | `TerminalOptions` is an immutable record; `SetOptions` validates it all, then raises one `OnOptionChange(TerminalOption)` per changed property. UI options (font, theme, …) live in Presentation | ADR 0002, decision 4 |
 
 ## Tests not ported
 
@@ -68,4 +70,5 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 |---|---|
 | `OscParser - async tests` (`OscParser.test.ts`, lines 280–453) | Async handlers are not ported (ADR 0002) |
 | `DcsParser - async tests` (`DcsParser.test.ts`, lines 284–459) | Async handlers are not ported (ADR 0002) |
+| `OptionsService.test.ts`: `fontWeight` setOption tests, cols/rows `undefined` constructor test, `Object.keys` test | UI option, non-nullable ints, and a record instead of a getter/setter object |
 | `EscapeSequenceParser - async` (`EscapeSequenceParser.test.ts`, lines 1744–2220) | Async handlers are not ported (ADR 0002) |
