@@ -43,6 +43,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/services/UnicodeService.ts`, `Services.ts` (Unicode types), `src/common/input/UnicodeV6.ts` (+ tests) | `Core/Services/UnicodeService.cs`, `IUnicodeService.cs`, `IUnicodeVersionProvider.cs`, `Core/Input/UnicodeV6.cs` | ✅ | P1-21 |
 | `addons/addon-unicode11/src/UnicodeV11.ts`, `Unicode11Addon.ts` | `Core/Input/UnicodeV11.cs` (registered and active in `UnicodeService`) | ✅ | P1-22 |
 | `src/common/services/OptionsService.ts` (+ test), `Services.ts` (`IOptionsService`) | `Core/Services/TerminalOptions.cs`, `TerminalOption.cs`, `IOptionsService.cs`, `OptionsService.cs` | ✅ (Core subset) | P1-23 |
+| `src/common/data/Charsets.ts`, `services/CharsetService.ts`, `Services.ts` (`ICharsetService`) | `Core/Data/Charsets.cs`, `Core/Services/CharsetService.cs`, `ICharsetService.cs` | ✅ | P1-25 |
 
 ## What is not ported
 

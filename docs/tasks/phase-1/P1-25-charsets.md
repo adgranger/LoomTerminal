@@ -1,6 +1,6 @@
 # P1-25 — Charsets and `CharsetService`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-24
 - **Size:** S
 
@@ -35,15 +35,15 @@ tracks the active set.
 
 ## Tests
 
-- [ ] New (no JS tests for this file): DEC Special Graphics (`'0'`) maps `'q'` to `"─"` and `'x'` to `"│"`;
+- [x] New (no JS tests for this file): DEC Special Graphics (`'0'`) maps `'q'` to `"─"` and `'x'` to `"│"`;
       `setgCharset(0, All['0'])` then `setgLevel(0)` makes `Charset` that table; `Reset` restores the default.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-25)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-25)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
