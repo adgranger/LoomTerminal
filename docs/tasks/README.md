@@ -70,7 +70,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-23](phase-1/P1-23-options-service.md) | `TerminalOptions` and `OptionsService` | P1-01 | M | done |
 | [P1-24](phase-1/P1-24-log-service-and-test-mocks.md) | `ILogService` and the test mocks | P1-21, P1-23 | S | done |
 | [P1-25](phase-1/P1-25-charsets.md) | Charsets and `CharsetService` | P1-24 | S | done |
-| [P1-26](phase-1/P1-26-color.md) | `Color` helpers | P1-01 | M | todo |
+| [P1-26](phase-1/P1-26-color.md) | `Color` helpers | P1-01 | M | done |
 | [P1-27](phase-1/P1-27-xparsecolor.md) | `XParseColor` | P1-01 | S | todo |
 
 ### Step E — Buffer and core services

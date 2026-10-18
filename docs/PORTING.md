@@ -44,6 +44,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `addons/addon-unicode11/src/UnicodeV11.ts`, `Unicode11Addon.ts` | `Core/Input/UnicodeV11.cs` (registered and active in `UnicodeService`) | ✅ | P1-22 |
 | `src/common/services/OptionsService.ts` (+ test), `Services.ts` (`IOptionsService`) | `Core/Services/TerminalOptions.cs`, `TerminalOption.cs`, `IOptionsService.cs`, `OptionsService.cs` | ✅ (Core subset) | P1-23 |
 | `src/common/data/Charsets.ts`, `services/CharsetService.ts`, `Services.ts` (`ICharsetService`) | `Core/Data/Charsets.cs`, `Core/Services/CharsetService.cs`, `ICharsetService.cs` | ✅ | P1-25 |
+| `src/common/Color.ts`, `Types.ts` (`IColor`) (+ test) | `Core/Common/Color.cs` (`TerminalColor`, `Channels`, `ColorOps`, `Css`, `Rgb`, `Rgba`, `ColorMath`) | ✅ | P1-26 |
 
 ## What is not ported
 
@@ -64,6 +65,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | Parser | `parse` may return a `Promise` and resume later | `Parse` is synchronous and returns `void`: no handler can pause the parser; `_parseStack` is not ported | ADR 0002 |
 | Unicode version | `UnicodeService` starts on version 6; Unicode 11 comes from `addon-unicode11` | Unicode 11 widths are the default (`"6"` stays registered) | ADR 0002, decision 7 |
 | Options | A mutable `options` object with getters/setters and `onOptionChange(key)` | `TerminalOptions` is an immutable record; `SetOptions` validates it all, then raises one `OnOptionChange(TerminalOption)` per changed property. UI options (font, theme, …) live in Presentation | ADR 0002, decision 4 |
+| CSS colors | `css.toColor` falls back to a canvas for named colors and other CSS syntaxes | Only `#rgb[a]`, `#rrggbb[aa]`, `rgb()` and `rgba()` are parsed; any other input throws `ArgumentException("css.toColor: Unsupported css format")`: CSS color names are not parsed | No canvas in Core |
 
 ## Tests not ported
 
