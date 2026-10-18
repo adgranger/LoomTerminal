@@ -1,6 +1,6 @@
 # P1-56 — `TerminalWriter`: the single work loop of the emulator
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-54
 - **Size:** S
 
@@ -40,17 +40,17 @@ frame. It is the only code that touches `TerminalCore` once a session runs (ADR 
 
 ## Tests
 
-- [ ] New: three output items queued before `Run` produce one `afterBatch` call with the total length and the expected
+- [x] New: three output items queued before `Run` produce one `afterBatch` call with the total length and the expected
       screen; an action queued between two outputs runs between them (order kept); a UTF-8 sequence split across two
       items prints one character; completing the channel ends `Run`; cancelling ends it with `OperationCanceledException`;
       2 MB queued at once produce at least 4 `afterBatch` calls.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md`: `WriteBuffer.ts` → "replaced by `TerminalWriter`"
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md`: `WriteBuffer.ts` → "replaced by `TerminalWriter`"
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
