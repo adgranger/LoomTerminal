@@ -54,6 +54,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/InputHandler.ts` (+ `InputHandler.test.ts`, `Types.ts` color events) | `Core/InputHandling/InputHandler.cs` (+ partials `.Print`, `.Controls`, `.Cursor`, `.Tabs`, `.Erase`, `.InsertDelete`, `.DeviceAttributes`, `.Modes`, `.RequestMode`, `.Sgr`, `.Status`, `.WindowOptions`, `.Esc`, `.Osc`, `.Dcs`), `DirtyRowTracker.cs`, `ColorEvents.cs` | ✅ | P1-36 … P1-53 |
 | `src/common/CoreTerminal.ts` (without `WriteBuffer` and the Windows heuristics) | `Core/TerminalCore.cs` (+ `InputHandler.Registration.cs` for the `register*Handler` forwarders) | 🔶 | P1-54, P1-55 (`TerminalWriter`: P1-56) |
 | `src/common/WindowsMode.ts` | `Core/WindowsMode.cs` (heuristics wired in `TerminalCore`) | ✅ | P1-55 |
+| `src/common/input/WriteBuffer.ts` (ideas only) | `Core/TerminalWriter.cs`, `TerminalWorkItem.cs` (replaces `WriteBuffer`) | ✅ | P1-56 |
 
 ## What is not ported
 
