@@ -1,0 +1,117 @@
+{
+  "cols": 20,
+  "rows": 8,
+  "cursor": {
+    "x": 0,
+    "y": 7,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "row3",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 4,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "row4",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 4,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "row5",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 4,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "row6",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 4,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "row7",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 4,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "row8",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 4,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "row9",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 4,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# Underline styles and colors.
+\e[4mA\e[4:2mB\e[4:3mC\e[4:4mD\e[4:5mE\e[24mF\e[4:3;58;5;1mG\e[59mH

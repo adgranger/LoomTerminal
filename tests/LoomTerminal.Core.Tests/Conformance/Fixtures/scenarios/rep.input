@@ -1,0 +1,3 @@
+#!size 20 2
+# REP repeats the last character.
+a\e[5b\e[2Cb\e[3b

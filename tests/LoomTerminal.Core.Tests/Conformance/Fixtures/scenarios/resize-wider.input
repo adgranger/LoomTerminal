@@ -1,0 +1,5 @@
+#!size 10 6
+# Resizing wider joins wrapped lines.
+abcdefghijklmnopqrstuvwxy\r\nshort\r\n
+#!resize 40 5
+

@@ -1,0 +1,3 @@
+#!size 20 2
+# Bracketed paste mode flag.
+\e[?2004h\e[?1h\e=text

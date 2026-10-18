@@ -27,7 +27,7 @@ internal static class FixtureReader
 
     /// <summary>
     /// Reads a hand-written <c>.input</c> file: physical newlines only separate lines, the input holds the escapes
-    /// <c>\e \a \r \n \t \xHH \uHHHH</c>; <c>#!size</c> (first line) and <c>#!resize</c> are directives.
+    /// <c>\e \a \r \n \t \xHH \uHHHH</c>; <c>#!size</c> (first line) and <c>#!resize</c> are directives, other lines starting with <c>#</c> are comments.
     /// </summary>
     /// <exception cref="FormatException">An unknown escape or directive; the message names the line.</exception>
     internal static FixtureScript ReadInput(string text)
@@ -55,7 +55,7 @@ internal static class FixtureReader
             {
                 throw new FormatException($"Line {lineNumber}: unknown directive '{line}'.");
             }
-            else
+            else if (!line.StartsWith('#'))
             {
                 DecodeEscapes(line, lineNumber, pending);
             }

@@ -1,0 +1,57 @@
+{
+  "cols": 10,
+  "rows": 4,
+  "cursor": {
+    "x": 8,
+    "y": 1,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "中中中中中",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 10,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "xa中中中",
+      "wrapped": true,
+      "runs": [
+        {
+          "start": 0,
+          "length": 8,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

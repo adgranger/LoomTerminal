@@ -1,0 +1,73 @@
+{
+  "cols": 10,
+  "rows": 4,
+  "cursor": {
+    "x": 6,
+    "y": 3,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "abcdefghij",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 10,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "klmnopqrst",
+      "wrapped": true,
+      "runs": [
+        {
+          "start": 0,
+          "length": 10,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "uvwxyz0123",
+      "wrapped": true,
+      "runs": [
+        {
+          "start": 0,
+          "length": 10,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "456789",
+      "wrapped": true,
+      "runs": [
+        {
+          "start": 0,
+          "length": 6,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    }
+  ]
+}

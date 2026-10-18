@@ -1,0 +1,3 @@
+#!size 40 4
+# Default tab stops, TBC and HTS.
+a\tb\tc\r\n\e[3g\e[5G\eH\e[9G\eH\e[1G\tX\tY\tZ

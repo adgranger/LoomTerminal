@@ -1,0 +1,2 @@
+# SGR 0 and the individual resets.
+\e[1;2;3;4;5;7;8;9;53mA\e[22mB\e[23mC\e[24mD\e[25mE\e[27mF\e[28mG\e[29mH\e[55mI\e[0mJ\e[1;31m\e[mK

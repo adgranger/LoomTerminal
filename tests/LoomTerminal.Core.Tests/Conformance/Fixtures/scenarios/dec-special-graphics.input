@@ -1,0 +1,3 @@
+#!size 20 5
+# DEC special graphics charset.
+\e(0lqqk\r\nx  x\r\nmqqj\e(Bplain

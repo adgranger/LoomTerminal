@@ -1,0 +1,3 @@
+#!size 20 2
+# Mouse tracking modes.
+\e[?1000h\e[?1002h\e[?1003h\e[?1006h\e[?1003l\e[?1000h

@@ -1,0 +1,3 @@
+#!size 20 2
+# IRM inserts characters.
+abcdef\e[1;3H\e[4hXY\e[4lZ
