@@ -19,14 +19,17 @@ public sealed class UnicodeServiceTests : IDisposable
 
     private readonly UnicodeService _us = new();
 
+    // xterm.js starts on version 6; LoomTerminal starts on 11 (P1-22), so the ported tests select 6 first.
+    public UnicodeServiceTests() => _us.ActiveVersion = "6";
+
     public void Dispose() => _us.Dispose();
 
-    // xterm.js: 'unicode provider' › 'default to V6'
+    // xterm.js: 'unicode provider' › 'default to V6' (LoomTerminal defaults to 11: see UnicodeV11Tests)
     [Fact]
-    public void Defaults_to_V6()
+    public void Version_6_is_registered_and_selectable()
     {
         Assert.Equal("6", _us.ActiveVersion);
-        Assert.Equal(["6"], _us.Versions);
+        Assert.Equal(["6", "11"], _us.Versions);
         _us.ActiveVersion = "6";
         Assert.Equal(5, _us.GetStringCellWidth("hello"));
     }

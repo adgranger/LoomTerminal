@@ -1,6 +1,6 @@
 # P1-22 — `UnicodeV11` (from `addon-unicode11`), active by default
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-21
 - **Size:** S
 
@@ -29,17 +29,17 @@ version of `UnicodeService` in LoomTerminal.
 
 ## Tests
 
-- [ ] New (the addon has no unit tests at this commit): `wcwidth` of `'a'` = 1, `U+0301` (combining acute) = 0,
+- [x] New (the addon has no unit tests at this commit): `wcwidth` of `'a'` = 1, `U+0301` (combining acute) = 0,
       `U+4E00` (CJK) = 2, `U+1F600` (😀) = 2 in V11 and 1 in V6, `U+FF01` (fullwidth !) = 2, `U+200B` = 0.
       Check each expected value against the JS tables before writing it.
-- [ ] New: a fresh `UnicodeService` has `ActiveVersion == "11"` and `Versions` contains `"6"` and `"11"`.
+- [x] New: a fresh `UnicodeService` has `ActiveVersion == "11"` and `Versions` contains `"6"` and `"11"`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-22) and "Behavior differences": "Unicode 11 widths are the default"
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-22) and "Behavior differences": "Unicode 11 widths are the default"
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
