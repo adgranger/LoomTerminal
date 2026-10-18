@@ -232,7 +232,7 @@ public sealed class InputHandlerSgrTests : InputHandlerTestBase
     }
 
     // xterm.js: 'InputHandler' › 'reset text attributes (SGR 0)' › 'resets all attributes except for the url'
-    [Fact(Skip = "Needs OSC 8 (P1-51)")]
+    [Fact]
     public void SGR_0_resets_all_attributes_except_for_the_url()
     {
         InputHandler.Parse("\x1b[30m\x1b[40m\x1b[4m");

@@ -61,6 +61,7 @@ internal partial class InputHandler : Disposable
     private readonly Emitter<EventArgs> _onLineFeed;
     private readonly Emitter<int> _onScroll;
     private readonly Emitter<string> _onTitleChange;
+    private readonly Emitter<IReadOnlyList<ColorRequest>> _onColor;
 
     private uint[] _parseBuffer = new uint[4096];
     /// <summary>The window title stack (XTWINOPS 22 and 23).</summary>
@@ -109,6 +110,7 @@ internal partial class InputHandler : Disposable
         _onLineFeed = Register(new Emitter<EventArgs>());
         _onScroll = Register(new Emitter<int>());
         _onTitleChange = Register(new Emitter<string>());
+        _onColor = Register(new Emitter<IReadOnlyList<ColorRequest>>());
 
         // Track properties used in performance critical code manually to avoid using slow getters
         _activeBuffer = _bufferService.Buffer;
@@ -186,6 +188,9 @@ internal partial class InputHandler : Disposable
 
     /// <summary>Raised with the new title when it changes.</summary>
     public IEvent<string> OnTitleChange => _onTitleChange.Event;
+
+    /// <summary>Raised with the color requests of OSC 4, 10, 11, 12, 104, 110, 111 and 112.</summary>
+    public IEvent<IReadOnlyList<ColorRequest>> OnColor => _onColor.Event;
 
     /// <summary>The current attributes used for new cells.</summary>
     public AttributeData GetAttrData() => _curAttrData;
