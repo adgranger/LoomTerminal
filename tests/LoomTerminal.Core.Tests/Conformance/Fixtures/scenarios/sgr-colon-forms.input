@@ -1,0 +1,2 @@
+# Colon sub-parameter forms.
+\e[38:2::255:100:0mA\e[48:5:100mB\e[38:2:255:100:0mC\e[38:2:7:8:9mD

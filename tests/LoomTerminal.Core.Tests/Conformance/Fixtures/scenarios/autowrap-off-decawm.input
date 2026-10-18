@@ -1,0 +1,3 @@
+#!size 10 4
+# DECAWM off: the last column is overwritten.
+\e[?7labcdefghijklmnopqrstuvwxyz

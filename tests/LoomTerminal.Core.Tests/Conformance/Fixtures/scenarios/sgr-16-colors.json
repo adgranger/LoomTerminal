@@ -1,0 +1,247 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": {
+    "x": 15,
+    "y": 0,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "ABCDEFGHIJKLMNO",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 1,
+          "fg": "p16:0",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 1,
+          "length": 1,
+          "fg": "p16:1",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 1,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 3,
+          "length": 1,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 4,
+          "length": 1,
+          "fg": "p16:4",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 5,
+          "length": 1,
+          "fg": "p16:5",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 6,
+          "length": 1,
+          "fg": "p16:6",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 7,
+          "length": 1,
+          "fg": "p16:7",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 8,
+          "length": 1,
+          "fg": "p16:8",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 9,
+          "length": 1,
+          "fg": "p16:15",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 1,
+          "fg": "p16:15",
+          "bg": "p16:0",
+          "flags": []
+        },
+        {
+          "start": 11,
+          "length": 1,
+          "fg": "p16:15",
+          "bg": "p16:1",
+          "flags": []
+        },
+        {
+          "start": 12,
+          "length": 1,
+          "fg": "p16:15",
+          "bg": "p16:7",
+          "flags": []
+        },
+        {
+          "start": 13,
+          "length": 1,
+          "fg": "p16:15",
+          "bg": "p16:8",
+          "flags": []
+        },
+        {
+          "start": 14,
+          "length": 1,
+          "fg": "p16:15",
+          "bg": "p16:15",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

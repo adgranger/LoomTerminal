@@ -76,7 +76,7 @@ function readInput(text) {
       events.push({ kind: 'resize', cols: c, rows: r });
     } else if (line.startsWith('#!')) {
       throw new Error(`Line ${i + 1}: unknown directive '${line}'.`);
-    } else {
+    } else if (!line.startsWith('#')) {
       pending += decodeEscapes(line, i + 1);
     }
   });

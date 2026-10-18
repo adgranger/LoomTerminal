@@ -1,0 +1,2 @@
+# Inverse and invisible cells.
+\e[7mrev\e[0m \e[8mhidden\e[0m \e[7;31;42mboth

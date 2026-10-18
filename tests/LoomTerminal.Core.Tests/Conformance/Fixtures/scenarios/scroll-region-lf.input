@@ -1,0 +1,3 @@
+#!size 10 6
+# LF at the bottom of a scroll region scrolls it.
+\e[2;4r\e[2;1H1\r\n2\r\n3\r\n4\r\n5

@@ -1,6 +1,6 @@
 # P2-03 — Scenario fixtures and the differential test runner
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P2-02
 - **Size:** M (fixtures + one test class)
 
@@ -32,16 +32,21 @@ and run them all against `TerminalCore` in one `[Theory]`.
 - **When a scenario differs from the oracle, the C# port is wrong** (fix it in this card if small; otherwise open a
   follow-up card in `docs/tasks/README.md` and mark the fixture `[Skip]` with the card id).
 
+## Result
+
+All 40 scenarios match xterm.js with no change to the C# port (plus the two P2-02 sample fixtures, kept as extra scenarios).
+The ST terminator of `osc-title` is written `\x5c` since the `.input` format has no backslash escape.
+
 ## Tests
 
-- [ ] The 40 scenarios above pass, or are skipped with a follow-up card id.
+- [x] The 40 scenarios above pass, or are skipped with a follow-up card id.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `cd tools/xterm-oracle; rtk node oracle.mjs ../../tests/LoomTerminal.Core.Tests/Conformance/Fixtures --check` exits 0
-- [ ] Card status and `docs/tasks/README.md` updated
+- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings (not run on Linux)
+- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (not run on Linux; Core.Tests: 816 green)
+- [x] `cd tools/xterm-oracle; rtk node oracle.mjs ../../tests/LoomTerminal.Core.Tests/Conformance/Fixtures --check` exits 0
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

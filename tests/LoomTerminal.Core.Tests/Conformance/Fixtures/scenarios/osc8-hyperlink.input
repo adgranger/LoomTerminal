@@ -1,0 +1,2 @@
+# OSC 8 hyperlinks do not change the text.
+\e]8;;http://example.com\alink\e]8;;\a plain

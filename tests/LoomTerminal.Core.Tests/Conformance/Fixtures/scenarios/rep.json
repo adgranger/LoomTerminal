@@ -1,0 +1,39 @@
+{
+  "cols": 20,
+  "rows": 2,
+  "cursor": {
+    "x": 12,
+    "y": 0,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "aaaaaa  bbbb",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 12,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+#!size 20 12
+# DECOM makes CUP relative to the scroll region.
+\e[5;10r\e[?6h\e[1;1Ha\e[?6l\e[1;1Hb\e[?6h\e[99;1Hc

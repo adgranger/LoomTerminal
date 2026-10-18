@@ -1,0 +1,165 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": {
+    "x": 8,
+    "y": 2,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "Hello, world",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 12,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "second line",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 11,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "carriageTabbed",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 14,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

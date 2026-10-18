@@ -1,0 +1,3 @@
+#!size 20 2
+# ICH, DCH and ECH.
+abcdefghij\e[1;3H\e[2@\e[1;8H\e[2P\e[1;2H\e[3X

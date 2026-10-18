@@ -1,0 +1,2 @@
+# OSC 0 and OSC 2 with BEL and ST terminators.
+\e]0;first\a\e]2;second title\e\x5cvisible

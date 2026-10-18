@@ -1,0 +1,78 @@
+{
+  "cols": 20,
+  "rows": 5,
+  "cursor": {
+    "x": 0,
+    "y": 4,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "line 1096",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 9,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "line 1097",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 9,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "line 1098",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 9,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "line 1099",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 9,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

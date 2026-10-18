@@ -1,0 +1,73 @@
+{
+  "cols": 10,
+  "rows": 4,
+  "cursor": {
+    "x": 0,
+    "y": 0,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "EEEEEEEEEE",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 10,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "EEEEEEEEEE",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 10,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "EEEEEEEEEE",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 10,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "EEEEEEEEEE",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 10,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    }
+  ]
+}

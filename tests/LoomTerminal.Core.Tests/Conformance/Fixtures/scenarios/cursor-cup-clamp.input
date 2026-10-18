@@ -1,0 +1,3 @@
+#!size 20 6
+# CUP is clamped to the screen.
+\e[999;999Hx\e[0;0Hy\e[3;5Hz

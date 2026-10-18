@@ -1,0 +1,3 @@
+#!size 10 4
+# Wide characters wrap as a whole.
+\u4e2d\u4e2d\u4e2d\u4e2d\u4e2dxa\u4e2d\u4e2d\u4e2d

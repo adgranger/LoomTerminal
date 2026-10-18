@@ -1,0 +1,70 @@
+{
+  "cols": 10,
+  "rows": 5,
+  "cursor": {
+    "x": 1,
+    "y": 0,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "",
+  "lines": [
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "x3",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "l4",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "l5",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}
