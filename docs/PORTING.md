@@ -52,6 +52,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/services/CoreService.ts`, `OscLinkService.ts`, `Services.ts` (`ICoreService`, `IOscLinkService`), `Types.ts` (`IModes`, `IDecPrivateModes`, `IOscLinkData`) (+ tests) | `Core/Services/CoreService.cs`, `ICoreService.cs`, `TerminalModes.cs`, `OscLinkService.cs`, `IOscLinkService.cs` | ✅ | P1-34 |
 | `src/common/services/CoreMouseService.ts`, `Services.ts` (`ICoreMouseService`), `Types.ts` (`ICoreMouseEvent`, `CoreMouseEncoding`, …) (+ test, `MockCoreMouseService`) | `Core/Services/CoreMouseService.cs`, `ICoreMouseService.cs`, `CoreMouseTypes.cs` | ✅ | P1-35 |
 | `src/common/InputHandler.ts` (+ `InputHandler.test.ts`, `Types.ts` color events) | `Core/InputHandling/InputHandler.cs` (+ partials `.Print`, `.Controls`, `.Cursor`, `.Tabs`, `.Erase`, `.InsertDelete`, `.DeviceAttributes`, `.Modes`, `.RequestMode`, `.Sgr`, `.Status`, `.WindowOptions`, `.Esc`, `.Osc`, `.Dcs`), `DirtyRowTracker.cs`, `ColorEvents.cs` | ✅ | P1-36 … P1-53 |
+| `src/common/CoreTerminal.ts` (without `WriteBuffer` and the Windows heuristics) | `Core/TerminalCore.cs` (+ `InputHandler.Registration.cs` for the `register*Handler` forwarders) | 🔶 | P1-54 (Windows heuristics: P1-55; `TerminalWriter`: P1-56) |
 
 ## What is not ported
 
