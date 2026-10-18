@@ -1,6 +1,6 @@
 # P1-51 — `InputHandler.Osc`: titles, colors (4/10/11/12/104/110–112), hyperlinks (8)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-48, P1-26, P1-27, P1-34
 - **Size:** M
 
@@ -43,14 +43,14 @@ not recreate it.
 
 ## Tests
 
-- [ ] Port `OSC` (all `it`s).
-- [ ] Remove the skip of `reset text attributes (SGR 0)` › `resets all attributes except for the url` (P1-48) and make it pass.
+- [x] Port `OSC` (all `it`s).
+- [x] Remove the skip of `reset text attributes (SGR 0)` › `resets all attributes except for the url` (P1-48) and make it pass.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green, no skip left
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green, no skip left
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
