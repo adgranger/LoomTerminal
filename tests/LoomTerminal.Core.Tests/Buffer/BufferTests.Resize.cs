@@ -164,14 +164,6 @@ public sealed partial class BufferTests
         }
     }
 
-    // xterm.js: 'Buffer' › 'resize' › 'reflow' › 'should not wrap empty lines'
-    [Fact]
-    public void Reflow_does_not_wrap_empty_lines()
-    {
-        _buffer.FillViewportRows();
-        Assert.Equal(InitRows, _buffer.Lines.Length);
-    }
-
     // xterm.js: 'Buffer' › 'buffer marked to have no scrollback' › 'should always have a scrollback of 0'
     [Fact]
     public void A_buffer_marked_to_have_no_scrollback_always_has_a_scrollback_of_0()

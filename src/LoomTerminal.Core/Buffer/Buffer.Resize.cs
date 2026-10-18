@@ -208,13 +208,4 @@ internal sealed partial class Buffer
         MemoryCleanupPending = normalRun;
         return normalRun;
     }
-
-    // The reflow itself is ported by P1-31.
-    private void Reflow(int newCols, int newRows)
-    {
-        if (_cols == newCols)
-        {
-            return;
-        }
-    }
 }

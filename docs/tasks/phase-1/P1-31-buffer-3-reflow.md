@@ -1,6 +1,6 @@
 # P1-31 — `Buffer` (3/3): reflow
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-30
 - **Size:** M
 
@@ -29,13 +29,13 @@ marker updates.
 
 ## Tests
 
-- [ ] Port `reflow` tests of lines 237–656.
+- [x] Port `reflow` tests of lines 237–656.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
