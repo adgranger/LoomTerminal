@@ -1,6 +1,6 @@
 # P1-47 — `InputHandler.Sgr` (1/2): color and underline helpers
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-36
 - **Size:** M
 
@@ -28,15 +28,15 @@ forms), underline style processing.
 
 ## Tests
 
-- [ ] New: `_extractColor` on `Params.FromArray([38, 2, 50, 100, 150])` at position 0 returns the advance count JS
+- [x] New: `_extractColor` on `Params.FromArray([38, 2, 50, 100, 150])` at position 0 returns the advance count JS
       returns and sets an RGB foreground `0x326496`; on `[38, new int[] {5, 50}]` (colon form) sets palette 50;
       `_processUnderline(3, attr)` sets `UnderlineStyle.Curly`. Read the expected advance counts from the JS code.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
