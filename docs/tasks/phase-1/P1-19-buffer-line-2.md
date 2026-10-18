@@ -1,6 +1,6 @@
 # P1-19 — `BufferLine` (2/2): editing, resize, copy, strings
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-18
 - **Size:** M
 
@@ -30,13 +30,13 @@ Finish `BufferLine`: insert/delete/replace cells, resize (with memory cleanup), 
 
 ## Tests
 
-- [ ] Port lines 278–473: `resize`, `getTrimLength`, `translateToString with and w'o trimming`.
+- [x] Port lines 278–473: `resize`, `getTrimLength`, `translateToString with and w'o trimming`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

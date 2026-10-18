@@ -5,7 +5,7 @@ using LoomTerminal.Core.Buffer;
 
 namespace LoomTerminal.Core.Tests.Buffer;
 
-public class BufferLineTests
+public partial class BufferLineTests
 {
     private sealed class TestBufferLine : BufferLine
     {
@@ -54,9 +54,6 @@ public class BufferLineTests
         Assert.Equal(new CharData(123, "a", 456, 'a'), line.LoadCell(0, new CellData()).GetAsCharData());
         Assert.True(line.IsWrapped);
     }
-
-    // The xterm.js tests 'insertCells' … 'should support combining chars' (lines 189–277) exercise insertCells,
-    // deleteCells, replaceCells, fill, clone and copyFrom: they are ported by P1-19, with those methods.
 
     [Fact]
     public void Get_and_Set_round_trip_plain_and_combined_cells()
