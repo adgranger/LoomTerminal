@@ -17,6 +17,7 @@ namespace LoomTerminal.Core;
 internal sealed class TerminalCore : Disposable
 {
     private readonly InputHandler _inputHandler;
+    private readonly MutableDisposable<IDisposable> _windowsWrappingHeuristics;
     private readonly Emitter<string> _onBinary;
     private readonly Emitter<string> _onData;
     private readonly Emitter<EventArgs> _onLineFeed;
@@ -81,16 +82,22 @@ internal sealed class TerminalCore : Disposable
         // RIS: the input handler only asks for a reset, the terminal does it.
         Register(_inputHandler.OnRequestReset.Subscribe(_ => Reset()));
 
+        _windowsWrappingHeuristics = Register(new MutableDisposable<IDisposable>());
+
         // Setup listeners
         Forward(BufferService.OnResize, _onResize);
         Forward(CoreService.OnData, _onData);
         Forward(CoreService.OnBinary, _onBinary);
         Register(CoreService.OnRequestScrollToBottom.Subscribe(_ => ScrollToBottom()));
+        Register(OptionsService.OnMultipleOptionChange([TerminalOption.WindowsMode, TerminalOption.WindowsPty], HandleWindowsPtyOptionChange));
         Register(BufferService.OnScroll.Subscribe(_ =>
         {
             _onScroll.Fire(BufferService.Buffer.YDisp);
             _inputHandler.MarkRangeDirty(BufferService.Buffer.ScrollTop, BufferService.Buffer.ScrollBottom);
         }));
+
+        // JS _setup()
+        HandleWindowsPtyOptionChange();
     }
 
     /// <summary>The options service.</summary>
@@ -246,4 +253,50 @@ internal sealed class TerminalCore : Disposable
     }
 
     private void Forward<T>(IEvent<T> source, Emitter<T> target) => Register(source.Subscribe(target.Fire));
+
+    private void HandleWindowsPtyOptionChange()
+    {
+        bool value = false;
+        WindowsPtyOptions? windowsPty = OptionsService.RawOptions.WindowsPty;
+        if (windowsPty is not null && windowsPty.BuildNumber is not null && windowsPty.BuildNumber is not null)
+        {
+            value = windowsPty.Backend == "conpty" && windowsPty.BuildNumber < 21376;
+        }
+        else if (OptionsService.RawOptions.WindowsMode)
+        {
+            value = true;
+        }
+
+        if (value)
+        {
+            EnableWindowsWrappingHeuristics();
+        }
+        else
+        {
+            _windowsWrappingHeuristics.Clear();
+        }
+    }
+
+    private void EnableWindowsWrappingHeuristics()
+    {
+        if (_windowsWrappingHeuristics.Value is null)
+        {
+            List<IDisposable> disposables =
+            [
+                OnLineFeed.Subscribe(_ => WindowsMode.UpdateWindowsModeWrappedState(BufferService)),
+                RegisterCsiHandler(new FunctionIdentifier(Final: "H"), _ =>
+                {
+                    WindowsMode.UpdateWindowsModeWrappedState(BufferService);
+                    return false;
+                }),
+            ];
+            _windowsWrappingHeuristics.Value = Disposables.Create(() =>
+            {
+                foreach (IDisposable d in disposables)
+                {
+                    d.Dispose();
+                }
+            });
+        }
+    }
 }

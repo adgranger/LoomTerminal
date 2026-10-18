@@ -1,6 +1,6 @@
 # P1-55 — Windows PTY heuristics (`windowsPty`, `windowsMode`)
 
-- **Status:** todo
+- **Status:** in progress
 - **Depends on:** P1-54
 - **Size:** S
 
@@ -30,9 +30,18 @@ wrapped from the character before a line feed; and reflow is disabled when the P
 - VIGO passes `{ Backend = "conpty", BuildNumber = <Windows build> }` (≥ 22000 on supported Windows 11): the
   heuristics are then **off** and reflow is **off** (ConPTY rewraps). Document this in the XML doc of `WindowsPtyOptions`.
 
+## Open question (stopped here, needs a decision)
+
+The card says that with `ConPTY ≥ 22000` reflow is **off** (ConPTY rewraps) and asks for a test that resizing narrower
+does not reflow. The pinned source (and the port of `Buffer._isReflowEnabled`, P1-30) does the opposite: with a
+`BuildNumber` set, reflow is `hasScrollback && Backend == "conpty" && BuildNumber >= 21376`, so reflow is **on** for a
+recent ConPTY and off for an old one or winpty. The second test and the XML doc sentence of `WindowsPtyOptions` were
+therefore **not** written. Decide which behavior VIGO wants (keep the port, or change `IsReflowEnabled` — a deviation
+from xterm.js to record in `docs/PORTING.md`), then finish the card.
+
 ## Tests
 
-- [ ] New: with `WindowsPty = new("conpty", 19041)`, writing 80 non-space chars then `\n` marks the next line
+- [x] New: with `WindowsPty = new("conpty", 19041)`, writing 80 non-space chars then `\n` marks the next line
       `IsWrapped`; with `BuildNumber = 22631` it does not; with `WindowsMode = true` it does; changing the option at
       run time switches the behavior (the subscription disposes the heuristics).
 - [ ] New: with `WindowsPty = new("conpty", 22631)`, resizing narrower does not reflow (lines keep their content).
