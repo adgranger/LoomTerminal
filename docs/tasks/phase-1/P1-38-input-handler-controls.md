@@ -1,6 +1,6 @@
 # P1-38 — `InputHandler.Controls`: BEL, LF/VT/FF, CR, BS, HT, SO, SI
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-37
 - **Size:** S
 
@@ -29,15 +29,19 @@ Port the C0 control handlers, including reverse wrap-around for backspace.
 
 ## Tests
 
-- [ ] Port both `BS with reverseWraparound set/unset` blocks. The two describes share a name in JS: name the C#
+- [ ] Port both `BS with reverseWraparound set/unset` blocks. **Partly deferred**: only the two `reverseWraparound unset`
+      tests of the second block are ported here (they need no CSI). The other tests drive reverse wrap-around with
+      `CSI ? 45 h` (P1-45) and the first block also uses DECSTBM (P1-49): port them in P1-45 (second block, and the
+      first block's `\x1b[?45h` part) and P1-49 (first block).
+      The two describes share a name in JS: name the C#
       tests `Backspace_reverse_wraparound_…` and `Backspace_reverse_wraparound_block2_…`.
-- [ ] New: `\n` with `ConvertEol = true` also returns the cursor to column 0; `\x07` fires `OnRequestBell`.
+- [x] New: `\n` with `ConvertEol = true` also returns the cursor to column 0; `\x07` fires `OnRequestBell`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

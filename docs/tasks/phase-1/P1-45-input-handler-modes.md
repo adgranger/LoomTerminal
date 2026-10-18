@@ -35,6 +35,9 @@ output…).
 
 ## Tests
 
+- [ ] Deferred from P1-38: port the `reverseWraparound set` tests of the second `BS with reverseWraparound set/unset`
+      block (InputHandler.test.ts 1665–1722, C# names `Backspace_reverse_wraparound_block2_set_…`).
+
 - [ ] Port `setMode` › `should toggle bracketedPasteMode`.
 - [ ] Port `alt screen` (all six tests).
 - [ ] New: `CSI ? 1 h` sets `DecPrivateModes.ApplicationCursorKeys`; `CSI ? 1000 h` + `CSI ? 1006 h` select `VT200`

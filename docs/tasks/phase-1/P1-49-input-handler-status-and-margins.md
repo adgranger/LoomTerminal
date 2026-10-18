@@ -36,6 +36,9 @@ region, and the scroll margin tests postponed from P1-42.
 
 ## Tests
 
+- [ ] Deferred from P1-38: port the first `BS with reverseWraparound set/unset` block (InputHandler.test.ts 134–181,
+      `should not reverse outside of scroll margins`; C# name `Backspace_reverse_wraparound_set_should_not_reverse_outside_of_scroll_margins`).
+
 - [ ] Port the four suites listed in the sources table.
 - [ ] New: `CSI 6 n` at row 3, column 5 sends `\x1b[4;6R`.
 
