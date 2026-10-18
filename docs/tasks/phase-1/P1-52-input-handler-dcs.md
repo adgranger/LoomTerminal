@@ -1,6 +1,6 @@
 # P1-52 — `InputHandler.Dcs`: DECRQSS
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-49, P1-41
 - **Size:** S
 
@@ -27,15 +27,15 @@ Port the DCS status string request (`DCS $ q Pt ST`), which reports SGR, DECSCUS
 
 ## Tests
 
-- [ ] Port `DECRQSS reports correct DECSCA state`.
-- [ ] New: `DCS $ q m ST` after `CSI 1;31 m` replies with the JS SGR status string; `DCS $ q r ST` with a scroll
+- [x] Port `DECRQSS reports correct DECSCA state`.
+- [x] New: `DCS $ q m ST` after `CSI 1;31 m` replies with the JS SGR status string; `DCS $ q r ST` with a scroll
       region replies with it; an unknown request replies with the "invalid" form.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

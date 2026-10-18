@@ -150,7 +150,7 @@ internal partial class InputHandler : Disposable
         RegisterControlHandlers();
         RegisterEscHandlers();
         RegisterOscHandlers();
-        // RegisterDcsHandlers(); — P1-52
+        RegisterDcsHandlers();
     }
 
     /// <summary>Raised when a bell is requested.</summary>
