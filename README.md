@@ -10,7 +10,7 @@
 - **MIT licensed.** Sibling project of [LoomEditor](https://github.com/adgranger/LoomEditor) (Monaco for WinUI 3).
 
 > **Status: skeleton (pre-alpha).** `LoomTerminal.Pty` works (Windows ConPTY, extracted from the VIGO Git client);
-> the emulator and the renderer are not written yet. See [docs/ROADMAP.md](docs/ROADMAP.md).
+> the emulator core (`LoomTerminal.Core`, phase 1) is ported from xterm.js; the presentation layer and the renderer are not written yet. See [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Packages
 

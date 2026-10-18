@@ -1,6 +1,6 @@
 # P1-57 — Close phase 1
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** all P1 cards
 - **Size:** S (docs)
 
@@ -23,14 +23,14 @@ Make the documentation match the code at the end of phase 1 and prepare phase 2.
 
 ## Tests
 
-- [ ] `PortedFileHeaderTests` (P1-01) is green: every ported file has its header.
+- [x] `PortedFileHeaderTests` (P1-01) is green: every ported file has its header.
 
 ## Acceptance criteria
 
 - [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
 - [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
 - [ ] `rtk dotnet publish samples/LoomTerminal.PtyConsole -c Release -r win-x64` — 0 IL/AOT warnings (needs the VS C++ workload; otherwise check the CI run)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

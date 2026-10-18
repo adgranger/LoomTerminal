@@ -5,7 +5,7 @@ Every phase is split into small task cards: see [`docs/tasks/README.md`](tasks/R
 | Phase | Content | Cards | Done when |
 |---|---|---|---|
 | 0 | Skeleton: projects, CI with Native AOT smoke test, architecture tests, `LoomTerminal.Pty` (ConPTY from VIGO) | — | ✅ build + tests green (AOT checked on CI) |
-| 1 | **Core**: port of xterm.js `src/common` — parser, buffers, reflow, services, `InputHandler`, `TerminalCore`, `TerminalWriter` | P1-01 … P1-57 | xterm.js tests ported and green |
+| 1 | **Core**: port of xterm.js `src/common` — parser, buffers, reflow, services, `InputHandler`, `TerminalCore`, `TerminalWriter` | P1-01 … P1-57 | ✅ xterm.js tests ported and green |
 | 2 | **Conformance and performance**: screen snapshots, xterm.js headless oracle, scenario and recorded-session fixtures, benchmarks | P2-01 … P2-07 | All fixtures match xterm.js; throughput measured |
 | 3 | **Presentation**: `TerminalSession` (parser thread, frames), keyboard and pointer input, theme and colors, selection, clipboard, links, search, render contracts, accessibility model | P3-01 … P3-23 | Unit tests without UI |
 | 4 | **WinUI control**: Win2D measurer and surface, custom glyphs, decorations, layout/DPI/frames, keyboard, IME, pointer, clipboard, scrollbar, focus, theming, UIA, gallery, performance | P4-01 … P4-18 | Gallery runs a real shell, AOT published, manual checklist green |
