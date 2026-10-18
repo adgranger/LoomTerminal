@@ -141,6 +141,7 @@ internal partial class InputHandler : Disposable
         RegisterTabHandlers();
         RegisterDeviceAttributesHandlers();
         RegisterModeHandlers();
+        RegisterRequestModeHandlers();
         // RegisterSgrHandlers(); — P1-48
         // RegisterStatusHandlers(); — P1-49
         RegisterControlHandlers();

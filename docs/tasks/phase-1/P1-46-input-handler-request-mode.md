@@ -1,6 +1,6 @@
 # P1-46 — `InputHandler.RequestMode`: DECRQM (ANSI and DEC private)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-45
 - **Size:** S
 
@@ -28,13 +28,13 @@ Port the mode report request (`CSI Ps $ p` and `CSI ? Ps $ p`), which applicatio
 
 ## Tests
 
-- [ ] Port `DECRQM` (all `it`s). The JS tests capture `coreService.onData`: subscribe to `OnData` and collect.
+- [x] Port `DECRQM` (all `it`s). The JS tests capture `coreService.onData`: subscribe to `OnData` and collect.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
