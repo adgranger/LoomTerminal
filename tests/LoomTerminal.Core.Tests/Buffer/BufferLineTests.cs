@@ -16,6 +16,8 @@ public partial class BufferLineTests
 
         public Dictionary<int, string> Combined => _combined;
 
+        public ExtendedAttrs? Ext(int index) => _extendedAttrs.GetValueOrDefault(index);
+
         public List<CharData> ToArray()
         {
             List<CharData> result = [];
