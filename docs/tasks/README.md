@@ -65,7 +65,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P1-21](phase-1/P1-21-unicode-service-v6.md) | `UnicodeService` and `UnicodeV6` | P1-01 | S | todo |
+| [P1-21](phase-1/P1-21-unicode-service-v6.md) | `UnicodeService` and `UnicodeV6` | P1-01 | S | done |
 | [P1-22](phase-1/P1-22-unicode-v11.md) | `UnicodeV11` (from `addon-unicode11`), active by default | P1-21 | S | todo |
 | [P1-23](phase-1/P1-23-options-service.md) | `TerminalOptions` and `OptionsService` | P1-01 | M | todo |
 | [P1-24](phase-1/P1-24-log-service-and-test-mocks.md) | `ILogService` and the test mocks | P1-21, P1-23 | S | todo |
