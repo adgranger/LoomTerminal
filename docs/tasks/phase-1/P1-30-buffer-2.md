@@ -1,6 +1,6 @@
 # P1-30 — `Buffer` (2/3): resize without reflow, memory cleanup
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-29
 - **Size:** M
 
@@ -35,14 +35,14 @@ memory cleanup; reflow is called but stays unimplemented until P1-31.
 
 ## Tests
 
-- [ ] Port the tests of lines 110–236, 1054–1068 and 1182–1210.
+- [x] Port the tests of lines 110–236, 1054–1068 and 1182–1210.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` "Behavior differences": "memory cleanup after shrinking is driven by the session's idle loop"
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` "Behavior differences": "memory cleanup after shrinking is driven by the session's idle loop"
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
