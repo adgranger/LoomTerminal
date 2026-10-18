@@ -1,6 +1,6 @@
 # P1-21 — `UnicodeService` and `UnicodeV6`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-01
 - **Size:** S
 
@@ -37,16 +37,16 @@ width) and the built-in Unicode 6 provider.
 
 ## Tests
 
-- [ ] Port `unicode provider` (all `it`s).
-- [ ] Port the `UnicodeV6` test: the "old implementation" `wcwidth` in the test file is ported into the test class
+- [x] Port `unicode provider` (all `it`s).
+- [x] Port the `UnicodeV6` test: the "old implementation" `wcwidth` in the test file is ported into the test class
       and compared for every code point `0 … 0x10FFFF` (one `[Fact]`).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-21)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-21)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

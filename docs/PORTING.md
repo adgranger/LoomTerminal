@@ -40,6 +40,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/buffer/AttributeData.ts` (+ `BufferLine.test.ts` AttributeData suite) | `Core/Buffer/AttributeData.cs`, `ExtendedAttrs.cs` | ✅ | P1-16 |
 | `src/common/buffer/CellData.ts` (+ `BufferLine.test.ts` CellData suite) | `Core/Buffer/CellData.cs` | ✅ | P1-17 |
 | `src/common/buffer/BufferLine.ts` (+ `IBufferLine` of `Types.ts`) | `Core/Buffer/BufferLine*.cs`, `IBufferLine.cs` | ✅ | P1-18, P1-19 |
+| `src/common/services/UnicodeService.ts`, `Services.ts` (Unicode types), `src/common/input/UnicodeV6.ts` (+ tests) | `Core/Services/UnicodeService.cs`, `IUnicodeService.cs`, `IUnicodeVersionProvider.cs`, `Core/Input/UnicodeV6.cs` | ✅ | P1-21 |
 
 ## What is not ported
 
