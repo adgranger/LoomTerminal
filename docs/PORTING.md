@@ -52,8 +52,9 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/services/CoreService.ts`, `OscLinkService.ts`, `Services.ts` (`ICoreService`, `IOscLinkService`), `Types.ts` (`IModes`, `IDecPrivateModes`, `IOscLinkData`) (+ tests) | `Core/Services/CoreService.cs`, `ICoreService.cs`, `TerminalModes.cs`, `OscLinkService.cs`, `IOscLinkService.cs` | ✅ | P1-34 |
 | `src/common/services/CoreMouseService.ts`, `Services.ts` (`ICoreMouseService`), `Types.ts` (`ICoreMouseEvent`, `CoreMouseEncoding`, …) (+ test, `MockCoreMouseService`) | `Core/Services/CoreMouseService.cs`, `ICoreMouseService.cs`, `CoreMouseTypes.cs` | ✅ | P1-35 |
 | `src/common/InputHandler.ts` (+ `InputHandler.test.ts`, `Types.ts` color events) | `Core/InputHandling/InputHandler.cs` (+ partials `.Print`, `.Controls`, `.Cursor`, `.Tabs`, `.Erase`, `.InsertDelete`, `.DeviceAttributes`, `.Modes`, `.RequestMode`, `.Sgr`, `.Status`, `.WindowOptions`, `.Esc`, `.Osc`, `.Dcs`), `DirtyRowTracker.cs`, `ColorEvents.cs` | ✅ | P1-36 … P1-53 |
-| `src/common/CoreTerminal.ts` (without `WriteBuffer` and the Windows heuristics) | `Core/TerminalCore.cs` (+ `InputHandler.Registration.cs` for the `register*Handler` forwarders) | 🔶 | P1-54, P1-55 (`TerminalWriter`: P1-56) |
+| `src/common/CoreTerminal.ts` (`write` is replaced by `TerminalWriter`) | `Core/TerminalCore.cs` (+ `InputHandler.Registration.cs` for the `register*Handler` forwarders) | ✅ | P1-54, P1-55 |
 | `src/common/WindowsMode.ts` | `Core/WindowsMode.cs` (heuristics wired in `TerminalCore`) | ✅ | P1-55 |
+| `src/common/services/LogService.ts`, `Services.ts` (`ILogService`) | `Core/Services/ILogService.cs` (interface only, test mocks in the test project) | replaced | P1-24 |
 | `src/common/input/WriteBuffer.ts` (ideas only) | `Core/TerminalWriter.cs`, `TerminalWorkItem.cs` (replaces `WriteBuffer`) | ✅ | P1-56 |
 
 ## What is not ported
@@ -76,6 +77,8 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | Unicode version | `UnicodeService` starts on version 6; Unicode 11 comes from `addon-unicode11` | Unicode 11 widths are the default (`"6"` stays registered) | ADR 0002, decision 7 |
 | Options | A mutable `options` object with getters/setters and `onOptionChange(key)` | `TerminalOptions` is an immutable record; `SetOptions` validates it all, then raises one `OnOptionChange(TerminalOption)` per changed property. UI options (font, theme, …) live in Presentation | ADR 0002, decision 4 |
 | Buffer memory cleanup | `resize` schedules `_batchedMemoryCleanup` on an `IdleTaskQueue` | `Buffer.Resize` sets `MemoryCleanupPending`; the session's idle loop calls `BatchedMemoryCleanup()` (returns `true` while it must run again, like the JS task) | No timers in Core |
+| Windows pty reflow | `windowsPty` with a `BuildNumber`: reflow is on for ConPTY ≥ 21376, off for older ConPTY and winpty | Same (`Buffer.IsReflowEnabled`); a supported Windows 11 ConPTY therefore reflows and the wrapping heuristics are off | Faithful port, recorded here because the P1-55 card first claimed the opposite |
+| Write loop | `WriteBuffer` with a `setTimeout` chunking loop and `Promise` callbacks | `TerminalWriter`, a single synchronous work loop | ADR 0002 |
 | CSS colors | `css.toColor` falls back to a canvas for named colors and other CSS syntaxes | Only `#rgb[a]`, `#rrggbb[aa]`, `rgb()` and `rgba()` are parsed; any other input throws `ArgumentException("css.toColor: Unsupported css format")`: CSS color names are not parsed | No canvas in Core |
 
 ## Tests not ported
