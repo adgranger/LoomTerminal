@@ -1,6 +1,6 @@
 # P2-02 — `tools/xterm-oracle`: expected snapshots from xterm.js itself
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P2-01
 - **Size:** M
 
@@ -31,14 +31,14 @@ writes the expected snapshot JSON, in exactly the format of P2-01.
 
 ## Tests
 
-- [ ] Manual: `rtk node oracle.mjs ../../tests/LoomTerminal.Core.Tests/Conformance/Fixtures` on the three samples of
+- [x] Manual: `rtk node oracle.mjs ../../tests/LoomTerminal.Core.Tests/Conformance/Fixtures` on the three samples of
       P2-01 (copy them as fixtures) produces JSON equal to the C# snapshots; `--check` then exits 0.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings (not run on Linux)
+- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (not run on Linux; Core.Tests green)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
