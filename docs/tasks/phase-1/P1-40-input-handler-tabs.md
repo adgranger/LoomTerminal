@@ -1,6 +1,6 @@
 # P1-40 — `InputHandler.Tabs`: TBC, CHT, CBT, HTS
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-39
 - **Size:** S
 
@@ -27,15 +27,15 @@ Port the tab stop handlers.
 
 ## Tests
 
-- [ ] New (xterm.js has no dedicated tests): default stops every 8 columns (`\t` from column 0 → 8);
+- [x] New (xterm.js has no dedicated tests): default stops every 8 columns (`\t` from column 0 → 8);
       `ESC H` at column 3 adds a stop (`\r\t` → 3); `CSI 0 g` clears the stop at the cursor; `CSI 3 g` clears all
       (`\t` then goes to the last column); `CSI 2 I` moves two stops forward; `CSI Z` moves one stop back.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
