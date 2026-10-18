@@ -112,6 +112,15 @@ internal sealed class TestEscapeSequenceParser : EscapeSequenceParser
     public void MockOscParser() => _oscParser = new MockOscPutParser();
 
     public static int IdentifierOf(FunctionIdentifier id) => Identifier(id);
+
+    /// <summary>Whether at least one CSI handler is registered for <paramref name="id"/>.</summary>
+    public bool HasCsiHandler(FunctionIdentifier id) => _csiHandlers.ContainsKey(Identifier(id));
+
+    /// <summary>Whether at least one ESC handler is registered for <paramref name="id"/>.</summary>
+    public bool HasEscHandler(FunctionIdentifier id) => _escHandlers.ContainsKey(Identifier(id, 0x30, 0x7e));
+
+    /// <summary>Whether an EXECUTE handler is registered for the control character <paramref name="flag"/>.</summary>
+    public bool HasExecuteHandler(string flag) => _executeHandlers.ContainsKey(flag[0]);
 }
 
 /// <summary>Collects the parser actions to compare them with expected values (testTerminal).</summary>

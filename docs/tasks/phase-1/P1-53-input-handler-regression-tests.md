@@ -1,6 +1,6 @@
 # P1-53 — `InputHandler` regression tests and chunked parsing
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-37 … P1-52
 - **Size:** M (tests only)
 
@@ -32,17 +32,17 @@ of the JS constructor is registered, and close `InputHandler.ts`.
 
 ## Tests
 
-- [ ] Deferred from P1-41: port `EL/ED cursor at buffer.cols` › `following sequence keeps working` › `cursor never
+- [x] Deferred from P1-41: port `EL/ED cursor at buffer.cols` › `following sequence keeps working` › `cursor never
       advances beyond cols` (InputHandler.test.ts 2192–2233).
 
-- [ ] Port `regression tests` and `should parse big chunks in smaller subchunks`.
-- [ ] New: the registration checklist above.
+- [x] Port `regression tests` and `should parse big chunks in smaller subchunks`.
+- [x] New: the registration checklist above.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

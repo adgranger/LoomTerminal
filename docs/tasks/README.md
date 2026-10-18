@@ -107,7 +107,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-50](phase-1/P1-50-input-handler-window-options.md) | `InputHandler.WindowOptions`: XTWINOPS and title stacks | P1-49 | S | done |
 | [P1-51](phase-1/P1-51-input-handler-osc.md) | `InputHandler.Osc`: titles, colors (4/10/11/12/104/110–112), hyperlinks (8) | P1-48, P1-26, P1-27, P1-34 | M | done |
 | [P1-52](phase-1/P1-52-input-handler-dcs.md) | `InputHandler.Dcs`: DECRQSS | P1-49, P1-41 | S | done |
-| [P1-53](phase-1/P1-53-input-handler-regression-tests.md) | `InputHandler` regression tests and chunked parsing | P1-37 … P1-52 | M | todo |
+| [P1-53](phase-1/P1-53-input-handler-regression-tests.md) | `InputHandler` regression tests and chunked parsing | P1-37 … P1-52 | M | done |
 
 ### Step G — Terminal composition and close
 
