@@ -45,6 +45,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/services/OptionsService.ts` (+ test), `Services.ts` (`IOptionsService`) | `Core/Services/TerminalOptions.cs`, `TerminalOption.cs`, `IOptionsService.cs`, `OptionsService.cs` | ✅ (Core subset) | P1-23 |
 | `src/common/data/Charsets.ts`, `services/CharsetService.ts`, `Services.ts` (`ICharsetService`) | `Core/Data/Charsets.cs`, `Core/Services/CharsetService.cs`, `ICharsetService.cs` | ✅ | P1-25 |
 | `src/common/Color.ts`, `Types.ts` (`IColor`) (+ test) | `Core/Common/Color.cs` (`TerminalColor`, `Channels`, `ColorOps`, `Css`, `Rgb`, `Rgba`, `ColorMath`) | ✅ | P1-26 |
+| `src/common/input/XParseColor.ts` (+ test) | `Core/Input/XParseColor.cs` | ✅ | P1-27 |
 
 ## What is not ported
 
