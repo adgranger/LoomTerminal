@@ -1,6 +1,6 @@
 # P1-48 — `InputHandler.Sgr` (2/2): `charAttributes` and the SGR test suites
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-47
 - **Size:** M
 
@@ -34,15 +34,15 @@ overline, 16/256/RGB colors, colon notation, SGR 0 with hyperlinks, extended und
 
 ## Tests
 
-- [ ] Deferred from P1-45: port `alt screen` (all six tests, InputHandler.test.ts 624–678; they use SGR colors).
+- [x] Deferred from P1-45: port `alt screen` (all six tests, InputHandler.test.ts 624–678; they use SGR colors).
 
-- [ ] Port the five suites listed in the sources table.
+- [x] Port the five suites listed in the sources table.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (one skip, as above)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (one skip, as above)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
