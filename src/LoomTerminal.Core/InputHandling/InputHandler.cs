@@ -136,7 +136,7 @@ internal partial class InputHandler : Disposable
 
         // Registrations, in the order of the xterm.js constructor.
         RegisterCursorHandlers();
-        // RegisterEraseHandlers(); — P1-41
+        RegisterEraseHandlers();
         // RegisterInsertDeleteHandlers(); — P1-42
         RegisterTabHandlers();
         // RegisterDeviceAttributesHandlers(); — P1-43

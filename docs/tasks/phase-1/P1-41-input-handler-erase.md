@@ -1,6 +1,6 @@
 # P1-41 — `InputHandler.Erase`: ED, EL, ECH, DECSCA, DECSED, DECSEL
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-39
 - **Size:** M
 
@@ -35,13 +35,14 @@ Port erase in display / line / characters, with protected cells (DECSCA) and the
 
 ## Tests
 
-- [ ] Port the tests listed in the sources table.
+- [x] Port the tests listed in the sources table, except `EL/ED cursor at buffer.cols` › `following sequence keeps
+      working` (needs `reset()` and handlers of P1-42 … P1-45): **deferred to P1-53**.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
