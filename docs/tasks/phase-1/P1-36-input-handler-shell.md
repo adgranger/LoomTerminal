@@ -1,6 +1,6 @@
 # P1-36 — `InputHandler` shell: fields, events, `Parse`, dirty rows, test harness
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-10, P1-22, P1-35
 - **Size:** M
 
@@ -55,16 +55,16 @@ handlers are added by P1-37 … P1-52, each registering its own sequences.
 
 ## Tests
 
-- [ ] New: `Parse("abc")` with only the print handler wired does not throw and marks row 0 dirty
+- [x] New: `Parse("abc")` with only the print handler wired does not throw and marks row 0 dirty
       (`OnRequestRefreshRows` fires with `RowRange(0, 0)`) — print itself comes in P1-37, so assert only the dirty
       range and that unknown CSI sequences reach the fallback (use a `MockLogService` that records messages).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map: `InputHandler.ts` (🔶 P1-36) with the list of partial files
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map: `InputHandler.ts` (🔶 P1-36) with the list of partial files
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

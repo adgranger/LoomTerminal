@@ -51,6 +51,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/buffer/BufferSet.ts`, `services/BufferService.ts`, `Services.ts` (`IBufferService`) (+ `BufferSet` test) | `Core/Buffer/BufferSet.cs`, `Core/Services/BufferService.cs`, `IBufferService.cs` | ✅ | P1-33 |
 | `src/common/services/CoreService.ts`, `OscLinkService.ts`, `Services.ts` (`ICoreService`, `IOscLinkService`), `Types.ts` (`IModes`, `IDecPrivateModes`, `IOscLinkData`) (+ tests) | `Core/Services/CoreService.cs`, `ICoreService.cs`, `TerminalModes.cs`, `OscLinkService.cs`, `IOscLinkService.cs` | ✅ | P1-34 |
 | `src/common/services/CoreMouseService.ts`, `Services.ts` (`ICoreMouseService`), `Types.ts` (`ICoreMouseEvent`, `CoreMouseEncoding`, …) (+ test, `MockCoreMouseService`) | `Core/Services/CoreMouseService.cs`, `ICoreMouseService.cs`, `CoreMouseTypes.cs` | ✅ | P1-35 |
+| `src/common/InputHandler.ts` (shell: fields, events, fallbacks, `parse`, `DirtyRowTracker`) (+ test harness of `InputHandler.test.ts`) | `Core/InputHandling/InputHandler.cs`, `DirtyRowTracker.cs` (partial files per concern added by P1-37 … P1-52) | 🔶 | P1-36 |
 
 ## What is not ported
 

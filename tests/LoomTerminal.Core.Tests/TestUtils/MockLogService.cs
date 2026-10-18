@@ -11,13 +11,14 @@ internal sealed class MockLogService : ILogService
 {
     public LogLevel Level => LogLevel.Debug;
 
+    /// <summary>The debug messages received so far (not part of the xterm.js mock).</summary>
+    public List<string> DebugMessages { get; } = [];
+
     public void Trace(string message)
     {
     }
 
-    public void Debug(string message)
-    {
-    }
+    public void Debug(string message) => DebugMessages.Add(message);
 
     public void Info(string message)
     {
