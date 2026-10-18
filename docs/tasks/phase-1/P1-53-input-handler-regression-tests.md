@@ -32,6 +32,9 @@ of the JS constructor is registered, and close `InputHandler.ts`.
 
 ## Tests
 
+- [ ] Deferred from P1-41: port `EL/ED cursor at buffer.cols` › `following sequence keeps working` › `cursor never
+      advances beyond cols` (InputHandler.test.ts 2192–2233).
+
 - [ ] Port `regression tests` and `should parse big chunks in smaller subchunks`.
 - [ ] New: the registration checklist above.
 
