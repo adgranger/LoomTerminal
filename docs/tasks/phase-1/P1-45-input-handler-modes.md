@@ -1,6 +1,6 @@
 # P1-45 — `InputHandler.Modes`: SM, RM, DECSET, DECRST (incl. alternate screen, mouse, bracketed paste)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-44, P1-35
 - **Size:** M
 
@@ -35,19 +35,19 @@ output…).
 
 ## Tests
 
-- [ ] Deferred from P1-38: port the `reverseWraparound set` tests of the second `BS with reverseWraparound set/unset`
+- [x] Deferred from P1-38: port the `reverseWraparound set` tests of the second `BS with reverseWraparound set/unset`
       block (InputHandler.test.ts 1665–1722, C# names `Backspace_reverse_wraparound_block2_set_…`).
 
-- [ ] Port `setMode` › `should toggle bracketedPasteMode`.
-- [ ] Port `alt screen` (all six tests).
-- [ ] New: `CSI ? 1 h` sets `DecPrivateModes.ApplicationCursorKeys`; `CSI ? 1000 h` + `CSI ? 1006 h` select `VT200`
+- [x] Port `setMode` › `should toggle bracketedPasteMode`.
+- [ ] Port `alt screen` (all six tests). **Deferred to P1-48**: every one of them sets colors with SGR (`CSI 31 m`, `CSI 42 m`).
+- [x] New: `CSI ? 1 h` sets `DecPrivateModes.ApplicationCursorKeys`; `CSI ? 1000 h` + `CSI ? 1006 h` select `VT200`
       + `SGR`; `CSI ? 25 l` hides the cursor (`CoreService.IsCursorHidden`).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
