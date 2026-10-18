@@ -61,8 +61,8 @@ internal interface IBufferLine
     /// <summary>The length of the line without trailing empty cells that have no background color.</summary>
     int GetNoBgTrimmedLength();
 
-    /// <summary>Translates the line to a string.</summary>
-    string TranslateToString(bool trimRight = false, int startCol = 0, int? endCol = null, List<int>? outColumns = null);
+    /// <summary>Translates the line to a string; an <paramref name="endCol"/> of -1 means the line length.</summary>
+    string TranslateToString(bool trimRight = false, int startCol = 0, int endCol = -1, List<int>? outColumns = null);
 
     /// <summary>The width of the cell.</summary>
     int GetWidth(int index);

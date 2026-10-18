@@ -58,7 +58,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-16](phase-1/P1-16-attribute-data.md) | `AttributeData` and `ExtendedAttrs` | P1-15 | S | done |
 | [P1-17](phase-1/P1-17-cell-data.md) | `CellData` | P1-16 | S | done |
 | [P1-18](phase-1/P1-18-buffer-line-1.md) | `BufferLine` (1/2): storage and cell access | P1-17 | M | done |
-| [P1-19](phase-1/P1-19-buffer-line-2.md) | `BufferLine` (2/2): editing, resize, copy, strings | P1-18 | M | todo |
+| [P1-19](phase-1/P1-19-buffer-line-2.md) | `BufferLine` (2/2): editing, resize, copy, strings | P1-18 | M | done |
 | [P1-20](phase-1/P1-20-buffer-line-tests.md) | `BufferLine` tests: combining chars, full width, extended attributes | P1-19 | S | todo |
 
 ### Step D — Unicode, options, small services
