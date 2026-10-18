@@ -1,6 +1,6 @@
 # P1-43 — `InputHandler.DeviceAttributes`: REP, DA1, DA2
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-37
 - **Size:** S
 
@@ -28,14 +28,14 @@ Port "repeat preceding character" and the primary / secondary device attribute r
 
 ## Tests
 
-- [ ] New (no JS tests): `a\x1b[3b` prints `aaaa`; `CSI c` with `TermName = "xterm"` sends the exact JS reply
+- [x] New (no JS tests): `a\x1b[3b` prints `aaaa`; `CSI c` with `TermName = "xterm"` sends the exact JS reply
       string (read it from `sendDeviceAttributesPrimary`); `CSI > c` sends the exact JS secondary reply.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
