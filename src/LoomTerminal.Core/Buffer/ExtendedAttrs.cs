@@ -35,7 +35,7 @@ internal sealed class ExtendedAttrs
         set => _ext = value;
     }
 
-    /// <summary>The underline style; a hyperlink always reads as <see cref="Buffer.UnderlineStyle.Dashed"/>.</summary>
+    /// <summary>The underline style; a hyperlink always reads as <see cref="Core.Buffer.UnderlineStyle.Dashed"/>.</summary>
     public UnderlineStyle UnderlineStyle
     {
         get

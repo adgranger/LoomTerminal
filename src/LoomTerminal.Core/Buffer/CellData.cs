@@ -9,7 +9,7 @@ namespace LoomTerminal.Core.Buffer;
 /// <remarks>Threading: not thread-safe; used from the parser thread only.</remarks>
 internal sealed class CellData : AttributeData
 {
-    /// <summary>The content word: codepoint, combined flag and width (see <see cref="Buffer.Content"/>).</summary>
+    /// <summary>The content word: codepoint, combined flag and width (see <see cref="Core.Buffer.Content"/>).</summary>
     public uint Content;
 
     /// <summary>The string of a combined cell (only meaningful when <see cref="IsCombined"/> is non-zero).</summary>
@@ -24,22 +24,22 @@ internal sealed class CellData : AttributeData
     }
 
     /// <summary>Whether the cell contains a combined string (the masked bit, non-zero means true).</summary>
-    public uint IsCombined() => Content & Buffer.Content.IsCombinedMask;
+    public uint IsCombined() => Content & Core.Buffer.Content.IsCombinedMask;
 
     /// <summary>The width of the cell.</summary>
-    public int GetWidth() => unchecked((int)Content) >> Buffer.Content.WidthShift;
+    public int GetWidth() => unchecked((int)Content) >> Core.Buffer.Content.WidthShift;
 
     /// <summary>The string of the content.</summary>
     public string GetChars()
     {
-        if ((Content & Buffer.Content.IsCombinedMask) != 0)
+        if ((Content & Core.Buffer.Content.IsCombinedMask) != 0)
         {
             return CombinedData;
         }
 
-        if ((Content & Buffer.Content.CodepointMask) != 0)
+        if ((Content & Core.Buffer.Content.CodepointMask) != 0)
         {
-            return TextDecoder.StringFromCodePoint(Content & Buffer.Content.CodepointMask);
+            return TextDecoder.StringFromCodePoint(Content & Core.Buffer.Content.CodepointMask);
         }
 
         return string.Empty;
@@ -52,7 +52,7 @@ internal sealed class CellData : AttributeData
     public uint GetCode() =>
         IsCombined() != 0
             ? CombinedData[^1]
-            : Content & Buffer.Content.CodepointMask;
+            : Content & Core.Buffer.Content.CodepointMask;
 
     /// <summary>Sets the data from a <see cref="CharData"/>.</summary>
     public void SetFromCharData(CharData value)
@@ -76,7 +76,7 @@ internal sealed class CellData : AttributeData
                 int second = value.Char[1];
                 if (0xDC00 <= second && second <= 0xDFFF)
                 {
-                    Content = (uint)(((code - 0xD800) * 0x400) + second - 0xDC00 + 0x10000) | ((uint)value.Width << Buffer.Content.WidthShift);
+                    Content = (uint)(((code - 0xD800) * 0x400) + second - 0xDC00 + 0x10000) | ((uint)value.Width << Core.Buffer.Content.WidthShift);
                 }
                 else
                 {
@@ -92,13 +92,13 @@ internal sealed class CellData : AttributeData
         {
             // JS: ''.charCodeAt(0) is NaN, which is 0 in a bit operation
             uint code = value.Char.Length == 1 ? value.Char[0] : 0u;
-            Content = code | ((uint)value.Width << Buffer.Content.WidthShift);
+            Content = code | ((uint)value.Width << Core.Buffer.Content.WidthShift);
         }
 
         if (combined)
         {
             CombinedData = value.Char;
-            Content = Buffer.Content.IsCombinedMask | ((uint)value.Width << Buffer.Content.WidthShift);
+            Content = Core.Buffer.Content.IsCombinedMask | ((uint)value.Width << Core.Buffer.Content.WidthShift);
         }
     }
 
