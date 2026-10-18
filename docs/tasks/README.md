@@ -94,7 +94,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-37](phase-1/P1-37-input-handler-print.md) | `InputHandler.Print`: printing, wrapping, wide and combining characters | P1-36 | M | done |
 | [P1-38](phase-1/P1-38-input-handler-controls.md) | `InputHandler.Controls`: BEL, LF/VT/FF, CR, BS, HT, SO, SI | P1-37 | S | done |
 | [P1-39](phase-1/P1-39-input-handler-cursor.md) | `InputHandler.Cursor`: CUU, CUD, CUF, CUB, CNL, CPL, CHA, CUP, HPA, HPR, VPA, VPR, HVP | P1-38 | M | done |
-| [P1-40](phase-1/P1-40-input-handler-tabs.md) | `InputHandler.Tabs`: TBC, CHT, CBT, HTS | P1-39 | S | todo |
+| [P1-40](phase-1/P1-40-input-handler-tabs.md) | `InputHandler.Tabs`: TBC, CHT, CBT, HTS | P1-39 | S | done |
 | [P1-41](phase-1/P1-41-input-handler-erase.md) | `InputHandler.Erase`: ED, EL, ECH, DECSCA, DECSED, DECSEL | P1-39 | M | todo |
 | [P1-42](phase-1/P1-42-input-handler-insert-delete.md) | `InputHandler.InsertDelete`: IL, DL, ICH, DCH, SU, SD, SL, SR, DECIC, DECDC | P1-41 | M | todo |
 | [P1-43](phase-1/P1-43-input-handler-rep-and-device-attributes.md) | `InputHandler.DeviceAttributes`: REP, DA1, DA2 | P1-37 | S | todo |
