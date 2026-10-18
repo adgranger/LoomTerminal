@@ -1,6 +1,6 @@
 # P1-49 — `InputHandler.Status`: DSR, DECSTR, DECSCUSR, DECSTBM (+ scroll margin tests)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-42, P1-45, P1-48
 - **Size:** M
 
@@ -34,19 +34,24 @@ region, and the scroll margin tests postponed from P1-42.
   `optionsService.options.cursorStyle`); in tests with `MockOptionsService` the JS assertions read
   `optionsService.options.*`: read `RawOptions.*`.
 
+## Deviation from the card (found while porting)
+
+The card says `setCursorStyle` writes through `IOptionsService.SetOptions`. The pinned source and its test write
+`coreService.decPrivateModes.cursorStyle` / `cursorBlink` (and read them back), so the port follows the source.
+
 ## Tests
 
-- [ ] Deferred from P1-38: port the first `BS with reverseWraparound set/unset` block (InputHandler.test.ts 134–181,
+- [x] Deferred from P1-38: port the first `BS with reverseWraparound set/unset` block (InputHandler.test.ts 134–181,
       `should not reverse outside of scroll margins`; C# name `Backspace_reverse_wraparound_set_should_not_reverse_outside_of_scroll_margins`).
 
-- [ ] Port the four suites listed in the sources table.
-- [ ] New: `CSI 6 n` at row 3, column 5 sends `\x1b[4;6R`.
+- [x] Port the four suites listed in the sources table.
+- [x] New: `CSI 6 n` at row 3, column 5 sends `\x1b[4;6R`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

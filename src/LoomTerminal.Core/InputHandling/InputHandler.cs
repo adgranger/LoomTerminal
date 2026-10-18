@@ -143,7 +143,7 @@ internal partial class InputHandler : Disposable
         RegisterModeHandlers();
         RegisterRequestModeHandlers();
         RegisterSgrHandlers();
-        // RegisterStatusHandlers(); — P1-49
+        RegisterStatusHandlers();
         RegisterControlHandlers();
         RegisterEscHandlers();
         // RegisterOscHandlers(); — P1-51
