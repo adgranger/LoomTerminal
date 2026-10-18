@@ -36,6 +36,11 @@ events for the UI), and OSC 8 hyperlinks.
   `ColorRestoreRequest(int? Index)`. `SpecialColorIndex` (`FOREGROUND = 256`, `BACKGROUND`, `CURSOR`) keeps its values.
 - `OnColor` (declared in P1-36) is `IEvent<IReadOnlyList<ColorRequest>>`.
 
+## Already done by P1-50
+
+`InputHandler.Osc.cs` exists with `SetTitle`, `SetIconName` and `RegisterOscHandlers` (OSC 0, 1, 2): extend it, do
+not recreate it.
+
 ## Tests
 
 - [ ] Port `OSC` (all `it`s).
