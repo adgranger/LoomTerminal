@@ -1,6 +1,6 @@
 # P1-54 — `TerminalCore` (port of `CoreTerminal`)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-53
 - **Size:** M
 
@@ -37,19 +37,25 @@ the API Presentation uses (write, resize, scroll, reset, events, buffers, option
   `OnCursorMove`, `OnRequestRefreshRows`, `OnColor`…), as `IEvent<T>` properties.
 - `scrollToBottom(disableSmoothScroll)` drops the parameter (no smooth scrolling in Core).
 
+## Notes (found while porting)
+
+- The `register*Handler` forwarders of `InputHandler.ts` (lines 654–700, including the XTWINOPS gate) were not ported by
+  P1-36 … P1-52; they live in `InputHandler.Registration.cs`, added by this card.
+- `OnRequestReset` (ESC c) is wired to `TerminalCore.Reset()` here, as the browser `Terminal` does in xterm.js.
+
 ## Tests
 
-- [ ] New: `Write("hello\r\nworld")` then the active buffer's lines 0 and 1 are `hello` / `world`; `Resize(10, 5)`
+- [x] New: `Write("hello\r\nworld")` then the active buffer's lines 0 and 1 are `hello` / `world`; `Resize(10, 5)`
       fires `OnResize`; `Write("\x1b]0;title\x07")` fires `OnTitleChange("title")`; `Write("\x1b[6n")` fires `OnData`
       with a CPR; `Reset()` clears the screen and attributes; a UTF-8 `é` split across two `Write(byte[])` calls is
       printed once.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (🔶 `CoreTerminal.ts`, P1-54; Windows heuristics in P1-55)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (🔶 `CoreTerminal.ts`, P1-54; Windows heuristics in P1-55)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
