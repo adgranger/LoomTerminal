@@ -135,7 +135,7 @@ internal partial class InputHandler : Disposable
         _parser.SetPrintHandler(Print);
 
         // Registrations, in the order of the xterm.js constructor.
-        // RegisterCursorHandlers(); — P1-39
+        RegisterCursorHandlers();
         // RegisterEraseHandlers(); — P1-41
         // RegisterInsertDeleteHandlers(); — P1-42
         // RegisterTabHandlers(); — P1-40
