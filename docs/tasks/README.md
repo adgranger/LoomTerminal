@@ -101,7 +101,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | [P1-44](phase-1/P1-44-input-handler-esc.md) | `InputHandler.Esc`: DECSC/DECRC, IND, NEL, RI, keypad modes, charsets, RIS, DECALN | P1-38, P1-25 | M | done |
 | [P1-45](phase-1/P1-45-input-handler-modes.md) | `InputHandler.Modes`: SM, RM, DECSET, DECRST (incl. alternate screen, mouse, bracketed paste) | P1-44, P1-35 | M | done |
 | [P1-46](phase-1/P1-46-input-handler-request-mode.md) | `InputHandler.RequestMode`: DECRQM (ANSI and DEC private) | P1-45 | S | done |
-| [P1-47](phase-1/P1-47-input-handler-sgr-colors.md) | `InputHandler.Sgr` (1/2): color and underline helpers | P1-36 | M | todo |
+| [P1-47](phase-1/P1-47-input-handler-sgr-colors.md) | `InputHandler.Sgr` (1/2): color and underline helpers | P1-36 | M | done |
 | [P1-48](phase-1/P1-48-input-handler-sgr.md) | `InputHandler.Sgr` (2/2): `charAttributes` and the SGR test suites | P1-47 | M | todo |
 | [P1-49](phase-1/P1-49-input-handler-status-and-margins.md) | `InputHandler.Status`: DSR, DECSTR, DECSCUSR, DECSTBM (+ scroll margin tests) | P1-42, P1-45, P1-48 | M | todo |
 | [P1-50](phase-1/P1-50-input-handler-window-options.md) | `InputHandler.WindowOptions`: XTWINOPS and title stacks | P1-49 | S | todo |
