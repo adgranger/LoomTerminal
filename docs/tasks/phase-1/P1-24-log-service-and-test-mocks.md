@@ -1,6 +1,6 @@
 # P1-24 — `ILogService` and the test mocks
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-21, P1-23
 - **Size:** S
 
@@ -37,13 +37,13 @@ service tests.
 
 ## Tests
 
-- [ ] New: `MockOptionsService` setter raises `OnOptionChange` for each changed option.
+- [x] New: `MockOptionsService` setter raises `OnOptionChange` for each changed option.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
