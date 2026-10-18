@@ -1,6 +1,6 @@
 # P1-44 — `InputHandler.Esc`: DECSC/DECRC, IND, NEL, RI, keypad modes, charsets, RIS, DECALN
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-38, P1-25
 - **Size:** M
 
@@ -35,15 +35,15 @@ alignment pattern.
 
 ## Tests
 
-- [ ] Port `save and restore cursor`.
-- [ ] New: `ESC ( 0` then `q` prints `─`; `ESC ( B` returns to ASCII; `ESC M` at the top of the scroll region
+- [x] Port `save and restore cursor`.
+- [x] New: `ESC ( 0` then `q` prints `─`; `ESC ( B` returns to ASCII; `ESC M` at the top of the scroll region
       scrolls down; `ESC # 8` fills the screen with `E`; `ESC =` sets `ApplicationKeypad`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

@@ -38,7 +38,7 @@ public abstract class InputHandlerTestBase : IDisposable
     private readonly OscLinkService _oscLinkServiceOwner;
     private readonly MockCoreMouseService _coreMouseServiceOwner = new();
 
-    private protected InputHandlerTestBase()
+    private protected InputHandlerTestBase(ICharsetService? charsetService = null)
     {
         _optionsServiceOwner = new MockOptionsService();
         _bufferServiceOwner = new BufferService(_optionsServiceOwner);
@@ -48,7 +48,7 @@ public abstract class InputHandlerTestBase : IDisposable
         _oscLinkServiceOwner = new OscLinkService(_bufferServiceOwner);
         InputHandler = new TestInputHandler(
             _bufferServiceOwner,
-            new MockCharsetService(),
+            charsetService ?? new MockCharsetService(),
             _coreServiceOwner,
             LogService,
             _optionsServiceOwner,

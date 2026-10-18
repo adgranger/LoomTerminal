@@ -47,7 +47,7 @@ internal partial class InputHandler : Disposable
     private readonly StringToUtf32 _stringDecoder = new();
     private readonly Utf8ToUtf32 _utf8Decoder = new();
     private readonly DirtyRowTracker _dirtyRowTracker;
-    private readonly AttributeData _eraseAttrDataInternal = AttributeData.DefaultAttrData.Clone();
+    private AttributeData _eraseAttrDataInternal = AttributeData.DefaultAttrData.Clone();
 
     private readonly Emitter<EventArgs> _onRequestBell;
     private readonly Emitter<RowRange?> _onRequestRefreshRows;
@@ -71,7 +71,7 @@ internal partial class InputHandler : Disposable
 
     private int _cursorStartX;
     private int _cursorStartY;
-    private readonly AttributeData _curAttrData = AttributeData.DefaultAttrData.Clone();
+    private AttributeData _curAttrData = AttributeData.DefaultAttrData.Clone();
     private Core.Buffer.Buffer _activeBuffer;
 
     /// <summary>Creates the handler and registers its handlers on <paramref name="parser"/> (a new parser by default).</summary>
@@ -144,7 +144,7 @@ internal partial class InputHandler : Disposable
         // RegisterSgrHandlers(); — P1-48
         // RegisterStatusHandlers(); — P1-49
         RegisterControlHandlers();
-        // RegisterEscHandlers(); — P1-44
+        RegisterEscHandlers();
         // RegisterOscHandlers(); — P1-51
         // RegisterDcsHandlers(); — P1-52
     }
