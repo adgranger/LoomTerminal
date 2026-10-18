@@ -144,4 +144,177 @@ internal partial class InputHandler
         attr.Extended.UnderlineColor &= ~(Attributes.CmMask | Attributes.RgbMask);
         attr.UpdateExtended();
     }
+
+    /// <summary>SGR (CSI Pm m): sets the character attributes (bold, colors, underline styles and colors…).</summary>
+    public bool CharAttributes(IParams p)
+    {
+        // Optimize a single SGR0.
+        if (p.Length == 1 && p.ParamValues[0] == 0)
+        {
+            ProcessSgr0(_curAttrData);
+            return true;
+        }
+
+        int l = p.Length;
+        AttributeData attr = _curAttrData;
+        for (int i = 0; i < l; i++)
+        {
+            int ps = p.ParamValues[i];
+            if (ps >= 30 && ps <= 37)
+            {
+                // fg color 8
+                attr.Fg &= ~(Attributes.CmMask | Attributes.PcolorMask);
+                attr.Fg |= Attributes.CmP16 | (uint)(ps - 30);
+            }
+            else if (ps >= 40 && ps <= 47)
+            {
+                // bg color 8
+                attr.Bg &= ~(Attributes.CmMask | Attributes.PcolorMask);
+                attr.Bg |= Attributes.CmP16 | (uint)(ps - 40);
+            }
+            else if (ps >= 90 && ps <= 97)
+            {
+                // fg color 16
+                attr.Fg &= ~(Attributes.CmMask | Attributes.PcolorMask);
+                attr.Fg |= Attributes.CmP16 | (uint)(ps - 90) | 8;
+            }
+            else if (ps >= 100 && ps <= 107)
+            {
+                // bg color 16
+                attr.Bg &= ~(Attributes.CmMask | Attributes.PcolorMask);
+                attr.Bg |= Attributes.CmP16 | (uint)(ps - 100) | 8;
+            }
+            else if (ps == 0)
+            {
+                // default
+                ProcessSgr0(attr);
+            }
+            else if (ps == 1)
+            {
+                // bold text
+                attr.Fg |= FgFlags.Bold;
+            }
+            else if (ps == 3)
+            {
+                // italic text
+                attr.Bg |= BgFlags.Italic;
+            }
+            else if (ps == 4)
+            {
+                // underlined text
+                attr.Fg |= FgFlags.Underline;
+                ProcessUnderline(p.HasSubParams(i) ? p.GetSubParams(i)![0] : (int)UnderlineStyle.Single, attr);
+            }
+            else if (ps == 5)
+            {
+                // blink
+                attr.Fg |= FgFlags.Blink;
+            }
+            else if (ps == 7)
+            {
+                // inverse and positive
+                // test with: echo -e '\e[31m\e[42mhello\e[7mworld\e[27mhi\e[m'
+                attr.Fg |= FgFlags.Inverse;
+            }
+            else if (ps == 8)
+            {
+                // invisible
+                attr.Fg |= FgFlags.Invisible;
+            }
+            else if (ps == 9)
+            {
+                // strikethrough
+                attr.Fg |= FgFlags.Strikethrough;
+            }
+            else if (ps == 2)
+            {
+                // dimmed text
+                attr.Bg |= BgFlags.Dim;
+            }
+            else if (ps == 21)
+            {
+                // double underline
+                ProcessUnderline((int)UnderlineStyle.Double, attr);
+            }
+            else if (ps == 22)
+            {
+                // not bold nor faint
+                attr.Fg &= ~FgFlags.Bold;
+                attr.Bg &= ~BgFlags.Dim;
+            }
+            else if (ps == 23)
+            {
+                // not italic
+                attr.Bg &= ~BgFlags.Italic;
+            }
+            else if (ps == 24)
+            {
+                // not underlined
+                attr.Fg &= ~FgFlags.Underline;
+                ProcessUnderline((int)UnderlineStyle.None, attr);
+            }
+            else if (ps == 25)
+            {
+                // not blink
+                attr.Fg &= ~FgFlags.Blink;
+            }
+            else if (ps == 27)
+            {
+                // not inverse
+                attr.Fg &= ~FgFlags.Inverse;
+            }
+            else if (ps == 28)
+            {
+                // not invisible
+                attr.Fg &= ~FgFlags.Invisible;
+            }
+            else if (ps == 29)
+            {
+                // not strikethrough
+                attr.Fg &= ~FgFlags.Strikethrough;
+            }
+            else if (ps == 39)
+            {
+                // reset fg
+                attr.Fg &= ~(Attributes.CmMask | Attributes.RgbMask);
+                attr.Fg |= AttributeData.DefaultAttrData.Fg & (Attributes.PcolorMask | Attributes.RgbMask);
+            }
+            else if (ps == 49)
+            {
+                // reset bg
+                attr.Bg &= ~(Attributes.CmMask | Attributes.RgbMask);
+                attr.Bg |= AttributeData.DefaultAttrData.Bg & (Attributes.PcolorMask | Attributes.RgbMask);
+            }
+            else if (ps == 38 || ps == 48 || ps == 58)
+            {
+                // fg color 256 and RGB
+                i += ExtractColor(p, i, attr);
+            }
+            else if (ps == 53)
+            {
+                // overline
+                attr.Bg |= BgFlags.Overline;
+            }
+            else if (ps == 55)
+            {
+                // not overline
+                attr.Bg &= ~BgFlags.Overline;
+            }
+            else if (ps == 59)
+            {
+                attr.Extended = attr.Extended.Clone();
+                attr.Extended.UnderlineColor = unchecked((uint)-1);
+                attr.UpdateExtended();
+            }
+            else
+            {
+                _logService.Debug($"Unknown SGR attribute: {ps}.");
+            }
+        }
+
+        return true;
+    }
+
+    private void RegisterSgrHandlers() =>
+        _parser.RegisterCsiHandler(new FunctionIdentifier(Final: "m"), CharAttributes);
 }
