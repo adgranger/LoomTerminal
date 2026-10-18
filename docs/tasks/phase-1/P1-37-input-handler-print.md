@@ -1,6 +1,6 @@
 # P1-37 — `InputHandler.Print`: printing, wrapping, wide and combining characters
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-36
 - **Size:** M
 
@@ -31,15 +31,16 @@ margin, hyperlink ids on cells.
 
 ## Tests
 
-- [ ] Port `print` › `should not cause an infinite loop (regression test)`, `should clear cells to the right on early wrap-around`.
+- [x] Port `print` › `should not cause an infinite loop (regression test)`, `should clear cells to the right on early wrap-around`.
 - [ ] Port `should correctly reset cells taken by wide chars` › `print` (the EL/ICH/DCH/ECH tests of that describe
-      come with their handlers in P1-41 and P1-42).
+      come with their handlers in P1-41 and P1-42). **Deferred to P1-39**: the test drives the cursor with CUP
+      (`\x1b[H`), which exists only once P1-39 is done.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
