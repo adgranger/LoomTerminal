@@ -18,10 +18,11 @@ internal sealed class UnicodeService : IUnicodeService, IDisposable
     private string _active;
     private IUnicodeVersionProvider _activeProvider;
 
-    /// <summary>Creates the service with the Unicode 6 provider registered and active.</summary>
+    /// <summary>Creates the service with the Unicode 6 and 11 providers registered, 11 being active.</summary>
     public UnicodeService()
     {
-        UnicodeV6 defaultProvider = new();
+        Register(new UnicodeV6());
+        UnicodeV11 defaultProvider = new();
         Register(defaultProvider);
         _active = defaultProvider.Version;
         _activeProvider = defaultProvider;

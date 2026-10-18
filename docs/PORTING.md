@@ -41,6 +41,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/buffer/CellData.ts` (+ `BufferLine.test.ts` CellData suite) | `Core/Buffer/CellData.cs` | ✅ | P1-17 |
 | `src/common/buffer/BufferLine.ts` (+ `IBufferLine` of `Types.ts`) | `Core/Buffer/BufferLine*.cs`, `IBufferLine.cs` | ✅ | P1-18, P1-19 |
 | `src/common/services/UnicodeService.ts`, `Services.ts` (Unicode types), `src/common/input/UnicodeV6.ts` (+ tests) | `Core/Services/UnicodeService.cs`, `IUnicodeService.cs`, `IUnicodeVersionProvider.cs`, `Core/Input/UnicodeV6.cs` | ✅ | P1-21 |
+| `addons/addon-unicode11/src/UnicodeV11.ts`, `Unicode11Addon.ts` | `Core/Input/UnicodeV11.cs` (registered and active in `UnicodeService`) | ✅ | P1-22 |
 
 ## What is not ported
 
@@ -59,6 +60,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 |---|---|---|---|
 | OSC and DCS handlers | `end` / `unhook` may return a `Promise`; the parser pauses and resumes | Handlers are synchronous (`bool`); `End` / `Unhook` return `void`, no stack state | ADR 0002 |
 | Parser | `parse` may return a `Promise` and resume later | `Parse` is synchronous and returns `void`: no handler can pause the parser; `_parseStack` is not ported | ADR 0002 |
+| Unicode version | `UnicodeService` starts on version 6; Unicode 11 comes from `addon-unicode11` | Unicode 11 widths are the default (`"6"` stays registered) | ADR 0002, decision 7 |
 
 ## Tests not ported
 
