@@ -51,7 +51,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/buffer/BufferSet.ts`, `services/BufferService.ts`, `Services.ts` (`IBufferService`) (+ `BufferSet` test) | `Core/Buffer/BufferSet.cs`, `Core/Services/BufferService.cs`, `IBufferService.cs` | ✅ | P1-33 |
 | `src/common/services/CoreService.ts`, `OscLinkService.ts`, `Services.ts` (`ICoreService`, `IOscLinkService`), `Types.ts` (`IModes`, `IDecPrivateModes`, `IOscLinkData`) (+ tests) | `Core/Services/CoreService.cs`, `ICoreService.cs`, `TerminalModes.cs`, `OscLinkService.cs`, `IOscLinkService.cs` | ✅ | P1-34 |
 | `src/common/services/CoreMouseService.ts`, `Services.ts` (`ICoreMouseService`), `Types.ts` (`ICoreMouseEvent`, `CoreMouseEncoding`, …) (+ test, `MockCoreMouseService`) | `Core/Services/CoreMouseService.cs`, `ICoreMouseService.cs`, `CoreMouseTypes.cs` | ✅ | P1-35 |
-| `src/common/InputHandler.ts` (shell: fields, events, fallbacks, `parse`, `DirtyRowTracker`) (+ test harness of `InputHandler.test.ts`) | `Core/InputHandling/InputHandler.cs`, `DirtyRowTracker.cs` (partial files per concern added by P1-37 … P1-52) | 🔶 | P1-36 |
+| `src/common/InputHandler.ts` (+ `InputHandler.test.ts`, `Types.ts` color events) | `Core/InputHandling/InputHandler.cs` (+ partials `.Print`, `.Controls`, `.Cursor`, `.Tabs`, `.Erase`, `.InsertDelete`, `.DeviceAttributes`, `.Modes`, `.RequestMode`, `.Sgr`, `.Status`, `.WindowOptions`, `.Esc`, `.Osc`, `.Dcs`), `DirtyRowTracker.cs`, `ColorEvents.cs` | ✅ | P1-36 … P1-53 |
 
 ## What is not ported
 
@@ -83,3 +83,4 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `DcsParser - async tests` (`DcsParser.test.ts`, lines 284–459) | Async handlers are not ported (ADR 0002) |
 | `OptionsService.test.ts`: `fontWeight` setOption tests, cols/rows `undefined` constructor test, `Object.keys` test | UI option, non-nullable ints, and a record instead of a getter/setter object |
 | `EscapeSequenceParser - async` (`EscapeSequenceParser.test.ts`, lines 1744–2220) | Async handlers are not ported (ADR 0002) |
+| `InputHandler - async handlers` (`InputHandler.test.ts`, lines 2353–2408) | Async handlers are not ported (ADR 0002) |

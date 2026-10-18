@@ -3,6 +3,7 @@
 
 using LoomTerminal.Core.Buffer;
 using LoomTerminal.Core.InputHandling;
+using LoomTerminal.Core.Parser;
 using LoomTerminal.Core.Services;
 using LoomTerminal.Core.Tests.TestUtils;
 
@@ -18,8 +19,9 @@ internal sealed class TestInputHandler(
     IOptionsService optionsService,
     IOscLinkService oscLinkService,
     ICoreMouseService coreMouseService,
-    IUnicodeService unicodeService)
-    : InputHandler(bufferService, charsetService, coreService, logService, optionsService, oscLinkService, coreMouseService, unicodeService)
+    IUnicodeService unicodeService,
+    IEscapeSequenceParser? parser = null)
+    : InputHandler(bufferService, charsetService, coreService, logService, optionsService, oscLinkService, coreMouseService, unicodeService, parser)
 {
     public AttributeData CurAttrData => GetAttrData();
 
