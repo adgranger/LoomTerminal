@@ -45,6 +45,9 @@ internal sealed class CircularList<T> : Disposable where T : class
     /// <summary>The emitter behind <see cref="OnDelete"/>; <c>BufferReflow</c> fires it to tell markers about removed lines.</summary>
     internal Emitter<DeleteEvent> OnDeleteEmitter => _onDeleteEmitter;
 
+    /// <summary>The emitter behind <see cref="OnInsert"/>; <c>Buffer</c> fires it after a reflow to tell markers about inserted lines.</summary>
+    internal Emitter<InsertEvent> OnInsertEmitter => _onInsertEmitter;
+
     /// <summary>The emitter behind <see cref="OnTrim"/>; tests fire it to simulate a trimmed line.</summary>
     internal Emitter<int> OnTrimEmitter => _onTrimEmitter;
 
@@ -103,14 +106,31 @@ internal sealed class CircularList<T> : Disposable where T : class
     /// <summary>True when the list is at its maximum length.</summary>
     public bool IsFull => _length == _maxLength;
 
-    /// <summary>Gets the value at an index. There is no bounds check: the index is circular.</summary>
+    /// <summary>
+    /// Gets the value at an index. There is no bounds check: the index is circular. An index before the start of the
+    /// array reads <see langword="null"/> (JS: <c>undefined</c> from a negative array key).
+    /// </summary>
     /// <param name="index">The index of the value to get.</param>
-    public T? Get(int index) => _array[GetCyclicIndex(index)];
+    public T? Get(int index)
+    {
+        int cyclicIndex = GetCyclicIndex(index);
+        return cyclicIndex < 0 ? null : _array[cyclicIndex];
+    }
 
-    /// <summary>Sets the value at an index. There is no bounds check: the index is circular.</summary>
+    /// <summary>
+    /// Sets the value at an index. There is no bounds check: the index is circular. An index before the start of the
+    /// array is ignored (JS: a negative array key sets a property that is never read; the reflow relies on it).
+    /// </summary>
     /// <param name="index">The index to set.</param>
     /// <param name="value">The value to set.</param>
-    public void Set(int index, T? value) => _array[GetCyclicIndex(index)] = value;
+    public void Set(int index, T? value)
+    {
+        int cyclicIndex = GetCyclicIndex(index);
+        if (cyclicIndex >= 0)
+        {
+            _array[cyclicIndex] = value;
+        }
+    }
 
     /// <summary>Pushes a value, wrapping around and overriding index 0 if the maximum length is reached.</summary>
     /// <param name="value">The value to push onto the list.</param>
