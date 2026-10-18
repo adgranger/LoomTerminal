@@ -1,6 +1,6 @@
 # P1-39 — `InputHandler.Cursor`: CUU, CUD, CUF, CUB, CNL, CPL, CHA, CUP, HPA, HPR, VPA, VPR, HVP
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-38
 - **Size:** M
 
@@ -29,13 +29,13 @@ Port the cursor movement CSI handlers and their helpers (restricting the cursor,
 
 ## Tests
 
-- [ ] Port `cursor positioning` lines 972–1301 (the DCH/ECH/ICH clamping tests at 1302–1345 come with P1-41/P1-42).
+- [x] Port `cursor positioning` lines 972–1301 (the DCH/ECH/ICH clamping tests at 1302–1345 come with P1-41/P1-42).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

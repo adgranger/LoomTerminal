@@ -40,4 +40,29 @@ public sealed class InputHandlerPrintTests : InputHandlerTestBase
         InputHandler.Parse("￥￥￥");
         Assert.Equal<string>(["￥￥", "￥"], GetLines(2));
     }
+
+    // xterm.js: 'InputHandler' › 'should correctly reset cells taken by wide chars' › 'print'
+    [Fact]
+    public void Print_resets_cells_taken_by_wide_chars()
+    {
+        BufferService.Resize(10, 5);
+        OptionsService.RawOptions = OptionsService.RawOptions with { Scrollback = 1 };
+        InputHandler.Parse("￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
+        InputHandler.Parse("\x1b[H#");
+        Assert.Equal<string>(["# ￥￥￥￥", "￥￥￥￥￥", "￥￥￥￥￥", "￥￥￥￥￥", ""], GetLines());
+        InputHandler.Parse("\x1b[1;6H######");
+        Assert.Equal<string>(["# ￥ #####", "# ￥￥￥￥", "￥￥￥￥￥", "￥￥￥￥￥", ""], GetLines());
+        InputHandler.Parse("#");
+        Assert.Equal<string>(["# ￥ #####", "##￥￥￥￥", "￥￥￥￥￥", "￥￥￥￥￥", ""], GetLines());
+        InputHandler.Parse("#");
+        Assert.Equal<string>(["# ￥ #####", "### ￥￥￥", "￥￥￥￥￥", "￥￥￥￥￥", ""], GetLines());
+        InputHandler.Parse("\x1b[3;9H#");
+        Assert.Equal<string>(["# ￥ #####", "### ￥￥￥", "￥￥￥￥#", "￥￥￥￥￥", ""], GetLines());
+        InputHandler.Parse("#");
+        Assert.Equal<string>(["# ￥ #####", "### ￥￥￥", "￥￥￥￥##", "￥￥￥￥￥", ""], GetLines());
+        InputHandler.Parse("#");
+        Assert.Equal<string>(["# ￥ #####", "### ￥￥￥", "￥￥￥￥##", "# ￥￥￥￥", ""], GetLines());
+        InputHandler.Parse("\x1b[4;10H#");
+        Assert.Equal<string>(["# ￥ #####", "### ￥￥￥", "￥￥￥￥##", "# ￥￥￥ #", ""], GetLines());
+    }
 }
