@@ -91,7 +91,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P1-36](phase-1/P1-36-input-handler-shell.md) | `InputHandler` shell: fields, events, `Parse`, dirty rows, test harness | P1-10, P1-22, P1-35 | M | done |
-| [P1-37](phase-1/P1-37-input-handler-print.md) | `InputHandler.Print`: printing, wrapping, wide and combining characters | P1-36 | M | todo |
+| [P1-37](phase-1/P1-37-input-handler-print.md) | `InputHandler.Print`: printing, wrapping, wide and combining characters | P1-36 | M | done |
 | [P1-38](phase-1/P1-38-input-handler-controls.md) | `InputHandler.Controls`: BEL, LF/VT/FF, CR, BS, HT, SO, SI | P1-37 | S | todo |
 | [P1-39](phase-1/P1-39-input-handler-cursor.md) | `InputHandler.Cursor`: CUU, CUD, CUF, CUB, CNL, CPL, CHA, CUP, HPA, HPR, VPA, VPR, HVP | P1-38 | M | todo |
 | [P1-40](phase-1/P1-40-input-handler-tabs.md) | `InputHandler.Tabs`: TBC, CHT, CBT, HTS | P1-39 | S | todo |

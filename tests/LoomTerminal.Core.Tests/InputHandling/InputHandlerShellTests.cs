@@ -65,11 +65,13 @@ public sealed class InputHandlerShellTests : InputHandlerTestBase
     }
 
     [Fact]
-    public void OnCursorMove_is_not_raised_when_the_cursor_did_not_move()
+    public void OnCursorMove_is_raised_only_when_the_cursor_moved()
     {
         int moves = 0;
         InputHandler.OnCursorMove.Subscribe(_ => moves++);
-        InputHandler.Parse("abc");
+        InputHandler.Parse("\x1b[5z");
         Assert.Equal(0, moves);
+        InputHandler.Parse("abc");
+        Assert.Equal(1, moves);
     }
 }
