@@ -1,6 +1,6 @@
 # P1-34 — `CoreService` and `OscLinkService`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-33
 - **Size:** S
 
@@ -43,15 +43,15 @@ hyperlink registry.
 
 ## Tests
 
-- [ ] Port `CoreService` › `reset` and `OscLinkService` › `constructor` tests.
-- [ ] New: `TriggerDataEvent("a", wasUserInput: true)` fires `OnUserInput` then `OnData`; with `DisableStdin` it fires nothing.
+- [x] Port `CoreService` › `reset` and `OscLinkService` › `constructor` tests.
+- [x] New: `TriggerDataEvent("a", wasUserInput: true)` fires `OnUserInput` then `OnData`; with `DisableStdin` it fires nothing.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-34)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-34)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

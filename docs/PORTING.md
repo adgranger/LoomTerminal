@@ -49,6 +49,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/buffer/Buffer.ts` (structure, tab stops, markers), `buffer/Types.ts` (`IBuffer`), `Services.ts` (`IBufferService`: `Cols`, `Rows`) | `Core/Buffer/Buffer.cs`, `IBuffer.cs`, `Core/Services/IBufferService.cs` | ✅ | P1-29 … P1-32 |
 | `src/common/buffer/Marker.ts`, `BufferRange.ts`, `BufferReflow.ts` (+ `BufferRange` and `BufferReflow` tests), `Types.ts` (`IMarker`) | `Core/Buffer/Marker.cs`, `IMarker.cs`, `BufferRange.cs`, `BufferReflow.cs` | ✅ | P1-28 |
 | `src/common/buffer/BufferSet.ts`, `services/BufferService.ts`, `Services.ts` (`IBufferService`) (+ `BufferSet` test) | `Core/Buffer/BufferSet.cs`, `Core/Services/BufferService.cs`, `IBufferService.cs` | ✅ | P1-33 |
+| `src/common/services/CoreService.ts`, `OscLinkService.ts`, `Services.ts` (`ICoreService`, `IOscLinkService`), `Types.ts` (`IModes`, `IDecPrivateModes`, `IOscLinkData`) (+ tests) | `Core/Services/CoreService.cs`, `ICoreService.cs`, `TerminalModes.cs`, `OscLinkService.cs`, `IOscLinkService.cs` | ✅ | P1-34 |
 
 ## What is not ported
 
