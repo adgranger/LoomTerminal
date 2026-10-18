@@ -1,6 +1,6 @@
 # P1-20 — `BufferLine` tests: combining chars, full width, extended attributes
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-19
 - **Size:** S (tests only)
 
@@ -24,14 +24,14 @@ Port the remaining `BufferLine` tests and fix the port where they fail.
 
 ## Tests
 
-- [ ] Port every `it` from line 474 to 810.
+- [x] Port every `it` from line 474 to 810.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map: `buffer/BufferLine.ts`, `AttributeData.ts`, `CellData.ts`, `Constants.ts` ✅
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map: `buffer/BufferLine.ts`, `AttributeData.ts`, `CellData.ts`, `Constants.ts` ✅
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
