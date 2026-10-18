@@ -1,6 +1,6 @@
 # P2-04 — Record real ConPTY sessions (`PtyConsole --record`)
 
-- **Status:** todo
+- **Status:** in progress
 - **Depends on:** P2-01
 - **Size:** S
 
@@ -29,9 +29,16 @@ record a first set of non-interactive sessions.
 - Recordings must not contain personal data: review each file (decode the base64) and drop any that shows user
   names, paths under `C:\Users\…`, tokens or e-mail addresses. Use `--size` and neutral folders to avoid them.
 
+## Progress
+
+Done: `--record` / `--size`, `SessionRecorder`, the README section and the reader test (the sample builds with 0 warnings
+on Linux). **Left (needs Windows and ConPTY):** record `cmd-dir`, `pwsh-get-childitem`, `git-log-graph` and
+`pwsh-format-table-colors` at `--size 100x30`, review them for personal data, generate their JSON with the oracle,
+then set the status to `done`.
+
 ## Tests
 
-- [ ] New (in `LoomTerminal.Core.Tests`): `FixtureReader` reads every committed `.vtrec` without error.
+- [x] New (in `LoomTerminal.Core.Tests`): `FixtureReader` reads every committed `.vtrec` without error.
 
 ## Acceptance criteria
 

@@ -49,3 +49,19 @@ Initial size is 80×24 unless the first line is `#!size <cols> <rows>`.
 rtk test dotnet test --project tests/LoomTerminal.Core.Tests -c Release --filter-namespace "*Conformance*"
 cd tools/xterm-oracle; rtk npm ci; rtk node oracle.mjs ../../tests/LoomTerminal.Core.Tests/Conformance/Fixtures
 ```
+
+## How to record
+
+Recordings need a real ConPTY, so they are made on Windows, from the repository root, with neutral folders (no user
+names, `C:\Users\…` paths, tokens or e-mail addresses in the output: decode the base64 and review each file):
+
+```powershell
+dotnet run --project samples/LoomTerminal.PtyConsole -c Release -- --record tests/LoomTerminal.Core.Tests/Conformance/Fixtures/recorded/cmd-dir.vtrec --size 100x30 cmd.exe /c dir C:\Windows\System32\drivers\etc
+```
+
+`--record <file>` and `--size <cols>x<rows>` come before the command line; with `--size` the size is fixed (no window
+watching), so the recording is reproducible. The file starts with an `R <cols> <rows>` line. Then run the oracle on the
+new files (see Commands).
+
+Interactive sessions (vim, htop, less under WSL, PSReadLine editing) are **manual**: ask the user to record them.
+

@@ -127,7 +127,7 @@ Differential tests against xterm.js headless, recorded sessions, benchmarks. **R
 | [P2-01](phase-2/P2-01-screen-snapshot.md) | Screen snapshots of `TerminalCore` | P1-57 | M | done |
 | [P2-02](phase-2/P2-02-xterm-oracle.md) | `tools/xterm-oracle`: expected snapshots from xterm.js itself | P2-01 | M | done |
 | [P2-03](phase-2/P2-03-scenario-fixtures.md) | Scenario fixtures and the differential test runner | P2-02 | M | done |
-| [P2-04](phase-2/P2-04-session-recorder.md) | Record real ConPTY sessions (`PtyConsole --record`) | P2-01 | S | todo |
+| [P2-04](phase-2/P2-04-session-recorder.md) | Record real ConPTY sessions (`PtyConsole --record`) | P2-01 | S | in progress |
 | [P2-05](phase-2/P2-05-recorded-conformance.md) | Differential tests on recorded sessions | P2-03, P2-04 | S | todo |
 | [P2-06](phase-2/P2-06-benchmarks.md) | Benchmarks and reference numbers | P2-05 | S | todo |
 | [P2-07](phase-2/P2-07-close-phase-2.md) | Close phase 2 | P2-01 … P2-06 and any follow-up card they opened | S | todo |
