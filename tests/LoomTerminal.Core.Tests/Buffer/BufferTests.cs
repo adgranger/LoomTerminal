@@ -24,7 +24,11 @@ public sealed partial class BufferTests : IDisposable
         _buffer = new LoomTerminal.Core.Buffer.Buffer(true, _optionsService, _bufferService);
     }
 
-    public void Dispose() => _optionsService.Dispose();
+    public void Dispose()
+    {
+        _bufferService.Dispose();
+        _optionsService.Dispose();
+    }
 
     private static CharData Cd(string chars, int width, uint code = 0) => new(0, chars, width, code);
 

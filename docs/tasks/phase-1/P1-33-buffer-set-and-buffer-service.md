@@ -1,6 +1,6 @@
 # P1-33 — `BufferSet` and `BufferService`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P1-32
 - **Size:** M
 
@@ -40,16 +40,16 @@ complete `IBufferService` and `MockBufferService`.
 
 ## Tests
 
-- [ ] Port `BufferSet` tests (all).
-- [ ] New: `BufferService.Resize` clamps to `MINIMUM_COLS` / `MINIMUM_ROWS`; `ScrollLines(-1)` at the top does not
+- [x] Port `BufferSet` tests (all).
+- [x] New: `BufferService.Resize` clamps to `MINIMUM_COLS` / `MINIMUM_ROWS`; `ScrollLines(-1)` at the top does not
       go negative; `Scroll` with a full scrollback trims (`lines.isFull` path) and keeps `ybase` stable.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (✅ P1-33)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (✅ P1-33)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
