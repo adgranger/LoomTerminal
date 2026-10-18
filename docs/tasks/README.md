@@ -114,7 +114,7 @@ Port of xterm.js `src/common`. **Read [phase-1/README.md](phase-1/README.md) fir
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P1-54](phase-1/P1-54-terminal-core.md) | `TerminalCore` (port of `CoreTerminal`) | P1-53 | M | done |
-| [P1-55](phase-1/P1-55-windows-pty-heuristics.md) | Windows PTY heuristics (`windowsPty`, `windowsMode`) | P1-54 | S | in progress |
+| [P1-55](phase-1/P1-55-windows-pty-heuristics.md) | Windows PTY heuristics (`windowsPty`, `windowsMode`) | P1-54 | S | done |
 | [P1-56](phase-1/P1-56-terminal-writer.md) | `TerminalWriter`: the single work loop of the emulator | P1-54 | S | done |
 | [P1-57](phase-1/P1-57-close-phase-1.md) | Close phase 1 | all P1 cards | S | todo |
 

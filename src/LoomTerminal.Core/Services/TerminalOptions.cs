@@ -143,7 +143,11 @@ internal sealed record WindowOptions
     public bool SetWinLines { get; init; }
 }
 
-/// <summary>Describes the pseudoterminal behind the terminal, so that the emulator can mimic its quirks.</summary>
+/// <summary>
+/// Describes the pseudoterminal behind the terminal, so that the emulator can mimic its quirks. With
+/// <c>{ Backend = "conpty", BuildNumber = 21376 or more }</c> (every supported Windows 11) the wrapping heuristics are
+/// off and reflow is on, exactly as in xterm.js: ConPTY marks wrapped lines itself and the emulator reflows with it.
+/// </summary>
 /// <param name="Backend">The backend: <c>"conpty"</c> or <c>"winpty"</c>; <see langword="null"/> when unknown.</param>
 /// <param name="BuildNumber">The Windows build number; <see langword="null"/> when unknown.</param>
 internal sealed record WindowsPtyOptions(string? Backend = null, int? BuildNumber = null);

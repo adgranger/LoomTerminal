@@ -75,4 +75,26 @@ public sealed class WindowsModeTests
         Assert.True(terminal.Buffers.Active.Lines.Get(1)!.IsWrapped);
         Assert.Equal(0, terminal.Buffers.Active.Y);
     }
+
+    private static bool ReflowsWhenResizedNarrower(TerminalOptions options)
+    {
+        using TerminalCore terminal = CreateTerminal(options);
+        // The cursor line is never reflowed (ReflowCursorLine is off), so move the cursor away first.
+        terminal.Write(new string('a', 40) + "\r\n");
+        terminal.Resize(20, 24);
+        return terminal.Buffers.Active.Lines.Get(1)!.IsWrapped;
+    }
+
+    // Not an xterm.js test: documents Buffer._isReflowEnabled with a windowsPty build number.
+    [Fact]
+    public void A_recent_ConPTY_build_reflows_when_resized_narrower()
+    {
+        Assert.True(ReflowsWhenResizedNarrower(TerminalOptions.Default with { WindowsPty = new WindowsPtyOptions("conpty", 22631) }));
+    }
+
+    [Fact]
+    public void An_old_ConPTY_build_does_not_reflow_when_resized_narrower()
+    {
+        Assert.False(ReflowsWhenResizedNarrower(TerminalOptions.Default with { WindowsPty = new WindowsPtyOptions("conpty", 19041) }));
+    }
 }
