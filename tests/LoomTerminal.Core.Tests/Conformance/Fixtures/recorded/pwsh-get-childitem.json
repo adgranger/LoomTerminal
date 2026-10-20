@@ -1,0 +1,259 @@
+{
+  "cols": 100,
+  "rows": 30,
+  "cursor": {
+    "x": 0,
+    "y": 14,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.6.7.0_x64__8wekyb3d8bbwe\\pwsh.exe",
+  "lines": [
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "    Répertoire : C:\\Windows",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 27,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "Mode                 LastWriteTime         Length Name",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 54,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "----                 -------------         ------ ----",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 54,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "-a---          14/10/2026    22:25         147456 bfsvc.exe",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 59,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "-a---          14/10/2026    22:26        3479440 explorer.exe",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 62,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "-a---          25/09/2026    18:03        1081344 HelpPane.exe",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 62,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "-a---          25/09/2026    18:03          40960 hh.exe",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 56,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "-a---          01/09/2026    21:16         360448 notepad.exe",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 61,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "-a---          01/09/2026    21:16         577536 regedit.exe",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 61,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "-a---          14/10/2026    22:26         225280 splwow64.exe",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 62,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "-a---          08/06/2025    17:32          12288 winhlp32.exe",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 62,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

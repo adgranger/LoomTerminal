@@ -1,0 +1,809 @@
+{
+  "cols": 100,
+  "rows": 30,
+  "cursor": {
+    "x": 0,
+    "y": 29,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "C:\\Program Files\\Git\\cmd\\git.exe",
+  "lines": [
+    {
+      "text": "* 6984b84 test(core): add differential scenario fixtures against xterm.js",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 63,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* a559b9a chore(tools): add the xterm.js headless oracle for conformance fixtures",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 71,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 8d7b73d test(core): add screen snapshots and fixture readers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 52,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 80a9446 docs: close phase 1",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 19,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* d9a4514 feat(core): finish the Windows PTY heuristics card",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 50,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 1ea3c99 feat(core): add TerminalWriter, the single work loop of the emulator",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 68,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 64b7618 feat(core): port the Windows PTY wrapping heuristics",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 52,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 2ac5215 feat(core): add TerminalCore, the emulator composition root",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 59,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 683a393 test(core): port the InputHandler regression tests and check every handler is registered",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 88,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 5a092db feat(core): port DECRQSS",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 24,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* fec48e8 feat(core): port the OSC handlers (titles, colors, hyperlinks)",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 62,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* e2ec24a feat(core): port XTWINOPS and the title stacks",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 46,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* c41e31e feat(core): port DSR, DECSTR, DECSCUSR and DECSTBM",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 50,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 3a369c8 feat(core): port SGR (character attributes)",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 43,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* ca58203 feat(core): port the SGR color and underline helpers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 52,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 95f1ceb feat(core): port DECRQM",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 23,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* a19e6ad feat(core): port the InputHandler mode handlers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 47,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 9d730fe feat(core): port the InputHandler ESC handlers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 46,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 6bf73b7 feat(core): port REP and the device attribute reports",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 53,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 90c008f feat(core): port the InputHandler insert, delete and scroll handlers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 68,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* fb5f882 feat(core): port the InputHandler erase handlers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 48,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* dde7e5c feat(core): port the InputHandler tab stop handlers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 51,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 7fe2e5c feat(core): port the InputHandler cursor movement handlers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 58,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 2429dec feat(core): port the InputHandler C0 control handlers",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 53,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* d6e57ef feat(core): port InputHandler.print",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 35,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* d7ccd2e feat(core): add the InputHandler shell, parse entry points and dirty row tracking",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 81,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 59cfa59 feat(core): port CoreMouseService",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 33,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* 99f3d55 feat(core): port CoreService and OscLinkService",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 47,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "* bdf6b7e feat(core): port BufferSet and BufferService",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 2,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 2,
+          "length": 8,
+          "fg": "p16:3",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 10,
+          "length": 44,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

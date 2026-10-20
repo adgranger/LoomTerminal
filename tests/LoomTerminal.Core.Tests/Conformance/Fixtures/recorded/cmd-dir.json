@@ -1,0 +1,275 @@
+{
+  "cols": 100,
+  "rows": 30,
+  "cursor": {
+    "x": 0,
+    "y": 15,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "C:\\WINDOWS\\SYSTEM32\\cmd.exe",
+  "lines": [
+    {
+      "text": " Le volume dans le lecteur C s’appelle Local Disk",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 49,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": " Le numéro de série du volume est 3AB2-021A",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 43,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": " Répertoire de C:\\Windows\\System32\\drivers\\etc",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 46,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "14/05/2025  22:32    <DIR>          .",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 37,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "15/10/2026  14:24    <DIR>          ..",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 38,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "25/07/2025  09:14               827 hosts",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 41,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "14/11/2025  10:17               443 hosts.ics",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 45,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "01/04/2024  09:24             3 683 lmhosts.sam",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 47,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "07/05/2022  07:22               407 networks",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 44,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "07/05/2022  07:22             1 358 protocol",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 44,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "07/05/2022  07:22            17 635 services",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 44,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "               6 fichier(s)           24 353 octets",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 51,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "               2 Rép(s)  291 143 655 424 octets libres",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 54,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}

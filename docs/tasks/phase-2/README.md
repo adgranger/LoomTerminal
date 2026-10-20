@@ -63,5 +63,9 @@ dotnet run --project samples/LoomTerminal.PtyConsole -c Release -- --record test
 watching), so the recording is reproducible. The file starts with an `R <cols> <rows>` line. Then run the oracle on the
 new files (see Commands).
 
+Run the commands from PowerShell with stdin redirected (`$null | & <exe> ...`), not from Git Bash (it rewrites `/c`).
+Use `git --no-pager` (the pager waits for a key) and avoid double quotes inside `pwsh -Command` text (the command-line
+join drops them).
+
 Interactive sessions (vim, htop, less under WSL, PSReadLine editing) are **manual**: ask the user to record them.
 

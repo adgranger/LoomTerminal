@@ -1,0 +1,508 @@
+{
+  "cols": 100,
+  "rows": 30,
+  "cursor": {
+    "x": 0,
+    "y": 24,
+    "visible": true
+  },
+  "activeBuffer": "normal",
+  "modes": {
+    "applicationCursorKeys": false,
+    "bracketedPaste": false,
+    "insert": false,
+    "origin": false,
+    "wraparound": true,
+    "mouseTracking": "none"
+  },
+  "title": "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.6.7.0_x64__8wekyb3d8bbwe\\pwsh.exe",
+  "lines": [
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": " NPM(K)    PM(M)      WS(M)     CPU(s)      Id  SI ProcessName",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 7,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold",
+            "italic"
+          ]
+        },
+        {
+          "start": 7,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 8,
+          "length": 8,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold",
+            "italic"
+          ]
+        },
+        {
+          "start": 16,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 17,
+          "length": 10,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold",
+            "italic"
+          ]
+        },
+        {
+          "start": 27,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 28,
+          "length": 10,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold",
+            "italic"
+          ]
+        },
+        {
+          "start": 38,
+          "length": 24,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold"
+          ]
+        }
+      ]
+    },
+    {
+      "text": " ------    -----      -----     ------      --  -- -----------",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 7,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold"
+          ]
+        },
+        {
+          "start": 7,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 8,
+          "length": 8,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold"
+          ]
+        },
+        {
+          "start": 16,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 17,
+          "length": 10,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold"
+          ]
+        },
+        {
+          "start": 27,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 28,
+          "length": 10,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold"
+          ]
+        },
+        {
+          "start": 38,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 39,
+          "length": 7,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold"
+          ]
+        },
+        {
+          "start": 46,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 47,
+          "length": 3,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold"
+          ]
+        },
+        {
+          "start": 50,
+          "length": 1,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        },
+        {
+          "start": 51,
+          "length": 11,
+          "fg": "p16:2",
+          "bg": "default",
+          "flags": [
+            "bold"
+          ]
+        }
+      ]
+    },
+    {
+      "text": "     23    33,30       3,35       0,23   22624   1 AcrobatNotificationClient",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 76,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     16     7,13      18,52       0,36   13440   1 AdobeCollabSync",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 66,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     29    23,90      39,31      78,02   27572   1 AdobeCollabSync",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 66,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     10     2,51      11,66       0,00    7244   0 AggregatorHost",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 65,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     19    13,13      39,79       1,16   37176   1 AppActions",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 61,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     25    59,48      47,58       0,61   28804   1 ApplicationFrameHost",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 71,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     10     1,81       7,87       0,00    5700   0 armsvc",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     27    34,36      21,63     926,75   43980   0 audiodg",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 58,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     10     2,68      17,40       0,17   24040   1 backgroundTaskHost",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 69,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     20   548,36     294,02      35,55    2164   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     34    51,39     126,85       0,44    3108   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     22    32,43      87,76       0,64   19244   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     13    10,02     109,88       0,12   25880   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     75   601,78     533,84      70,95   26696   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     24    49,45     130,70       0,47   28792   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     29   667,63     378,32      15,98   32888   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     71   210,09     242,60     116,34   35736   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     25    70,63     121,59      16,00   37968   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     11     9,16      36,66       0,41   46548   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "     20    19,59      67,57       5,17   47152   1 claude",
+      "wrapped": false,
+      "runs": [
+        {
+          "start": 0,
+          "length": 57,
+          "fg": "default",
+          "bg": "default",
+          "flags": []
+        }
+      ]
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    },
+    {
+      "text": "",
+      "wrapped": false,
+      "runs": []
+    }
+  ]
+}
