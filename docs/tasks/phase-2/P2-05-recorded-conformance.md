@@ -1,6 +1,6 @@
 # P2-05 — Differential tests on recorded sessions
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P2-03, P2-04
 - **Size:** S
 
@@ -24,14 +24,14 @@ options VIGO uses.
 
 ## Tests
 
-- [ ] Every committed recording passes or is skipped with a follow-up card id.
+- [x] Every committed recording passes or is skipped with a follow-up card id.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Oracle `--check` exits 0
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Oracle `--check` exits 0
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

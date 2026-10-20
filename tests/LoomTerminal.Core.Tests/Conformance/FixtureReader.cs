@@ -102,10 +102,10 @@ internal static class FixtureReader
         return new FixtureScript(DefaultCols, DefaultRows, events);
     }
 
-    /// <summary>Replays <paramref name="script"/> into a fresh terminal and captures the resulting screen.</summary>
-    internal static ScreenSnapshot Replay(FixtureScript script)
+    /// <summary>Replays <paramref name="script"/> into a fresh terminal (optionally with the Windows pty heuristics) and captures the resulting screen.</summary>
+    internal static ScreenSnapshot Replay(FixtureScript script, LoomTerminal.Core.Services.WindowsPtyOptions? windowsPty = null)
     {
-        using var core = new TerminalCore(new LoomTerminal.Core.Services.TerminalOptions { Cols = script.Cols, Rows = script.Rows });
+        using var core = new TerminalCore(new LoomTerminal.Core.Services.TerminalOptions { Cols = script.Cols, Rows = script.Rows, WindowsPty = windowsPty });
         string title = string.Empty;
         using IDisposable subscription = core.OnTitleChange.Subscribe(value => title = value);
         foreach (FixtureEvent fixtureEvent in script.Events)

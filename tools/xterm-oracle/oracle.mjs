@@ -192,8 +192,8 @@ function capture(terminal, title) {
 
 const write = (terminal, data) => new Promise((resolve) => terminal.write(data, resolve));
 
-async function replay(script) {
-  const terminal = new Terminal({ cols: script.cols, rows: script.rows, scrollback: 1000, allowProposedApi: true });
+async function replay(script, windowsPty) {
+  const terminal = new Terminal({ cols: script.cols, rows: script.rows, scrollback: 1000, allowProposedApi: true, windowsPty });
   terminal.loadAddon(new Unicode11Addon());
   terminal.unicode.activeVersion = '11';
   let title = '';
@@ -219,17 +219,18 @@ async function main() {
     process.exit(2);
   }
   const jobs = [
-    ['scenarios', '.input', readInput],
-    ['recorded', '.vtrec', readRecording],
+    ['scenarios', '.input', readInput, undefined],
+    // Recordings come from ConPTY: same options as VIGO.
+    ['recorded', '.vtrec', readRecording, { backend: 'conpty', buildNumber: 22631 }],
   ];
   let changed = 0;
-  for (const [sub, extension, reader] of jobs) {
+  for (const [sub, extension, reader, windowsPty] of jobs) {
     const dir = join(folder, sub);
     if (!existsSync(dir)) {
       continue;
     }
     for (const file of readdirSync(dir).filter((f) => f.endsWith(extension)).sort()) {
-      const snapshot = await replay(reader(readFileSync(join(dir, file), 'utf8')));
+      const snapshot = await replay(reader(readFileSync(join(dir, file), 'utf8')), windowsPty);
       const json = `${JSON.stringify(snapshot, null, 2)}\n`;
       const target = join(dir, `${basename(file, extension)}.json`);
       const same = existsSync(target) && readFileSync(target, 'utf8') === json;
