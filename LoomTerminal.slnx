@@ -21,6 +21,7 @@
     <Project Path="tests/LoomTerminal.Core.Tests/LoomTerminal.Core.Tests.csproj" />
     <Project Path="tests/LoomTerminal.Pty.Tests/LoomTerminal.Pty.Tests.csproj" />
     <Project Path="tests/LoomTerminal.Architecture.Tests/LoomTerminal.Architecture.Tests.csproj" />
+    <Project Path="tests/LoomTerminal.Benchmarks/LoomTerminal.Benchmarks.csproj" />
   </Folder>
   <Folder Name="/solution items/">
     <File Path=".editorconfig" />

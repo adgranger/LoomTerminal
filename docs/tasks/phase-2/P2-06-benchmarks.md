@@ -1,6 +1,6 @@
 # P2-06 — Benchmarks and reference numbers
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P2-05
 - **Size:** S
 
@@ -32,10 +32,10 @@ Measure the emulator's throughput on representative inputs and write the referen
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (the benchmark project is not a test project: check it is not picked up by `dotnet test`, like LoomEditor's)
-- [ ] `docs/performance.md` filled
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (the benchmark project is not a test project: check it is not picked up by `dotnet test`, like LoomEditor's)
+- [x] `docs/performance.md` filled
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
