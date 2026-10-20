@@ -130,7 +130,7 @@ Differential tests against xterm.js headless, recorded sessions, benchmarks. **R
 | [P2-04](phase-2/P2-04-session-recorder.md) | Record real ConPTY sessions (`PtyConsole --record`) | P2-01 | S | done |
 | [P2-05](phase-2/P2-05-recorded-conformance.md) | Differential tests on recorded sessions | P2-03, P2-04 | S | done |
 | [P2-06](phase-2/P2-06-benchmarks.md) | Benchmarks and reference numbers | P2-05 | S | done |
-| [P2-07](phase-2/P2-07-close-phase-2.md) | Close phase 2 | P2-01 … P2-06 and any follow-up card they opened | S | todo |
+| [P2-07](phase-2/P2-07-close-phase-2.md) | Close phase 2 | P2-01 … P2-06 and any follow-up card they opened | S | done |
 
 ## Phase 3 — Presentation (UI-independent)
 
