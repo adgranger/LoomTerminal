@@ -21,7 +21,15 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}">
-                        <win2d:CanvasControl x:Name="PART_Canvas" ClearColor="Transparent" />
+                        <Grid>
+                            <win2d:CanvasControl x:Name="PART_Canvas" ClearColor="Transparent" />
+                            <ScrollBar
+                                x:Name="PART_VerticalScrollBar"
+                                HorizontalAlignment="Right"
+                                Orientation="Vertical"
+                                IndicatorMode="MouseIndicator"
+                                Visibility="Collapsed" />
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

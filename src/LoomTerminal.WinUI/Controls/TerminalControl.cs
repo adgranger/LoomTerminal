@@ -4,6 +4,7 @@ using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace LoomTerminal.WinUI.Controls;
 
@@ -23,6 +24,7 @@ namespace LoomTerminal.WinUI.Controls;
 /// <para>Threading: like every WinUI control, use it on the UI thread only.</para>
 /// </remarks>
 [TemplatePart(Name = CanvasPartName, Type = typeof(CanvasControl))]
+[TemplatePart(Name = VerticalScrollBarPartName, Type = typeof(ScrollBar))]
 public sealed partial class TerminalControl : Control
 {
     private const string CanvasPartName = "PART_Canvas";
@@ -52,6 +54,7 @@ public sealed partial class TerminalControl : Control
             ?? throw new InvalidOperationException($"The TerminalControl template must contain a CanvasControl named '{CanvasPartName}'.");
         _canvas.Draw += OnCanvasDraw;
         _canvas.CreateResources += OnCanvasCreateResources;
+        AttachScrollBar();
     }
 
     private void OnCanvasDraw(CanvasControl sender, CanvasDrawEventArgs args)
@@ -66,6 +69,7 @@ public sealed partial class TerminalControl : Control
         }
 
         _lastFrame = frame;
+        UpdateScrollBar(frame);
         // 4 x rows x an average of 4 runs per row; the cache is cleared on a device change (CreateResources).
         _layoutCache.Capacity = 16 * Math.Max(1, frame.Lines.Count);
         var surface = new Win2DRenderSurface(args.DrawingSession, sender, _layoutCache, font, Win2DTextMeasurer.ResolveFamily(font), scale);
@@ -87,6 +91,7 @@ public sealed partial class TerminalControl : Control
         _frames?.Cancel();
         _blinkTimer?.Stop();
         StopObservingRoot();
+        DetachScrollBar();
         DetachCanvas();
     }
 

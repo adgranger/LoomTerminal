@@ -208,7 +208,7 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P4-12](phase-4/P4-12-scrollbar.md) | Scrollbar and scrollback keys | P4-06 | S | todo |
+| [P4-12](phase-4/P4-12-scrollbar.md) | Scrollbar and scrollback keys | P4-06 | S | done |
 | [P4-13](phase-4/P4-13-focus-blink-events.md) | Focus, cursor blink timer, title / bell / exit events | P4-06 | S | todo |
 | [P4-14](phase-4/P4-14-theme-and-font-properties.md) | Live theme and font changes | P4-12, P4-13 | S | todo |
 | [P4-15](phase-4/P4-15-accessibility.md) | UI Automation: peer, text provider, announcements | P3-22, P4-13 | M | todo |
