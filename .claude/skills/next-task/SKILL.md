@@ -62,7 +62,20 @@ or `NoWarn` to get green unless the card says so.
 - `docs/PORTING.md`: update the map / behavior differences / tests not ported as the card asks.
 - New public API: `./eng/Update-PublicApi.ps1 src/<Project>` (through `rtk proxy pwsh -NoProfile -File …`) and check the diff.
 
-## 6. Hand over (no commit)
+## 6. Close everything you opened
+
+Before handing over (and also before any "stop" above), **force-close every process and window you launched** during
+the card: Gallery / sample apps, `PtyConsole`, shells or ConPTY children (`pwsh`, `cmd`, `conhost`, `OpenConsole`),
+dev servers, background `dotnet` hosts (test hosts, `build-server`), preview/browser tabs, and background shell tasks.
+
+1. Stop what you started yourself first (background tasks, `preview_stop`, terminal tabs you opened).
+2. Then check for leftovers started from this repo, e.g.
+   `rtk proxy pwsh -NoProfile -Command "Get-Process | Where-Object { $_.Path -like '*LoomTerminal*' } | Select-Object Id,ProcessName,Path"`,
+   and kill them (`Stop-Process -Id <id> -Force`). Only kill processes you started or that run from this repository;
+   never touch the user's own terminals or unrelated `dotnet`/shell processes.
+3. Report in the hand-over summary what was closed (or "nothing left running").
+
+## 7. Hand over (no commit)
 
 1. `rtk git status` and `rtk git diff --stat`: only files related to this card changed.
 2. **Do not commit, do not stage, never push.** Give the user, ready to paste:
