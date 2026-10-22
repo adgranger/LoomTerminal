@@ -1,4 +1,6 @@
 #nullable enable
+~override LoomTerminal.Presentation.Rendering.CellMetrics.Equals(object obj) -> bool
+~override LoomTerminal.Presentation.Rendering.CellMetrics.ToString() -> string
 ~override LoomTerminal.Presentation.Rendering.TextRunStyle.Equals(object obj) -> bool
 ~override LoomTerminal.Presentation.Rendering.TextRunStyle.ToString() -> string
 const LoomTerminal.Presentation.Input.DomKeyCodes.Alt = 18 -> int
@@ -166,11 +168,39 @@ LoomTerminal.Presentation.Input.WheelDeltaMode.Pixel = 0 -> LoomTerminal.Present
 LoomTerminal.Presentation.Links.ILinkHandler
 LoomTerminal.Presentation.Links.ILinkHandler.CanOpen(System.Uri! uri) -> bool
 LoomTerminal.Presentation.Links.ILinkHandler.Open(System.Uri! uri) -> void
+LoomTerminal.Presentation.Rendering.CellMetrics
+LoomTerminal.Presentation.Rendering.CellMetrics.Baseline.get -> double
+LoomTerminal.Presentation.Rendering.CellMetrics.Baseline.init -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.CellMetrics() -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.CellMetrics(double Width, double Height, double Baseline, double UnderlinePosition, double UnderlineThickness, double StrikethroughPosition, double StrikethroughThickness) -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.Deconstruct(out double Width, out double Height, out double Baseline, out double UnderlinePosition, out double UnderlineThickness, out double StrikethroughPosition, out double StrikethroughThickness) -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.Equals(LoomTerminal.Presentation.Rendering.CellMetrics other) -> bool
+LoomTerminal.Presentation.Rendering.CellMetrics.Height.get -> double
+LoomTerminal.Presentation.Rendering.CellMetrics.Height.init -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.StrikethroughPosition.get -> double
+LoomTerminal.Presentation.Rendering.CellMetrics.StrikethroughPosition.init -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.StrikethroughThickness.get -> double
+LoomTerminal.Presentation.Rendering.CellMetrics.StrikethroughThickness.init -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.UnderlinePosition.get -> double
+LoomTerminal.Presentation.Rendering.CellMetrics.UnderlinePosition.init -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.UnderlineThickness.get -> double
+LoomTerminal.Presentation.Rendering.CellMetrics.UnderlineThickness.init -> void
+LoomTerminal.Presentation.Rendering.CellMetrics.Width.get -> double
+LoomTerminal.Presentation.Rendering.CellMetrics.Width.init -> void
 LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Bar = 2 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Block = 0 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Outline = 3 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Underline = 1 -> LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.IRenderSurface
+LoomTerminal.Presentation.Rendering.IRenderSurface.Clear(uint rgba) -> void
+LoomTerminal.Presentation.Rendering.IRenderSurface.DrawLine(double x1, double y1, double x2, double y2, double thickness, uint rgba) -> void
+LoomTerminal.Presentation.Rendering.IRenderSurface.DrawRectangle(double x, double y, double width, double height, double thickness, uint rgba) -> void
+LoomTerminal.Presentation.Rendering.IRenderSurface.DrawTextRun(int row, int column, string! text, int cellCount, in LoomTerminal.Presentation.Rendering.TextRunStyle style, in LoomTerminal.Presentation.Rendering.CellMetrics metrics) -> void
+LoomTerminal.Presentation.Rendering.IRenderSurface.DrawUnderline(double x, double y, double width, LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle style, uint rgba, in LoomTerminal.Presentation.Rendering.CellMetrics metrics) -> void
+LoomTerminal.Presentation.Rendering.IRenderSurface.FillRectangle(double x, double y, double width, double height, uint rgba) -> void
+LoomTerminal.Presentation.Rendering.ITextMeasurer
+LoomTerminal.Presentation.Rendering.ITextMeasurer.Measure(LoomTerminal.Presentation.Rendering.TerminalFont! font, double rasterizationScale) -> LoomTerminal.Presentation.Rendering.CellMetrics
 LoomTerminal.Presentation.Rendering.RenderCursor
 LoomTerminal.Presentation.Rendering.RenderCursor.<Clone>$() -> LoomTerminal.Presentation.Rendering.RenderCursor!
 LoomTerminal.Presentation.Rendering.RenderCursor.AccentColor.get -> uint
@@ -260,6 +290,23 @@ LoomTerminal.Presentation.Rendering.SelectionRange.StartColumn.get -> int
 LoomTerminal.Presentation.Rendering.SelectionRange.StartColumn.init -> void
 LoomTerminal.Presentation.Rendering.SelectionRange.StartRow.get -> int
 LoomTerminal.Presentation.Rendering.SelectionRange.StartRow.init -> void
+LoomTerminal.Presentation.Rendering.TerminalFont
+LoomTerminal.Presentation.Rendering.TerminalFont.<Clone>$() -> LoomTerminal.Presentation.Rendering.TerminalFont!
+LoomTerminal.Presentation.Rendering.TerminalFont.BoldWeight.get -> int
+LoomTerminal.Presentation.Rendering.TerminalFont.BoldWeight.init -> void
+LoomTerminal.Presentation.Rendering.TerminalFont.Deconstruct(out System.Collections.Generic.IReadOnlyList<string!>! Families, out double Size, out double LineHeight, out double LetterSpacing, out int Weight, out int BoldWeight) -> void
+LoomTerminal.Presentation.Rendering.TerminalFont.Equals(LoomTerminal.Presentation.Rendering.TerminalFont? other) -> bool
+LoomTerminal.Presentation.Rendering.TerminalFont.Families.get -> System.Collections.Generic.IReadOnlyList<string!>!
+LoomTerminal.Presentation.Rendering.TerminalFont.Families.init -> void
+LoomTerminal.Presentation.Rendering.TerminalFont.LetterSpacing.get -> double
+LoomTerminal.Presentation.Rendering.TerminalFont.LetterSpacing.init -> void
+LoomTerminal.Presentation.Rendering.TerminalFont.LineHeight.get -> double
+LoomTerminal.Presentation.Rendering.TerminalFont.LineHeight.init -> void
+LoomTerminal.Presentation.Rendering.TerminalFont.Size.get -> double
+LoomTerminal.Presentation.Rendering.TerminalFont.Size.init -> void
+LoomTerminal.Presentation.Rendering.TerminalFont.TerminalFont(System.Collections.Generic.IReadOnlyList<string!>! Families, double Size, double LineHeight = 1, double LetterSpacing = 0, int Weight = 400, int BoldWeight = 700) -> void
+LoomTerminal.Presentation.Rendering.TerminalFont.Weight.get -> int
+LoomTerminal.Presentation.Rendering.TerminalFont.Weight.init -> void
 LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
 LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle.Curly = 3 -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
 LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle.Dashed = 5 -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
@@ -452,6 +499,7 @@ override LoomTerminal.Presentation.Input.TerminalKeyEvent.ToString() -> string!
 override LoomTerminal.Presentation.Input.TerminalPointerEvent.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Input.TerminalPointerEvent.GetHashCode() -> int
 override LoomTerminal.Presentation.Input.TerminalPointerEvent.ToString() -> string!
+override LoomTerminal.Presentation.Rendering.CellMetrics.GetHashCode() -> int
 override LoomTerminal.Presentation.Rendering.RenderCursor.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Rendering.RenderCursor.GetHashCode() -> int
 override LoomTerminal.Presentation.Rendering.RenderCursor.ToString() -> string!
@@ -467,6 +515,9 @@ override LoomTerminal.Presentation.Rendering.RenderRun.ToString() -> string!
 override LoomTerminal.Presentation.Rendering.SelectionRange.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Rendering.SelectionRange.GetHashCode() -> int
 override LoomTerminal.Presentation.Rendering.SelectionRange.ToString() -> string!
+override LoomTerminal.Presentation.Rendering.TerminalFont.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Rendering.TerminalFont.GetHashCode() -> int
+override LoomTerminal.Presentation.Rendering.TerminalFont.ToString() -> string!
 override LoomTerminal.Presentation.Rendering.TextRunStyle.GetHashCode() -> int
 override LoomTerminal.Presentation.Search.SearchOptions.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Search.SearchOptions.GetHashCode() -> int
@@ -487,6 +538,8 @@ static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator !=(LoomTerminal
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator ==(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
 static LoomTerminal.Presentation.Input.TerminalPointerEvent.operator !=(LoomTerminal.Presentation.Input.TerminalPointerEvent? left, LoomTerminal.Presentation.Input.TerminalPointerEvent? right) -> bool
 static LoomTerminal.Presentation.Input.TerminalPointerEvent.operator ==(LoomTerminal.Presentation.Input.TerminalPointerEvent? left, LoomTerminal.Presentation.Input.TerminalPointerEvent? right) -> bool
+static LoomTerminal.Presentation.Rendering.CellMetrics.operator !=(LoomTerminal.Presentation.Rendering.CellMetrics left, LoomTerminal.Presentation.Rendering.CellMetrics right) -> bool
+static LoomTerminal.Presentation.Rendering.CellMetrics.operator ==(LoomTerminal.Presentation.Rendering.CellMetrics left, LoomTerminal.Presentation.Rendering.CellMetrics right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderCursor.operator !=(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderCursor.operator ==(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderFrame.operator !=(LoomTerminal.Presentation.Rendering.RenderFrame? left, LoomTerminal.Presentation.Rendering.RenderFrame? right) -> bool
@@ -497,6 +550,8 @@ static LoomTerminal.Presentation.Rendering.RenderRun.operator !=(LoomTerminal.Pr
 static LoomTerminal.Presentation.Rendering.RenderRun.operator ==(LoomTerminal.Presentation.Rendering.RenderRun? left, LoomTerminal.Presentation.Rendering.RenderRun? right) -> bool
 static LoomTerminal.Presentation.Rendering.SelectionRange.operator !=(LoomTerminal.Presentation.Rendering.SelectionRange? left, LoomTerminal.Presentation.Rendering.SelectionRange? right) -> bool
 static LoomTerminal.Presentation.Rendering.SelectionRange.operator ==(LoomTerminal.Presentation.Rendering.SelectionRange? left, LoomTerminal.Presentation.Rendering.SelectionRange? right) -> bool
+static LoomTerminal.Presentation.Rendering.TerminalFont.operator !=(LoomTerminal.Presentation.Rendering.TerminalFont? left, LoomTerminal.Presentation.Rendering.TerminalFont? right) -> bool
+static LoomTerminal.Presentation.Rendering.TerminalFont.operator ==(LoomTerminal.Presentation.Rendering.TerminalFont? left, LoomTerminal.Presentation.Rendering.TerminalFont? right) -> bool
 static LoomTerminal.Presentation.Rendering.TextRunStyle.operator !=(LoomTerminal.Presentation.Rendering.TextRunStyle left, LoomTerminal.Presentation.Rendering.TextRunStyle right) -> bool
 static LoomTerminal.Presentation.Rendering.TextRunStyle.operator ==(LoomTerminal.Presentation.Rendering.TextRunStyle left, LoomTerminal.Presentation.Rendering.TextRunStyle right) -> bool
 static LoomTerminal.Presentation.Search.SearchOptions.operator !=(LoomTerminal.Presentation.Search.SearchOptions? left, LoomTerminal.Presentation.Search.SearchOptions? right) -> bool

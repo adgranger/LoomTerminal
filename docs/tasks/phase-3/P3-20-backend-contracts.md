@@ -1,6 +1,6 @@
 # P3-20 — Backend contracts: `ITextMeasurer`, `CellMetrics`, `IRenderSurface`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-09
 - **Size:** S
 
@@ -39,14 +39,14 @@ for tests.
 
 ## Tests
 
-- [ ] New: `RecordingRenderSurface` formats each call deterministically (the format is used by P3-21's tests).
+- [x] New: `RecordingRenderSurface` formats each call deterministically (the format is used by P3-21's tests).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
