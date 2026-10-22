@@ -1,14 +1,31 @@
 # LoomTerminal.Presentation
 
-The part of the control that every UI backend shares. A backend (WinUI 3, Avalonia) only draws what the render model
-describes and translates its own input events into the types defined here.
+The part of the control that every UI backend shares. A backend (WinUI 3, Avalonia) only (1) forwards its input events
+as the types defined here, (2) implements the backend interfaces and (3) calls `FrameRenderer.Render` once per frame.
 
-Planned content (phase 3, see `docs/ROADMAP.md`):
+| Folder | Content |
+|---|---|
+| `Session/` | `TerminalSession` (parser thread, pty, frames, selection, search, clipboard, accessibility), `TerminalSessionOptions` |
+| `Input/` | key and pointer event models, VT key encoding, mouse reports, paste, `IClipboard` |
+| `Theming/` | `TerminalTheme` and the color resolution (palette, OSC overrides, minimum contrast) |
+| `Rendering/` | `RenderFrame` model, `ITextMeasurer`, `IRenderSurface`, `FrameRenderer`, cursor blink |
+| `Selection/`, `Search/`, `Viewport/`, `Links/` | selection logic, search engine, scrolling and wheel, link detection (`ILinkHandler`) |
 
-- `Rendering/`: `RenderModel` (rows marked dirty, runs of cells with the same attributes, cursor, selection,
-  link and search highlights), `IRenderSurface`, `ITextMeasurer` (cell size, baseline, glyph width, font fallback:
-  implemented by each backend, because DirectWrite and Skia measure differently).
-- `Input/`: a key and modifier model of our own (never `VirtualKey` or Avalonia's `Key`) and the encoders to VT
-  sequences: cursor keys modes, function keys, Alt as Escape, bracketed paste, mouse protocols (X10, SGR).
-- `Selection/`, `Search/`, `Viewport/`: selection by cell/word/line, search in the scrollback, scrolling.
-- `IClipboard`, `IHostServices`: what the control asks from the host (clipboard, open a link, ring the bell).
+Threading: the parser thread owns the emulator; the UI thread only takes immutable `RenderFrame` snapshots and calls
+the thread-safe methods of `TerminalSession`. Events are raised on the parser thread.
+
+## Usage
+
+```csharp
+using var session = TerminalSession.Start(new PtyStartOptions("pwsh.exe") { Columns = 80, Rows = 24 });
+CellMetrics metrics = measurer.Measure(font, rasterizationScale);   // ITextMeasurer, implemented by the backend
+
+session.FrameAvailable += () => RequestRender();                     // parser thread: marshal to the UI thread
+// UI thread, in the per-frame callback:
+if (session.TryTakeFrame() is { } frame)
+{
+    FrameRenderer.Render(frame, metrics, surface);                   // IRenderSurface, implemented by the backend
+}
+
+session.SendText("echo hi\r");
+```

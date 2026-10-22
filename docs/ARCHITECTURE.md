@@ -39,7 +39,8 @@ costs one renderer and one input adapter. In particular:
 ```
 shell ─ConPTY─► IPtyConnection.Output (bounded channel, backpressure to the shell)
               ─► parser thread: Core parses, updates buffers, marks rows dirty
-              ─► UI thread, once per frame: Presentation snapshots dirty rows ─► backend draws
+              ─► parser thread: after each batch, Presentation builds an immutable RenderFrame (swapped under a lock)
+              ─► UI thread, once per frame: TryTakeFrame ─► FrameRenderer.Render ─► backend IRenderSurface draws
 keys/mouse ─► backend ─► Presentation encodes ─► IPtyConnection.Write (never blocks)
 ```
 

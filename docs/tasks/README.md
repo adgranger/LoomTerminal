@@ -177,7 +177,7 @@ Session and threads, render frames, input, selection, links, search. **Read [pha
 | [P3-20](phase-3/P3-20-backend-contracts.md) | Backend contracts: `ITextMeasurer`, `CellMetrics`, `IRenderSurface` | P3-09 | S | done |
 | [P3-21](phase-3/P3-21-frame-renderer.md) | `FrameRenderer`: from a render frame to draw calls | P3-20, P3-14, P3-11 | M | done |
 | [P3-22](phase-3/P3-22-accessibility-model.md) | Accessibility text model | P3-09 | S | done |
-| [P3-23](phase-3/P3-23-close-phase-3.md) | Close phase 3 | all P3 cards | S | todo |
+| [P3-23](phase-3/P3-23-close-phase-3.md) | Close phase 3 | all P3 cards | S | done |
 
 ## Phase 4 — WinUI 3 control (`LoomTerminal.WinUI`)
 
