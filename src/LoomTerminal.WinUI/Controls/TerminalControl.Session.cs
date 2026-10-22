@@ -1,6 +1,7 @@
 using LoomTerminal.Presentation.Input;
 using LoomTerminal.Presentation.Links;
 using LoomTerminal.Presentation.Session;
+using LoomTerminal.WinUI.Input;
 using Microsoft.UI.Dispatching;
 
 namespace LoomTerminal.WinUI.Controls;
@@ -46,6 +47,7 @@ public sealed partial class TerminalControl : ILinkHandler
                 old.FrameAvailable -= OnSessionFrameAvailable;
                 old.KeyPreview = null;
                 old.LinkHandler = null;
+                old.Clipboard = null;
             }
 
             _session = value;
@@ -60,6 +62,7 @@ public sealed partial class TerminalControl : ILinkHandler
                 value.FrameAvailable += OnSessionFrameAvailable;
                 value.KeyPreview = OnSessionKeyPreview;
                 value.LinkHandler = this;
+                value.Clipboard = new WinRtClipboard();
             }
         }
     }
