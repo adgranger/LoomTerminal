@@ -6,10 +6,34 @@
     Title="LoomTerminal Gallery">
 
     <Grid RowDefinitions="Auto,*">
-        <TextBlock
-            Margin="12,8"
-            Style="{StaticResource BodyStrongTextBlockStyle}"
-            Text="LoomTerminal — skeleton" />
+        <StackPanel Margin="12,8" Orientation="Horizontal" Spacing="12">
+            <TextBlock
+                VerticalAlignment="Center"
+                Style="{StaticResource BodyStrongTextBlockStyle}"
+                Text="LoomTerminal — skeleton" />
+            <ToggleSwitch
+                x:Name="LightTheme"
+                OffContent="Dark"
+                OnContent="Light"
+                Toggled="OnThemeToggled" />
+            <TextBlock VerticalAlignment="Center" Text="Font" />
+            <Slider
+                x:Name="FontSizeSlider"
+                Width="120"
+                Maximum="32"
+                Minimum="8"
+                Value="14"
+                ValueChanged="OnFontSizeChanged" />
+            <TextBlock VerticalAlignment="Center" Text="Line height" />
+            <Slider
+                x:Name="LineHeightSlider"
+                Width="120"
+                Maximum="2"
+                Minimum="1"
+                StepFrequency="0.05"
+                Value="1.15"
+                ValueChanged="OnLineHeightChanged" />
+        </StackPanel>
         <loom:TerminalControl x:Name="Terminal" Grid.Row="1" />
     </Grid>
 </Window>

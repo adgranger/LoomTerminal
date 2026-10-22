@@ -452,7 +452,10 @@ LoomTerminal.Presentation.Session.TerminalSession.SearchResultsChanged -> System
 LoomTerminal.Presentation.Session.TerminalSession.SelectAll() -> void
 LoomTerminal.Presentation.Session.TerminalSession.SendKey(LoomTerminal.Presentation.Input.TerminalKeyEvent! ev) -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Session.TerminalSession.SendText(string! text) -> void
+LoomTerminal.Presentation.Session.TerminalSession.SetCursorBlink(bool blink) -> void
+LoomTerminal.Presentation.Session.TerminalSession.SetCursorStyle(LoomTerminal.Presentation.Session.TerminalCursorStyle style) -> void
 LoomTerminal.Presentation.Session.TerminalSession.SetFocus(bool focused) -> void
+LoomTerminal.Presentation.Session.TerminalSession.SetTheme(LoomTerminal.Presentation.Theming.TerminalTheme! theme) -> void
 LoomTerminal.Presentation.Session.TerminalSession.TextAnnounced -> System.Action<string!>?
 LoomTerminal.Presentation.Session.TerminalSession.TitleChanged -> System.Action<string!>?
 LoomTerminal.Presentation.Session.TerminalSession.TryTakeFrame() -> LoomTerminal.Presentation.Rendering.RenderFrame?

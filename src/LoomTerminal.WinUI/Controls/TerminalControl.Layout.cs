@@ -25,11 +25,33 @@ public sealed partial class TerminalControl
         SizeChanged += (_, _) => RequestFrame();
         Loaded += OnLoaded;
         InitializeFocus();
-        // Font, theme and cursor settings change what is drawn.
-        foreach (var property in new[] { FontFamilyProperty, FontSizeProperty, ThemeProperty, LineHeightProperty, CursorStyleProperty, CursorBlinkProperty })
+        // Font, line height, padding, theme and cursor settings change what is drawn.
+        foreach (var property in new[] { FontFamilyProperty, FontSizeProperty, LineHeightProperty })
         {
-            RegisterPropertyChangedCallback(property, (_, _) => RequestFrame());
+            RegisterPropertyChangedCallback(property, (_, _) =>
+            {
+                _layoutCache.Clear();
+                RequestFrame();
+            });
         }
+
+        RegisterPropertyChangedCallback(PaddingProperty, (_, _) => RequestFrame());
+        RegisterPropertyChangedCallback(ThemeProperty, (_, _) => ApplyTheme());
+        RegisterPropertyChangedCallback(CursorStyleProperty, (_, _) => _session?.SetCursorStyle(CursorStyle));
+        RegisterPropertyChangedCallback(CursorBlinkProperty, (_, _) => ApplyCursorBlink());
+    }
+
+    // The theme and cursor settings reach the session; the layout cache does not key on colors, so just redraw.
+    private void ApplyTheme()
+    {
+        _session?.SetTheme(Theme);
+        RequestFrame();
+    }
+
+    private void ApplyCursorBlink()
+    {
+        _session?.SetCursorBlink(CursorBlink);
+        RequestFrame();
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)

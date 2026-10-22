@@ -1,6 +1,8 @@
 using LoomTerminal.Presentation.Session;
+using LoomTerminal.Presentation.Theming;
 using LoomTerminal.Pty;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace LoomTerminal.Gallery;
 
@@ -22,4 +24,14 @@ public sealed partial class MainWindow : Window
             session.Dispose();
         };
     }
+
+    // The control does not follow the app theme itself: the host sets Theme.
+    private void OnThemeToggled(object sender, RoutedEventArgs e) =>
+        Terminal.Theme = LightTheme.IsOn
+            ? new TerminalTheme { Foreground = "#1f1f1f", Background = "#ffffff", Cursor = "#1f1f1f", SelectionBackground = "#add6ff" }
+            : new TerminalTheme { Foreground = "#cccccc", Background = "#1e1e1e", Cursor = "#aeafad", SelectionBackground = "#264f78" };
+
+    private void OnFontSizeChanged(object sender, RangeBaseValueChangedEventArgs e) => Terminal.FontSize = e.NewValue;
+
+    private void OnLineHeightChanged(object sender, RangeBaseValueChangedEventArgs e) => Terminal.LineHeight = e.NewValue;
 }

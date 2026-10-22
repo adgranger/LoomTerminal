@@ -204,6 +204,33 @@ public sealed partial class TerminalSession : IDisposable
         });
     }
 
+    /// <summary>Replaces the colors (and drops the OSC color overrides); the next frame is fully redrawn.</summary>
+    /// <param name="theme">The new theme.</param>
+    public void SetTheme(TerminalTheme theme)
+    {
+        ArgumentNullException.ThrowIfNull(theme);
+        // The palette lives with the frame builder, on the parser thread.
+        Post(_ => Palette.SetTheme(theme));
+    }
+
+    /// <summary>Sets the default cursor shape (an application can still override it with DECSCUSR).</summary>
+    /// <param name="style">The cursor shape.</param>
+    public void SetCursorStyle(TerminalCursorStyle style) =>
+        Post(core => core.OptionsService.SetOptions(core.OptionsService.RawOptions with
+        {
+            CursorStyle = style switch
+            {
+                TerminalCursorStyle.Underline => CursorStyle.Underline,
+                TerminalCursorStyle.Bar => CursorStyle.Bar,
+                _ => CursorStyle.Block,
+            },
+        }));
+
+    /// <summary>Sets whether the cursor blinks by default (an application can still override it with DECSET 12).</summary>
+    /// <param name="blink">Whether the cursor blinks.</param>
+    public void SetCursorBlink(bool blink) =>
+        Post(core => core.OptionsService.SetOptions(core.OptionsService.RawOptions with { CursorBlink = blink }));
+
     /// <summary>Publishes a fresh frame (the blink phase of the cursor changed).</summary>
     internal void RefreshFrame() => Post(_ => { });
 
