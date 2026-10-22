@@ -1,6 +1,6 @@
 # P3-03 — Port `evaluateKeyboardEvent` (`Keyboard.ts`)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-02
 - **Size:** M
 
@@ -32,14 +32,14 @@ function keys with modifiers, Alt as ESC prefix, Ctrl combinations, keypad), wit
 
 ## Tests
 
-- [ ] Port every test of `Keyboard.test.ts`.
+- [x] Port every test of `Keyboard.test.ts`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

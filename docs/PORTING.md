@@ -56,6 +56,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/WindowsMode.ts` | `Core/WindowsMode.cs` (heuristics wired in `TerminalCore`) | ✅ | P1-55 |
 | `src/common/services/LogService.ts`, `Services.ts` (`ILogService`) | `Core/Services/ILogService.cs` (interface only, test mocks in the test project) | replaced | P1-24 |
 | `src/common/input/WriteBuffer.ts` (ideas only) | `Core/TerminalWriter.cs`, `TerminalWorkItem.cs` (replaces `WriteBuffer`) | ✅ | P1-56 |
+| `src/common/input/Keyboard.ts` (+ test), `Types.ts` (`IKeyboardResult`) | `Presentation/Input/Keyboard.cs`, `KeyboardResult.cs` (`DomKeyCodes.cs` for key codes) | ✅ | P3-03 |
 
 ## What is not ported
 
@@ -80,6 +81,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | Windows pty reflow | `windowsPty` with a `BuildNumber`: reflow is on for ConPTY ≥ 21376, off for older ConPTY and winpty | Same (`Buffer.IsReflowEnabled`); a supported Windows 11 ConPTY therefore reflows and the wrapping heuristics are off | Faithful port, recorded here because the P1-55 card first claimed the opposite |
 | Write loop | `WriteBuffer` with a `setTimeout` chunking loop and `Promise` callbacks | `TerminalWriter`, a single synchronous work loop | ADR 0002 |
 | CSS colors | `css.toColor` falls back to a canvas for named colors and other CSS syntaxes | Only `#rgb[a]`, `#rrggbb[aa]`, `rgb()` and `rgba()` are parsed; any other input throws `ArgumentException("css.toColor: Unsupported css format")`: CSS color names are not parsed | No canvas in Core |
+| Keyboard | `evaluateKeyboardEvent` handles `ev.key === 'Dead'` using the DOM `code` | Branch not ported: `TerminalKeyEvent` has no `code` | ADR 0004 |
 
 ## Tests not ported
 
