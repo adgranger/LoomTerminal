@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="LoomTerminal.Presentation" />
+    <InternalsVisibleTo Include="LoomTerminal.Presentation.Tests" />
     <InternalsVisibleTo Include="LoomTerminal.Benchmarks" />
   </ItemGroup>
 </Project>

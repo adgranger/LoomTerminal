@@ -150,7 +150,7 @@ Session and threads, render frames, input, selection, links, search. **Read [pha
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P3-06](phase-3/P3-06-terminal-session-1.md) | `TerminalSession` (1/2): pty, parser thread, input, resize, exit | P3-01, P1-56 | M | todo |
+| [P3-06](phase-3/P3-06-terminal-session-1.md) | `TerminalSession` (1/2): pty, parser thread, input, resize, exit | P3-01, P1-56 | M | done |
 | [P3-07](phase-3/P3-07-theme.md) | `TerminalTheme` and the 256-color palette | P3-01, P1-26 | M | todo |
 | [P3-08](phase-3/P3-08-cell-color-resolver.md) | Cell color resolution | P3-07 | M | todo |
 | [P3-09](phase-3/P3-09-render-frame.md) | `RenderFrame` and `RenderFrameBuilder` | P3-08 | M | todo |

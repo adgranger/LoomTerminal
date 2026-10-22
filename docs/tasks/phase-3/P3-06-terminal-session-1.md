@@ -1,6 +1,6 @@
 # P3-06 — `TerminalSession` (1/2): pty, parser thread, input, resize, exit
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-01, P1-56
 - **Size:** M
 
@@ -47,19 +47,19 @@ moves data both ways. Snapshots for rendering come in P3-10.
 
 ## Tests
 
-- [ ] New (with `FakePtyConnection`): output written to the fake appears in Core (query through an internal
+- [x] New (with `FakePtyConnection`): output written to the fake appears in Core (query through an internal
       `RunOnParserThreadAsync(Func<TerminalCore, T>)` helper); `SendText("ls\r")` reaches the fake's input as UTF-8;
       a CPR request from the "shell" (`\x1b[6n`) is answered on the fake's input; `Resize` resizes both;
       completing the fake output and setting its exit code raises `Exited`; `Dispose` twice is safe.
-- [ ] New (Windows only, real ConPTY): `Start(new PtyStartOptions("cmd.exe /c echo hi"))` ends with `Exited(0)` and
+- [x] New (Windows only, real ConPTY): `Start(new PtyStartOptions("cmd.exe /c echo hi"))` ends with `Exited(0)` and
       the screen contains `hi`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

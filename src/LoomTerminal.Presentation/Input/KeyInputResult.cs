@@ -1,7 +1,7 @@
 namespace LoomTerminal.Presentation.Input;
 
 /// <summary>What to do with a key event.</summary>
-internal enum KeyInputOutcome
+public enum KeyInputOutcome
 {
     /// <summary>The host claimed the key (shortcut).</summary>
     HandledByHost,

@@ -77,6 +77,13 @@ const LoomTerminal.Presentation.Input.DomKeyCodes.Slash = 191 -> int
 const LoomTerminal.Presentation.Input.DomKeyCodes.Space = 32 -> int
 const LoomTerminal.Presentation.Input.DomKeyCodes.Tab = 9 -> int
 LoomTerminal.Presentation.Input.DomKeyCodes
+LoomTerminal.Presentation.Input.KeyInputOutcome
+LoomTerminal.Presentation.Input.KeyInputOutcome.Copy = 2 -> LoomTerminal.Presentation.Input.KeyInputOutcome
+LoomTerminal.Presentation.Input.KeyInputOutcome.HandledByHost = 0 -> LoomTerminal.Presentation.Input.KeyInputOutcome
+LoomTerminal.Presentation.Input.KeyInputOutcome.Ignored = 5 -> LoomTerminal.Presentation.Input.KeyInputOutcome
+LoomTerminal.Presentation.Input.KeyInputOutcome.LeaveToTextInput = 4 -> LoomTerminal.Presentation.Input.KeyInputOutcome
+LoomTerminal.Presentation.Input.KeyInputOutcome.Paste = 3 -> LoomTerminal.Presentation.Input.KeyInputOutcome
+LoomTerminal.Presentation.Input.KeyInputOutcome.Sent = 1 -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Input.KeyPreviewEventArgs
 LoomTerminal.Presentation.Input.KeyPreviewEventArgs.Handled.get -> bool
 LoomTerminal.Presentation.Input.KeyPreviewEventArgs.Handled.set -> void
@@ -106,8 +113,49 @@ LoomTerminal.Presentation.Input.TerminalKeyEvent.Type.init -> void
 LoomTerminal.Presentation.Input.TerminalKeyEventType
 LoomTerminal.Presentation.Input.TerminalKeyEventType.KeyDown = 0 -> LoomTerminal.Presentation.Input.TerminalKeyEventType
 LoomTerminal.Presentation.Input.TerminalKeyEventType.KeyPress = 1 -> LoomTerminal.Presentation.Input.TerminalKeyEventType
+LoomTerminal.Presentation.Session.TerminalCursorStyle
+LoomTerminal.Presentation.Session.TerminalCursorStyle.Bar = 2 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
+LoomTerminal.Presentation.Session.TerminalCursorStyle.Block = 0 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
+LoomTerminal.Presentation.Session.TerminalCursorStyle.Underline = 1 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
+LoomTerminal.Presentation.Session.TerminalSession
+LoomTerminal.Presentation.Session.TerminalSession.Bell -> System.Action?
+LoomTerminal.Presentation.Session.TerminalSession.Dispose() -> void
+LoomTerminal.Presentation.Session.TerminalSession.Exited -> System.Action<int>?
+LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.get -> System.Func<LoomTerminal.Presentation.Input.TerminalKeyEvent!, bool>?
+LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.set -> void
+LoomTerminal.Presentation.Session.TerminalSession.Paste(string! text) -> void
+LoomTerminal.Presentation.Session.TerminalSession.Resize(int columns, int rows) -> void
+LoomTerminal.Presentation.Session.TerminalSession.SendKey(LoomTerminal.Presentation.Input.TerminalKeyEvent! ev) -> LoomTerminal.Presentation.Input.KeyInputOutcome
+LoomTerminal.Presentation.Session.TerminalSession.SendText(string! text) -> void
+LoomTerminal.Presentation.Session.TerminalSession.TitleChanged -> System.Action<string!>?
+LoomTerminal.Presentation.Session.TerminalSession.WriteToDisplay(string! vtText) -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions
+LoomTerminal.Presentation.Session.TerminalSessionOptions.<Clone>$() -> LoomTerminal.Presentation.Session.TerminalSessionOptions!
+LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorBlink.get -> bool
+LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorBlink.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorStyle.get -> LoomTerminal.Presentation.Session.TerminalCursorStyle
+LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorStyle.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(LoomTerminal.Presentation.Session.TerminalSessionOptions? other) -> bool
+LoomTerminal.Presentation.Session.TerminalSessionOptions.Scrollback.get -> int
+LoomTerminal.Presentation.Session.TerminalSessionOptions.Scrollback.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.TabStopWidth.get -> int
+LoomTerminal.Presentation.Session.TerminalSessionOptions.TabStopWidth.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.TerminalSessionOptions() -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.TermProgram.get -> string!
+LoomTerminal.Presentation.Session.TerminalSessionOptions.TermProgram.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.WindowsPtyBuildNumber.get -> int?
+LoomTerminal.Presentation.Session.TerminalSessionOptions.WindowsPtyBuildNumber.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.WordSeparator.get -> string!
+LoomTerminal.Presentation.Session.TerminalSessionOptions.WordSeparator.init -> void
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.GetHashCode() -> int
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.ToString() -> string!
+override LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Session.TerminalSessionOptions.GetHashCode() -> int
+override LoomTerminal.Presentation.Session.TerminalSessionOptions.ToString() -> string!
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator !=(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator ==(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
+static LoomTerminal.Presentation.Session.TerminalSession.Attach(LoomTerminal.Pty.IPtyConnection! connection, int columns, int rows, LoomTerminal.Presentation.Session.TerminalSessionOptions? options = null) -> LoomTerminal.Presentation.Session.TerminalSession!
+static LoomTerminal.Presentation.Session.TerminalSession.Start(LoomTerminal.Pty.PtyStartOptions! pty, LoomTerminal.Presentation.Session.TerminalSessionOptions? options = null) -> LoomTerminal.Presentation.Session.TerminalSession!
+static LoomTerminal.Presentation.Session.TerminalSessionOptions.operator !=(LoomTerminal.Presentation.Session.TerminalSessionOptions? left, LoomTerminal.Presentation.Session.TerminalSessionOptions? right) -> bool
+static LoomTerminal.Presentation.Session.TerminalSessionOptions.operator ==(LoomTerminal.Presentation.Session.TerminalSessionOptions? left, LoomTerminal.Presentation.Session.TerminalSessionOptions? right) -> bool
