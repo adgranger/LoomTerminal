@@ -7,6 +7,7 @@
     <TargetFramework>$(LoomWindowsTargetFramework)</TargetFramework>
     <TargetPlatformMinVersion>$(LoomWindowsMinVersion)</TargetPlatformMinVersion>
     <UseWinUI>true</UseWinUI>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <RootNamespace>LoomTerminal.WinUI</RootNamespace>
     <PackageId>LoomTerminal.WinUI</PackageId>
     <Description>LoomTerminal: a native, Native AOT-compatible terminal control for WinUI 3 (no WebView2).</Description>

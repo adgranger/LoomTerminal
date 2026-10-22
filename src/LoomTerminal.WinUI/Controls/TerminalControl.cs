@@ -38,6 +38,7 @@ public sealed partial class TerminalControl : Control
         DefaultStyleKey = typeof(TerminalControl);
         Unloaded += OnUnloaded;
         InitializeLayout();
+        InitializeKeyboard();
     }
 
     /// <inheritdoc />
