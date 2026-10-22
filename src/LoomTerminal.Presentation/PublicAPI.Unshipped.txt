@@ -1,4 +1,6 @@
 #nullable enable
+~override LoomTerminal.Presentation.Rendering.TextRunStyle.Equals(object obj) -> bool
+~override LoomTerminal.Presentation.Rendering.TextRunStyle.ToString() -> string
 const LoomTerminal.Presentation.Input.DomKeyCodes.Alt = 18 -> int
 const LoomTerminal.Presentation.Input.DomKeyCodes.ArrowDown = 40 -> int
 const LoomTerminal.Presentation.Input.DomKeyCodes.ArrowLeft = 37 -> int
@@ -113,6 +115,117 @@ LoomTerminal.Presentation.Input.TerminalKeyEvent.Type.init -> void
 LoomTerminal.Presentation.Input.TerminalKeyEventType
 LoomTerminal.Presentation.Input.TerminalKeyEventType.KeyDown = 0 -> LoomTerminal.Presentation.Input.TerminalKeyEventType
 LoomTerminal.Presentation.Input.TerminalKeyEventType.KeyPress = 1 -> LoomTerminal.Presentation.Input.TerminalKeyEventType
+LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.CursorShape.Bar = 2 -> LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.CursorShape.Block = 0 -> LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.CursorShape.Outline = 3 -> LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.CursorShape.Underline = 1 -> LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.RenderCursor
+LoomTerminal.Presentation.Rendering.RenderCursor.<Clone>$() -> LoomTerminal.Presentation.Rendering.RenderCursor!
+LoomTerminal.Presentation.Rendering.RenderCursor.AccentColor.get -> uint
+LoomTerminal.Presentation.Rendering.RenderCursor.AccentColor.init -> void
+LoomTerminal.Presentation.Rendering.RenderCursor.CellText.get -> string!
+LoomTerminal.Presentation.Rendering.RenderCursor.CellText.init -> void
+LoomTerminal.Presentation.Rendering.RenderCursor.Color.get -> uint
+LoomTerminal.Presentation.Rendering.RenderCursor.Color.init -> void
+LoomTerminal.Presentation.Rendering.RenderCursor.Column.get -> int
+LoomTerminal.Presentation.Rendering.RenderCursor.Column.init -> void
+LoomTerminal.Presentation.Rendering.RenderCursor.Deconstruct(out int Column, out int Row, out LoomTerminal.Presentation.Rendering.CursorShape Shape, out bool Visible, out uint Color, out uint AccentColor, out string! CellText) -> void
+LoomTerminal.Presentation.Rendering.RenderCursor.Equals(LoomTerminal.Presentation.Rendering.RenderCursor? other) -> bool
+LoomTerminal.Presentation.Rendering.RenderCursor.RenderCursor(int Column, int Row, LoomTerminal.Presentation.Rendering.CursorShape Shape, bool Visible, uint Color, uint AccentColor, string! CellText) -> void
+LoomTerminal.Presentation.Rendering.RenderCursor.Row.get -> int
+LoomTerminal.Presentation.Rendering.RenderCursor.Row.init -> void
+LoomTerminal.Presentation.Rendering.RenderCursor.Shape.get -> LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.RenderCursor.Shape.init -> void
+LoomTerminal.Presentation.Rendering.RenderCursor.Visible.get -> bool
+LoomTerminal.Presentation.Rendering.RenderCursor.Visible.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame
+LoomTerminal.Presentation.Rendering.RenderFrame.<Clone>$() -> LoomTerminal.Presentation.Rendering.RenderFrame!
+LoomTerminal.Presentation.Rendering.RenderFrame.Background.get -> uint
+LoomTerminal.Presentation.Rendering.RenderFrame.Background.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.Columns.get -> int
+LoomTerminal.Presentation.Rendering.RenderFrame.Columns.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.Cursor.get -> LoomTerminal.Presentation.Rendering.RenderCursor?
+LoomTerminal.Presentation.Rendering.RenderFrame.Cursor.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.Deconstruct(out int Columns, out int Rows, out System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRow!>! Lines, out LoomTerminal.Presentation.Rendering.RenderCursor? Cursor, out uint Background, out int ViewportY, out int ScrollbackLength, out bool IsAlternateBuffer, out ulong Version, out System.Collections.Generic.IReadOnlySet<int>! DirtyRows) -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.DirtyRows.get -> System.Collections.Generic.IReadOnlySet<int>!
+LoomTerminal.Presentation.Rendering.RenderFrame.DirtyRows.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.Equals(LoomTerminal.Presentation.Rendering.RenderFrame? other) -> bool
+LoomTerminal.Presentation.Rendering.RenderFrame.IsAlternateBuffer.get -> bool
+LoomTerminal.Presentation.Rendering.RenderFrame.IsAlternateBuffer.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.Lines.get -> System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRow!>!
+LoomTerminal.Presentation.Rendering.RenderFrame.Lines.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.RenderFrame(int Columns, int Rows, System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRow!>! Lines, LoomTerminal.Presentation.Rendering.RenderCursor? Cursor, uint Background, int ViewportY, int ScrollbackLength, bool IsAlternateBuffer, ulong Version, System.Collections.Generic.IReadOnlySet<int>! DirtyRows) -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.Rows.get -> int
+LoomTerminal.Presentation.Rendering.RenderFrame.Rows.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.ScrollbackLength.get -> int
+LoomTerminal.Presentation.Rendering.RenderFrame.ScrollbackLength.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.Version.get -> ulong
+LoomTerminal.Presentation.Rendering.RenderFrame.Version.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.ViewportY.get -> int
+LoomTerminal.Presentation.Rendering.RenderFrame.ViewportY.init -> void
+LoomTerminal.Presentation.Rendering.RenderRow
+LoomTerminal.Presentation.Rendering.RenderRow.<Clone>$() -> LoomTerminal.Presentation.Rendering.RenderRow!
+LoomTerminal.Presentation.Rendering.RenderRow.ContentHash.get -> int
+LoomTerminal.Presentation.Rendering.RenderRow.ContentHash.init -> void
+LoomTerminal.Presentation.Rendering.RenderRow.Deconstruct(out System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRun!>! Runs, out bool IsWrapped, out int ContentHash) -> void
+LoomTerminal.Presentation.Rendering.RenderRow.Equals(LoomTerminal.Presentation.Rendering.RenderRow? other) -> bool
+LoomTerminal.Presentation.Rendering.RenderRow.IsWrapped.get -> bool
+LoomTerminal.Presentation.Rendering.RenderRow.IsWrapped.init -> void
+LoomTerminal.Presentation.Rendering.RenderRow.RenderRow(System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRun!>! Runs, bool IsWrapped, int ContentHash) -> void
+LoomTerminal.Presentation.Rendering.RenderRow.Runs.get -> System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRun!>!
+LoomTerminal.Presentation.Rendering.RenderRow.Runs.init -> void
+LoomTerminal.Presentation.Rendering.RenderRun
+LoomTerminal.Presentation.Rendering.RenderRun.<Clone>$() -> LoomTerminal.Presentation.Rendering.RenderRun!
+LoomTerminal.Presentation.Rendering.RenderRun.CellCount.get -> int
+LoomTerminal.Presentation.Rendering.RenderRun.CellCount.init -> void
+LoomTerminal.Presentation.Rendering.RenderRun.Column.get -> int
+LoomTerminal.Presentation.Rendering.RenderRun.Column.init -> void
+LoomTerminal.Presentation.Rendering.RenderRun.Deconstruct(out int Column, out int CellCount, out string! Text, out LoomTerminal.Presentation.Rendering.TextRunStyle Style) -> void
+LoomTerminal.Presentation.Rendering.RenderRun.Equals(LoomTerminal.Presentation.Rendering.RenderRun? other) -> bool
+LoomTerminal.Presentation.Rendering.RenderRun.RenderRun(int Column, int CellCount, string! Text, LoomTerminal.Presentation.Rendering.TextRunStyle Style) -> void
+LoomTerminal.Presentation.Rendering.RenderRun.Style.get -> LoomTerminal.Presentation.Rendering.TextRunStyle
+LoomTerminal.Presentation.Rendering.RenderRun.Style.init -> void
+LoomTerminal.Presentation.Rendering.RenderRun.Text.get -> string!
+LoomTerminal.Presentation.Rendering.RenderRun.Text.init -> void
+LoomTerminal.Presentation.Rendering.RunHighlight
+LoomTerminal.Presentation.Rendering.RunHighlight.ActiveSearchMatch = 2 -> LoomTerminal.Presentation.Rendering.RunHighlight
+LoomTerminal.Presentation.Rendering.RunHighlight.None = 0 -> LoomTerminal.Presentation.Rendering.RunHighlight
+LoomTerminal.Presentation.Rendering.RunHighlight.SearchMatch = 1 -> LoomTerminal.Presentation.Rendering.RunHighlight
+LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
+LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle.Curly = 3 -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
+LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle.Dashed = 5 -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
+LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle.Dotted = 4 -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
+LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle.DoubleLine = 2 -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
+LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle.None = 0 -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
+LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle.SingleLine = 1 -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
+LoomTerminal.Presentation.Rendering.TextRunStyle
+LoomTerminal.Presentation.Rendering.TextRunStyle.Background.get -> uint
+LoomTerminal.Presentation.Rendering.TextRunStyle.Background.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Bold.get -> bool
+LoomTerminal.Presentation.Rendering.TextRunStyle.Bold.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Deconstruct(out uint Foreground, out uint Background, out bool Bold, out bool Italic, out bool Dim, out LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle Underline, out uint? UnderlineColor, out bool Strikethrough, out bool Overline, out bool IsLink, out LoomTerminal.Presentation.Rendering.RunHighlight Highlight) -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Dim.get -> bool
+LoomTerminal.Presentation.Rendering.TextRunStyle.Dim.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Equals(LoomTerminal.Presentation.Rendering.TextRunStyle other) -> bool
+LoomTerminal.Presentation.Rendering.TextRunStyle.Foreground.get -> uint
+LoomTerminal.Presentation.Rendering.TextRunStyle.Foreground.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Highlight.get -> LoomTerminal.Presentation.Rendering.RunHighlight
+LoomTerminal.Presentation.Rendering.TextRunStyle.Highlight.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.IsLink.get -> bool
+LoomTerminal.Presentation.Rendering.TextRunStyle.IsLink.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Italic.get -> bool
+LoomTerminal.Presentation.Rendering.TextRunStyle.Italic.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Overline.get -> bool
+LoomTerminal.Presentation.Rendering.TextRunStyle.Overline.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Strikethrough.get -> bool
+LoomTerminal.Presentation.Rendering.TextRunStyle.Strikethrough.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.TextRunStyle() -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.TextRunStyle(uint Foreground, uint Background, bool Bold, bool Italic, bool Dim, LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle Underline, uint? UnderlineColor, bool Strikethrough, bool Overline, bool IsLink, LoomTerminal.Presentation.Rendering.RunHighlight Highlight) -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.Underline.get -> LoomTerminal.Presentation.Rendering.TerminalUnderlineStyle
+LoomTerminal.Presentation.Rendering.TextRunStyle.Underline.init -> void
+LoomTerminal.Presentation.Rendering.TextRunStyle.UnderlineColor.get -> uint?
+LoomTerminal.Presentation.Rendering.TextRunStyle.UnderlineColor.init -> void
 LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalCursorStyle.Bar = 2 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalCursorStyle.Block = 0 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
@@ -204,6 +317,19 @@ LoomTerminal.Presentation.Theming.TerminalTheme.Yellow.init -> void
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.GetHashCode() -> int
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.ToString() -> string!
+override LoomTerminal.Presentation.Rendering.RenderCursor.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Rendering.RenderCursor.GetHashCode() -> int
+override LoomTerminal.Presentation.Rendering.RenderCursor.ToString() -> string!
+override LoomTerminal.Presentation.Rendering.RenderFrame.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Rendering.RenderFrame.GetHashCode() -> int
+override LoomTerminal.Presentation.Rendering.RenderFrame.ToString() -> string!
+override LoomTerminal.Presentation.Rendering.RenderRow.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Rendering.RenderRow.GetHashCode() -> int
+override LoomTerminal.Presentation.Rendering.RenderRow.ToString() -> string!
+override LoomTerminal.Presentation.Rendering.RenderRun.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Rendering.RenderRun.GetHashCode() -> int
+override LoomTerminal.Presentation.Rendering.RenderRun.ToString() -> string!
+override LoomTerminal.Presentation.Rendering.TextRunStyle.GetHashCode() -> int
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.GetHashCode() -> int
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.ToString() -> string!
@@ -212,6 +338,16 @@ override LoomTerminal.Presentation.Theming.TerminalTheme.GetHashCode() -> int
 override LoomTerminal.Presentation.Theming.TerminalTheme.ToString() -> string!
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator !=(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator ==(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
+static LoomTerminal.Presentation.Rendering.RenderCursor.operator !=(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
+static LoomTerminal.Presentation.Rendering.RenderCursor.operator ==(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
+static LoomTerminal.Presentation.Rendering.RenderFrame.operator !=(LoomTerminal.Presentation.Rendering.RenderFrame? left, LoomTerminal.Presentation.Rendering.RenderFrame? right) -> bool
+static LoomTerminal.Presentation.Rendering.RenderFrame.operator ==(LoomTerminal.Presentation.Rendering.RenderFrame? left, LoomTerminal.Presentation.Rendering.RenderFrame? right) -> bool
+static LoomTerminal.Presentation.Rendering.RenderRow.operator !=(LoomTerminal.Presentation.Rendering.RenderRow? left, LoomTerminal.Presentation.Rendering.RenderRow? right) -> bool
+static LoomTerminal.Presentation.Rendering.RenderRow.operator ==(LoomTerminal.Presentation.Rendering.RenderRow? left, LoomTerminal.Presentation.Rendering.RenderRow? right) -> bool
+static LoomTerminal.Presentation.Rendering.RenderRun.operator !=(LoomTerminal.Presentation.Rendering.RenderRun? left, LoomTerminal.Presentation.Rendering.RenderRun? right) -> bool
+static LoomTerminal.Presentation.Rendering.RenderRun.operator ==(LoomTerminal.Presentation.Rendering.RenderRun? left, LoomTerminal.Presentation.Rendering.RenderRun? right) -> bool
+static LoomTerminal.Presentation.Rendering.TextRunStyle.operator !=(LoomTerminal.Presentation.Rendering.TextRunStyle left, LoomTerminal.Presentation.Rendering.TextRunStyle right) -> bool
+static LoomTerminal.Presentation.Rendering.TextRunStyle.operator ==(LoomTerminal.Presentation.Rendering.TextRunStyle left, LoomTerminal.Presentation.Rendering.TextRunStyle right) -> bool
 static LoomTerminal.Presentation.Session.TerminalSession.Attach(LoomTerminal.Pty.IPtyConnection! connection, int columns, int rows, LoomTerminal.Presentation.Session.TerminalSessionOptions? options = null) -> LoomTerminal.Presentation.Session.TerminalSession!
 static LoomTerminal.Presentation.Session.TerminalSession.Start(LoomTerminal.Pty.PtyStartOptions! pty, LoomTerminal.Presentation.Session.TerminalSessionOptions? options = null) -> LoomTerminal.Presentation.Session.TerminalSession!
 static LoomTerminal.Presentation.Session.TerminalSessionOptions.operator !=(LoomTerminal.Presentation.Session.TerminalSessionOptions? left, LoomTerminal.Presentation.Session.TerminalSessionOptions? right) -> bool

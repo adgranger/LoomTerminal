@@ -1,6 +1,6 @@
 # P3-09 — `RenderFrame` and `RenderFrameBuilder`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-08
 - **Size:** M
 
@@ -40,16 +40,16 @@ identical resolved style, cursor, selection range, dirty rows, viewport position
 
 ## Tests
 
-- [ ] New: `hello` → one run; `ab\e[31mcd` → two runs; a wide char + ASCII with the same style → one run of 3 cells
+- [x] New: `hello` → one run; `ab\e[31mcd` → two runs; a wide char + ASCII with the same style → one run of 3 cells
       and 2 chars; dirty rows after writing to row 2 only = `{2}`; after a resize = all rows; cursor hidden by
       `\e[?25l` → `Visible = false`; `ContentHash` equal for equal rows.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
