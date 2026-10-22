@@ -40,6 +40,9 @@ public sealed record TerminalSessionOptions
     /// </summary>
     public int? WindowsPtyBuildNumber { get; init; } = OperatingSystem.IsWindows() ? Environment.OSVersion.Version.Build : null;
 
+    /// <summary>Whether typing, pasting or sending a key scrolls the viewport to the bottom first.</summary>
+    public bool ScrollOnUserInput { get; init; } = true;
+
     /// <summary>Colors of the terminal; <see langword="null"/> uses the defaults.</summary>
     public TerminalTheme? Theme { get; init; }
 

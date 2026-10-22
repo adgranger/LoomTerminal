@@ -5,6 +5,7 @@ using LoomTerminal.Core.Services;
 using LoomTerminal.Presentation.Input;
 using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.Presentation.Theming;
+using LoomTerminal.Presentation.Viewport;
 using LoomTerminal.Pty;
 
 namespace LoomTerminal.Presentation.Session;
@@ -30,6 +31,7 @@ public sealed class TerminalSession : IDisposable
     private readonly Thread _thread;
     private readonly KeyInputHandler _keyHandler = new();
     private readonly RenderFrameBuilder _builder;
+    private readonly ViewportController _viewport;
     private readonly Lock _frameLock = new();
     private readonly Lock _postLock = new();
     private RenderFrame? _latestFrame;
@@ -52,6 +54,7 @@ public sealed class TerminalSession : IDisposable
         _core.OnBell.Subscribe(_ => Bell?.Invoke());
         Palette = new ThemePalette(options.Theme);
         _builder = new RenderFrameBuilder(_core, Palette);
+        _viewport = new ViewportController(_core);
         _core.OnColor.Subscribe(requests =>
         {
             foreach (var reply in Palette.Apply(requests))
@@ -161,6 +164,36 @@ public sealed class TerminalSession : IDisposable
         Post(_ => { });
     }
 
+    /// <summary>Scrolls the viewport by <paramref name="lines"/> (negative scrolls up).</summary>
+    /// <param name="lines">Number of lines.</param>
+    public void ScrollLines(int lines) => Post(core => core.ScrollLines(lines));
+
+    /// <summary>Scrolls the viewport by <paramref name="pages"/> pages of rows - 1 lines (negative scrolls up).</summary>
+    /// <param name="pages">Number of pages.</param>
+    public void ScrollPages(int pages) => Post(core => core.ScrollPages(pages));
+
+    /// <summary>Scrolls the viewport to the oldest line of the scrollback.</summary>
+    public void ScrollToTop() => Post(core => core.ScrollToTop());
+
+    /// <summary>Scrolls the viewport to the bottom, where it follows the output.</summary>
+    public void ScrollToBottom() => Post(core => core.ScrollToBottom());
+
+    /// <summary>Scrolls the viewport so that <paramref name="line"/> of the buffer is its first row.</summary>
+    /// <param name="line">Line of the buffer, zero based.</param>
+    public void ScrollToLine(int line) => Post(core => core.ScrollToLine(line));
+
+    /// <summary>
+    /// Handles a wheel event: reports it to an application that tracks the mouse, turns it into an arrow key in a buffer
+    /// without scrollback (alternate screen), or scrolls the viewport.
+    /// </summary>
+    /// <param name="ev">The wheel event.</param>
+    /// <param name="cellHeight">Height of a cell in device pixels.</param>
+    public void HandleWheel(TerminalPointerEvent ev, double cellHeight)
+    {
+        ArgumentNullException.ThrowIfNull(ev);
+        Post(_ => _viewport.HandleWheel(ev, cellHeight));
+    }
+
     /// <summary>Sends typed text (character input, IME commit) to the shell as UTF-8, unchanged.</summary>
     /// <param name="text">The text.</param>
     public void SendText(string text)
@@ -247,6 +280,7 @@ public sealed class TerminalSession : IDisposable
             _thread.Join();
         }
 
+        _viewport.Dispose();
         _builder.Dispose();
         _core.Dispose();
         _cts.Dispose();
@@ -278,6 +312,7 @@ public sealed class TerminalSession : IDisposable
         Cols = columns,
         Rows = rows,
         Scrollback = options.Scrollback,
+        ScrollOnUserInput = options.ScrollOnUserInput,
         CursorStyle = options.CursorStyle switch
         {
             TerminalCursorStyle.Underline => CursorStyle.Underline,

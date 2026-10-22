@@ -1,6 +1,6 @@
 # P3-12 — Viewport scrolling and the mouse wheel
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-10
 - **Size:** M
 
@@ -42,15 +42,15 @@ in the alternate buffer, otherwise scroll.
 
 ## Tests
 
-- [ ] New: each wheel branch; `ScrollPages(-1)` moves by `rows - 1`; typing scrolls to the bottom; output while
+- [x] New: each wheel branch; `ScrollPages(-1)` moves by `rows - 1`; typing scrolls to the bottom; output while
       scrolled up keeps `ydisp`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

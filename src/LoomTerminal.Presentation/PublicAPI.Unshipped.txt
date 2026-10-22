@@ -91,6 +91,18 @@ LoomTerminal.Presentation.Input.KeyPreviewEventArgs.Handled.get -> bool
 LoomTerminal.Presentation.Input.KeyPreviewEventArgs.Handled.set -> void
 LoomTerminal.Presentation.Input.KeyPreviewEventArgs.Key.get -> LoomTerminal.Presentation.Input.TerminalKeyEvent!
 LoomTerminal.Presentation.Input.KeyPreviewEventArgs.KeyPreviewEventArgs(LoomTerminal.Presentation.Input.TerminalKeyEvent! key) -> void
+LoomTerminal.Presentation.Input.PointerAction
+LoomTerminal.Presentation.Input.PointerAction.Down = 0 -> LoomTerminal.Presentation.Input.PointerAction
+LoomTerminal.Presentation.Input.PointerAction.Move = 2 -> LoomTerminal.Presentation.Input.PointerAction
+LoomTerminal.Presentation.Input.PointerAction.Up = 1 -> LoomTerminal.Presentation.Input.PointerAction
+LoomTerminal.Presentation.Input.PointerAction.Wheel = 3 -> LoomTerminal.Presentation.Input.PointerAction
+LoomTerminal.Presentation.Input.PointerButton
+LoomTerminal.Presentation.Input.PointerButton.Left = 1 -> LoomTerminal.Presentation.Input.PointerButton
+LoomTerminal.Presentation.Input.PointerButton.Middle = 2 -> LoomTerminal.Presentation.Input.PointerButton
+LoomTerminal.Presentation.Input.PointerButton.None = 0 -> LoomTerminal.Presentation.Input.PointerButton
+LoomTerminal.Presentation.Input.PointerButton.Right = 3 -> LoomTerminal.Presentation.Input.PointerButton
+LoomTerminal.Presentation.Input.PointerButton.WheelDown = 5 -> LoomTerminal.Presentation.Input.PointerButton
+LoomTerminal.Presentation.Input.PointerButton.WheelUp = 4 -> LoomTerminal.Presentation.Input.PointerButton
 LoomTerminal.Presentation.Input.TerminalKeyEvent
 LoomTerminal.Presentation.Input.TerminalKeyEvent.<Clone>$() -> LoomTerminal.Presentation.Input.TerminalKeyEvent!
 LoomTerminal.Presentation.Input.TerminalKeyEvent.Alt.get -> bool
@@ -115,6 +127,39 @@ LoomTerminal.Presentation.Input.TerminalKeyEvent.Type.init -> void
 LoomTerminal.Presentation.Input.TerminalKeyEventType
 LoomTerminal.Presentation.Input.TerminalKeyEventType.KeyDown = 0 -> LoomTerminal.Presentation.Input.TerminalKeyEventType
 LoomTerminal.Presentation.Input.TerminalKeyEventType.KeyPress = 1 -> LoomTerminal.Presentation.Input.TerminalKeyEventType
+LoomTerminal.Presentation.Input.TerminalPointerEvent
+LoomTerminal.Presentation.Input.TerminalPointerEvent.<Clone>$() -> LoomTerminal.Presentation.Input.TerminalPointerEvent!
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Action.get -> LoomTerminal.Presentation.Input.PointerAction
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Action.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Alt.get -> bool
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Alt.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Button.get -> LoomTerminal.Presentation.Input.PointerButton
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Button.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.ClickCount.get -> int
+LoomTerminal.Presentation.Input.TerminalPointerEvent.ClickCount.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Column.get -> int
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Column.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Ctrl.get -> bool
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Ctrl.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Deconstruct(out int Column, out int Row, out int X, out int Y, out LoomTerminal.Presentation.Input.PointerButton Button, out LoomTerminal.Presentation.Input.PointerAction Action, out bool Ctrl, out bool Alt, out bool Shift) -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.DeltaMode.get -> LoomTerminal.Presentation.Input.WheelDeltaMode
+LoomTerminal.Presentation.Input.TerminalPointerEvent.DeltaMode.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Equals(LoomTerminal.Presentation.Input.TerminalPointerEvent? other) -> bool
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Row.get -> int
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Row.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Shift.get -> bool
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Shift.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.TerminalPointerEvent(int Column, int Row, int X, int Y, LoomTerminal.Presentation.Input.PointerButton Button, LoomTerminal.Presentation.Input.PointerAction Action, bool Ctrl, bool Alt, bool Shift) -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.WheelDeltaY.get -> double
+LoomTerminal.Presentation.Input.TerminalPointerEvent.WheelDeltaY.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.X.get -> int
+LoomTerminal.Presentation.Input.TerminalPointerEvent.X.init -> void
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Y.get -> int
+LoomTerminal.Presentation.Input.TerminalPointerEvent.Y.init -> void
+LoomTerminal.Presentation.Input.WheelDeltaMode
+LoomTerminal.Presentation.Input.WheelDeltaMode.Line = 1 -> LoomTerminal.Presentation.Input.WheelDeltaMode
+LoomTerminal.Presentation.Input.WheelDeltaMode.Page = 2 -> LoomTerminal.Presentation.Input.WheelDeltaMode
+LoomTerminal.Presentation.Input.WheelDeltaMode.Pixel = 0 -> LoomTerminal.Presentation.Input.WheelDeltaMode
 LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Bar = 2 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Block = 0 -> LoomTerminal.Presentation.Rendering.CursorShape
@@ -235,10 +280,16 @@ LoomTerminal.Presentation.Session.TerminalSession.Bell -> System.Action?
 LoomTerminal.Presentation.Session.TerminalSession.Dispose() -> void
 LoomTerminal.Presentation.Session.TerminalSession.Exited -> System.Action<int>?
 LoomTerminal.Presentation.Session.TerminalSession.FrameAvailable -> System.Action?
+LoomTerminal.Presentation.Session.TerminalSession.HandleWheel(LoomTerminal.Presentation.Input.TerminalPointerEvent! ev, double cellHeight) -> void
 LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.get -> System.Func<LoomTerminal.Presentation.Input.TerminalKeyEvent!, bool>?
 LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.set -> void
 LoomTerminal.Presentation.Session.TerminalSession.Paste(string! text) -> void
 LoomTerminal.Presentation.Session.TerminalSession.Resize(int columns, int rows) -> void
+LoomTerminal.Presentation.Session.TerminalSession.ScrollLines(int lines) -> void
+LoomTerminal.Presentation.Session.TerminalSession.ScrollPages(int pages) -> void
+LoomTerminal.Presentation.Session.TerminalSession.ScrollToBottom() -> void
+LoomTerminal.Presentation.Session.TerminalSession.ScrollToLine(int line) -> void
+LoomTerminal.Presentation.Session.TerminalSession.ScrollToTop() -> void
 LoomTerminal.Presentation.Session.TerminalSession.SendKey(LoomTerminal.Presentation.Input.TerminalKeyEvent! ev) -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Session.TerminalSession.SendText(string! text) -> void
 LoomTerminal.Presentation.Session.TerminalSession.SetFocus(bool focused) -> void
@@ -254,6 +305,8 @@ LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorStyle.init -> voi
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(LoomTerminal.Presentation.Session.TerminalSessionOptions? other) -> bool
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Scrollback.get -> int
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Scrollback.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.ScrollOnUserInput.get -> bool
+LoomTerminal.Presentation.Session.TerminalSessionOptions.ScrollOnUserInput.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.TabStopWidth.get -> int
 LoomTerminal.Presentation.Session.TerminalSessionOptions.TabStopWidth.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.TerminalSessionOptions() -> void
@@ -320,6 +373,9 @@ LoomTerminal.Presentation.Theming.TerminalTheme.Yellow.init -> void
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.GetHashCode() -> int
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.ToString() -> string!
+override LoomTerminal.Presentation.Input.TerminalPointerEvent.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Input.TerminalPointerEvent.GetHashCode() -> int
+override LoomTerminal.Presentation.Input.TerminalPointerEvent.ToString() -> string!
 override LoomTerminal.Presentation.Rendering.RenderCursor.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Rendering.RenderCursor.GetHashCode() -> int
 override LoomTerminal.Presentation.Rendering.RenderCursor.ToString() -> string!
@@ -341,6 +397,8 @@ override LoomTerminal.Presentation.Theming.TerminalTheme.GetHashCode() -> int
 override LoomTerminal.Presentation.Theming.TerminalTheme.ToString() -> string!
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator !=(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator ==(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
+static LoomTerminal.Presentation.Input.TerminalPointerEvent.operator !=(LoomTerminal.Presentation.Input.TerminalPointerEvent? left, LoomTerminal.Presentation.Input.TerminalPointerEvent? right) -> bool
+static LoomTerminal.Presentation.Input.TerminalPointerEvent.operator ==(LoomTerminal.Presentation.Input.TerminalPointerEvent? left, LoomTerminal.Presentation.Input.TerminalPointerEvent? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderCursor.operator !=(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderCursor.operator ==(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderFrame.operator !=(LoomTerminal.Presentation.Rendering.RenderFrame? left, LoomTerminal.Presentation.Rendering.RenderFrame? right) -> bool
