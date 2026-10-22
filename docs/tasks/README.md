@@ -191,7 +191,7 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 | [P4-02](phase-4/P4-02-win2d-text-measurer.md) | Win2D text measurer (cell metrics) | P4-01 | S | done |
 | [P4-03](phase-4/P4-03-win2d-render-surface.md) | Win2D render surface: backgrounds and text runs | P4-02 | M | done |
 | [P4-04](phase-4/P4-04-custom-glyphs.md) | Box drawing, block elements and powerline glyphs as vectors | P4-03 | M | done |
-| [P4-05](phase-4/P4-05-decorations-and-cursor.md) | Underlines, strikethrough, overline and the cursor in Win2D | P4-03 | S | todo |
+| [P4-05](phase-4/P4-05-decorations-and-cursor.md) | Underlines, strikethrough, overline and the cursor in Win2D | P4-03 | S | done |
 | [P4-06](phase-4/P4-06-layout-dpi-frames.md) | Size to columns/rows, DPI and device loss, frame scheduling | P4-05 | M | todo |
 
 ### Step B — Input

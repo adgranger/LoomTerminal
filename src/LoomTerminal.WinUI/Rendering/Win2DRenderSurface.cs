@@ -12,7 +12,7 @@ namespace LoomTerminal.WinUI.Rendering;
 /// <summary><see cref="IRenderSurface"/> on a Win2D drawing session (Direct2D + DirectWrite).</summary>
 /// <remarks>
 /// Threading: create one per frame inside the <c>CanvasControl.Draw</c> handler; it does not own the session and is
-/// only valid during that call, on that thread. Underlines come in P4-05.
+/// only valid during that call, on that thread.
 /// </remarks>
 internal sealed class Win2DRenderSurface : IRenderSurface
 {
@@ -72,7 +72,54 @@ internal sealed class Win2DRenderSurface : IRenderSurface
     /// <inheritdoc />
     public void DrawUnderline(double x, double y, double width, TerminalUnderlineStyle style, uint rgba, in CellMetrics metrics)
     {
-        // P4-05
+        var thickness = (float)metrics.UnderlineThickness;
+        var left = (float)x;
+        var right = (float)(x + width);
+        var top = (float)(Math.Floor(y * _scale) / _scale);
+        var color = ToColor(rgba);
+        var lineY = top + (thickness / 2);
+        switch (style)
+        {
+            case TerminalUnderlineStyle.SingleLine:
+                _session.DrawLine(left, lineY, right, lineY, color, thickness);
+                break;
+            case TerminalUnderlineStyle.DoubleLine:
+                _session.DrawLine(left, lineY, right, lineY, color, thickness);
+                _session.DrawLine(left, lineY + (2 * thickness), right, lineY + (2 * thickness), color, thickness);
+                break;
+            case TerminalUnderlineStyle.Dotted:
+            case TerminalUnderlineStyle.Dashed:
+                using (var stroke = new CanvasStrokeStyle { DashStyle = style == TerminalUnderlineStyle.Dotted ? CanvasDashStyle.Dot : CanvasDashStyle.Dash })
+                {
+                    _session.DrawLine(left, lineY, right, lineY, color, thickness, stroke);
+                }
+
+                break;
+            case TerminalUnderlineStyle.Curly:
+                DrawCurly(left, right, lineY, thickness, color, (float)(metrics.Width / 2));
+                break;
+        }
+    }
+
+    // The period is half a cell and the phase comes from the absolute x, so the wave continues across runs.
+    private void DrawCurly(float left, float right, float y, float thickness, Color color, float period)
+    {
+        var amplitude = thickness;
+        var builder = new CanvasPathBuilder(_resourceCreator);
+        var start = (float)(Math.Floor(left / period) * period);
+        builder.BeginFigure(start, y);
+        for (var px = start; px < right; px += period)
+        {
+            // One full sine period = two half waves (down then up), each a cubic curve.
+            var half = period / 2;
+            builder.AddCubicBezier(new(px + (half / 3), y + amplitude), new(px + (half * 2 / 3), y + amplitude), new(px + half, y));
+            builder.AddCubicBezier(new(px + half + (half / 3), y - amplitude), new(px + half + (half * 2 / 3), y - amplitude), new(px + period, y));
+        }
+
+        builder.EndFigure(CanvasFigureLoop.Open);
+        using var geometry = CanvasGeometry.CreatePath(builder);
+        using var clip = _session.CreateLayer(1f, CanvasGeometry.CreateRectangle(_resourceCreator, left, y - amplitude - thickness, right - left, (2 * amplitude) + (2 * thickness)));
+        _session.DrawGeometry(geometry, color, thickness);
     }
 
     /// <inheritdoc />
