@@ -1,6 +1,6 @@
 # P3-08 — Cell color resolution
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-07
 - **Size:** M
 
@@ -35,17 +35,17 @@ inverse, dim, bold-as-bright, invisible, selection colors, minimum contrast rati
 
 ## Tests
 
-- [ ] Port `ColorContrastCache.test.ts` and `RendererUtils.test.ts`.
-- [ ] New: inverse swaps default colors; `p16:1` + bold → `p16:9` when `DrawBoldTextInBrightColors`; dim halves the
+- [x] Port `ColorContrastCache.test.ts` and `RendererUtils.test.ts`.
+- [x] New: inverse swaps default colors; `p16:1` + bold → `p16:9` when `DrawBoldTextInBrightColors`; dim halves the
       alpha as xterm.js does (read how and assert it); invisible → foreground equals background; selected cell uses
       `SelectionBackground`; `MinimumContrastRatio = 4.5` raises a dark-on-dark foreground.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

@@ -58,7 +58,8 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/input/WriteBuffer.ts` (ideas only) | `Core/TerminalWriter.cs`, `TerminalWorkItem.cs` (replaces `WriteBuffer`) | ✅ | P1-56 |
 | `src/common/input/Keyboard.ts` (+ test), `Types.ts` (`IKeyboardResult`) | `Presentation/Input/Keyboard.cs`, `KeyboardResult.cs` (`DomKeyCodes.cs` for key codes) | ✅ | P3-03 |
 | `src/browser/Clipboard.ts` (`prepareTextForTerminal`, `bracketTextForPaste`, the `paste` logic) (+ test) | `Presentation/Input/PasteEncoding.cs` (copy, paste events and textarea code not ported: DOM) | ✅ | P3-05 |
-| `src/browser/services/ThemeService.ts`, `Types.ts` (`DEFAULT_ANSI_COLORS`), `CoreBrowserTerminal._handleColorEvent` (+ test), `Services.ts` (`ITheme`) | `Presentation/Theming/ThemePalette.cs`, `TerminalTheme.cs` (scrollbar and overview ruler colors not ported; contrast caches come with P3-08) | ✅ | P3-07 |
+| `src/browser/services/ThemeService.ts`, `Types.ts` (`DEFAULT_ANSI_COLORS`), `CoreBrowserTerminal._handleColorEvent` (+ test), `Services.ts` (`ITheme`) | `Presentation/Theming/ThemePalette.cs`, `TerminalTheme.cs` (scrollbar and overview ruler colors not ported; contrast caches: see P3-08) | ✅ | P3-07 |
+| `addons/addon-webgl/src/CellColorResolver.ts`, color functions of `TextureAtlas.ts` (`_getBackgroundColor`, `_getForegroundColor`, `_getMinimumContrastColor`, underline color), `src/browser/ColorContrastCache.ts`, `renderer/shared/RendererUtils.ts` (+ tests) | `Presentation/Theming/CellColorResolver.cs`, `ColorContrastCache.cs`, `Presentation/Rendering/RendererUtils.cs` (decorations, dotted underline variant offset and unused utils not ported) | ✅ | P3-08 |
 
 ## What is not ported
 

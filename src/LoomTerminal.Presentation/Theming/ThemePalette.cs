@@ -68,6 +68,12 @@ internal sealed class ThemePalette
     /// <summary>The 256 ANSI colors.</summary>
     internal TerminalColor[] Ansi { get; private set; } = new TerminalColor[256];
 
+    /// <summary>Cache of the foregrounds adjusted to the minimum contrast ratio; cleared when the theme changes.</summary>
+    internal ColorContrastCache ContrastCache { get; } = new();
+
+    /// <summary>The same for dim cells, which only need half the contrast.</summary>
+    internal ColorContrastCache HalfContrastCache { get; } = new();
+
     /// <summary>Sets the theme; colors it does not define use the defaults. Drops the OSC overrides.</summary>
     /// <param name="theme">The theme, or <see langword="null"/> for the defaults.</param>
     internal void SetTheme(TerminalTheme? theme)
@@ -116,6 +122,8 @@ internal sealed class ThemePalette
         }
 
         Ansi = ansi;
+        ContrastCache.Clear();
+        HalfContrastCache.Clear();
         UpdateRestoreColors();
         Changed?.Invoke();
     }
