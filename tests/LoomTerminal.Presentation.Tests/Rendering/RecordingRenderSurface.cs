@@ -33,6 +33,9 @@ internal sealed class RecordingRenderSurface : IRenderSurface
     public void DrawRectangle(double x, double y, double width, double height, double thickness, uint rgba) =>
         _calls.Add($"Rect {N(x)},{N(y)} {N(width)}x{N(height)} t={N(thickness)} {Color(rgba)}");
 
+    public void DrawCustomGlyph(CustomGlyphPath path, double x, double y, in CellMetrics metrics, uint rgba) =>
+        _calls.Add($"Glyph {N(x)},{N(y)} {Color(rgba)} commands={path.Commands.Count}");
+
     private static string N(double v) => v.ToString("0.##", CultureInfo.InvariantCulture);
 
     private static string Color(uint rgba) => "#" + rgba.ToString("x8", CultureInfo.InvariantCulture);

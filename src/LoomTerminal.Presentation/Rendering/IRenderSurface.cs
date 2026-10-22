@@ -54,4 +54,12 @@ public interface IRenderSurface
     /// <param name="thickness">Outline thickness.</param>
     /// <param name="rgba">Color.</param>
     void DrawRectangle(double x, double y, double width, double height, double thickness, uint rgba);
+
+    /// <summary>Draws a box-drawing, block, shade or powerline character as a vector shape filling its cell.</summary>
+    /// <param name="path">The shape, relative to the cell (see <see cref="CustomGlyphPath"/>).</param>
+    /// <param name="x">Left of the cell.</param>
+    /// <param name="y">Top of the cell.</param>
+    /// <param name="metrics">The cell metrics.</param>
+    /// <param name="rgba">Color.</param>
+    void DrawCustomGlyph(CustomGlyphPath path, double x, double y, in CellMetrics metrics, uint rgba);
 }

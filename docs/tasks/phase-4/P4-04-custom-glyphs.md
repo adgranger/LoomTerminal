@@ -1,6 +1,6 @@
 # P4-04 — Box drawing, block elements and powerline glyphs as vectors
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-03
 - **Size:** M
 
@@ -40,16 +40,16 @@ and prompts like oh-my-posh depend on them.
 
 ## Tests
 
-- [ ] New (Presentation): `─` produces one horizontal line command at half height; `█` a full-cell rect; `` (U+E0B0)
+- [x] New (Presentation): `─` produces one horizontal line command at half height; `█` a full-cell rect; `` (U+E0B0)
       a filled triangle; characters without a definition return `null`.
 - [ ] Manual: an oh-my-posh or starship prompt renders with seamless separators.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated; `docs/PORTING.md` map updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated; `docs/PORTING.md` map updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

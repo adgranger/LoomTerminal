@@ -66,7 +66,7 @@ public sealed partial class TerminalControl : Control
         // 4 x rows x an average of 4 runs per row; the cache is cleared on a device change (CreateResources).
         _layoutCache.Capacity = 16 * Math.Max(1, frame.Lines.Count);
         var surface = new Win2DRenderSurface(args.DrawingSession, sender, _layoutCache, font, Win2DTextMeasurer.ResolveFamily(font), scale);
-        FrameRenderer.Render(frame, metrics, surface);
+        FrameRenderer.Render(frame, metrics, surface, _session?.CustomGlyphs ?? true);
     }
 
     // Device (re)creation, or a DPI change: cached metrics and layouts belong to the old device.

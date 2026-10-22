@@ -46,6 +46,9 @@ public sealed record TerminalSessionOptions
     /// <summary>Whether a right click selects the word under the pointer first (as xterm.js), before copying or pasting.</summary>
     public bool RightClickSelectsWord { get; init; }
 
+    /// <summary>Whether box-drawing, block, shade and powerline characters are drawn as vectors (as xterm.js <c>customGlyphs</c>) instead of font glyphs.</summary>
+    public bool CustomGlyphs { get; init; } = true;
+
     /// <summary>Colors of the terminal; <see langword="null"/> uses the defaults.</summary>
     public TerminalTheme? Theme { get; init; }
 

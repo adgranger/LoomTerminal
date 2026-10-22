@@ -35,6 +35,35 @@ public class FrameRendererTests
     }
 
     [Fact]
+    public void Custom_glyph_cells_are_drawn_as_vectors_and_split_the_text_run()
+    {
+        var text = Draw(Frame([[Run(2, "a─█b", Style())]]));
+
+        Assert.Equal(
+            "Clear #000000ff\nText 0,2 \"a\" cells=1 fg=#ffffffff\nGlyph 24,0 #ffffffff commands=3\n" +
+            "Glyph 32,0 #ffffffff commands=2\nText 0,5 \"b\" cells=1 fg=#ffffffff",
+            text);
+    }
+
+    [Fact]
+    public void Custom_glyphs_can_be_turned_off()
+    {
+        var metrics = new FakeTextMeasurer().Measure(new TerminalFont(["x"], 12), 1);
+        var surface = new RecordingRenderSurface();
+        FrameRenderer.Render(Frame([[Run(0, "─", Style())]]), metrics, surface, customGlyphs: false);
+
+        Assert.Equal("Clear #000000ff\nText 0,0 \"─\" cells=1 fg=#ffffffff", surface.Text);
+    }
+
+    [Fact]
+    public void A_wide_character_before_a_glyph_shifts_it_by_two_cells()
+    {
+        var text = Draw(Frame([[Run(0, "中─", Style(), cells: 3)]]));
+
+        Assert.Equal("Clear #000000ff\nText 0,0 \"中\" cells=2 fg=#ffffffff\nGlyph 16,0 #ffffffff commands=3", text);
+    }
+
+    [Fact]
     public void Adjacent_runs_with_the_same_background_are_merged_and_spaces_are_not_drawn()
     {
         var text = Draw(Frame([[Run(1, "a", Style(Red)), Run(2, "  ", Style(Red)), Run(5, "b", Style(Blue))]]));

@@ -1,6 +1,8 @@
 #nullable enable
 ~override LoomTerminal.Presentation.Rendering.CellMetrics.Equals(object obj) -> bool
 ~override LoomTerminal.Presentation.Rendering.CellMetrics.ToString() -> string
+~override LoomTerminal.Presentation.Rendering.CustomGlyphCommand.Equals(object obj) -> bool
+~override LoomTerminal.Presentation.Rendering.CustomGlyphCommand.ToString() -> string
 ~override LoomTerminal.Presentation.Rendering.TextRunStyle.Equals(object obj) -> bool
 ~override LoomTerminal.Presentation.Rendering.TextRunStyle.ToString() -> string
 const LoomTerminal.Presentation.Input.DomKeyCodes.Alt = 18 -> int
@@ -192,9 +194,45 @@ LoomTerminal.Presentation.Rendering.CursorShape.Bar = 2 -> LoomTerminal.Presenta
 LoomTerminal.Presentation.Rendering.CursorShape.Block = 0 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Outline = 3 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Underline = 1 -> LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.A.get -> double
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.A.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.B.get -> double
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.B.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.C.get -> double
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.C.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.CustomGlyphCommand() -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.CustomGlyphCommand(LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind Kind, double A = 0, double B = 0, double C = 0, double D = 0, double E = 0, double F = 0) -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.D.get -> double
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.D.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.Deconstruct(out LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind Kind, out double A, out double B, out double C, out double D, out double E, out double F) -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.E.get -> double
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.E.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.Equals(LoomTerminal.Presentation.Rendering.CustomGlyphCommand other) -> bool
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.F.get -> double
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.F.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.Kind.get -> LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind
+LoomTerminal.Presentation.Rendering.CustomGlyphCommand.Kind.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind
+LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind.CurveTo = 2 -> LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind
+LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind.Fill = 4 -> LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind
+LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind.LineTo = 1 -> LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind
+LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind.MoveTo = 0 -> LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind
+LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind.Rect = 3 -> LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind
+LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind.Stroke = 5 -> LoomTerminal.Presentation.Rendering.CustomGlyphCommandKind
+LoomTerminal.Presentation.Rendering.CustomGlyphPath
+LoomTerminal.Presentation.Rendering.CustomGlyphPath.<Clone>$() -> LoomTerminal.Presentation.Rendering.CustomGlyphPath!
+LoomTerminal.Presentation.Rendering.CustomGlyphPath.ClipToCell.get -> bool
+LoomTerminal.Presentation.Rendering.CustomGlyphPath.ClipToCell.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphPath.Commands.get -> System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.CustomGlyphCommand>!
+LoomTerminal.Presentation.Rendering.CustomGlyphPath.Commands.init -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphPath.CustomGlyphPath(System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.CustomGlyphCommand>! Commands, bool ClipToCell) -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphPath.Deconstruct(out System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.CustomGlyphCommand>! Commands, out bool ClipToCell) -> void
+LoomTerminal.Presentation.Rendering.CustomGlyphPath.Equals(LoomTerminal.Presentation.Rendering.CustomGlyphPath? other) -> bool
 LoomTerminal.Presentation.Rendering.FrameRenderer
 LoomTerminal.Presentation.Rendering.IRenderSurface
 LoomTerminal.Presentation.Rendering.IRenderSurface.Clear(uint rgba) -> void
+LoomTerminal.Presentation.Rendering.IRenderSurface.DrawCustomGlyph(LoomTerminal.Presentation.Rendering.CustomGlyphPath! path, double x, double y, in LoomTerminal.Presentation.Rendering.CellMetrics metrics, uint rgba) -> void
 LoomTerminal.Presentation.Rendering.IRenderSurface.DrawLine(double x1, double y1, double x2, double y2, double thickness, uint rgba) -> void
 LoomTerminal.Presentation.Rendering.IRenderSurface.DrawRectangle(double x, double y, double width, double height, double thickness, uint rgba) -> void
 LoomTerminal.Presentation.Rendering.IRenderSurface.DrawTextRun(int row, int column, string! text, int cellCount, in LoomTerminal.Presentation.Rendering.TextRunStyle style, in LoomTerminal.Presentation.Rendering.CellMetrics metrics) -> void
@@ -425,6 +463,8 @@ LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorBlink.get -> bool
 LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorBlink.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorStyle.get -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorStyle.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.CustomGlyphs.get -> bool
+LoomTerminal.Presentation.Session.TerminalSessionOptions.CustomGlyphs.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(LoomTerminal.Presentation.Session.TerminalSessionOptions? other) -> bool
 LoomTerminal.Presentation.Session.TerminalSessionOptions.RightClickSelectsWord.get -> bool
 LoomTerminal.Presentation.Session.TerminalSessionOptions.RightClickSelectsWord.init -> void
@@ -506,6 +546,10 @@ override LoomTerminal.Presentation.Input.TerminalPointerEvent.Equals(object? obj
 override LoomTerminal.Presentation.Input.TerminalPointerEvent.GetHashCode() -> int
 override LoomTerminal.Presentation.Input.TerminalPointerEvent.ToString() -> string!
 override LoomTerminal.Presentation.Rendering.CellMetrics.GetHashCode() -> int
+override LoomTerminal.Presentation.Rendering.CustomGlyphCommand.GetHashCode() -> int
+override LoomTerminal.Presentation.Rendering.CustomGlyphPath.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Rendering.CustomGlyphPath.GetHashCode() -> int
+override LoomTerminal.Presentation.Rendering.CustomGlyphPath.ToString() -> string!
 override LoomTerminal.Presentation.Rendering.RenderCursor.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Rendering.RenderCursor.GetHashCode() -> int
 override LoomTerminal.Presentation.Rendering.RenderCursor.ToString() -> string!
@@ -546,7 +590,11 @@ static LoomTerminal.Presentation.Input.TerminalPointerEvent.operator !=(LoomTerm
 static LoomTerminal.Presentation.Input.TerminalPointerEvent.operator ==(LoomTerminal.Presentation.Input.TerminalPointerEvent? left, LoomTerminal.Presentation.Input.TerminalPointerEvent? right) -> bool
 static LoomTerminal.Presentation.Rendering.CellMetrics.operator !=(LoomTerminal.Presentation.Rendering.CellMetrics left, LoomTerminal.Presentation.Rendering.CellMetrics right) -> bool
 static LoomTerminal.Presentation.Rendering.CellMetrics.operator ==(LoomTerminal.Presentation.Rendering.CellMetrics left, LoomTerminal.Presentation.Rendering.CellMetrics right) -> bool
-static LoomTerminal.Presentation.Rendering.FrameRenderer.Render(LoomTerminal.Presentation.Rendering.RenderFrame! frame, in LoomTerminal.Presentation.Rendering.CellMetrics metrics, LoomTerminal.Presentation.Rendering.IRenderSurface! surface) -> void
+static LoomTerminal.Presentation.Rendering.CustomGlyphCommand.operator !=(LoomTerminal.Presentation.Rendering.CustomGlyphCommand left, LoomTerminal.Presentation.Rendering.CustomGlyphCommand right) -> bool
+static LoomTerminal.Presentation.Rendering.CustomGlyphCommand.operator ==(LoomTerminal.Presentation.Rendering.CustomGlyphCommand left, LoomTerminal.Presentation.Rendering.CustomGlyphCommand right) -> bool
+static LoomTerminal.Presentation.Rendering.CustomGlyphPath.operator !=(LoomTerminal.Presentation.Rendering.CustomGlyphPath? left, LoomTerminal.Presentation.Rendering.CustomGlyphPath? right) -> bool
+static LoomTerminal.Presentation.Rendering.CustomGlyphPath.operator ==(LoomTerminal.Presentation.Rendering.CustomGlyphPath? left, LoomTerminal.Presentation.Rendering.CustomGlyphPath? right) -> bool
+static LoomTerminal.Presentation.Rendering.FrameRenderer.Render(LoomTerminal.Presentation.Rendering.RenderFrame! frame, in LoomTerminal.Presentation.Rendering.CellMetrics metrics, LoomTerminal.Presentation.Rendering.IRenderSurface! surface, bool customGlyphs = true) -> void
 static LoomTerminal.Presentation.Rendering.RenderCursor.operator !=(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderCursor.operator ==(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderFrame.operator !=(LoomTerminal.Presentation.Rendering.RenderFrame? left, LoomTerminal.Presentation.Rendering.RenderFrame? right) -> bool

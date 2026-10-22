@@ -2,6 +2,7 @@
 using System.Globalization;
 using LoomTerminal.Presentation.Rendering;
 using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.Geometry;
 using Microsoft.Graphics.Canvas.Text;
 using Windows.UI;
 using Windows.UI.Text;
@@ -81,6 +82,76 @@ internal sealed class Win2DRenderSurface : IRenderSurface
     /// <inheritdoc />
     public void DrawRectangle(double x, double y, double width, double height, double thickness, uint rgba) =>
         _session.DrawRectangle((float)x, (float)y, (float)width, (float)height, ToColor(rgba), (float)thickness);
+
+    /// <inheritdoc />
+    public void DrawCustomGlyph(CustomGlyphPath path, double x, double y, in CellMetrics metrics, uint rgba)
+    {
+        // The path is relative to the cell: translate by the cell origin; the clip hides powerline overshoot.
+        var saved = _session.Transform;
+        _session.Transform = System.Numerics.Matrix3x2.CreateTranslation((float)x, (float)y) * saved;
+        using var clip = path.ClipToCell ? _session.CreateLayer(1f, CanvasGeometry.CreateRectangle(_resourceCreator, 0, 0, (float)metrics.Width, (float)metrics.Height)) : null;
+        var builder = new CanvasPathBuilder(_resourceCreator);
+        var open = false;
+        foreach (var c in path.Commands)
+        {
+            switch (c.Kind)
+            {
+                case CustomGlyphCommandKind.MoveTo:
+                    if (open)
+                    {
+                        builder.EndFigure(CanvasFigureLoop.Open);
+                    }
+
+                    builder.BeginFigure((float)c.A, (float)c.B);
+                    open = true;
+                    break;
+                case CustomGlyphCommandKind.LineTo:
+                    builder.AddLine((float)c.A, (float)c.B);
+                    break;
+                case CustomGlyphCommandKind.CurveTo:
+                    builder.AddCubicBezier(new((float)c.A, (float)c.B), new((float)c.C, (float)c.D), new((float)c.E, (float)c.F));
+                    break;
+                case CustomGlyphCommandKind.Rect:
+                    if (open)
+                    {
+                        builder.EndFigure(CanvasFigureLoop.Open);
+                        open = false;
+                    }
+
+                    builder.BeginFigure((float)c.A, (float)c.B);
+                    builder.AddLine((float)(c.A + c.C), (float)c.B);
+                    builder.AddLine((float)(c.A + c.C), (float)(c.B + c.D));
+                    builder.AddLine((float)c.A, (float)(c.B + c.D));
+                    builder.EndFigure(CanvasFigureLoop.Closed);
+                    break;
+                default:
+                    if (open)
+                    {
+                        builder.EndFigure(CanvasFigureLoop.Open);
+                        open = false;
+                    }
+
+                    using (var geometry = CanvasGeometry.CreatePath(builder))
+                    {
+                        if (c.Kind == CustomGlyphCommandKind.Fill)
+                        {
+                            var color = ToColor(rgba);
+                            color.A = (byte)Math.Round(color.A * c.A);
+                            _session.FillGeometry(geometry, color);
+                        }
+                        else
+                        {
+                            _session.DrawGeometry(geometry, ToColor(rgba), (float)c.A);
+                        }
+                    }
+
+                    builder = new CanvasPathBuilder(_resourceCreator);
+                    break;
+            }
+        }
+
+        _session.Transform = saved;
+    }
 
     private void DrawLayout(string text, double x, double top, in CellMetrics metrics, in TextRunStyle style, Color color)
     {

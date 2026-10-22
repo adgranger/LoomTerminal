@@ -47,6 +47,7 @@ public sealed partial class TerminalSession : IDisposable
     private long _framesPublished;
     private volatile bool _focused = true;
     private readonly bool _rightClickSelectsWord;
+    private readonly bool _customGlyphs;
     private int _disposed;
     private volatile ModesSnapshot _modes = new(false, false, false, false);
 
@@ -60,6 +61,7 @@ public sealed partial class TerminalSession : IDisposable
         _core.OnBell.Subscribe(_ => Bell?.Invoke());
         Palette = new ThemePalette(options.Theme);
         _rightClickSelectsWord = options.RightClickSelectsWord;
+        _customGlyphs = options.CustomGlyphs;
         _builder = new RenderFrameBuilder(_core, Palette);
         _viewport = new ViewportController(_core);
         _selection = new SelectionService(_core.BufferService, _core.CoreService, _core.OptionsService, OperatingSystem.IsWindows(), OperatingSystem.IsMacOS());
@@ -78,6 +80,9 @@ public sealed partial class TerminalSession : IDisposable
         _thread.Start();
         _ = PumpOutputAsync();
     }
+
+    /// <summary>Whether backends draw box-drawing, block and powerline characters as vectors (<see cref="TerminalSessionOptions.CustomGlyphs"/>).</summary>
+    internal bool CustomGlyphs => _customGlyphs;
 
     /// <summary>The resolved colors, including the OSC overrides; touch it on the parser thread only.</summary>
     internal ThemePalette Palette { get; }
