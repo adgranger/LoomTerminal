@@ -1,6 +1,6 @@
 # P3-14 — Selection logic (`SelectionService`, non-DOM parts)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-13, P3-09
 - **Size:** M
 
@@ -42,16 +42,16 @@ the render frame.
 
 ## Tests
 
-- [ ] Port all of `SelectionService.test.ts` (`_selectWordAt` incl. emoji, `_selectLineAt`, `selectAll`,
+- [x] Port all of `SelectionService.test.ts` (`_selectWordAt` incl. emoji, `_selectLineAt`, `selectAll`,
       `selectLines`, `hasSelection`, `column selection`, `_areCoordsInSelection`). The JS tests build a
       `TestSelectionService` over a mock buffer: build the same over a real `BufferService`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

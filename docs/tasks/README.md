@@ -163,7 +163,7 @@ Session and threads, render frames, input, selection, links, search. **Read [pha
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P3-13](phase-3/P3-13-selection-model.md) | `SelectionModel` | P3-01 | S | done |
-| [P3-14](phase-3/P3-14-selection-logic.md) | Selection logic (`SelectionService`, non-DOM parts) | P3-13, P3-09 | M | todo |
+| [P3-14](phase-3/P3-14-selection-logic.md) | Selection logic (`SelectionService`, non-DOM parts) | P3-13, P3-09 | M | done |
 | [P3-15](phase-3/P3-15-pointer-handling.md) | Pointer handling: selection gestures vs. mouse reporting | P3-14, P3-12 | M | todo |
 | [P3-16](phase-3/P3-16-clipboard.md) | Clipboard: copy, paste, right click | P3-04, P3-05, P3-15 | S | todo |
 | [P3-17](phase-3/P3-17-links.md) | Links: URL detection and OSC 8, Ctrl+click | P3-15 | M | todo |

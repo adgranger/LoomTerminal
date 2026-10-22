@@ -10,6 +10,15 @@ internal sealed record ViewState
     /// <summary>Whether the terminal has the focus (an unfocused terminal draws the inactive cursor and selection colors).</summary>
     internal bool IsFocused { get; init; } = true;
 
+    /// <summary>Start of the selection, in buffer coordinates.</summary>
+    internal (int X, int Y)? SelectionStart { get; init; }
+
+    /// <summary>End of the selection, in buffer coordinates.</summary>
+    internal (int X, int Y)? SelectionEnd { get; init; }
+
+    /// <summary>Whether the selection is a rectangle of columns.</summary>
+    internal bool SelectionColumnMode { get; init; }
+
     /// <summary>Whether a blinking cursor is in its visible phase.</summary>
     internal bool CursorBlinkVisible { get; init; } = true;
 }

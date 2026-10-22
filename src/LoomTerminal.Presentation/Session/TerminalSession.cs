@@ -4,6 +4,7 @@ using LoomTerminal.Core;
 using LoomTerminal.Core.Services;
 using LoomTerminal.Presentation.Input;
 using LoomTerminal.Presentation.Rendering;
+using LoomTerminal.Presentation.Selection;
 using LoomTerminal.Presentation.Theming;
 using LoomTerminal.Presentation.Viewport;
 using LoomTerminal.Pty;
@@ -32,6 +33,7 @@ public sealed class TerminalSession : IDisposable
     private readonly KeyInputHandler _keyHandler = new();
     private readonly RenderFrameBuilder _builder;
     private readonly ViewportController _viewport;
+    private readonly SelectionService _selection;
     private readonly Lock _frameLock = new();
     private readonly Lock _postLock = new();
     private RenderFrame? _latestFrame;
@@ -55,6 +57,7 @@ public sealed class TerminalSession : IDisposable
         Palette = new ThemePalette(options.Theme);
         _builder = new RenderFrameBuilder(_core, Palette);
         _viewport = new ViewportController(_core);
+        _selection = new SelectionService(_core.BufferService, _core.CoreService, _core.OptionsService, OperatingSystem.IsWindows(), OperatingSystem.IsMacOS());
         _core.OnColor.Subscribe(requests =>
         {
             foreach (var reply in Palette.Apply(requests))
@@ -79,6 +82,9 @@ public sealed class TerminalSession : IDisposable
 
     /// <summary>Number of frames published so far (tests wait on it).</summary>
     internal long FramesPublished => Interlocked.Read(ref _framesPublished);
+
+    /// <summary>The selection logic; touch it on the parser thread only.</summary>
+    internal SelectionService Selection => _selection;
 
     /// <summary>The blink phase of the cursor: backends ask it each frame and schedule a frame at its next change.</summary>
     internal CursorBlinkState CursorBlink => _cursorBlink;
@@ -194,6 +200,16 @@ public sealed class TerminalSession : IDisposable
         Post(_ => _viewport.HandleWheel(ev, cellHeight));
     }
 
+    /// <summary>Selects all the text of the buffer, scrollback included.</summary>
+    public void SelectAll() => Post(_ => _selection.SelectAll());
+
+    /// <summary>Clears the selection.</summary>
+    public void ClearSelection() => Post(_ => _selection.ClearSelection());
+
+    /// <summary>Gets the selected text (empty when nothing is selected); lines are joined with CRLF on Windows and LF elsewhere.</summary>
+    /// <returns>The text.</returns>
+    public Task<string> GetSelectionTextAsync() => RunOnParserThreadAsync(_ => _selection.SelectionText);
+
     /// <summary>Sends typed text (character input, IME commit) to the shell as UTF-8, unchanged.</summary>
     /// <param name="text">The text.</param>
     public void SendText(string text)
@@ -280,6 +296,7 @@ public sealed class TerminalSession : IDisposable
             _thread.Join();
         }
 
+        _selection.Dispose();
         _viewport.Dispose();
         _builder.Dispose();
         _core.Dispose();
@@ -350,7 +367,14 @@ public sealed class TerminalSession : IDisposable
 
     private void PublishFrame()
     {
-        var view = new ViewState { IsFocused = _focused, CursorBlinkVisible = _cursorBlink.IsVisible(TimeProvider.System.GetTimestamp()) };
+        var view = new ViewState
+        {
+            IsFocused = _focused,
+            CursorBlinkVisible = _cursorBlink.IsVisible(TimeProvider.System.GetTimestamp()),
+            SelectionStart = _selection.SelectionStart,
+            SelectionEnd = _selection.SelectionEnd,
+            SelectionColumnMode = _selection.ActiveSelectionMode == SelectionMode.Column,
+        };
         var frame = _builder.Build(view);
         Interlocked.Increment(ref _framesPublished);
         bool raise;

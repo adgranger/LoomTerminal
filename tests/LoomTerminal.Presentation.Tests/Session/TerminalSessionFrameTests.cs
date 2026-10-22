@@ -136,4 +136,36 @@ public partial class TerminalSessionFrameTests
 
         Assert.Equal(CursorShape.Outline, session.TryTakeFrame()!.Cursor!.Shape);
     }
+
+    [Fact]
+    public async Task SelectAll_selects_the_text_and_shows_the_selection_in_the_next_frame()
+    {
+        var fake = new FakePtyConnection();
+        using var session = TerminalSession.Attach(fake, 80, 24);
+        await EmitAndWaitForFrameAsync(fake, session, "hello world");
+        var before = session.FramesPublished;
+
+        session.SelectAll();
+        await WaitUntilAsync(() => session.FramesPublished > before);
+
+        Assert.StartsWith("hello world", await session.GetSelectionTextAsync(), StringComparison.Ordinal);
+        Assert.NotNull(session.TryTakeFrame()!.Selection);
+
+        session.ClearSelection();
+        Assert.Equal(string.Empty, await session.GetSelectionTextAsync());
+    }
+
+    [Fact]
+    public async Task Typing_clears_the_selection()
+    {
+        var fake = new FakePtyConnection();
+        using var session = TerminalSession.Attach(fake, 80, 24);
+        await EmitAndWaitForFrameAsync(fake, session, "hello");
+        session.SelectAll();
+        Assert.NotEqual(string.Empty, await session.GetSelectionTextAsync());
+
+        session.SendText("x");
+
+        Assert.Equal(string.Empty, await session.GetSelectionTextAsync());
+    }
 }

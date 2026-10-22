@@ -21,6 +21,8 @@ internal sealed class RenderFrameBuilder : IDisposable
     private bool _allDirty = true;
     private ulong _version;
     private IBuffer? _lastBuffer;
+    private bool _lastFocused = true;
+    private ((int X, int Y)? Start, (int X, int Y)? End, bool Column) _lastSelection;
 
     /// <summary>Creates a builder over <paramref name="core"/> and <paramref name="palette"/>.</summary>
     /// <param name="core">The emulator.</param>
@@ -50,6 +52,18 @@ internal sealed class RenderFrameBuilder : IDisposable
             _allDirty = true;
         }
 
+        // The selection and the focus change colors anywhere on the screen.
+        var selectionState = (view.SelectionStart, view.SelectionEnd, view.SelectionColumnMode);
+        if (selectionState != _lastSelection || view.IsFocused != _lastFocused)
+        {
+            _lastSelection = selectionState;
+            _lastFocused = view.IsFocused;
+            _allDirty = true;
+        }
+
+        var selection = new SelectionRenderModel();
+        selection.Update(buffer.YDisp, rows, view.SelectionStart, view.SelectionEnd, view.SelectionColumnMode);
+
         var dirty = new HashSet<int>();
         if (_allDirty)
         {
@@ -69,7 +83,7 @@ internal sealed class RenderFrameBuilder : IDisposable
         var lines = new List<RenderRow>(rows);
         for (var y = 0; y < rows; y++)
         {
-            lines.Add(BuildRow(buffer.Lines.Get(buffer.YDisp + y), cols, resolver, view));
+            lines.Add(BuildRow(buffer.Lines.Get(buffer.YDisp + y), y, cols, resolver, view, selection));
         }
 
         return new RenderFrame(
@@ -82,7 +96,10 @@ internal sealed class RenderFrameBuilder : IDisposable
             buffer.YBase,
             ReferenceEquals(buffer, _core.Buffers.Alt),
             ++_version,
-            dirty);
+            dirty,
+            selection.HasSelection
+                ? new SelectionRange(selection.StartCol, selection.ViewportStartRow, selection.EndCol, selection.ViewportEndRow, selection.ColumnSelectMode)
+                : null);
     }
 
     /// <summary>Stops listening to the emulator.</summary>
@@ -128,7 +145,7 @@ internal sealed class RenderFrameBuilder : IDisposable
         return _resolver;
     }
 
-    private RenderRow BuildRow(IBufferLine? line, int cols, CellColorResolver resolver, ViewState view)
+    private RenderRow BuildRow(IBufferLine? line, int y, int cols, CellColorResolver resolver, ViewState view, SelectionRenderModel selection)
     {
         if (line is null)
         {
@@ -146,7 +163,7 @@ internal sealed class RenderFrameBuilder : IDisposable
             widths[x] = width;
             var chars = _cell.GetChars();
             texts[x] = chars.Length == 0 ? " " : chars;
-            styles[x] = ResolveStyle(resolver, _cell, view);
+            styles[x] = ResolveStyle(resolver, _cell, view, selection.IsCellSelected(x, y));
             if (width == 0)
             {
                 // The second half of a wide character belongs to the content of the first.
@@ -207,9 +224,9 @@ internal sealed class RenderFrameBuilder : IDisposable
         && !style.Overline
         && !style.IsLink;
 
-    private static TextRunStyle ResolveStyle(CellColorResolver resolver, CellData cell, ViewState view)
+    private static TextRunStyle ResolveStyle(CellColorResolver resolver, CellData cell, ViewState view, bool isSelected)
     {
-        var colors = resolver.Resolve(cell, (int)cell.GetCode(), isSelected: false, view.IsFocused);
+        var colors = resolver.Resolve(cell, (int)cell.GetCode(), isSelected, view.IsFocused);
         var underline = cell.IsUnderline() != 0 ? (TerminalUnderlineStyle)(int)cell.GetUnderlineStyle() : TerminalUnderlineStyle.None;
         return new TextRunStyle(
             colors.Foreground,

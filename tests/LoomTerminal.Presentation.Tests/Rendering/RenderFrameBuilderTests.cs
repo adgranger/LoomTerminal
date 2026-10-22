@@ -213,4 +213,30 @@ public sealed class RenderFrameBuilderTests : IDisposable
 
         Assert.Equal(CursorShape.Bar, builder.Build(ViewState.Default).Cursor!.Shape);
     }
+
+    [Fact]
+    public void A_selection_is_reported_and_colors_its_cells()
+    {
+        _core.Write("abcdef");
+
+        var frame = Build(new ViewState { SelectionStart = (0, 0), SelectionEnd = (3, 0) });
+
+        Assert.Equal(new SelectionRange(0, 0, 3, 0, false), frame.Selection);
+        var runs = frame.Lines[0].Runs;
+        Assert.Equal(("abc", 0), (runs[0].Text, runs[0].Column));
+        Assert.Equal(_palette.SelectionBackgroundOpaque.Rgba, runs[0].Style.Background);
+        Assert.Equal(("def", 3), (runs[1].Text, runs[1].Column));
+        Assert.Equal(_palette.Background.Rgba, runs[1].Style.Background);
+    }
+
+    [Fact]
+    public void A_selection_outside_the_viewport_is_not_reported_and_a_change_marks_every_row_dirty()
+    {
+        Build();
+
+        var frame = Build(new ViewState { SelectionStart = (0, 100), SelectionEnd = (3, 100) });
+
+        Assert.Null(frame.Selection);
+        Assert.Equal(Enumerable.Range(0, 5).ToHashSet(), frame.DirtyRows);
+    }
 }

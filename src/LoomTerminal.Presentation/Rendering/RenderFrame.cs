@@ -106,6 +106,15 @@ public sealed record RenderRow(IReadOnlyList<RenderRun> Runs, bool IsWrapped, in
 /// <remarks>Threading: immutable; any thread may use it.</remarks>
 public sealed record RenderCursor(int Column, int Row, CursorShape Shape, bool Visible, uint Color, uint AccentColor, string CellText);
 
+/// <summary>The selection, in viewport coordinates.</summary>
+/// <param name="StartColumn">Column of the start (inclusive).</param>
+/// <param name="StartRow">Row of the start; negative when the selection starts above the viewport.</param>
+/// <param name="EndColumn">Column of the end (exclusive).</param>
+/// <param name="EndRow">Row of the end; beyond the last row when the selection ends below the viewport.</param>
+/// <param name="IsColumnMode">Whether the selection is a rectangle of columns.</param>
+/// <remarks>Threading: immutable; any thread may use it.</remarks>
+public sealed record SelectionRange(int StartColumn, int StartRow, int EndColumn, int EndRow, bool IsColumnMode);
+
 /// <summary>Immutable snapshot of what a backend draws.</summary>
 /// <param name="Columns">Number of columns.</param>
 /// <param name="Rows">Number of visible rows.</param>
@@ -117,6 +126,7 @@ public sealed record RenderCursor(int Column, int Row, CursorShape Shape, bool V
 /// <param name="IsAlternateBuffer">Whether the alternate screen is active.</param>
 /// <param name="Version">Incremented for each frame.</param>
 /// <param name="DirtyRows">Rows that changed since the previous frame; all rows after a scroll or a resize.</param>
+/// <param name="Selection">The selection; <see langword="null"/> when there is none or it is outside the viewport.</param>
 /// <remarks>Threading: immutable; any thread may use it.</remarks>
 public sealed record RenderFrame(
     int Columns,
@@ -128,4 +138,5 @@ public sealed record RenderFrame(
     int ScrollbackLength,
     bool IsAlternateBuffer,
     ulong Version,
-    IReadOnlySet<int> DirtyRows);
+    IReadOnlySet<int> DirtyRows,
+    SelectionRange? Selection);
