@@ -1,6 +1,6 @@
 # P3-02 — Key event model (`TerminalKeyEvent`)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-01
 - **Size:** S
 
@@ -35,14 +35,14 @@ Define the backend-neutral key event of ADR 0004 and the result type of key eval
 
 ## Tests
 
-- [ ] New: record equality and `with` work; `DomKeyCodes` values spot-checked against the DOM spec.
+- [x] New: record equality and `with` work; `DomKeyCodes` values spot-checked against the DOM spec.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

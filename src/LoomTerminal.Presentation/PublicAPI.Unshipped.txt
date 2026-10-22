@@ -1,1 +1,108 @@
 #nullable enable
+const LoomTerminal.Presentation.Input.DomKeyCodes.Alt = 18 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.ArrowDown = 40 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.ArrowLeft = 37 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.ArrowRight = 39 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.ArrowUp = 38 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Backquote = 192 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Backslash = 220 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Backspace = 8 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.BracketLeft = 219 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.BracketRight = 221 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Comma = 188 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Ctrl = 17 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Delete = 46 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit0 = 48 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit1 = 49 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit2 = 50 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit3 = 51 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit4 = 52 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit5 = 53 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit6 = 54 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit7 = 55 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit8 = 56 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Digit9 = 57 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.End = 35 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Enter = 13 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Equal = 187 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Escape = 27 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F1 = 112 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F10 = 121 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F11 = 122 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F12 = 123 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F2 = 113 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F3 = 114 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F4 = 115 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F5 = 116 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F6 = 117 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F7 = 118 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F8 = 119 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.F9 = 120 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Home = 36 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Insert = 45 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyA = 65 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyB = 66 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyC = 67 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyD = 68 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyE = 69 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyF = 70 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyG = 71 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyH = 72 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyI = 73 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyJ = 74 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyK = 75 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyL = 76 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyM = 77 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyN = 78 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyO = 79 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyP = 80 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyQ = 81 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyR = 82 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyS = 83 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyT = 84 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyU = 85 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyV = 86 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyW = 87 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyX = 88 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyY = 89 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.KeyZ = 90 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Minus = 189 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.PageDown = 34 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.PageUp = 33 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Period = 190 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Quote = 222 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Semicolon = 186 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Shift = 16 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Slash = 191 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Space = 32 -> int
+const LoomTerminal.Presentation.Input.DomKeyCodes.Tab = 9 -> int
+LoomTerminal.Presentation.Input.DomKeyCodes
+LoomTerminal.Presentation.Input.TerminalKeyEvent
+LoomTerminal.Presentation.Input.TerminalKeyEvent.<Clone>$() -> LoomTerminal.Presentation.Input.TerminalKeyEvent!
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Alt.get -> bool
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Alt.init -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.AltGraph.get -> bool
+LoomTerminal.Presentation.Input.TerminalKeyEvent.AltGraph.init -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Ctrl.get -> bool
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Ctrl.init -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Deconstruct(out int KeyCode, out string! Key, out bool Ctrl, out bool Alt, out bool Shift, out bool Meta, out LoomTerminal.Presentation.Input.TerminalKeyEventType Type) -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Equals(LoomTerminal.Presentation.Input.TerminalKeyEvent? other) -> bool
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Key.get -> string!
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Key.init -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.KeyCode.get -> int
+LoomTerminal.Presentation.Input.TerminalKeyEvent.KeyCode.init -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Meta.get -> bool
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Meta.init -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Shift.get -> bool
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Shift.init -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.TerminalKeyEvent(int KeyCode, string! Key, bool Ctrl, bool Alt, bool Shift, bool Meta, LoomTerminal.Presentation.Input.TerminalKeyEventType Type) -> void
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Type.get -> LoomTerminal.Presentation.Input.TerminalKeyEventType
+LoomTerminal.Presentation.Input.TerminalKeyEvent.Type.init -> void
+LoomTerminal.Presentation.Input.TerminalKeyEventType
+LoomTerminal.Presentation.Input.TerminalKeyEventType.KeyDown = 0 -> LoomTerminal.Presentation.Input.TerminalKeyEventType
+LoomTerminal.Presentation.Input.TerminalKeyEventType.KeyPress = 1 -> LoomTerminal.Presentation.Input.TerminalKeyEventType
+override LoomTerminal.Presentation.Input.TerminalKeyEvent.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Input.TerminalKeyEvent.GetHashCode() -> int
+override LoomTerminal.Presentation.Input.TerminalKeyEvent.ToString() -> string!
+static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator !=(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
+static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator ==(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
