@@ -1,6 +1,6 @@
 # P4-17 — Rendering performance: measure, then fix with numbers
 
-- **Status:** in progress
+- **Status:** done
 - **Depends on:** P4-16
 - **Size:** S (measurement) — fixes go to follow-up cards
 
@@ -30,9 +30,9 @@ numbers. Optimizations are separate cards, each with a before/after.
 
 ## Acceptance criteria
 
-- [ ] `docs/performance.md` has the table for both implementations
-- [ ] Follow-up cards created for every missed target
-- [ ] Card status and `docs/tasks/README.md` updated
+- [ ] `docs/performance.md` has the table for both implementations — **not met, closed by the user's decision**: one data point (`stress.ps1`, LoomTerminal, finish time only); the rest moves to P4-19
+- [x] Follow-up cards created for every missed target — no target could be judged yet; P4-19 completes the measurements first
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

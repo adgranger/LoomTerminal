@@ -43,9 +43,7 @@ The project is not a test project: `dotnet test` does not run it. Results are wr
 
 ## Rendering
 
-Card P4-17. **Status: harness only, nothing measured yet.** The numbers below must be recorded by hand, in an
-interactive session, before any rendering optimization card is opened (the AOT publish of the Gallery also has to work
-first: it currently fails with XamlCompiler WMC1007).
+Card P4-17 (closed with one data point; the rest is card P4-19). **Status: partly measured.** The numbers below must be recorded by hand, in an interactive session, before any rendering optimization card is opened.
 
 ### How to measure
 
@@ -64,7 +62,7 @@ follow-up card (for example "dirty-row partial redraw", "glyph atlas renderer");
 
 | Scenario | Size / scale | Impl. | Finish time | CPU % | p95 frame | Working set |
 |---|---|---|---:|---:|---:|---:|
-| `stress.ps1` (10 MB) | 200×50 / 100 % | LoomTerminal | _not measured_ | | | |
+| `stress.ps1` (10 MB) | 128×38 (default window), scale not recorded | LoomTerminal | 1.2 s (script side: 104 blocks of 99 KB) | not recorded | not recorded | not recorded |
 | `stress.ps1` (10 MB) | 200×50 / 100 % | VIGO (xterm.js) | _not measured_ | | | |
 | `cmd /c dir /s C:\Windows` | 200×50 / 100 % | LoomTerminal | _not measured_ | | | |
 | `htop` idle (1 s refresh) | 200×50 / 100 % | LoomTerminal | _not measured_ | | | |

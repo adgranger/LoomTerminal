@@ -218,8 +218,9 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P4-16](phase-4/P4-16-gallery.md) | Gallery: shells in tabs, settings, demo scripts | P4-14, P4-15, P4-11, P4-09, P4-04 | M | done |
-| [P4-17](phase-4/P4-17-performance.md) | Rendering performance: measure, then fix with numbers | P4-16 | S | in progress |
+| [P4-17](phase-4/P4-17-performance.md) | Rendering performance: measure, then fix with numbers | P4-16 | S | done |
 | [P4-18](phase-4/P4-18-close-phase-4.md) | Close phase 4 | all P4 cards (follow-up optimization cards may stay open) | S | todo |
+| [P4-19](phase-4/P4-19-complete-rendering-measurements.md) | Complete the rendering measurements | P4-17 | S | todo |
 
 ## Phase 5 — Integration into VIGO
 
@@ -262,4 +263,4 @@ Native spawn shim, Unix pty, cross-platform CI.
 | [P7-06](phase-7/P7-06-avalonia-linux-macos.md) | Avalonia on Linux and macOS: platform details | P7-04, P7-05 | M | todo |
 | [P7-07](phase-7/P7-07-close-phase-7.md) | Close phase 7 and prepare 1.0 | all P7 cards | S | todo |
 
-**125 cards.** Status values: `todo`, `in progress`, `done`. Follow-up cards found while working are added at the end of their phase, numbered after its last card.
+**126 cards.** Status values: `todo`, `in progress`, `done`. Follow-up cards found while working are added at the end of their phase, numbered after its last card.
