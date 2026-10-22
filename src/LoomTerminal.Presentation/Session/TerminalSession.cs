@@ -188,6 +188,9 @@ public sealed partial class TerminalSession : IDisposable
         Post(_ => { });
     }
 
+    /// <summary>Publishes a fresh frame (the blink phase of the cursor changed).</summary>
+    internal void RefreshFrame() => Post(_ => { });
+
     /// <summary>Scrolls the viewport by <paramref name="lines"/> (negative scrolls up).</summary>
     /// <param name="lines">Number of lines.</param>
     public void ScrollLines(int lines) => Post(core => core.ScrollLines(lines));

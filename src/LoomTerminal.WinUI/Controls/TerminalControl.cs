@@ -17,8 +17,8 @@ namespace LoomTerminal.WinUI.Controls;
 /// </example>
 /// <remarks>
 /// <para>
-/// In progress (phase 4): backgrounds and text runs are drawn; decorations, the cursor and frame scheduling
-/// come with the next cards, see docs/ROADMAP.md.
+/// In progress (phase 4): the grid is drawn and sized to the control; input and the scrollbar come with the
+/// next cards, see docs/ROADMAP.md.
 /// </para>
 /// <para>Threading: like every WinUI control, use it on the UI thread only.</para>
 /// </remarks>
@@ -37,6 +37,7 @@ public sealed partial class TerminalControl : Control
     {
         DefaultStyleKey = typeof(TerminalControl);
         Unloaded += OnUnloaded;
+        InitializeLayout();
     }
 
     /// <inheritdoc />
@@ -53,8 +54,8 @@ public sealed partial class TerminalControl : Control
 
     private void OnCanvasDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
-        var scale = XamlRoot?.RasterizationScale ?? 1.0;
-        var font = new TerminalFont(FontFamily.Source.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries), FontSize, LineHeight);
+        var scale = _scale;
+        var font = CurrentFont();
         var metrics = (_measurer ??= new Win2DTextMeasurer(sender)).Measure(font, scale);
         var frame = _session?.TryTakeFrame() ?? _lastFrame;
         if (frame is null)
@@ -75,9 +76,16 @@ public sealed partial class TerminalControl : Control
         _measurer?.Invalidate();
         _measurer = null;
         _layoutCache.Clear();
+        RequestFrame();
     }
 
-    private void OnUnloaded(object sender, RoutedEventArgs e) => DetachCanvas();
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _frames?.Cancel();
+        _blinkTimer?.Stop();
+        StopObservingRoot();
+        DetachCanvas();
+    }
 
     private void DetachCanvas()
     {

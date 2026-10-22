@@ -43,17 +43,21 @@ public sealed partial class TerminalControl : ILinkHandler
                 old.TitleChanged -= OnSessionTitleChanged;
                 old.Exited -= OnSessionExited;
                 old.Bell -= OnSessionBell;
+                old.FrameAvailable -= OnSessionFrameAvailable;
                 old.KeyPreview = null;
                 old.LinkHandler = null;
             }
 
             _session = value;
+            (_columns, _rows) = (0, 0);
+            RequestFrame();
 
             if (value is not null)
             {
                 value.TitleChanged += OnSessionTitleChanged;
                 value.Exited += OnSessionExited;
                 value.Bell += OnSessionBell;
+                value.FrameAvailable += OnSessionFrameAvailable;
                 value.KeyPreview = OnSessionKeyPreview;
                 value.LinkHandler = this;
             }
