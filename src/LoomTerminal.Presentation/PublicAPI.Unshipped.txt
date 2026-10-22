@@ -192,6 +192,7 @@ LoomTerminal.Presentation.Rendering.CursorShape.Bar = 2 -> LoomTerminal.Presenta
 LoomTerminal.Presentation.Rendering.CursorShape.Block = 0 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Outline = 3 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Underline = 1 -> LoomTerminal.Presentation.Rendering.CursorShape
+LoomTerminal.Presentation.Rendering.FrameRenderer
 LoomTerminal.Presentation.Rendering.IRenderSurface
 LoomTerminal.Presentation.Rendering.IRenderSurface.Clear(uint rgba) -> void
 LoomTerminal.Presentation.Rendering.IRenderSurface.DrawLine(double x1, double y1, double x2, double y2, double thickness, uint rgba) -> void
@@ -540,6 +541,7 @@ static LoomTerminal.Presentation.Input.TerminalPointerEvent.operator !=(LoomTerm
 static LoomTerminal.Presentation.Input.TerminalPointerEvent.operator ==(LoomTerminal.Presentation.Input.TerminalPointerEvent? left, LoomTerminal.Presentation.Input.TerminalPointerEvent? right) -> bool
 static LoomTerminal.Presentation.Rendering.CellMetrics.operator !=(LoomTerminal.Presentation.Rendering.CellMetrics left, LoomTerminal.Presentation.Rendering.CellMetrics right) -> bool
 static LoomTerminal.Presentation.Rendering.CellMetrics.operator ==(LoomTerminal.Presentation.Rendering.CellMetrics left, LoomTerminal.Presentation.Rendering.CellMetrics right) -> bool
+static LoomTerminal.Presentation.Rendering.FrameRenderer.Render(LoomTerminal.Presentation.Rendering.RenderFrame! frame, in LoomTerminal.Presentation.Rendering.CellMetrics metrics, LoomTerminal.Presentation.Rendering.IRenderSurface! surface) -> void
 static LoomTerminal.Presentation.Rendering.RenderCursor.operator !=(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderCursor.operator ==(LoomTerminal.Presentation.Rendering.RenderCursor? left, LoomTerminal.Presentation.Rendering.RenderCursor? right) -> bool
 static LoomTerminal.Presentation.Rendering.RenderFrame.operator !=(LoomTerminal.Presentation.Rendering.RenderFrame? left, LoomTerminal.Presentation.Rendering.RenderFrame? right) -> bool

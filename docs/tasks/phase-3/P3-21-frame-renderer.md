@@ -1,6 +1,6 @@
 # P3-21 — `FrameRenderer`: from a render frame to draw calls
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-20, P3-14, P3-11
 - **Size:** M
 
@@ -36,16 +36,16 @@ right order (background, selection, text, decorations, cursor). Backends only im
 
 ## Tests
 
-- [ ] New (with `RecordingRenderSurface` and `FakeTextMeasurer`): golden text outputs for: plain text; colored
+- [x] New (with `RecordingRenderSurface` and `FakeTextMeasurer`): golden text outputs for: plain text; colored
       backgrounds merged; selection over two lines; each cursor shape; curly underline over two runs continuous
       (variant offset); wide char run.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
