@@ -9,8 +9,12 @@
 - **xterm.js, ported faithfully**: same parser state machine, same buffer model, xterm.js tests ported.
 - **MIT licensed.** Sibling project of [LoomEditor](https://github.com/adgranger/LoomEditor) (Monaco for WinUI 3).
 
-> **Status: skeleton (pre-alpha).** `LoomTerminal.Pty` works (Windows ConPTY, extracted from the VIGO Git client);
-> the emulator core (`LoomTerminal.Core`, phase 1) is ported from xterm.js and checked against xterm.js on 40 scenarios and 4 recorded ConPTY sessions (phase 2); the presentation layer and the renderer are not written yet. See [docs/ROADMAP.md](docs/ROADMAP.md).
+> **Status: `0.1.0-alpha`.** `LoomTerminal.Pty` (Windows ConPTY), the emulator core (`LoomTerminal.Core`, ported from
+> xterm.js and checked against it), the presentation layer and the WinUI 3 control (`LoomTerminal.WinUI`, see its
+> [README](src/LoomTerminal.WinUI/README.md)) are written; the Gallery sample runs real shells in tabs. Packages are
+> built locally, not published yet. See [docs/ROADMAP.md](docs/ROADMAP.md).
+
+<!-- TODO: screenshot of the Gallery (docs/images/gallery.png), to be taken by hand: ![Gallery](docs/images/gallery.png) -->
 
 ## Packages
 

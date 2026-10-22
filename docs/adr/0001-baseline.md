@@ -29,9 +29,11 @@ first and Avalonia second.
 
 ## Known issues
 
-- **AOT publish drops the app's PRI file** (Windows App SDK 2.5.1, .NET 11 RC1): the app crashes with "Cannot
+- **AOT publish drops the app's PRI file** (Windows App SDK 2.5.1, .NET 11 RC1 and rc.2): the app crashes with "Cannot
   locate resource from 'ms-appx:///MainWindow.xaml'". Worked around by
   `src/LoomTerminal.WinUI/buildTransitive/LoomTerminal.WinUI.targets` (same as LoomEditor). Delete it once fixed.
 - **Local AOT publish needs the Visual Studio C++ workload** ("Desktop development with C++", component
   `Microsoft.VisualStudio.Component.VC.Tools.x86.x64`). Without it, ILCompiler fails with "vswhere.exe failed to
   locate Visual Studio". CI runners have it.
+- **Optimized AOT publish fails with WMC1007** (.NET SDK 11 rc.2): `PrepareResources` runs before
+  `ResolveReferences`. `UseOptimizedPublish=false` in the Gallery csproj works around it. Remove when fixed.
