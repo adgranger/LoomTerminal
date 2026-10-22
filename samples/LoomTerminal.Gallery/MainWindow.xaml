@@ -7,6 +7,8 @@
     <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,Auto">
         <TabView
             x:Name="Tabs"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
             Grid.Column="0"
             AddTabButtonClick="OnAddTabButtonClick"
             SelectionChanged="OnTabSelectionChanged"
@@ -61,6 +63,10 @@
                     x:Name="BlinkSwitch"
                     Header="Cursor blink"
                     Toggled="OnSettingChanged" />
+                <ToggleSwitch
+                    x:Name="MeasureSwitch"
+                    Header="Frame statistics"
+                    Toggled="OnMeasureToggled" />
             </StackPanel>
         </ScrollViewer>
 

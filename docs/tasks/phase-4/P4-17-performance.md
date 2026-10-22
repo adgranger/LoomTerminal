@@ -1,6 +1,6 @@
 # P4-17 — Rendering performance: measure, then fix with numbers
 
-- **Status:** todo
+- **Status:** in progress
 - **Depends on:** P4-16
 - **Size:** S (measurement) — fixes go to follow-up cards
 

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using LoomTerminal.Gallery.Diagnostics;
 using LoomTerminal.Presentation.Input;
 using LoomTerminal.Presentation.Session;
 using LoomTerminal.Presentation.Theming;
@@ -22,7 +24,11 @@ public sealed partial class MainWindow : Window
     private static readonly TerminalTheme DarkThemeColors =
         new() { Foreground = "#cccccc", Background = "#1e1e1e", Cursor = "#aeafad", SelectionBackground = "#264f78" };
 
+    private const int MaxIntervals = 3600;
+
     private readonly DispatcherQueueTimer _statusTimer;
+    private readonly List<double> _intervals = [];
+    private long _lastTick;
 
     /// <summary>Creates the window and opens a tab for the first detected shell.</summary>
     public MainWindow()
@@ -39,6 +45,7 @@ public sealed partial class MainWindow : Window
         Closed += (_, _) =>
         {
             _statusTimer.Stop();
+            CompositionTarget.Rendering -= OnRendering;
             foreach (var tab in Tabs.TabItems.OfType<TabViewItem>().ToList())
             {
                 CloseTab(tab);
@@ -129,8 +136,46 @@ public sealed partial class MainWindow : Window
         terminal.CursorBlink = BlinkSwitch.IsOn;
     }
 
-    private void UpdateStatus() =>
-        StatusText.Text = CurrentTerminal is { } t
-            ? $"{t.Columns}×{t.Rows}   frame {t.LastFrameTime.TotalMilliseconds:F1} ms"
-            : string.Empty;
+    // Subscribing keeps the compositor ticking at 60 Hz, which distorts idle CPU: off by default.
+    private void OnMeasureToggled(object sender, RoutedEventArgs e)
+    {
+        _intervals.Clear();
+        _lastTick = 0;
+        if (MeasureSwitch.IsOn)
+        {
+            CompositionTarget.Rendering += OnRendering;
+        }
+        else
+        {
+            CompositionTarget.Rendering -= OnRendering;
+        }
+    }
+
+    private void OnRendering(object? sender, object e)
+    {
+        long now = Stopwatch.GetTimestamp();
+        if (_lastTick != 0)
+        {
+            if (_intervals.Count == MaxIntervals)
+            {
+                _intervals.RemoveAt(0);
+            }
+
+            _intervals.Add(Stopwatch.GetElapsedTime(_lastTick, now).TotalMilliseconds);
+        }
+
+        _lastTick = now;
+    }
+
+    private void UpdateStatus()
+    {
+        if (CurrentTerminal is not { } t)
+        {
+            StatusText.Text = string.Empty;
+            return;
+        }
+
+        string text = $"{t.Columns}×{t.Rows}   frame {t.LastFrameTime.TotalMilliseconds:F1} ms";
+        StatusText.Text = MeasureSwitch.IsOn ? $"{text}   {FrameStatistics.Compute(_intervals).Format()}" : text;
+    }
 }
