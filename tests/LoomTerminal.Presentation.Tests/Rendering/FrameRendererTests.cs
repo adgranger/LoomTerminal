@@ -128,4 +128,18 @@ public class FrameRendererTests
             "Clear #000000ff\nText 0,1 \"世\" cells=2 fg=#ffffffff\nLine 8,8.5 24,8.5 t=1 #ffffffff",
             text);
     }
+
+    [Fact]
+    public void An_IME_composition_is_drawn_underlined_at_the_cursor_over_the_cell_count_of_its_text()
+    {
+        var cursor = new RenderCursor(2, 1, CursorShape.Bar, true, 0x00ff00ff, 0x111111ff, "");
+        var metrics = new FakeTextMeasurer().Measure(new TerminalFont(["x"], 12), 1);
+        var surface = new RecordingRenderSurface();
+        FrameRenderer.Render(Frame([[], []], cursor), metrics, surface, compositionText: "日本a");
+
+        Assert.Equal(
+            "Clear #000000ff\nFillRect 16,16 1x16 #00ff00ff\nFillRect 16,16 40x16 #000000ff\n" +
+            "Text 1,2 \"日本a\" cells=5 fg=#00ff00ff\nUnderline SingleLine 16,30 w=40 #00ff00ff",
+            surface.Text);
+    }
 }

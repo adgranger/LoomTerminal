@@ -25,7 +25,8 @@ public static class FrameRenderer
     /// <param name="metrics">The cell metrics.</param>
     /// <param name="surface">Where to draw.</param>
     /// <param name="customGlyphs">Whether box-drawing, block, shade and powerline characters are drawn as vectors instead of font glyphs.</param>
-    public static void Render(RenderFrame frame, in CellMetrics metrics, IRenderSurface surface, bool customGlyphs = true)
+    /// <param name="compositionText">The IME composition not yet committed; drawn underlined at the cursor, over everything else.</param>
+    public static void Render(RenderFrame frame, in CellMetrics metrics, IRenderSurface surface, bool customGlyphs = true, string? compositionText = null)
     {
         surface.Clear(frame.Background);
         for (var row = 0; row < frame.Lines.Count; row++)
@@ -43,6 +44,29 @@ public static class FrameRenderer
         {
             DrawCursor(cursor, metrics, surface, customGlyphs);
         }
+
+        if (!string.IsNullOrEmpty(compositionText) && frame.Cursor is { } at)
+        {
+            DrawComposition(compositionText, at, frame.Background, metrics, surface);
+        }
+    }
+
+    // Nothing is sent to the shell until the IME commits (xterm.js CompositionHelper): the text is only an overlay.
+    private static void DrawComposition(string text, RenderCursor at, uint background, in CellMetrics metrics, IRenderSurface surface)
+    {
+        var cells = 0;
+        var graphemes = StringInfo.GetTextElementEnumerator(text);
+        while (graphemes.MoveNext())
+        {
+            cells += Math.Max(1, Unicode.Wcwidth(char.ConvertToUtf32((string)graphemes.Current, 0)));
+        }
+
+        var x = at.Column * metrics.Width;
+        var y = at.Row * metrics.Height;
+        var style = new TextRunStyle(at.Color, background, false, false, false, TerminalUnderlineStyle.SingleLine, null, false, false, false, RunHighlight.None);
+        surface.FillRectangle(x, y, cells * metrics.Width, metrics.Height, background);
+        surface.DrawTextRun(at.Row, at.Column, text, cells, style, metrics);
+        surface.DrawUnderline(x, y + metrics.UnderlinePosition, cells * metrics.Width, TerminalUnderlineStyle.SingleLine, at.Color, metrics);
     }
 
     private static void DrawBackgrounds(RenderFrame frame, int row, in CellMetrics metrics, IRenderSurface surface)
