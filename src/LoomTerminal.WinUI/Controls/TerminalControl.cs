@@ -1,9 +1,9 @@
-using Microsoft.Graphics.Canvas.Text;
+using LoomTerminal.Presentation.Rendering;
+using LoomTerminal.WinUI.Rendering;
+using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using Windows.UI;
 
 namespace LoomTerminal.WinUI.Controls;
 
@@ -17,8 +17,8 @@ namespace LoomTerminal.WinUI.Controls;
 /// </example>
 /// <remarks>
 /// <para>
-/// Skeleton: the control only proves the chain (template, Win2D canvas, Native AOT). The emulator
-/// (LoomTerminal.Core) and the renderer come in phases 1 to 4, see docs/ROADMAP.md.
+/// In progress (phase 4): backgrounds and text runs are drawn; decorations, the cursor and frame scheduling
+/// come with the next cards, see docs/ROADMAP.md.
 /// </para>
 /// <para>Threading: like every WinUI control, use it on the UI thread only.</para>
 /// </remarks>
@@ -27,7 +27,10 @@ public sealed partial class TerminalControl : Control
 {
     private const string CanvasPartName = "PART_Canvas";
 
+    private readonly TextRunLayoutCache _layoutCache = new(256);
     private CanvasControl? _canvas;
+    private Win2DTextMeasurer? _measurer;
+    private RenderFrame? _lastFrame;
 
     /// <summary>Creates the control.</summary>
     public TerminalControl()
@@ -45,14 +48,33 @@ public sealed partial class TerminalControl : Control
         _canvas = GetTemplateChild(CanvasPartName) as CanvasControl
             ?? throw new InvalidOperationException($"The TerminalControl template must contain a CanvasControl named '{CanvasPartName}'.");
         _canvas.Draw += OnCanvasDraw;
+        _canvas.CreateResources += OnCanvasCreateResources;
     }
 
     private void OnCanvasDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
-        // Brushes set in XAML are SolidColorBrush in practice; anything else falls back to the default foreground.
-        Color foreground = Foreground is SolidColorBrush brush ? brush.Color : Color.FromArgb(0xFF, 0xCC, 0xCC, 0xCC);
-        using var format = new CanvasTextFormat { FontFamily = "Cascadia Mono", FontSize = (float)FontSize };
-        args.DrawingSession.DrawText("LoomTerminal — skeleton (the emulator comes in phase 1)", 12, 8, foreground, format);
+        var scale = XamlRoot?.RasterizationScale ?? 1.0;
+        var font = new TerminalFont(FontFamily.Source.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries), FontSize, LineHeight);
+        var metrics = (_measurer ??= new Win2DTextMeasurer(sender)).Measure(font, scale);
+        var frame = _session?.TryTakeFrame() ?? _lastFrame;
+        if (frame is null)
+        {
+            return;
+        }
+
+        _lastFrame = frame;
+        // 4 x rows x an average of 4 runs per row; the cache is cleared on a device change (CreateResources).
+        _layoutCache.Capacity = 16 * Math.Max(1, frame.Lines.Count);
+        var surface = new Win2DRenderSurface(args.DrawingSession, sender, _layoutCache, font, Win2DTextMeasurer.ResolveFamily(font), scale);
+        FrameRenderer.Render(frame, metrics, surface);
+    }
+
+    // Device (re)creation, or a DPI change: cached metrics and layouts belong to the old device.
+    private void OnCanvasCreateResources(CanvasControl sender, CanvasCreateResourcesEventArgs args)
+    {
+        _measurer?.Invalidate();
+        _measurer = null;
+        _layoutCache.Clear();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e) => DetachCanvas();
@@ -65,6 +87,8 @@ public sealed partial class TerminalControl : Control
         }
 
         _canvas.Draw -= OnCanvasDraw;
+        _canvas.CreateResources -= OnCanvasCreateResources;
+        _layoutCache.Clear();
         // Win2D: release the device resources of a control that leaves the tree, or they leak.
         _canvas.RemoveFromVisualTree();
         _canvas = null;
