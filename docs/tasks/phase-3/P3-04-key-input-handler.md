@@ -1,6 +1,6 @@
 # P3-04 — `KeyInputHandler`: from key event to pty bytes, with host shortcuts
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-03
 - **Size:** M
 
@@ -37,15 +37,15 @@ sequence, or whether the key is left to the backend's text input (printable char
 
 ## Tests
 
-- [ ] New: each rule above, one test per rule, plus: Ctrl+Alt+Q with `AltGraph = true` → `LeaveToTextInput` (`@` on
+- [x] New: each rule above, one test per rule, plus: Ctrl+Alt+Q with `AltGraph = true` → `LeaveToTextInput` (`@` on
       AZERTY); `ArrowUp` with `ApplicationCursorKeys` → `"\u001bOA"`; host preview returning `true` for Ctrl+Shift+T →
       `HandledByHost`; Ctrl+Shift+C without selection → still `Copy` (VIGO behavior: copies nothing).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

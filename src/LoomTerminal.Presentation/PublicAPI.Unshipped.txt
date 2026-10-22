@@ -77,6 +77,11 @@ const LoomTerminal.Presentation.Input.DomKeyCodes.Slash = 191 -> int
 const LoomTerminal.Presentation.Input.DomKeyCodes.Space = 32 -> int
 const LoomTerminal.Presentation.Input.DomKeyCodes.Tab = 9 -> int
 LoomTerminal.Presentation.Input.DomKeyCodes
+LoomTerminal.Presentation.Input.KeyPreviewEventArgs
+LoomTerminal.Presentation.Input.KeyPreviewEventArgs.Handled.get -> bool
+LoomTerminal.Presentation.Input.KeyPreviewEventArgs.Handled.set -> void
+LoomTerminal.Presentation.Input.KeyPreviewEventArgs.Key.get -> LoomTerminal.Presentation.Input.TerminalKeyEvent!
+LoomTerminal.Presentation.Input.KeyPreviewEventArgs.KeyPreviewEventArgs(LoomTerminal.Presentation.Input.TerminalKeyEvent! key) -> void
 LoomTerminal.Presentation.Input.TerminalKeyEvent
 LoomTerminal.Presentation.Input.TerminalKeyEvent.<Clone>$() -> LoomTerminal.Presentation.Input.TerminalKeyEvent!
 LoomTerminal.Presentation.Input.TerminalKeyEvent.Alt.get -> bool
