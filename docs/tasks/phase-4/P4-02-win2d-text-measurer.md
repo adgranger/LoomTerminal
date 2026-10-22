@@ -1,6 +1,6 @@
 # P4-02 — Win2D text measurer (cell metrics)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-01
 - **Size:** S
 
@@ -36,13 +36,13 @@ device pixels.
 
 ## Tests
 
-- [ ] Manual: log the metrics in the gallery for Cascadia Mono 12 at 100 % and 150 %; widths are whole device pixels.
+- [x] Manual: log the metrics in the gallery for Cascadia Mono 12 at 100 % and 150 %; widths are whole device pixels.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

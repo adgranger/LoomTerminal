@@ -188,7 +188,7 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P4-01](phase-4/P4-01-control-api-skeleton.md) | `TerminalControl` public API skeleton | P3-23 | S | done |
-| [P4-02](phase-4/P4-02-win2d-text-measurer.md) | Win2D text measurer (cell metrics) | P4-01 | S | todo |
+| [P4-02](phase-4/P4-02-win2d-text-measurer.md) | Win2D text measurer (cell metrics) | P4-01 | S | done |
 | [P4-03](phase-4/P4-03-win2d-render-surface.md) | Win2D render surface: backgrounds and text runs | P4-02 | M | todo |
 | [P4-04](phase-4/P4-04-custom-glyphs.md) | Box drawing, block elements and powerline glyphs as vectors | P4-03 | M | todo |
 | [P4-05](phase-4/P4-05-decorations-and-cursor.md) | Underlines, strikethrough, overline and the cursor in Win2D | P4-03 | S | todo |
