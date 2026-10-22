@@ -1,6 +1,6 @@
 # P3-07 — `TerminalTheme` and the 256-color palette
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-01, P1-26
 - **Size:** M
 
@@ -37,15 +37,15 @@ overrides (set / restore / query from P1-51's `OnColor` events).
 
 ## Tests
 
-- [ ] Port `ThemeService.test.ts` (skip tests about DOM-only behavior; list them).
-- [ ] New: OSC 4 set then query returns `rgb:rrrr/gggg/bbbb`; OSC 104 restores the theme value.
+- [x] Port `ThemeService.test.ts` (skip tests about DOM-only behavior; list them).
+- [x] New: OSC 4 set then query returns `rgb:rrrr/gggg/bbbb`; OSC 104 restores the theme value.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

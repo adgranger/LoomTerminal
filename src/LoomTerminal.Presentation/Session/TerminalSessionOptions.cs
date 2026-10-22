@@ -1,3 +1,5 @@
+using LoomTerminal.Presentation.Theming;
+
 namespace LoomTerminal.Presentation.Session;
 
 /// <summary>Shape of the text cursor.</summary>
@@ -37,6 +39,9 @@ public sealed record TerminalSessionOptions
     /// build of the running system on Windows and <see langword="null"/> elsewhere.
     /// </summary>
     public int? WindowsPtyBuildNumber { get; init; } = OperatingSystem.IsWindows() ? Environment.OSVersion.Version.Build : null;
+
+    /// <summary>Colors of the terminal; <see langword="null"/> uses the defaults.</summary>
+    public TerminalTheme? Theme { get; init; }
 
     /// <summary>Value of the <c>TERM_PROGRAM</c> environment variable of the shell, used by <see cref="TerminalSession.Start"/>.</summary>
     public string TermProgram { get; init; } = "LoomTerminal";

@@ -3,6 +3,7 @@ using System.Threading.Channels;
 using LoomTerminal.Core;
 using LoomTerminal.Core.Services;
 using LoomTerminal.Presentation.Input;
+using LoomTerminal.Presentation.Theming;
 using LoomTerminal.Pty;
 
 namespace LoomTerminal.Presentation.Session;
@@ -37,11 +38,22 @@ public sealed class TerminalSession : IDisposable
         _core.OnBinary.Subscribe(data => _connection.Write(Encoding.Latin1.GetBytes(data)));
         _core.OnTitleChange.Subscribe(title => TitleChanged?.Invoke(title));
         _core.OnBell.Subscribe(_ => Bell?.Invoke());
+        Palette = new ThemePalette(options.Theme);
+        _core.OnColor.Subscribe(requests =>
+        {
+            foreach (var reply in Palette.Apply(requests))
+            {
+                _core.CoreService.TriggerDataEvent(reply);
+            }
+        });
 
         _thread = new Thread(RunParser) { IsBackground = true, Name = "LoomTerminal parser" };
         _thread.Start();
         _ = PumpOutputAsync();
     }
+
+    /// <summary>The resolved colors, including the OSC overrides; touch it on the parser thread only.</summary>
+    internal ThemePalette Palette { get; }
 
     /// <summary>Raised when the shell exited and all its output was processed (parser thread). The argument is the exit code.</summary>
     public event Action<int>? Exited;

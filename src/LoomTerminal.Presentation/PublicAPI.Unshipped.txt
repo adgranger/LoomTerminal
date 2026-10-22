@@ -143,19 +143,78 @@ LoomTerminal.Presentation.Session.TerminalSessionOptions.TabStopWidth.init -> vo
 LoomTerminal.Presentation.Session.TerminalSessionOptions.TerminalSessionOptions() -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.TermProgram.get -> string!
 LoomTerminal.Presentation.Session.TerminalSessionOptions.TermProgram.init -> void
+LoomTerminal.Presentation.Session.TerminalSessionOptions.Theme.get -> LoomTerminal.Presentation.Theming.TerminalTheme?
+LoomTerminal.Presentation.Session.TerminalSessionOptions.Theme.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.WindowsPtyBuildNumber.get -> int?
 LoomTerminal.Presentation.Session.TerminalSessionOptions.WindowsPtyBuildNumber.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.WordSeparator.get -> string!
 LoomTerminal.Presentation.Session.TerminalSessionOptions.WordSeparator.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme
+LoomTerminal.Presentation.Theming.TerminalTheme.<Clone>$() -> LoomTerminal.Presentation.Theming.TerminalTheme!
+LoomTerminal.Presentation.Theming.TerminalTheme.Background.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Background.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Black.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Black.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Blue.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Blue.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightBlack.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightBlack.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightBlue.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightBlue.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightCyan.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightCyan.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightGreen.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightGreen.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightMagenta.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightMagenta.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightRed.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightRed.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightWhite.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightWhite.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightYellow.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.BrightYellow.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Cursor.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Cursor.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.CursorAccent.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.CursorAccent.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Cyan.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Cyan.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Equals(LoomTerminal.Presentation.Theming.TerminalTheme? other) -> bool
+LoomTerminal.Presentation.Theming.TerminalTheme.ExtendedAnsi.get -> System.Collections.Generic.IReadOnlyList<string!>?
+LoomTerminal.Presentation.Theming.TerminalTheme.ExtendedAnsi.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Foreground.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Foreground.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Green.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Green.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Magenta.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Magenta.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Red.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Red.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.SelectionBackground.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.SelectionBackground.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.SelectionForeground.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.SelectionForeground.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.SelectionInactiveBackground.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.SelectionInactiveBackground.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.TerminalTheme() -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.White.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.White.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.Yellow.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.Yellow.init -> void
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.GetHashCode() -> int
 override LoomTerminal.Presentation.Input.TerminalKeyEvent.ToString() -> string!
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.GetHashCode() -> int
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.ToString() -> string!
+override LoomTerminal.Presentation.Theming.TerminalTheme.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Theming.TerminalTheme.GetHashCode() -> int
+override LoomTerminal.Presentation.Theming.TerminalTheme.ToString() -> string!
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator !=(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
 static LoomTerminal.Presentation.Input.TerminalKeyEvent.operator ==(LoomTerminal.Presentation.Input.TerminalKeyEvent? left, LoomTerminal.Presentation.Input.TerminalKeyEvent? right) -> bool
 static LoomTerminal.Presentation.Session.TerminalSession.Attach(LoomTerminal.Pty.IPtyConnection! connection, int columns, int rows, LoomTerminal.Presentation.Session.TerminalSessionOptions? options = null) -> LoomTerminal.Presentation.Session.TerminalSession!
 static LoomTerminal.Presentation.Session.TerminalSession.Start(LoomTerminal.Pty.PtyStartOptions! pty, LoomTerminal.Presentation.Session.TerminalSessionOptions? options = null) -> LoomTerminal.Presentation.Session.TerminalSession!
 static LoomTerminal.Presentation.Session.TerminalSessionOptions.operator !=(LoomTerminal.Presentation.Session.TerminalSessionOptions? left, LoomTerminal.Presentation.Session.TerminalSessionOptions? right) -> bool
 static LoomTerminal.Presentation.Session.TerminalSessionOptions.operator ==(LoomTerminal.Presentation.Session.TerminalSessionOptions? left, LoomTerminal.Presentation.Session.TerminalSessionOptions? right) -> bool
+static LoomTerminal.Presentation.Theming.TerminalTheme.operator !=(LoomTerminal.Presentation.Theming.TerminalTheme? left, LoomTerminal.Presentation.Theming.TerminalTheme? right) -> bool
+static LoomTerminal.Presentation.Theming.TerminalTheme.operator ==(LoomTerminal.Presentation.Theming.TerminalTheme? left, LoomTerminal.Presentation.Theming.TerminalTheme? right) -> bool

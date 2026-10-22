@@ -1,6 +1,7 @@
 using LoomTerminal.Core;
 using LoomTerminal.Presentation.Input;
 using LoomTerminal.Presentation.Session;
+using LoomTerminal.Presentation.Theming;
 using LoomTerminal.Pty;
 
 namespace LoomTerminal.Presentation.Tests.Session;
@@ -144,6 +145,17 @@ public class TerminalSessionTests
         session.Paste("a\r\nb");
 
         await WaitUntilAsync(() => Task.FromResult(fake.Input == "\u001b[200~a\rb\u001b[201~"));
+    }
+
+    [Fact]
+    public async Task An_OSC_4_color_query_is_answered_with_the_themed_color()
+    {
+        var fake = new FakePtyConnection();
+        using var session = TerminalSession.Attach(fake, 80, 24, new TerminalSessionOptions { Theme = new TerminalTheme { Red = "#ff0000" } });
+
+        fake.Emit("\u001b]4;1;?\u0007");
+
+        await WaitUntilAsync(() => Task.FromResult(fake.Input == "\u001b]4;1;rgb:ffff/0000/0000\u001b\\"));
     }
 
     [Fact]
