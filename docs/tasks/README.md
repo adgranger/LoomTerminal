@@ -140,7 +140,7 @@ Session and threads, render frames, input, selection, links, search. **Read [pha
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P3-01](phase-3/P3-01-presentation-test-project.md) | Presentation test project and public API baseline | P2-07 | S | todo |
+| [P3-01](phase-3/P3-01-presentation-test-project.md) | Presentation test project and public API baseline | P2-07 | S | done |
 | [P3-02](phase-3/P3-02-key-event-model.md) | Key event model (`TerminalKeyEvent`) | P3-01 | S | todo |
 | [P3-03](phase-3/P3-03-keyboard-evaluation.md) | Port `evaluateKeyboardEvent` (`Keyboard.ts`) | P3-02 | M | todo |
 | [P3-04](phase-3/P3-04-key-input-handler.md) | `KeyInputHandler`: from key event to pty bytes, with host shortcuts | P3-03 | M | todo |

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LoomTerminal.Core\LoomTerminal.Core.csproj" />
+    <ProjectReference Include="..\LoomTerminal.Pty\LoomTerminal.Pty.csproj" />
   </ItemGroup>
 
   <ItemGroup>

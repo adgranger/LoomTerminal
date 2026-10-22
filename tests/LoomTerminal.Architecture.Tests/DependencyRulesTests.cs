@@ -5,7 +5,7 @@ namespace LoomTerminal.Architecture.Tests;
 
 /// <summary>
 /// Dependency rules of docs/ARCHITECTURE.md: the emulator and the presentation layer know no UI framework, and
-/// dependencies go one way only: WinUI (and later Avalonia) → Presentation → Core, plus Pty, which stands alone.
+/// dependencies go one way only: WinUI (and later Avalonia) → Presentation → Core and Pty, which stand alone.
 /// </summary>
 public class DependencyRulesTests
 {
@@ -17,7 +17,7 @@ public class DependencyRulesTests
     {
         ["LoomTerminal.Core"] = [],
         ["LoomTerminal.Pty"] = [],
-        ["LoomTerminal.Presentation"] = ["LoomTerminal.Core"],
+        ["LoomTerminal.Presentation"] = ["LoomTerminal.Core", "LoomTerminal.Pty"],
         ["LoomTerminal.WinUI"] = ["LoomTerminal.Presentation", "LoomTerminal.Pty"],
     };
 

@@ -1,6 +1,6 @@
 # P3-01 — Presentation test project and public API baseline
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P2-07
 - **Size:** S
 
@@ -28,14 +28,14 @@ starts shells), and update the architecture rules.
 
 ## Tests
 
-- [ ] New: smoke test that creates a `TerminalCore` through the internal API (proves `InternalsVisibleTo` from Core
+- [x] New: smoke test that creates a `TerminalCore` through the internal API (proves `InternalsVisibleTo` from Core
       to Presentation works from Presentation code — add a tiny internal helper in Presentation for it).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (architecture tests included)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (architecture tests included)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
