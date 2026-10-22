@@ -60,6 +60,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/browser/Clipboard.ts` (`prepareTextForTerminal`, `bracketTextForPaste`, the `paste` logic) (+ test) | `Presentation/Input/PasteEncoding.cs` (copy, paste events and textarea code not ported: DOM) | ✅ | P3-05 |
 | `src/browser/services/ThemeService.ts`, `Types.ts` (`DEFAULT_ANSI_COLORS`), `CoreBrowserTerminal._handleColorEvent` (+ test), `Services.ts` (`ITheme`) | `Presentation/Theming/ThemePalette.cs`, `TerminalTheme.cs` (scrollbar and overview ruler colors not ported; contrast caches: see P3-08) | ✅ | P3-07 |
 | `addons/addon-webgl/src/CellColorResolver.ts`, color functions of `TextureAtlas.ts` (`_getBackgroundColor`, `_getForegroundColor`, `_getMinimumContrastColor`, underline color), `src/browser/ColorContrastCache.ts`, `renderer/shared/RendererUtils.ts` (+ tests) | `Presentation/Theming/CellColorResolver.cs`, `ColorContrastCache.cs`, `Presentation/Rendering/RendererUtils.cs` (decorations, dotted underline variant offset and unused utils not ported) | ✅ | P3-08 |
+| `addons/addon-webgl/src/CursorBlinkStateManager.ts` | `Presentation/Rendering/CursorBlinkState.cs` (a function of time instead of timers and animation frames) | ✅ | P3-11 |
 
 ## What is not ported
 

@@ -191,4 +191,26 @@ public sealed class RenderFrameBuilderTests : IDisposable
         Assert.False(runs[0].Style.IsLink);
         Assert.True(runs[1].Style.IsLink);
     }
+
+    [Fact]
+    public void An_inactive_cursor_style_of_none_hides_the_cursor()
+    {
+        using var core = new TerminalCore(new TerminalOptions { Cols = 20, Rows = 5, CursorInactiveStyle = CursorInactiveStyle.None });
+        using var builder = new RenderFrameBuilder(core, _palette);
+
+        Assert.True(builder.Build(ViewState.Default).Cursor!.Visible);
+        Assert.False(builder.Build(new ViewState { IsFocused = false }).Cursor!.Visible);
+    }
+
+    [Fact]
+    public void The_cursor_shape_follows_the_option_and_DECSCUSR()
+    {
+        using var core = new TerminalCore(new TerminalOptions { Cols = 20, Rows = 5, CursorStyle = CursorStyle.Underline });
+        using var builder = new RenderFrameBuilder(core, _palette);
+        Assert.Equal(CursorShape.Underline, builder.Build(ViewState.Default).Cursor!.Shape);
+
+        core.Write("[6 q");
+
+        Assert.Equal(CursorShape.Bar, builder.Build(ViewState.Default).Cursor!.Shape);
+    }
 }

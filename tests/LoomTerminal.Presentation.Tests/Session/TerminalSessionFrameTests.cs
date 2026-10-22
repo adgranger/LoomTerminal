@@ -121,4 +121,19 @@ public partial class TerminalSessionFrameTests
             Assert.Equal(Enumerable.Range(0, PerThread), group.Select(t => t.Index));
         }
     }
+
+    [Fact]
+    public async Task SetFocus_false_publishes_a_frame_with_the_outline_cursor()
+    {
+        var fake = new FakePtyConnection();
+        using var session = TerminalSession.Attach(fake, 80, 24);
+        await EmitAndWaitForFrameAsync(fake, session, "a");
+        Assert.Equal(CursorShape.Block, session.TryTakeFrame()!.Cursor!.Shape);
+
+        var before = session.FramesPublished;
+        session.SetFocus(false);
+        await WaitUntilAsync(() => session.FramesPublished > before);
+
+        Assert.Equal(CursorShape.Outline, session.TryTakeFrame()!.Cursor!.Shape);
+    }
 }

@@ -1,6 +1,6 @@
 # P3-11 — Cursor blinking and cursor styles
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-09
 - **Size:** S
 
@@ -33,15 +33,15 @@ cursor shape from options, focus and DECSCUSR.
 
 ## Tests
 
-- [ ] New (with `FakeTimeProvider` from `Microsoft.Extensions.TimeProvider.Testing` — add it to
+- [x] New (with `FakeTimeProvider` from `Microsoft.Extensions.TimeProvider.Testing` — add it to
       `Directory.Packages.props`, test projects only): visible for 600 ms then hidden (check `BLINK_INTERVAL` in JS),
       `Restart` makes it visible immediately; `Pause` stops blinking; inactive style `None` hides the cursor.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

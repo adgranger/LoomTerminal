@@ -36,7 +36,9 @@ public sealed class TerminalSession : IDisposable
     private bool _frameDirty;
     private bool _idleWorkScheduled;
     private Task _postTail = Task.CompletedTask;
+    private readonly CursorBlinkState _cursorBlink = new(TimeProvider.System);
     private long _framesPublished;
+    private volatile bool _focused = true;
     private int _disposed;
     private volatile ModesSnapshot _modes = new(false, false, false);
 
@@ -75,8 +77,8 @@ public sealed class TerminalSession : IDisposable
     /// <summary>Number of frames published so far (tests wait on it).</summary>
     internal long FramesPublished => Interlocked.Read(ref _framesPublished);
 
-    /// <summary>What the UI decides about the view (focus, cursor blink phase); read by the parser thread.</summary>
-    internal ViewState ViewState { get; set; } = ViewState.Default;
+    /// <summary>The blink phase of the cursor: backends ask it each frame and schedule a frame at its next change.</summary>
+    internal CursorBlinkState CursorBlink => _cursorBlink;
 
     /// <summary>Raised when the shell exited and all its output was processed (parser thread). The argument is the exit code.</summary>
     public event Action<int>? Exited;
@@ -139,6 +141,26 @@ public sealed class TerminalSession : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tells the session whether the terminal has the focus: an unfocused terminal draws the inactive cursor and
+    /// selection colors, and its cursor stops blinking.
+    /// </summary>
+    /// <param name="focused">Whether the terminal has the focus.</param>
+    public void SetFocus(bool focused)
+    {
+        _focused = focused;
+        if (focused)
+        {
+            _cursorBlink.Resume();
+        }
+        else
+        {
+            _cursorBlink.Pause();
+        }
+
+        Post(_ => { });
+    }
+
     /// <summary>Sends typed text (character input, IME commit) to the shell as UTF-8, unchanged.</summary>
     /// <param name="text">The text.</param>
     public void SendText(string text)
@@ -146,6 +168,7 @@ public sealed class TerminalSession : IDisposable
         ArgumentNullException.ThrowIfNull(text);
         if (text.Length > 0)
         {
+            _cursorBlink.Restart();
             Post(core => core.Input(text));
         }
     }
@@ -160,6 +183,7 @@ public sealed class TerminalSession : IDisposable
         var result = _keyHandler.Handle(ev, new KeyContext(modes.ApplicationCursorKeys, HasSelection: false, OperatingSystem.IsMacOS()));
         if (result is { Outcome: KeyInputOutcome.Sent, Data: { } data })
         {
+            _cursorBlink.Restart();
             Post(core => core.Input(data));
         }
 
@@ -171,6 +195,7 @@ public sealed class TerminalSession : IDisposable
     public void Paste(string text)
     {
         ArgumentNullException.ThrowIfNull(text);
+        _cursorBlink.Restart();
         Post(core => core.Input(
             PasteEncoding.PreparePaste(
                 text,
@@ -290,7 +315,8 @@ public sealed class TerminalSession : IDisposable
 
     private void PublishFrame()
     {
-        var frame = _builder.Build(ViewState);
+        var view = new ViewState { IsFocused = _focused, CursorBlinkVisible = _cursorBlink.IsVisible(TimeProvider.System.GetTimestamp()) };
+        var frame = _builder.Build(view);
         Interlocked.Increment(ref _framesPublished);
         bool raise;
         lock (_frameLock)

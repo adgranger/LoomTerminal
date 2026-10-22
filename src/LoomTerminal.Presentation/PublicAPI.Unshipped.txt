@@ -241,6 +241,7 @@ LoomTerminal.Presentation.Session.TerminalSession.Paste(string! text) -> void
 LoomTerminal.Presentation.Session.TerminalSession.Resize(int columns, int rows) -> void
 LoomTerminal.Presentation.Session.TerminalSession.SendKey(LoomTerminal.Presentation.Input.TerminalKeyEvent! ev) -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Session.TerminalSession.SendText(string! text) -> void
+LoomTerminal.Presentation.Session.TerminalSession.SetFocus(bool focused) -> void
 LoomTerminal.Presentation.Session.TerminalSession.TitleChanged -> System.Action<string!>?
 LoomTerminal.Presentation.Session.TerminalSession.TryTakeFrame() -> LoomTerminal.Presentation.Rendering.RenderFrame?
 LoomTerminal.Presentation.Session.TerminalSession.WriteToDisplay(string! vtText) -> void
