@@ -20,6 +20,8 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <PublishAot>true</PublishAot>
     <IsAotCompatible>true</IsAotCompatible>
+    <!-- SDK 11 rc.2 optimized AOT publish runs PrepareResources before ResolveReferences: WMC1007. Remove when fixed. -->
+    <UseOptimizedPublish>false</UseOptimizedPublish>
   </PropertyGroup>
 
   <ItemGroup>
