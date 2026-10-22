@@ -229,7 +229,7 @@ LoomTerminal.Presentation.Rendering.RenderFrame.Columns.get -> int
 LoomTerminal.Presentation.Rendering.RenderFrame.Columns.init -> void
 LoomTerminal.Presentation.Rendering.RenderFrame.Cursor.get -> LoomTerminal.Presentation.Rendering.RenderCursor?
 LoomTerminal.Presentation.Rendering.RenderFrame.Cursor.init -> void
-LoomTerminal.Presentation.Rendering.RenderFrame.Deconstruct(out int Columns, out int Rows, out System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRow!>! Lines, out LoomTerminal.Presentation.Rendering.RenderCursor? Cursor, out uint Background, out int ViewportY, out int ScrollbackLength, out bool IsAlternateBuffer, out ulong Version, out System.Collections.Generic.IReadOnlySet<int>! DirtyRows, out LoomTerminal.Presentation.Rendering.SelectionRange? Selection) -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.Deconstruct(out int Columns, out int Rows, out System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRow!>! Lines, out LoomTerminal.Presentation.Rendering.RenderCursor? Cursor, out uint Background, out int ViewportY, out int ScrollbackLength, out bool IsAlternateBuffer, out ulong Version, out System.Collections.Generic.IReadOnlySet<int>! DirtyRows, out LoomTerminal.Presentation.Rendering.SelectionRange? Selection, out System.Collections.Generic.IReadOnlyList<string!>! PlainLines) -> void
 LoomTerminal.Presentation.Rendering.RenderFrame.DirtyRows.get -> System.Collections.Generic.IReadOnlySet<int>!
 LoomTerminal.Presentation.Rendering.RenderFrame.DirtyRows.init -> void
 LoomTerminal.Presentation.Rendering.RenderFrame.Equals(LoomTerminal.Presentation.Rendering.RenderFrame? other) -> bool
@@ -237,7 +237,9 @@ LoomTerminal.Presentation.Rendering.RenderFrame.IsAlternateBuffer.get -> bool
 LoomTerminal.Presentation.Rendering.RenderFrame.IsAlternateBuffer.init -> void
 LoomTerminal.Presentation.Rendering.RenderFrame.Lines.get -> System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRow!>!
 LoomTerminal.Presentation.Rendering.RenderFrame.Lines.init -> void
-LoomTerminal.Presentation.Rendering.RenderFrame.RenderFrame(int Columns, int Rows, System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRow!>! Lines, LoomTerminal.Presentation.Rendering.RenderCursor? Cursor, uint Background, int ViewportY, int ScrollbackLength, bool IsAlternateBuffer, ulong Version, System.Collections.Generic.IReadOnlySet<int>! DirtyRows, LoomTerminal.Presentation.Rendering.SelectionRange? Selection) -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.PlainLines.get -> System.Collections.Generic.IReadOnlyList<string!>!
+LoomTerminal.Presentation.Rendering.RenderFrame.PlainLines.init -> void
+LoomTerminal.Presentation.Rendering.RenderFrame.RenderFrame(int Columns, int Rows, System.Collections.Generic.IReadOnlyList<LoomTerminal.Presentation.Rendering.RenderRow!>! Lines, LoomTerminal.Presentation.Rendering.RenderCursor? Cursor, uint Background, int ViewportY, int ScrollbackLength, bool IsAlternateBuffer, ulong Version, System.Collections.Generic.IReadOnlySet<int>! DirtyRows, LoomTerminal.Presentation.Rendering.SelectionRange? Selection, System.Collections.Generic.IReadOnlyList<string!>! PlainLines) -> void
 LoomTerminal.Presentation.Rendering.RenderFrame.Rows.get -> int
 LoomTerminal.Presentation.Rendering.RenderFrame.Rows.init -> void
 LoomTerminal.Presentation.Rendering.RenderFrame.ScrollbackLength.get -> int
@@ -381,6 +383,8 @@ LoomTerminal.Presentation.Session.TerminalCursorStyle.Bar = 2 -> LoomTerminal.Pr
 LoomTerminal.Presentation.Session.TerminalCursorStyle.Block = 0 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalCursorStyle.Underline = 1 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalSession
+LoomTerminal.Presentation.Session.TerminalSession.AccessibilityEnabled.get -> bool
+LoomTerminal.Presentation.Session.TerminalSession.AccessibilityEnabled.set -> void
 LoomTerminal.Presentation.Session.TerminalSession.Bell -> System.Action?
 LoomTerminal.Presentation.Session.TerminalSession.ClearSearch() -> void
 LoomTerminal.Presentation.Session.TerminalSession.ClearSelection() -> void
@@ -411,6 +415,7 @@ LoomTerminal.Presentation.Session.TerminalSession.SelectAll() -> void
 LoomTerminal.Presentation.Session.TerminalSession.SendKey(LoomTerminal.Presentation.Input.TerminalKeyEvent! ev) -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Session.TerminalSession.SendText(string! text) -> void
 LoomTerminal.Presentation.Session.TerminalSession.SetFocus(bool focused) -> void
+LoomTerminal.Presentation.Session.TerminalSession.TextAnnounced -> System.Action<string!>?
 LoomTerminal.Presentation.Session.TerminalSession.TitleChanged -> System.Action<string!>?
 LoomTerminal.Presentation.Session.TerminalSession.TryTakeFrame() -> LoomTerminal.Presentation.Rendering.RenderFrame?
 LoomTerminal.Presentation.Session.TerminalSession.WriteToDisplay(string! vtText) -> void

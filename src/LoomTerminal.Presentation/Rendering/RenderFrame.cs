@@ -127,6 +127,7 @@ public sealed record SelectionRange(int StartColumn, int StartRow, int EndColumn
 /// <param name="Version">Incremented for each frame.</param>
 /// <param name="DirtyRows">Rows that changed since the previous frame; all rows after a scroll or a resize.</param>
 /// <param name="Selection">The selection; <see langword="null"/> when there is none or it is outside the viewport.</param>
+/// <param name="PlainLines">Text of each visible row, trailing spaces trimmed; empty unless <c>AccessibilityEnabled</c> is on.</param>
 /// <remarks>Threading: immutable; any thread may use it.</remarks>
 public sealed record RenderFrame(
     int Columns,
@@ -139,4 +140,5 @@ public sealed record RenderFrame(
     bool IsAlternateBuffer,
     ulong Version,
     IReadOnlySet<int> DirtyRows,
-    SelectionRange? Selection);
+    SelectionRange? Selection,
+    IReadOnlyList<string> PlainLines);

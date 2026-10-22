@@ -16,7 +16,7 @@ public class FrameRendererTests
         new(column, cells < 0 ? text.Length : cells, text, style);
 
     private static RenderFrame Frame(RenderRun[][] rows, RenderCursor? cursor = null) =>
-        new(10, rows.Length, rows.Select(r => new RenderRow(r, false, 0)).ToArray(), cursor, Bg, 0, 0, false, 1, new HashSet<int>(), null);
+        new(10, rows.Length, rows.Select(r => new RenderRow(r, false, 0)).ToArray(), cursor, Bg, 0, 0, false, 1, new HashSet<int>(), null, []);
 
     private static string Draw(RenderFrame frame)
     {

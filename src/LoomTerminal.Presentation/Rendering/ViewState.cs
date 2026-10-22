@@ -28,6 +28,9 @@ internal sealed record ViewState
     /// <summary>The cells of the search matches, by buffer row.</summary>
     internal SearchHighlightMap? SearchHighlights { get; init; }
 
+    /// <summary>Whether to fill <see cref="RenderFrame.PlainLines"/> (accessibility).</summary>
+    internal bool IncludePlainLines { get; init; }
+
     /// <summary>Whether a blinking cursor is in its visible phase.</summary>
     internal bool CursorBlinkVisible { get; init; } = true;
 }

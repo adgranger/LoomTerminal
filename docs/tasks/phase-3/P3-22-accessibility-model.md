@@ -1,6 +1,6 @@
 # P3-22 — Accessibility text model
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-09
 - **Size:** S
 
@@ -31,15 +31,15 @@ just printed (live region), as `xterm.js` `AccessibilityManager` computes it.
 
 ## Tests
 
-- [ ] New: with accessibility on, `echo hi\r\n` raises `TextAnnounced("hi")` once; `PlainLines` matches the screen;
+- [x] New: with accessibility on, `echo hi\r\n` raises `TextAnnounced("hi")` once; `PlainLines` matches the screen;
       with accessibility off, `PlainLines` is empty and no event fires.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

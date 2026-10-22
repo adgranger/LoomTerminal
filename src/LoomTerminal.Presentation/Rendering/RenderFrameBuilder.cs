@@ -106,7 +106,8 @@ internal sealed class RenderFrameBuilder : IDisposable
             dirty,
             selection.HasSelection
                 ? new SelectionRange(selection.StartCol, selection.ViewportStartRow, selection.EndCol, selection.ViewportEndRow, selection.ColumnSelectMode)
-                : null);
+                : null,
+            view.IncludePlainLines ? BuildPlainLines(buffer, rows) : []);
     }
 
     /// <summary>Stops listening to the emulator.</summary>
@@ -118,6 +119,17 @@ internal sealed class RenderFrameBuilder : IDisposable
         }
 
         _palette.Changed -= OnPaletteChanged;
+    }
+
+    private static List<string> BuildPlainLines(Core.Buffer.Buffer buffer, int rows)
+    {
+        var plain = new List<string>(rows);
+        for (var y = 0; y < rows; y++)
+        {
+            plain.Add(buffer.Lines.Get(buffer.YDisp + y)?.TranslateToString(true) ?? string.Empty);
+        }
+
+        return plain;
     }
 
     private void OnPaletteChanged() => _allDirty = true;

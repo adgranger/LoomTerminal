@@ -65,6 +65,7 @@ public sealed partial class TerminalSession : IDisposable
         _selection = new SelectionService(_core.BufferService, _core.CoreService, _core.OptionsService, OperatingSystem.IsWindows(), OperatingSystem.IsMacOS());
         _pointer = new PointerInputHandler(_core, _selection, TimeProvider.System);
         _links = new LinkTracker(_core);
+        InitAccessibility();
         _core.OnColor.Subscribe(requests =>
         {
             foreach (var reply in Palette.Apply(requests))
@@ -165,6 +166,11 @@ public sealed partial class TerminalSession : IDisposable
     public void SetFocus(bool focused)
     {
         _focused = focused;
+        if (!focused)
+        {
+            Post(_ => ClearLiveRegion());
+        }
+
         if (focused)
         {
             _cursorBlink.Resume();
@@ -241,7 +247,15 @@ public sealed partial class TerminalSession : IDisposable
         if (text.Length > 0)
         {
             _cursorBlink.Restart();
-            Post(core => core.Input(text));
+            Post(core =>
+            {
+                if (_accessibilityEnabled)
+                {
+                    NoteTypedText(text);
+                }
+
+                core.Input(text);
+            });
         }
     }
 
@@ -437,6 +451,7 @@ public sealed partial class TerminalSession : IDisposable
 
     private void AfterBatch()
     {
+        AnnounceCharacters();
         PublishModes();
         PublishFrame();
         ScheduleIdleWork();
@@ -453,6 +468,7 @@ public sealed partial class TerminalSession : IDisposable
             SelectionColumnMode = _selection.ActiveSelectionMode == SelectionMode.Column,
             HoveredLink = _links.Current?.Range,
             SearchHighlights = _searchAddon?.Tracker.Highlights(_core.Cols),
+            IncludePlainLines = _accessibilityEnabled,
         };
         var frame = _builder.Build(view);
         Interlocked.Increment(ref _framesPublished);
