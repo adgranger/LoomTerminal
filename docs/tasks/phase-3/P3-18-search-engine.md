@@ -1,6 +1,6 @@
 # P3-18 — Search engine (`addon-search`)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-14
 - **Size:** M
 
@@ -36,15 +36,15 @@ its line cache, with their tests.
 
 ## Tests
 
-- [ ] Port `SearchLineCache.test.ts` and `SearchEngine.test.ts` (the JS tests create a real `Terminal`: use a
+- [x] Port `SearchLineCache.test.ts` and `SearchEngine.test.ts` (the JS tests create a real `Terminal`: use a
       `TerminalCore` and the adapter).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated; `docs/PORTING.md` map updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated; `docs/PORTING.md` map updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
