@@ -60,6 +60,14 @@ public sealed partial class TerminalSession : IDisposable
         _core.OnBinary.Subscribe(data => _connection.Write(Encoding.Latin1.GetBytes(data)));
         _core.OnTitleChange.Subscribe(title => TitleChanged?.Invoke(title));
         _core.OnBell.Subscribe(_ => Bell?.Invoke());
+        // DECSET 1004 while focused: xterm.js reports the current focus right away.
+        _core.OnRequestSendFocus.Subscribe(_ =>
+        {
+            if (_focused)
+            {
+                _core.CoreService.TriggerDataEvent("[I");
+            }
+        });
         Palette = new ThemePalette(options.Theme);
         _rightClickSelectsWord = options.RightClickSelectsWord;
         _customGlyphs = options.CustomGlyphs;
@@ -186,7 +194,14 @@ public sealed partial class TerminalSession : IDisposable
             _cursorBlink.Pause();
         }
 
-        Post(_ => { });
+        // Ported from CoreBrowserTerminal._handleFocus / _handleBlur: focus reports when DECSET 1004 is on.
+        Post(core =>
+        {
+            if (core.CoreService.DecPrivateModes.SendFocus)
+            {
+                core.CoreService.TriggerDataEvent(focused ? "[I" : "[O");
+            }
+        });
     }
 
     /// <summary>Publishes a fresh frame (the blink phase of the cursor changed).</summary>

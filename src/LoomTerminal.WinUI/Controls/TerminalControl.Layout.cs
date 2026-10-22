@@ -1,7 +1,6 @@
 // Inspired by LoomEditor: src/LoomEditor.WinUI/Controls/LoomEditor.Font.cs (XamlRoot watch)
 using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.WinUI.Rendering;
-using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 
 namespace LoomTerminal.WinUI.Controls;
@@ -12,7 +11,6 @@ public sealed partial class TerminalControl
     private const double ScrollbarWidth = 0;
 
     private FrameScheduler? _frames;
-    private DispatcherQueueTimer? _blinkTimer;
     private XamlRoot? _observedRoot;
     private double _scale = 1.0;
     private int _columns;
@@ -24,13 +22,9 @@ public sealed partial class TerminalControl
     private void InitializeLayout()
     {
         _frames = new FrameScheduler(OnFrame);
-        _blinkTimer = DispatcherQueue.CreateTimer();
-        _blinkTimer.IsRepeating = false;
-        _blinkTimer.Tick += (_, _) => _session?.RefreshFrame();
         SizeChanged += (_, _) => RequestFrame();
         Loaded += OnLoaded;
-        GotFocus += (_, _) => _session?.SetFocus(true);
-        LostFocus += (_, _) => _session?.SetFocus(false);
+        InitializeFocus();
         // Font, theme and cursor settings change what is drawn.
         foreach (var property in new[] { FontFamilyProperty, FontSizeProperty, ThemeProperty, LineHeightProperty, CursorStyleProperty, CursorBlinkProperty })
         {
@@ -110,21 +104,5 @@ public sealed partial class TerminalControl
 
         (_columns, _rows) = (columns, rows);
         _session.Resize(columns, rows);
-    }
-
-    // The frame bakes the blink phase: ask the session for a new one when the phase changes.
-    private void ScheduleBlink()
-    {
-        if (_blinkTimer is null)
-        {
-            return;
-        }
-
-        _blinkTimer.Stop();
-        if (CursorBlink && _session?.CursorBlink.NextChange is { } next)
-        {
-            _blinkTimer.Interval = next;
-            _blinkTimer.Start();
-        }
     }
 }
