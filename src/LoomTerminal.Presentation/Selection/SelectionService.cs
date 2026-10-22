@@ -42,6 +42,9 @@ internal sealed partial class SelectionService : IDisposable
     private readonly CellData _workCell = new();
     private IDisposable _trimListener;
     private bool _enabled = true;
+    private bool _oldHasSelection;
+    private (int X, int Y)? _oldSelectionStart;
+    private (int X, int Y)? _oldSelectionEnd;
 
     /// <summary>Creates the service over the buffers of <paramref name="bufferService"/>.</summary>
     /// <param name="bufferService">The buffers.</param>
@@ -228,6 +231,29 @@ internal sealed partial class SelectionService : IDisposable
         || (start.Y < end.Y && coords.Y == end.Y && coords.X < end.X)
         || (start.Y < end.Y && coords.Y == start.Y && coords.X >= start.X);
 
+    /// <summary>Raises <see cref="SelectionChanged"/> when the final selection differs from the one last reported.</summary>
+    internal void FireEventIfSelectionChanged()
+    {
+        var start = Model.FinalSelectionStart;
+        var end = Model.FinalSelectionEnd;
+        var hasSelection = start is { } s && end is { } e && (s.X != e.X || s.Y != e.Y);
+
+        if (!hasSelection)
+        {
+            if (_oldHasSelection)
+            {
+                Report(start, end, hasSelection);
+            }
+
+            return;
+        }
+
+        if (_oldSelectionStart != start || _oldSelectionEnd != end)
+        {
+            Report(start, end, hasSelection);
+        }
+    }
+
     /// <summary>Selects all text within the terminal.</summary>
     internal void SelectAll()
     {
@@ -279,6 +305,14 @@ internal sealed partial class SelectionService : IDisposable
         }
 
         _trimListener.Dispose();
+    }
+
+    private void Report((int X, int Y)? start, (int X, int Y)? end, bool hasSelection)
+    {
+        _oldSelectionStart = start;
+        _oldSelectionEnd = end;
+        _oldHasSelection = hasSelection;
+        SelectionChanged?.Invoke();
     }
 
     private void HandleTrim(int amount)

@@ -1,6 +1,6 @@
 # P3-15 — Pointer handling: selection gestures vs. mouse reporting
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-14, P3-12
 - **Size:** M
 
@@ -34,16 +34,16 @@ extends, Alt = column mode, drag beyond the edges scrolls) or into mouse reports
 
 ## Tests
 
-- [ ] New: drag selects; double click selects a word; triple click a line; Shift+click extends; Alt+drag selects a
+- [x] New: drag selects; double click selects a word; triple click a line; Shift+click extends; Alt+drag selects a
       column block; with `\e[?1000h` a click sends a VT200 report and does not select; with Shift it selects;
       Alt+click with `AltClickMovesCursor` sends arrow keys.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated (`MoveToCell.ts`)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated (`MoveToCell.ts`)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

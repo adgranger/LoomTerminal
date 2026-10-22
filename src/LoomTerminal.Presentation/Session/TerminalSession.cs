@@ -34,6 +34,7 @@ public sealed class TerminalSession : IDisposable
     private readonly RenderFrameBuilder _builder;
     private readonly ViewportController _viewport;
     private readonly SelectionService _selection;
+    private readonly PointerInputHandler _pointer;
     private readonly Lock _frameLock = new();
     private readonly Lock _postLock = new();
     private RenderFrame? _latestFrame;
@@ -58,6 +59,7 @@ public sealed class TerminalSession : IDisposable
         _builder = new RenderFrameBuilder(_core, Palette);
         _viewport = new ViewportController(_core);
         _selection = new SelectionService(_core.BufferService, _core.CoreService, _core.OptionsService, OperatingSystem.IsWindows(), OperatingSystem.IsMacOS());
+        _pointer = new PointerInputHandler(_core, _selection, TimeProvider.System);
         _core.OnColor.Subscribe(requests =>
         {
             foreach (var reply in Palette.Apply(requests))
@@ -200,6 +202,18 @@ public sealed class TerminalSession : IDisposable
         Post(_ => _viewport.HandleWheel(ev, cellHeight));
     }
 
+    /// <summary>
+    /// Handles a pointer event: selection gestures, or mouse reports for an application that tracks the mouse. Wheel
+    /// events go to <see cref="HandleWheel"/>, and the right button is left to the host.
+    /// </summary>
+    /// <param name="e">The pointer event.</param>
+    /// <param name="cellHeight">Height of a cell in device pixels, to measure how far a drag left the area.</param>
+    public void HandlePointer(TerminalPointerEvent e, double cellHeight)
+    {
+        ArgumentNullException.ThrowIfNull(e);
+        Post(_ => _pointer.Handle(e, cellHeight));
+    }
+
     /// <summary>Selects all the text of the buffer, scrollback included.</summary>
     public void SelectAll() => Post(_ => _selection.SelectAll());
 
@@ -296,6 +310,7 @@ public sealed class TerminalSession : IDisposable
             _thread.Join();
         }
 
+        _pointer.Dispose();
         _selection.Dispose();
         _viewport.Dispose();
         _builder.Dispose();

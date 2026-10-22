@@ -63,6 +63,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `addons/addon-webgl/src/CursorBlinkStateManager.ts` | `Presentation/Rendering/CursorBlinkState.cs` (a function of time instead of timers and animation frames) | ✅ | P3-11 |
 | `src/browser/selection/SelectionModel.ts` (+ test) | `Presentation/Selection/SelectionModel.cs` (positions are `(int X, int Y)?` tuples; `ISelectionRedrawRequestEvent` not needed yet) | ✅ | P3-13 |
 | `src/browser/services/SelectionService.ts` (non-DOM parts) (+ test), `renderer/shared/SelectionRenderModel.ts` | `Presentation/Selection/SelectionService.cs`, `SelectionService.Words.cs`, `Presentation/Rendering/SelectionRenderModel.cs` (mouse handling, drag scroll and Linux selection are P3-15) | ✅ | P3-14 |
+| `src/browser/services/SelectionService.ts` (mouse handling), `CoreBrowserTerminal.ts` (`bindMouse`), `src/browser/input/MoveToCell.ts` (+ test) | `Presentation/Input/PointerInputHandler.cs`, `MoveToCell.cs` (no DOM listeners: the backend sends `TerminalPointerEvent`; Linux mouse selection and the link under the pointer are not ported) | ✅ | P3-15 |
 
 ## What is not ported
 
@@ -89,6 +90,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | CSS colors | `css.toColor` falls back to a canvas for named colors and other CSS syntaxes | Only `#rgb[a]`, `#rrggbb[aa]`, `rgb()` and `rgba()` are parsed; any other input throws `ArgumentException("css.toColor: Unsupported css format")`: CSS color names are not parsed | No canvas in Core |
 | Selection | `selectionText` joins lines with CRLF when the platform is Windows | `SelectionService` takes `isWindows` (default: the running OS), the tests pass `false` as the node tests do | testability |
 | Selection | `shouldForceSelection` honors the `macOptionClickForcesSelection` option on macOS | The option does not exist: on macOS Shift forces nothing and Alt is the column modifier | no such option in Core |
+| Selection | Drag scrolling runs on a 50 ms `setInterval` while the button is down | `PointerInputHandler` scrolls on `Move` events, at most once per 50 ms (`TimeProvider`); the backend keeps sending moves while the button is held | no timers in Presentation |
 | Keyboard | `evaluateKeyboardEvent` handles `ev.key === 'Dead'` using the DOM `code` | Branch not ported: `TerminalKeyEvent` has no `code` | ADR 0004 |
 
 ## Tests not ported

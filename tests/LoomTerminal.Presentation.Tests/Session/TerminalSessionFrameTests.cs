@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using LoomTerminal.Presentation.Input;
 using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.Presentation.Session;
 
@@ -167,5 +168,19 @@ public partial class TerminalSessionFrameTests
         session.SendText("x");
 
         Assert.Equal(string.Empty, await session.GetSelectionTextAsync());
+    }
+
+    [Fact]
+    public async Task HandlePointer_selects_text_by_dragging()
+    {
+        var fake = new FakePtyConnection();
+        using var session = TerminalSession.Attach(fake, 80, 24);
+        await EmitAndWaitForFrameAsync(fake, session, "hello world");
+
+        session.HandlePointer(new TerminalPointerEvent(0, 0, 0, 0, PointerButton.Left, PointerAction.Down, false, false, false), 20);
+        session.HandlePointer(new TerminalPointerEvent(5, 0, 50, 0, PointerButton.Left, PointerAction.Move, false, false, false), 20);
+        session.HandlePointer(new TerminalPointerEvent(5, 0, 50, 0, PointerButton.Left, PointerAction.Up, false, false, false), 20);
+
+        Assert.Equal("hello", await session.GetSelectionTextAsync());
     }
 }

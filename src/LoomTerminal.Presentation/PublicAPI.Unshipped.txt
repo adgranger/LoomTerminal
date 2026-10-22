@@ -299,6 +299,7 @@ LoomTerminal.Presentation.Session.TerminalSession.Dispose() -> void
 LoomTerminal.Presentation.Session.TerminalSession.Exited -> System.Action<int>?
 LoomTerminal.Presentation.Session.TerminalSession.FrameAvailable -> System.Action?
 LoomTerminal.Presentation.Session.TerminalSession.GetSelectionTextAsync() -> System.Threading.Tasks.Task<string!>!
+LoomTerminal.Presentation.Session.TerminalSession.HandlePointer(LoomTerminal.Presentation.Input.TerminalPointerEvent! e, double cellHeight) -> void
 LoomTerminal.Presentation.Session.TerminalSession.HandleWheel(LoomTerminal.Presentation.Input.TerminalPointerEvent! ev, double cellHeight) -> void
 LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.get -> System.Func<LoomTerminal.Presentation.Input.TerminalKeyEvent!, bool>?
 LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.set -> void
