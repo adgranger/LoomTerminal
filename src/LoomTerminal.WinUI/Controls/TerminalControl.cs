@@ -33,6 +33,8 @@ public sealed partial class TerminalControl : Control
     private CanvasControl? _canvas;
     private Win2DTextMeasurer? _measurer;
     private RenderFrame? _lastFrame;
+    // Win2D throws when text is measured before the canvas has a device (first CreateResources).
+    private bool _hasCanvasDevice;
 
     /// <summary>How long the last frame took to draw (for diagnostics, e.g. a status bar).</summary>
     public TimeSpan LastFrameTime { get; private set; }
@@ -84,6 +86,7 @@ public sealed partial class TerminalControl : Control
     // Device (re)creation, or a DPI change: cached metrics and layouts belong to the old device.
     private void OnCanvasCreateResources(CanvasControl sender, CanvasCreateResourcesEventArgs args)
     {
+        _hasCanvasDevice = true;
         _measurer?.Invalidate();
         _measurer = null;
         _layoutCache.Clear();
@@ -107,6 +110,7 @@ public sealed partial class TerminalControl : Control
             return;
         }
 
+        _hasCanvasDevice = false;
         _canvas.Draw -= OnCanvasDraw;
         _canvas.CreateResources -= OnCanvasCreateResources;
         _layoutCache.Clear();

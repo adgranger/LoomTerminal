@@ -112,7 +112,7 @@ public sealed partial class TerminalControl
     // frame, and never for a hidden (zero-sized) control: the shell keeps its last size.
     private void ApplySize()
     {
-        if (_session is null || _canvas is null || ActualWidth <= 0 || ActualHeight <= 0)
+        if (_session is null || _canvas is null || !_hasCanvasDevice || ActualWidth <= 0 || ActualHeight <= 0)
         {
             return;
         }
