@@ -66,6 +66,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/browser/services/SelectionService.ts` (mouse handling), `CoreBrowserTerminal.ts` (`bindMouse`), `src/browser/input/MoveToCell.ts` (+ test) | `Presentation/Input/PointerInputHandler.cs`, `MoveToCell.cs` (no DOM listeners: the backend sends `TerminalPointerEvent`; Linux mouse selection and the link under the pointer are not ported) | ✅ | P3-15 |
 | `addons/addon-web-links/src/WebLinkProvider.ts`, `WebLinksAddon.ts` (regex), `src/browser/OscLinkProvider.ts`, `src/browser/Linkifier.ts` (hover, `_linkAtPosition`) | `Presentation/Links/WebLinkComputer.cs`, `OscLinkProvider.cs`, `LinkTracker.cs` (no hover/leave callbacks, no link cache; the link under the pointer is recomputed on each pointer event with Ctrl; `Uri` replaces JS `URL` in `isUrl`; OSC 8 links other than http(s) are always ignored) | ✅ | P3-17 |
 | `addons/addon-search/src/SearchLineCache.ts`, `SearchEngine.ts`, `SearchState.ts` (+ tests) | `Presentation/Search/SearchLineCache.cs`, `SearchEngine.cs`, `SearchEngine.InLine.cs`, `SearchState.cs`, `SearchBufferView.cs` (adapter over `TerminalCore` replacing the public `Terminal` API), `SearchOptions.cs`, `SearchResult.cs` | ✅ | P3-18 |
+| `addons/addon-search/src/SearchAddon.ts` (find, highlight, select, scroll), `SearchResultTracker.ts` | `Presentation/Search/SearchAddon.cs`, `SearchResultTracker.cs`, `SearchHighlightMap.cs` (decorations as cell ranges), `TerminalSession.FindNextAsync` / `FindPreviousAsync` / `ClearSearch` | ✅ | P3-19 |
 
 ## What is not ported
 
@@ -94,6 +95,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | Selection | `shouldForceSelection` honors the `macOptionClickForcesSelection` option on macOS | The option does not exist: on macOS Shift forces nothing and Alt is the column modifier | no such option in Core |
 | Selection | Drag scrolling runs on a 50 ms `setInterval` while the button is down | `PointerInputHandler` scrolls on `Move` events, at most once per 50 ms (`TimeProvider`); the backend keeps sending moves while the button is held | no timers in Presentation |
 | Search | The line cache is dropped after `LINES_CACHE_TIME_TO_LIVE` (15 s, timer); an invalid regex throws a `SyntaxError` | `SearchLineCache.EndSession()` drops it at the end of each search session (and, as upstream, on line feed, cursor move, resize); an invalid or too slow (1 s) regex finds nothing | no timers in Presentation (P3-18) |
+| Search | `onWriteParsed` / `onResize` re-run the search after 200 ms (`_updateMatches`); highlights are `IDecoration` markers that follow the buffer | No timer: results and highlights are computed by `FindNextAsync` / `FindPreviousAsync` and not refreshed when output arrives or the terminal resizes (search again); highlights are painted by `RenderFrameBuilder` as `RunHighlight` plus a blend of the theme colors | no timers in Presentation (P3-19) |
 | Keyboard | `evaluateKeyboardEvent` handles `ev.key === 'Dead'` using the DOM `code` | Branch not ported: `TerminalKeyEvent` has no `code` | ADR 0004 |
 
 ## Tests not ported

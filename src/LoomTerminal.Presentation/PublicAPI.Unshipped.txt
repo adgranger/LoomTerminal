@@ -319,17 +319,29 @@ LoomTerminal.Presentation.Search.SearchResult.Size.get -> int
 LoomTerminal.Presentation.Search.SearchResult.Size.init -> void
 LoomTerminal.Presentation.Search.SearchResult.Term.get -> string!
 LoomTerminal.Presentation.Search.SearchResult.Term.init -> void
+LoomTerminal.Presentation.Search.SearchResultSummary
+LoomTerminal.Presentation.Search.SearchResultSummary.<Clone>$() -> LoomTerminal.Presentation.Search.SearchResultSummary!
+LoomTerminal.Presentation.Search.SearchResultSummary.Deconstruct(out int ResultIndex, out int ResultCount) -> void
+LoomTerminal.Presentation.Search.SearchResultSummary.Equals(LoomTerminal.Presentation.Search.SearchResultSummary? other) -> bool
+LoomTerminal.Presentation.Search.SearchResultSummary.ResultCount.get -> int
+LoomTerminal.Presentation.Search.SearchResultSummary.ResultCount.init -> void
+LoomTerminal.Presentation.Search.SearchResultSummary.ResultIndex.get -> int
+LoomTerminal.Presentation.Search.SearchResultSummary.ResultIndex.init -> void
+LoomTerminal.Presentation.Search.SearchResultSummary.SearchResultSummary(int ResultIndex, int ResultCount) -> void
 LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalCursorStyle.Bar = 2 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalCursorStyle.Block = 0 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalCursorStyle.Underline = 1 -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalSession
 LoomTerminal.Presentation.Session.TerminalSession.Bell -> System.Action?
+LoomTerminal.Presentation.Session.TerminalSession.ClearSearch() -> void
 LoomTerminal.Presentation.Session.TerminalSession.ClearSelection() -> void
 LoomTerminal.Presentation.Session.TerminalSession.Clipboard.get -> LoomTerminal.Presentation.Input.IClipboard?
 LoomTerminal.Presentation.Session.TerminalSession.Clipboard.set -> void
 LoomTerminal.Presentation.Session.TerminalSession.Dispose() -> void
 LoomTerminal.Presentation.Session.TerminalSession.Exited -> System.Action<int>?
+LoomTerminal.Presentation.Session.TerminalSession.FindNextAsync(string! term, LoomTerminal.Presentation.Search.SearchOptions! options) -> System.Threading.Tasks.Task<LoomTerminal.Presentation.Search.SearchResultSummary!>!
+LoomTerminal.Presentation.Session.TerminalSession.FindPreviousAsync(string! term, LoomTerminal.Presentation.Search.SearchOptions! options) -> System.Threading.Tasks.Task<LoomTerminal.Presentation.Search.SearchResultSummary!>!
 LoomTerminal.Presentation.Session.TerminalSession.FrameAvailable -> System.Action?
 LoomTerminal.Presentation.Session.TerminalSession.GetSelectionTextAsync() -> System.Threading.Tasks.Task<string!>!
 LoomTerminal.Presentation.Session.TerminalSession.HandlePointer(LoomTerminal.Presentation.Input.TerminalPointerEvent! e, double cellHeight) -> void
@@ -346,6 +358,7 @@ LoomTerminal.Presentation.Session.TerminalSession.ScrollPages(int pages) -> void
 LoomTerminal.Presentation.Session.TerminalSession.ScrollToBottom() -> void
 LoomTerminal.Presentation.Session.TerminalSession.ScrollToLine(int line) -> void
 LoomTerminal.Presentation.Session.TerminalSession.ScrollToTop() -> void
+LoomTerminal.Presentation.Session.TerminalSession.SearchResultsChanged -> System.Action<LoomTerminal.Presentation.Search.SearchResultSummary!>?
 LoomTerminal.Presentation.Session.TerminalSession.SelectAll() -> void
 LoomTerminal.Presentation.Session.TerminalSession.SendKey(LoomTerminal.Presentation.Input.TerminalKeyEvent! ev) -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Session.TerminalSession.SendText(string! text) -> void
@@ -418,6 +431,10 @@ LoomTerminal.Presentation.Theming.TerminalTheme.Magenta.get -> string?
 LoomTerminal.Presentation.Theming.TerminalTheme.Magenta.init -> void
 LoomTerminal.Presentation.Theming.TerminalTheme.Red.get -> string?
 LoomTerminal.Presentation.Theming.TerminalTheme.Red.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.SearchActiveMatchBackground.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.SearchActiveMatchBackground.init -> void
+LoomTerminal.Presentation.Theming.TerminalTheme.SearchMatchBackground.get -> string?
+LoomTerminal.Presentation.Theming.TerminalTheme.SearchMatchBackground.init -> void
 LoomTerminal.Presentation.Theming.TerminalTheme.SelectionBackground.get -> string?
 LoomTerminal.Presentation.Theming.TerminalTheme.SelectionBackground.init -> void
 LoomTerminal.Presentation.Theming.TerminalTheme.SelectionForeground.get -> string?
@@ -457,6 +474,9 @@ override LoomTerminal.Presentation.Search.SearchOptions.ToString() -> string!
 override LoomTerminal.Presentation.Search.SearchResult.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Search.SearchResult.GetHashCode() -> int
 override LoomTerminal.Presentation.Search.SearchResult.ToString() -> string!
+override LoomTerminal.Presentation.Search.SearchResultSummary.Equals(object? obj) -> bool
+override LoomTerminal.Presentation.Search.SearchResultSummary.GetHashCode() -> int
+override LoomTerminal.Presentation.Search.SearchResultSummary.ToString() -> string!
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(object? obj) -> bool
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.GetHashCode() -> int
 override LoomTerminal.Presentation.Session.TerminalSessionOptions.ToString() -> string!
@@ -483,6 +503,8 @@ static LoomTerminal.Presentation.Search.SearchOptions.operator !=(LoomTerminal.P
 static LoomTerminal.Presentation.Search.SearchOptions.operator ==(LoomTerminal.Presentation.Search.SearchOptions? left, LoomTerminal.Presentation.Search.SearchOptions? right) -> bool
 static LoomTerminal.Presentation.Search.SearchResult.operator !=(LoomTerminal.Presentation.Search.SearchResult? left, LoomTerminal.Presentation.Search.SearchResult? right) -> bool
 static LoomTerminal.Presentation.Search.SearchResult.operator ==(LoomTerminal.Presentation.Search.SearchResult? left, LoomTerminal.Presentation.Search.SearchResult? right) -> bool
+static LoomTerminal.Presentation.Search.SearchResultSummary.operator !=(LoomTerminal.Presentation.Search.SearchResultSummary? left, LoomTerminal.Presentation.Search.SearchResultSummary? right) -> bool
+static LoomTerminal.Presentation.Search.SearchResultSummary.operator ==(LoomTerminal.Presentation.Search.SearchResultSummary? left, LoomTerminal.Presentation.Search.SearchResultSummary? right) -> bool
 static LoomTerminal.Presentation.Session.TerminalSession.Attach(LoomTerminal.Pty.IPtyConnection! connection, int columns, int rows, LoomTerminal.Presentation.Session.TerminalSessionOptions? options = null) -> LoomTerminal.Presentation.Session.TerminalSession!
 static LoomTerminal.Presentation.Session.TerminalSession.Start(LoomTerminal.Pty.PtyStartOptions! pty, LoomTerminal.Presentation.Session.TerminalSessionOptions? options = null) -> LoomTerminal.Presentation.Session.TerminalSession!
 static LoomTerminal.Presentation.Session.TerminalSessionOptions.operator !=(LoomTerminal.Presentation.Session.TerminalSessionOptions? left, LoomTerminal.Presentation.Session.TerminalSessionOptions? right) -> bool

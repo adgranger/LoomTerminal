@@ -20,7 +20,7 @@ namespace LoomTerminal.Presentation.Session;
 /// Threading: every public method is thread-safe and returns immediately. The events are raised on the parser thread;
 /// backends marshal them to the UI thread. Only the parser thread touches the emulator.
 /// </remarks>
-public sealed class TerminalSession : IDisposable
+public sealed partial class TerminalSession : IDisposable
 {
     private const int QueueCapacity = 64;
     private static readonly TimeSpan IdleWorkInterval = TimeSpan.FromMilliseconds(50);
@@ -371,6 +371,7 @@ public sealed class TerminalSession : IDisposable
             _thread.Join();
         }
 
+        _searchAddon?.Dispose();
         _pointer.Dispose();
         _selection.Dispose();
         _viewport.Dispose();
@@ -451,6 +452,7 @@ public sealed class TerminalSession : IDisposable
             SelectionEnd = _selection.SelectionEnd,
             SelectionColumnMode = _selection.ActiveSelectionMode == SelectionMode.Column,
             HoveredLink = _links.Current?.Range,
+            SearchHighlights = _searchAddon?.Tracker.Highlights(_core.Cols),
         };
         var frame = _builder.Build(view);
         Interlocked.Increment(ref _framesPublished);

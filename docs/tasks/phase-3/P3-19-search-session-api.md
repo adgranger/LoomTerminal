@@ -1,6 +1,6 @@
 # P3-19 — Search API on the session and match highlights
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-18, P3-09
 - **Size:** S
 
@@ -34,15 +34,15 @@ scrolling the viewport to the active match.
 
 ## Tests
 
-- [ ] New: two matches → summary `(0, 2)` then `(1, 2)` after `FindNextAsync`; frame runs carry `Highlight`;
+- [x] New: two matches → summary `(0, 2)` then `(1, 2)` after `FindNextAsync`; frame runs carry `Highlight`;
       `ClearSearch` removes highlights; the viewport scrolls to a match in the scrollback.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

@@ -1,7 +1,9 @@
 using LoomTerminal.Core;
 using LoomTerminal.Core.Buffer;
+using LoomTerminal.Core.Common;
 using LoomTerminal.Core.InputHandling;
 using LoomTerminal.Core.Services;
+using LoomTerminal.Presentation.Search;
 using LoomTerminal.Presentation.Theming;
 
 namespace LoomTerminal.Presentation.Rendering;
@@ -23,6 +25,7 @@ internal sealed class RenderFrameBuilder : IDisposable
     private IBuffer? _lastBuffer;
     private bool _lastFocused = true;
     private BufferRange? _lastHoveredLink;
+    private SearchHighlightMap? _lastSearchHighlights;
     private ((int X, int Y)? Start, (int X, int Y)? End, bool Column) _lastSelection;
 
     /// <summary>Creates a builder over <paramref name="core"/> and <paramref name="palette"/>.</summary>
@@ -55,8 +58,10 @@ internal sealed class RenderFrameBuilder : IDisposable
 
         // The selection and the focus change colors anywhere on the screen.
         var selectionState = (view.SelectionStart, view.SelectionEnd, view.SelectionColumnMode);
-        if (selectionState != _lastSelection || view.IsFocused != _lastFocused || view.HoveredLink != _lastHoveredLink)
+        if (selectionState != _lastSelection || view.IsFocused != _lastFocused || view.HoveredLink != _lastHoveredLink
+            || !ReferenceEquals(view.SearchHighlights, _lastSearchHighlights))
         {
+            _lastSearchHighlights = view.SearchHighlights;
             _lastHoveredLink = view.HoveredLink;
             _lastSelection = selectionState;
             _lastFocused = view.IsFocused;
@@ -167,6 +172,7 @@ internal sealed class RenderFrameBuilder : IDisposable
             var chars = _cell.GetChars();
             texts[x] = chars.Length == 0 ? " " : chars;
             styles[x] = ResolveStyle(resolver, _cell, view, selection.IsCellSelected(x, y), IsInLink(view.HoveredLink, x + 1, bufferRow, cols));
+            ApplySearchHighlight(ref styles[x], view.SearchHighlights?.At(x, bufferRow - 1) ?? RunHighlight.None);
             if (width == 0)
             {
                 // The second half of a wide character belongs to the content of the first.
@@ -220,12 +226,25 @@ internal sealed class RenderFrameBuilder : IDisposable
         return new RenderRow(runs, line.IsWrapped, hash.ToHashCode());
     }
 
+    // A match tints the background with the translucent match color of the theme.
+    private void ApplySearchHighlight(ref TextRunStyle style, RunHighlight highlight)
+    {
+        if (highlight == RunHighlight.None)
+        {
+            return;
+        }
+
+        var color = highlight == RunHighlight.ActiveSearchMatch ? _palette.SearchActiveMatchBackground : _palette.SearchMatchBackground;
+        style = style with { Background = Rgba.Blend(style.Background, color.Rgba), Highlight = highlight };
+    }
+
     private bool IsPlain(TextRunStyle style) =>
         style.Background == _palette.Background.Rgba
         && style.Underline == TerminalUnderlineStyle.None
         && !style.Strikethrough
         && !style.Overline
-        && !style.IsLink;
+        && !style.IsLink
+        && style.Highlight == RunHighlight.None;
 
     // The same linear comparison as Linkifier._linkAtPosition; x and row are 1-based.
     private static bool IsInLink(BufferRange? link, int x, int row, int cols) =>

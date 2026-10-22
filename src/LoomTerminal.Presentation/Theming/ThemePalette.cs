@@ -23,6 +23,9 @@ internal sealed class ThemePalette
     private static readonly TerminalColor DefaultCursorAccent = DefaultBackground;
     private static readonly TerminalColor DefaultSelection = new("rgba(255, 255, 255, 0.3)", 0xFFFFFF4D);
 
+    private static readonly TerminalColor DefaultSearchMatch = Css.ToColor("#515c6a80");
+    private static readonly TerminalColor DefaultSearchActiveMatch = Css.ToColor("#f8b64c80");
+
     private TerminalColor _restoreForeground;
     private TerminalColor _restoreBackground;
     private TerminalColor _restoreCursor;
@@ -52,6 +55,12 @@ internal sealed class ThemePalette
 
     /// <summary>Text color inside the selection; <see langword="null"/> keeps the text colors.</summary>
     internal TerminalColor? SelectionForeground { get; private set; }
+
+    /// <summary>Background of the search matches, with its alpha channel.</summary>
+    internal TerminalColor SearchMatchBackground { get; private set; }
+
+    /// <summary>Background of the active search match, with its alpha channel.</summary>
+    internal TerminalColor SearchActiveMatchBackground { get; private set; }
 
     /// <summary>Selection background, with its alpha channel.</summary>
     internal TerminalColor SelectionBackgroundTransparent { get; private set; }
@@ -87,6 +96,8 @@ internal sealed class ThemePalette
         SelectionBackgroundOpaque = ColorOps.Blend(Background, SelectionBackgroundTransparent);
         SelectionInactiveBackgroundTransparent = ParseColor(theme.SelectionInactiveBackground, SelectionBackgroundTransparent);
         SelectionInactiveBackgroundOpaque = ColorOps.Blend(Background, SelectionInactiveBackgroundTransparent);
+        SearchMatchBackground = ParseColor(theme.SearchMatchBackground, DefaultSearchMatch);
+        SearchActiveMatchBackground = ParseColor(theme.SearchActiveMatchBackground, DefaultSearchActiveMatch);
         SelectionForeground = string.IsNullOrEmpty(theme.SelectionForeground) ? null : TryParseColor(theme.SelectionForeground);
 
         // If the selection color is opaque, blend it with the background with 0.3 opacity (xterm.js issue 2737).

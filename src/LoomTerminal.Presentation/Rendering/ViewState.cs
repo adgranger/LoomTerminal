@@ -1,4 +1,5 @@
 using LoomTerminal.Core.Buffer;
+using LoomTerminal.Presentation.Search;
 
 namespace LoomTerminal.Presentation.Rendering;
 
@@ -23,6 +24,9 @@ internal sealed record ViewState
 
     /// <summary>Cells of the link under the pointer (1-based, end inclusive, buffer rows); drawn as a link.</summary>
     internal BufferRange? HoveredLink { get; init; }
+
+    /// <summary>The cells of the search matches, by buffer row.</summary>
+    internal SearchHighlightMap? SearchHighlights { get; init; }
 
     /// <summary>Whether a blinking cursor is in its visible phase.</summary>
     internal bool CursorBlinkVisible { get; init; } = true;

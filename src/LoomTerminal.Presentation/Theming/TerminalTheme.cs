@@ -28,6 +28,12 @@ public sealed record TerminalTheme
     /// <summary>Background of the selection when the terminal is not focused.</summary>
     public string? SelectionInactiveBackground { get; init; }
 
+    /// <summary>Background of the search matches; use an alpha channel to keep the text readable (default <c>#515c6a80</c>).</summary>
+    public string? SearchMatchBackground { get; init; }
+
+    /// <summary>Background of the active search match (default <c>#f8b64c80</c>).</summary>
+    public string? SearchActiveMatchBackground { get; init; }
+
     /// <summary>ANSI color 0.</summary>
     public string? Black { get; init; }
 
