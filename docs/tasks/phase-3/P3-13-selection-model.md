@@ -1,6 +1,6 @@
 # P3-13 — `SelectionModel`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-01
 - **Size:** S
 
@@ -30,14 +30,14 @@ when the scrollback drops lines.
 
 ## Tests
 
-- [ ] Port all of `SelectionModel.test.ts`.
+- [x] Port all of `SelectionModel.test.ts`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `docs/PORTING.md` map updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `docs/PORTING.md` map updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
