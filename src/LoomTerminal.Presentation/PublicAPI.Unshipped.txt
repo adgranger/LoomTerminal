@@ -79,6 +79,9 @@ const LoomTerminal.Presentation.Input.DomKeyCodes.Slash = 191 -> int
 const LoomTerminal.Presentation.Input.DomKeyCodes.Space = 32 -> int
 const LoomTerminal.Presentation.Input.DomKeyCodes.Tab = 9 -> int
 LoomTerminal.Presentation.Input.DomKeyCodes
+LoomTerminal.Presentation.Input.IClipboard
+LoomTerminal.Presentation.Input.IClipboard.GetTextAsync() -> System.Threading.Tasks.Task<string?>!
+LoomTerminal.Presentation.Input.IClipboard.SetTextAsync(string! text) -> System.Threading.Tasks.Task!
 LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Input.KeyInputOutcome.Copy = 2 -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Input.KeyInputOutcome.HandledByHost = 0 -> LoomTerminal.Presentation.Input.KeyInputOutcome
@@ -295,11 +298,14 @@ LoomTerminal.Presentation.Session.TerminalCursorStyle.Underline = 1 -> LoomTermi
 LoomTerminal.Presentation.Session.TerminalSession
 LoomTerminal.Presentation.Session.TerminalSession.Bell -> System.Action?
 LoomTerminal.Presentation.Session.TerminalSession.ClearSelection() -> void
+LoomTerminal.Presentation.Session.TerminalSession.Clipboard.get -> LoomTerminal.Presentation.Input.IClipboard?
+LoomTerminal.Presentation.Session.TerminalSession.Clipboard.set -> void
 LoomTerminal.Presentation.Session.TerminalSession.Dispose() -> void
 LoomTerminal.Presentation.Session.TerminalSession.Exited -> System.Action<int>?
 LoomTerminal.Presentation.Session.TerminalSession.FrameAvailable -> System.Action?
 LoomTerminal.Presentation.Session.TerminalSession.GetSelectionTextAsync() -> System.Threading.Tasks.Task<string!>!
 LoomTerminal.Presentation.Session.TerminalSession.HandlePointer(LoomTerminal.Presentation.Input.TerminalPointerEvent! e, double cellHeight) -> void
+LoomTerminal.Presentation.Session.TerminalSession.HandleRightClick(LoomTerminal.Presentation.Input.TerminalPointerEvent? e = null) -> System.Threading.Tasks.Task!
 LoomTerminal.Presentation.Session.TerminalSession.HandleWheel(LoomTerminal.Presentation.Input.TerminalPointerEvent! ev, double cellHeight) -> void
 LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.get -> System.Func<LoomTerminal.Presentation.Input.TerminalKeyEvent!, bool>?
 LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.set -> void
@@ -324,6 +330,8 @@ LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorBlink.init -> voi
 LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorStyle.get -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorStyle.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(LoomTerminal.Presentation.Session.TerminalSessionOptions? other) -> bool
+LoomTerminal.Presentation.Session.TerminalSessionOptions.RightClickSelectsWord.get -> bool
+LoomTerminal.Presentation.Session.TerminalSessionOptions.RightClickSelectsWord.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Scrollback.get -> int
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Scrollback.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.ScrollOnUserInput.get -> bool

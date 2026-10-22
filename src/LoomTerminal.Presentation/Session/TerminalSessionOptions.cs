@@ -43,6 +43,9 @@ public sealed record TerminalSessionOptions
     /// <summary>Whether typing, pasting or sending a key scrolls the viewport to the bottom first.</summary>
     public bool ScrollOnUserInput { get; init; } = true;
 
+    /// <summary>Whether a right click selects the word under the pointer first (as xterm.js), before copying or pasting.</summary>
+    public bool RightClickSelectsWord { get; init; }
+
     /// <summary>Colors of the terminal; <see langword="null"/> uses the defaults.</summary>
     public TerminalTheme? Theme { get; init; }
 

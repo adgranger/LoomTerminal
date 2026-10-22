@@ -1,6 +1,6 @@
 # P3-16 — Clipboard: copy, paste, right click
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-04, P3-05, P3-15
 - **Size:** S
 
@@ -33,15 +33,15 @@ none — Windows Terminal style) to a backend clipboard.
 
 ## Tests
 
-- [ ] New: Ctrl+Shift+C copies the selection; Ctrl+V pastes with bracketed paste when the mode is on; right click with
+- [x] New: Ctrl+Shift+C copies the selection; Ctrl+V pastes with bracketed paste when the mode is on; right click with
       selection copies and clears it; without selection pastes.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

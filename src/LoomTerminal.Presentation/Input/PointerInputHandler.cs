@@ -255,6 +255,10 @@ internal sealed class PointerInputHandler : IDisposable
         }
     }
 
+    /// <summary>Selects the word under the pointer (right click with <c>RightClickSelectsWord</c>).</summary>
+    /// <param name="e">The pointer event.</param>
+    internal void SelectWordAt(TerminalPointerEvent e) => _selection.SelectWordAt(GetMouseBufferCoords(e), true);
+
     // Performs a double click, selecting the current word.
     private void HandleDoubleClick(TerminalPointerEvent e)
     {

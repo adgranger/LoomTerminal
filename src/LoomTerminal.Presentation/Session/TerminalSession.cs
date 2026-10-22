@@ -44,8 +44,9 @@ public sealed class TerminalSession : IDisposable
     private readonly CursorBlinkState _cursorBlink = new(TimeProvider.System);
     private long _framesPublished;
     private volatile bool _focused = true;
+    private readonly bool _rightClickSelectsWord;
     private int _disposed;
-    private volatile ModesSnapshot _modes = new(false, false, false);
+    private volatile ModesSnapshot _modes = new(false, false, false, false);
 
     private TerminalSession(IPtyConnection connection, int columns, int rows, TerminalSessionOptions options)
     {
@@ -56,6 +57,7 @@ public sealed class TerminalSession : IDisposable
         _core.OnTitleChange.Subscribe(title => TitleChanged?.Invoke(title));
         _core.OnBell.Subscribe(_ => Bell?.Invoke());
         Palette = new ThemePalette(options.Theme);
+        _rightClickSelectsWord = options.RightClickSelectsWord;
         _builder = new RenderFrameBuilder(_core, Palette);
         _viewport = new ViewportController(_core);
         _selection = new SelectionService(_core.BufferService, _core.CoreService, _core.OptionsService, OperatingSystem.IsWindows(), OperatingSystem.IsMacOS());
@@ -243,15 +245,57 @@ public sealed class TerminalSession : IDisposable
     {
         ArgumentNullException.ThrowIfNull(ev);
         var modes = _modes;
-        var result = _keyHandler.Handle(ev, new KeyContext(modes.ApplicationCursorKeys, HasSelection: false, OperatingSystem.IsMacOS()));
+        var result = _keyHandler.Handle(ev, new KeyContext(modes.ApplicationCursorKeys, modes.HasSelection, OperatingSystem.IsMacOS()));
         if (result is { Outcome: KeyInputOutcome.Sent, Data: { } data })
         {
             _cursorBlink.Restart();
             Post(core => core.Input(data));
         }
+        else if (result.Outcome == KeyInputOutcome.Copy)
+        {
+            _ = RunClipboardAsync(CopySelectionAsync);
+        }
+        else if (result.Outcome == KeyInputOutcome.Paste)
+        {
+            _ = RunClipboardAsync(PasteFromClipboardAsync);
+        }
 
         return result.Outcome;
     }
+
+    /// <summary>The clipboard used by copy and paste; without one, they do nothing.</summary>
+    public IClipboard? Clipboard { get; set; }
+
+    /// <summary>
+    /// Right click, as in Windows Terminal: copies the selection and clears it, or pastes when nothing is selected.
+    /// </summary>
+    /// <param name="e">
+    /// The pointer event; with <see cref="TerminalSessionOptions.RightClickSelectsWord"/> the word under it is selected first.
+    /// </param>
+    /// <returns>A task that completes when the clipboard work is done.</returns>
+    public Task HandleRightClick(TerminalPointerEvent? e = null) => RunClipboardAsync(async () =>
+    {
+        var selectWord = _rightClickSelectsWord && e is not null;
+        var text = await RunOnParserThreadAsync(_ =>
+        {
+            if (selectWord)
+            {
+                _pointer.SelectWordAt(e!);
+            }
+
+            var selected = _selection.HasSelection ? _selection.SelectionText : string.Empty;
+            _selection.ClearSelection();
+            return selected;
+        }).ConfigureAwait(false);
+        if (text.Length > 0)
+        {
+            await SetClipboardTextAsync(text).ConfigureAwait(false);
+        }
+        else
+        {
+            await PasteFromClipboardAsync().ConfigureAwait(false);
+        }
+    });
 
     /// <summary>Sends pasted text: line endings normalized, bracketed when the application asked for it.</summary>
     /// <param name="text">The pasted text.</param>
@@ -443,7 +487,8 @@ public sealed class TerminalSession : IDisposable
     private void PublishModes() => _modes = new ModesSnapshot(
         _core.CoreService.DecPrivateModes.ApplicationCursorKeys,
         _core.CoreService.DecPrivateModes.BracketedPasteMode,
-        _core.CoreMouseService.ActiveProtocol != "NONE");
+        _core.CoreMouseService.ActiveProtocol != "NONE",
+        _selection.HasSelection);
 
     private async Task PumpOutputAsync()
     {
@@ -464,6 +509,38 @@ public sealed class TerminalSession : IDisposable
         catch (Exception ex)
         {
             System.Diagnostics.Trace.TraceError("LoomTerminal output pump failed: " + ex);
+        }
+    }
+
+    private async Task CopySelectionAsync()
+    {
+        var text = await GetSelectionTextAsync().ConfigureAwait(false);
+        if (text.Length > 0)
+        {
+            await SetClipboardTextAsync(text).ConfigureAwait(false);
+        }
+    }
+
+    private Task SetClipboardTextAsync(string text) => Clipboard?.SetTextAsync(text) ?? Task.CompletedTask;
+
+    private async Task PasteFromClipboardAsync()
+    {
+        if (Clipboard is { } clipboard && await clipboard.GetTextAsync().ConfigureAwait(false) is { Length: > 0 } text)
+        {
+            Paste(text);
+        }
+    }
+
+    // Used by the key path, where nobody awaits: a failing clipboard must not crash the process.
+    private static async Task RunClipboardAsync(Func<Task> action)
+    {
+        try
+        {
+            await action().ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Trace.TraceError("LoomTerminal clipboard operation failed: " + ex);
         }
     }
 
@@ -494,5 +571,5 @@ public sealed class TerminalSession : IDisposable
         }
     }
 
-    private sealed record ModesSnapshot(bool ApplicationCursorKeys, bool BracketedPaste, bool MouseTracking);
+    private sealed record ModesSnapshot(bool ApplicationCursorKeys, bool BracketedPaste, bool MouseTracking, bool HasSelection);
 }
