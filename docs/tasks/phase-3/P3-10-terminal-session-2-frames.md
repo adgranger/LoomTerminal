@@ -1,6 +1,6 @@
 # P3-10 — `TerminalSession` (2/2): frame publication and idle work
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-06, P3-09
 - **Size:** M
 
@@ -28,16 +28,16 @@ the UI thread takes the latest frame when it renders. Idle work (buffer memory c
 
 ## Tests
 
-- [ ] New: writing output raises `FrameAvailable` once even for 10 batches before the first `TryTakeFrame`; the frame
+- [x] New: writing output raises `FrameAvailable` once even for 10 batches before the first `TryTakeFrame`; the frame
       returned contains the text; a second `TryTakeFrame` returns `null`; a frame taken earlier is unchanged after
       more output (immutability); 1000 concurrent `SendText` calls from 4 threads while output flows do not throw and
       every character arrives (ordering per thread kept).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

@@ -3,6 +3,7 @@ using System.Threading.Channels;
 using LoomTerminal.Core;
 using LoomTerminal.Core.Services;
 using LoomTerminal.Presentation.Input;
+using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.Presentation.Theming;
 using LoomTerminal.Pty;
 
@@ -19,6 +20,7 @@ namespace LoomTerminal.Presentation.Session;
 public sealed class TerminalSession : IDisposable
 {
     private const int QueueCapacity = 64;
+    private static readonly TimeSpan IdleWorkInterval = TimeSpan.FromMilliseconds(50);
 
     private readonly IPtyConnection _connection;
     private readonly TerminalCore _core;
@@ -27,6 +29,14 @@ public sealed class TerminalSession : IDisposable
     private readonly CancellationTokenSource _cts = new();
     private readonly Thread _thread;
     private readonly KeyInputHandler _keyHandler = new();
+    private readonly RenderFrameBuilder _builder;
+    private readonly Lock _frameLock = new();
+    private readonly Lock _postLock = new();
+    private RenderFrame? _latestFrame;
+    private bool _frameDirty;
+    private bool _idleWorkScheduled;
+    private Task _postTail = Task.CompletedTask;
+    private long _framesPublished;
     private int _disposed;
     private volatile ModesSnapshot _modes = new(false, false, false);
 
@@ -39,6 +49,7 @@ public sealed class TerminalSession : IDisposable
         _core.OnTitleChange.Subscribe(title => TitleChanged?.Invoke(title));
         _core.OnBell.Subscribe(_ => Bell?.Invoke());
         Palette = new ThemePalette(options.Theme);
+        _builder = new RenderFrameBuilder(_core, Palette);
         _core.OnColor.Subscribe(requests =>
         {
             foreach (var reply in Palette.Apply(requests))
@@ -54,6 +65,18 @@ public sealed class TerminalSession : IDisposable
 
     /// <summary>The resolved colors, including the OSC overrides; touch it on the parser thread only.</summary>
     internal ThemePalette Palette { get; }
+
+    /// <summary>
+    /// Raised on the parser thread when a new frame is available and the previous one was taken: once per transition,
+    /// not once per frame. Backends then call <see cref="TryTakeFrame"/> from their per-frame callback.
+    /// </summary>
+    public event Action? FrameAvailable;
+
+    /// <summary>Number of frames published so far (tests wait on it).</summary>
+    internal long FramesPublished => Interlocked.Read(ref _framesPublished);
+
+    /// <summary>What the UI decides about the view (focus, cursor blink phase); read by the parser thread.</summary>
+    internal ViewState ViewState { get; set; } = ViewState.Default;
 
     /// <summary>Raised when the shell exited and all its output was processed (parser thread). The argument is the exit code.</summary>
     public event Action<int>? Exited;
@@ -98,6 +121,22 @@ public sealed class TerminalSession : IDisposable
     {
         ArgumentNullException.ThrowIfNull(connection);
         return new TerminalSession(connection, columns, rows, options ?? new TerminalSessionOptions());
+    }
+
+    /// <summary>Takes the latest frame if it was not taken yet. Call it from the UI thread, after <see cref="FrameAvailable"/>.</summary>
+    /// <returns>The frame, or <see langword="null"/> when there is nothing new. A frame is never modified after it is published.</returns>
+    public RenderFrame? TryTakeFrame()
+    {
+        lock (_frameLock)
+        {
+            if (!_frameDirty)
+            {
+                return null;
+            }
+
+            _frameDirty = false;
+            return _latestFrame;
+        }
     }
 
     /// <summary>Sends typed text (character input, IME commit) to the shell as UTF-8, unchanged.</summary>
@@ -183,6 +222,7 @@ public sealed class TerminalSession : IDisposable
             _thread.Join();
         }
 
+        _builder.Dispose();
         _core.Dispose();
         _cts.Dispose();
     }
@@ -229,7 +269,7 @@ public sealed class TerminalSession : IDisposable
     {
         try
         {
-            new TerminalWriter(_core).Run(_queue.Reader, _ => PublishModes(), _cts.Token);
+            new TerminalWriter(_core).Run(_queue.Reader, _ => AfterBatch(), _cts.Token);
         }
         catch (OperationCanceledException)
         {
@@ -239,6 +279,64 @@ public sealed class TerminalSession : IDisposable
         {
             System.Diagnostics.Trace.TraceError("LoomTerminal parser thread failed: " + ex);
         }
+    }
+
+    private void AfterBatch()
+    {
+        PublishModes();
+        PublishFrame();
+        ScheduleIdleWork();
+    }
+
+    private void PublishFrame()
+    {
+        var frame = _builder.Build(ViewState);
+        Interlocked.Increment(ref _framesPublished);
+        bool raise;
+        lock (_frameLock)
+        {
+            _latestFrame = frame;
+            raise = !_frameDirty;
+            _frameDirty = true;
+        }
+
+        if (raise)
+        {
+            FrameAvailable?.Invoke();
+        }
+    }
+
+    // When the queue is empty after a batch, clean up the memory of a resized buffer, at most once per 50 ms.
+    private void ScheduleIdleWork()
+    {
+        if (_idleWorkScheduled || _queue.Reader.Count > 0 || !_core.Buffers.Active.MemoryCleanupPending)
+        {
+            return;
+        }
+
+        _idleWorkScheduled = true;
+        _ = RunIdleWorkAsync();
+    }
+
+    private async Task RunIdleWorkAsync()
+    {
+        try
+        {
+            await Task.Delay(IdleWorkInterval, _cts.Token).ConfigureAwait(false);
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+
+        Post(core =>
+        {
+            _idleWorkScheduled = false;
+            if (core.Buffers.Active.MemoryCleanupPending)
+            {
+                core.Buffers.Active.BatchedMemoryCleanup();
+            }
+        });
     }
 
     // The key decision only needs the current modes: the parser thread publishes them after each batch.
@@ -270,12 +368,20 @@ public sealed class TerminalSession : IDisposable
     }
 
     // Fire and forget: the queue is bounded, but UI calls must never block.
-    private void Post(Action<TerminalCore> action) => _ = PostAsync(action);
+    private void Post(Action<TerminalCore> action)
+    {
+        lock (_postLock)
+        {
+            _postTail = PostAsync(_postTail, action);
+        }
+    }
 
-    private async Task PostAsync(Action<TerminalCore> action)
+    // Chained on the previous post: calls made in order from one thread reach the queue in that order even when it is full.
+    private async Task PostAsync(Task previous, Action<TerminalCore> action)
     {
         try
         {
+            await previous.ConfigureAwait(false);
             await _queue.Writer.WriteAsync(TerminalWorkItem.FromAction(action), _cts.Token).ConfigureAwait(false);
         }
         catch (Exception ex) when (ex is OperationCanceledException or ChannelClosedException or ObjectDisposedException)

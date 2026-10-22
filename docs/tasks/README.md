@@ -154,7 +154,7 @@ Session and threads, render frames, input, selection, links, search. **Read [pha
 | [P3-07](phase-3/P3-07-theme.md) | `TerminalTheme` and the 256-color palette | P3-01, P1-26 | M | done |
 | [P3-08](phase-3/P3-08-cell-color-resolver.md) | Cell color resolution | P3-07 | M | done |
 | [P3-09](phase-3/P3-09-render-frame.md) | `RenderFrame` and `RenderFrameBuilder` | P3-08 | M | done |
-| [P3-10](phase-3/P3-10-terminal-session-2-frames.md) | `TerminalSession` (2/2): frame publication and idle work | P3-06, P3-09 | M | todo |
+| [P3-10](phase-3/P3-10-terminal-session-2-frames.md) | `TerminalSession` (2/2): frame publication and idle work | P3-06, P3-09 | M | done |
 | [P3-11](phase-3/P3-11-cursor-blink.md) | Cursor blinking and cursor styles | P3-09 | S | todo |
 | [P3-12](phase-3/P3-12-viewport-and-wheel.md) | Viewport scrolling and the mouse wheel | P3-10 | M | todo |
 
