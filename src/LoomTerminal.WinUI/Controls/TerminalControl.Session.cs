@@ -67,6 +67,10 @@ public sealed partial class TerminalControl : ILinkHandler
                 value.KeyPreview = OnSessionKeyPreview;
                 value.LinkHandler = this;
                 value.Clipboard = new WinRtClipboard();
+                // Settings made before the session was attached (the host sets them first) reach it now.
+                value.SetTheme(Theme);
+                value.SetCursorStyle(CursorStyle);
+                value.SetCursorBlink(CursorBlink);
             }
         }
     }

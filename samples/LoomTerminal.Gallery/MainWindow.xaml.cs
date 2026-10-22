@@ -109,7 +109,12 @@ public sealed partial class MainWindow : Window
         menu.ShowAt(sender);
     }
 
-    private void OnTabSelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateStatus();
+    private void OnTabSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        UpdateStatus();
+        // The terminal takes the keyboard as soon as its tab is shown; the content is not loaded yet at this point.
+        DispatcherQueue.TryEnqueue(() => CurrentTerminal?.Focus(FocusState.Programmatic));
+    }
 
     private void OnSettingChanged(object sender, object e)
     {
