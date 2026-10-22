@@ -1,6 +1,6 @@
 # P3-17 — Links: URL detection and OSC 8, Ctrl+click
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-15
 - **Size:** M
 
@@ -39,16 +39,16 @@ the pointer while Ctrl is held, and hand activated links to the host — https o
 
 ## Tests
 
-- [ ] New: `https://example.com/a?b=c` detected with exact range; URL wrapped across two lines detected as one link;
+- [x] New: `https://example.com/a?b=c` detected with exact range; URL wrapped across two lines detected as one link;
       trailing `.`/`)` handling identical to the addon; OSC 8 link detected; `http://` refused by the default handler;
       Ctrl+click calls `Open`; click without Ctrl does not.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated; `docs/PORTING.md` map updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated; `docs/PORTING.md` map updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

@@ -163,6 +163,9 @@ LoomTerminal.Presentation.Input.WheelDeltaMode
 LoomTerminal.Presentation.Input.WheelDeltaMode.Line = 1 -> LoomTerminal.Presentation.Input.WheelDeltaMode
 LoomTerminal.Presentation.Input.WheelDeltaMode.Page = 2 -> LoomTerminal.Presentation.Input.WheelDeltaMode
 LoomTerminal.Presentation.Input.WheelDeltaMode.Pixel = 0 -> LoomTerminal.Presentation.Input.WheelDeltaMode
+LoomTerminal.Presentation.Links.ILinkHandler
+LoomTerminal.Presentation.Links.ILinkHandler.CanOpen(System.Uri! uri) -> bool
+LoomTerminal.Presentation.Links.ILinkHandler.Open(System.Uri! uri) -> void
 LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Bar = 2 -> LoomTerminal.Presentation.Rendering.CursorShape
 LoomTerminal.Presentation.Rendering.CursorShape.Block = 0 -> LoomTerminal.Presentation.Rendering.CursorShape
@@ -309,6 +312,8 @@ LoomTerminal.Presentation.Session.TerminalSession.HandleRightClick(LoomTerminal.
 LoomTerminal.Presentation.Session.TerminalSession.HandleWheel(LoomTerminal.Presentation.Input.TerminalPointerEvent! ev, double cellHeight) -> void
 LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.get -> System.Func<LoomTerminal.Presentation.Input.TerminalKeyEvent!, bool>?
 LoomTerminal.Presentation.Session.TerminalSession.KeyPreview.set -> void
+LoomTerminal.Presentation.Session.TerminalSession.LinkHandler.get -> LoomTerminal.Presentation.Links.ILinkHandler?
+LoomTerminal.Presentation.Session.TerminalSession.LinkHandler.set -> void
 LoomTerminal.Presentation.Session.TerminalSession.Paste(string! text) -> void
 LoomTerminal.Presentation.Session.TerminalSession.Resize(int columns, int rows) -> void
 LoomTerminal.Presentation.Session.TerminalSession.ScrollLines(int lines) -> void

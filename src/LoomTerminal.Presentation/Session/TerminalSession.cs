@@ -3,6 +3,7 @@ using System.Threading.Channels;
 using LoomTerminal.Core;
 using LoomTerminal.Core.Services;
 using LoomTerminal.Presentation.Input;
+using LoomTerminal.Presentation.Links;
 using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.Presentation.Selection;
 using LoomTerminal.Presentation.Theming;
@@ -35,6 +36,7 @@ public sealed class TerminalSession : IDisposable
     private readonly ViewportController _viewport;
     private readonly SelectionService _selection;
     private readonly PointerInputHandler _pointer;
+    private readonly LinkTracker _links;
     private readonly Lock _frameLock = new();
     private readonly Lock _postLock = new();
     private RenderFrame? _latestFrame;
@@ -62,6 +64,7 @@ public sealed class TerminalSession : IDisposable
         _viewport = new ViewportController(_core);
         _selection = new SelectionService(_core.BufferService, _core.CoreService, _core.OptionsService, OperatingSystem.IsWindows(), OperatingSystem.IsMacOS());
         _pointer = new PointerInputHandler(_core, _selection, TimeProvider.System);
+        _links = new LinkTracker(_core);
         _core.OnColor.Subscribe(requests =>
         {
             foreach (var reply in Palette.Apply(requests))
@@ -213,7 +216,11 @@ public sealed class TerminalSession : IDisposable
     public void HandlePointer(TerminalPointerEvent e, double cellHeight)
     {
         ArgumentNullException.ThrowIfNull(e);
-        Post(_ => _pointer.Handle(e, cellHeight));
+        Post(_ =>
+        {
+            _links.Handle(e);
+            _pointer.Handle(e, cellHeight);
+        });
     }
 
     /// <summary>Selects all the text of the buffer, scrollback included.</summary>
@@ -261,6 +268,16 @@ public sealed class TerminalSession : IDisposable
         }
 
         return result.Outcome;
+    }
+
+    /// <summary>
+    /// Decides which links are offered and opens them on Ctrl+click; links are underlined only while Ctrl is held over
+    /// them. Defaults to a handler that accepts <c>https</c> links and opens nothing; <see langword="null"/> disables links.
+    /// </summary>
+    public ILinkHandler? LinkHandler
+    {
+        get => _links.Handler;
+        set => _links.Handler = value;
     }
 
     /// <summary>The clipboard used by copy and paste; without one, they do nothing.</summary>
@@ -433,6 +450,7 @@ public sealed class TerminalSession : IDisposable
             SelectionStart = _selection.SelectionStart,
             SelectionEnd = _selection.SelectionEnd,
             SelectionColumnMode = _selection.ActiveSelectionMode == SelectionMode.Column,
+            HoveredLink = _links.Current?.Range,
         };
         var frame = _builder.Build(view);
         Interlocked.Increment(ref _framesPublished);

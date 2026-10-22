@@ -37,6 +37,20 @@ public sealed class RenderFrameBuilderTests : IDisposable
     }
 
     [Fact]
+    public void The_hovered_link_is_drawn_as_a_link()
+    {
+        using var core = new TerminalCore(new TerminalOptions { Cols = 40, Rows = 5 });
+        using var builder = new RenderFrameBuilder(core, _palette);
+        core.Write("go https://example.com");
+        var range = new Core.Buffer.BufferRange(new Core.Buffer.BufferCellPosition(4, 1), new Core.Buffer.BufferCellPosition(22, 1));
+
+        var runs = builder.Build(new ViewState { HoveredLink = range }).Lines[0].Runs;
+
+        Assert.Equal(["go ", "https://example.com"], runs.Select(r => r.Text));
+        Assert.Equal([false, true], runs.Select(r => r.Style.IsLink));
+    }
+
+    [Fact]
     public void A_style_change_splits_the_run()
     {
         _core.Write("ab\u001b[31mcd");
@@ -185,8 +199,11 @@ public sealed class RenderFrameBuilderTests : IDisposable
     {
         _core.Write("\u001b[4mu\u001b[0m\u001b]8;;http://example.com\u0007l\u001b]8;;\u0007");
 
-        var runs = Build().Lines[0].Runs;
+        // Only the hovered link is drawn as a link (P3-17): the OSC 8 cell alone is not.
+        var plain = Build().Lines[0].Runs;
+        var runs = Build(new ViewState { HoveredLink = new Core.Buffer.BufferRange(new Core.Buffer.BufferCellPosition(2, 1), new Core.Buffer.BufferCellPosition(2, 1)) }).Lines[0].Runs;
 
+        Assert.False(plain[1].Style.IsLink);
         Assert.Equal(TerminalUnderlineStyle.SingleLine, runs[0].Style.Underline);
         Assert.False(runs[0].Style.IsLink);
         Assert.True(runs[1].Style.IsLink);

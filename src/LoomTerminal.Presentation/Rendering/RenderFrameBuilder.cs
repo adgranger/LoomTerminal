@@ -22,6 +22,7 @@ internal sealed class RenderFrameBuilder : IDisposable
     private ulong _version;
     private IBuffer? _lastBuffer;
     private bool _lastFocused = true;
+    private BufferRange? _lastHoveredLink;
     private ((int X, int Y)? Start, (int X, int Y)? End, bool Column) _lastSelection;
 
     /// <summary>Creates a builder over <paramref name="core"/> and <paramref name="palette"/>.</summary>
@@ -54,8 +55,9 @@ internal sealed class RenderFrameBuilder : IDisposable
 
         // The selection and the focus change colors anywhere on the screen.
         var selectionState = (view.SelectionStart, view.SelectionEnd, view.SelectionColumnMode);
-        if (selectionState != _lastSelection || view.IsFocused != _lastFocused)
+        if (selectionState != _lastSelection || view.IsFocused != _lastFocused || view.HoveredLink != _lastHoveredLink)
         {
+            _lastHoveredLink = view.HoveredLink;
             _lastSelection = selectionState;
             _lastFocused = view.IsFocused;
             _allDirty = true;
@@ -152,6 +154,7 @@ internal sealed class RenderFrameBuilder : IDisposable
             return new RenderRow([], false, 0);
         }
 
+        var bufferRow = _core.Buffers.Active.YDisp + y + 1;
         var styles = new TextRunStyle[cols];
         var texts = new string[cols];
         var widths = new int[cols];
@@ -163,7 +166,7 @@ internal sealed class RenderFrameBuilder : IDisposable
             widths[x] = width;
             var chars = _cell.GetChars();
             texts[x] = chars.Length == 0 ? " " : chars;
-            styles[x] = ResolveStyle(resolver, _cell, view, selection.IsCellSelected(x, y));
+            styles[x] = ResolveStyle(resolver, _cell, view, selection.IsCellSelected(x, y), IsInLink(view.HoveredLink, x + 1, bufferRow, cols));
             if (width == 0)
             {
                 // The second half of a wide character belongs to the content of the first.
@@ -224,7 +227,13 @@ internal sealed class RenderFrameBuilder : IDisposable
         && !style.Overline
         && !style.IsLink;
 
-    private static TextRunStyle ResolveStyle(CellColorResolver resolver, CellData cell, ViewState view, bool isSelected)
+    // The same linear comparison as Linkifier._linkAtPosition; x and row are 1-based.
+    private static bool IsInLink(BufferRange? link, int x, int row, int cols) =>
+        link is { } l
+        && (l.Start.Y * cols) + l.Start.X <= (row * cols) + x
+        && (row * cols) + x <= (l.End.Y * cols) + l.End.X;
+
+    private static TextRunStyle ResolveStyle(CellColorResolver resolver, CellData cell, ViewState view, bool isSelected, bool isLink)
     {
         var colors = resolver.Resolve(cell, (int)cell.GetCode(), isSelected, view.IsFocused);
         var underline = cell.IsUnderline() != 0 ? (TerminalUnderlineStyle)(int)cell.GetUnderlineStyle() : TerminalUnderlineStyle.None;
@@ -238,7 +247,7 @@ internal sealed class RenderFrameBuilder : IDisposable
             underline == TerminalUnderlineStyle.None ? null : colors.UnderlineColor,
             cell.IsStrikethrough() != 0,
             cell.IsOverline() != 0,
-            cell.HasExtendedAttrs() != 0 && cell.Extended.UrlId != 0,
+            isLink,
             RunHighlight.None);
     }
 

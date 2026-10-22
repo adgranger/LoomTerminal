@@ -1,3 +1,5 @@
+using LoomTerminal.Core.Buffer;
+
 namespace LoomTerminal.Presentation.Rendering;
 
 /// <summary>What the UI decides and the frame builder needs; later cards add the selection and the search highlights.</summary>
@@ -18,6 +20,9 @@ internal sealed record ViewState
 
     /// <summary>Whether the selection is a rectangle of columns.</summary>
     internal bool SelectionColumnMode { get; init; }
+
+    /// <summary>Cells of the link under the pointer (1-based, end inclusive, buffer rows); drawn as a link.</summary>
+    internal BufferRange? HoveredLink { get; init; }
 
     /// <summary>Whether a blinking cursor is in its visible phase.</summary>
     internal bool CursorBlinkVisible { get; init; } = true;

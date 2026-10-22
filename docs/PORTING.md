@@ -64,6 +64,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/browser/selection/SelectionModel.ts` (+ test) | `Presentation/Selection/SelectionModel.cs` (positions are `(int X, int Y)?` tuples; `ISelectionRedrawRequestEvent` not needed yet) | ✅ | P3-13 |
 | `src/browser/services/SelectionService.ts` (non-DOM parts) (+ test), `renderer/shared/SelectionRenderModel.ts` | `Presentation/Selection/SelectionService.cs`, `SelectionService.Words.cs`, `Presentation/Rendering/SelectionRenderModel.cs` (mouse handling, drag scroll and Linux selection are P3-15) | ✅ | P3-14 |
 | `src/browser/services/SelectionService.ts` (mouse handling), `CoreBrowserTerminal.ts` (`bindMouse`), `src/browser/input/MoveToCell.ts` (+ test) | `Presentation/Input/PointerInputHandler.cs`, `MoveToCell.cs` (no DOM listeners: the backend sends `TerminalPointerEvent`; Linux mouse selection and the link under the pointer are not ported) | ✅ | P3-15 |
+| `addons/addon-web-links/src/WebLinkProvider.ts`, `WebLinksAddon.ts` (regex), `src/browser/OscLinkProvider.ts`, `src/browser/Linkifier.ts` (hover, `_linkAtPosition`) | `Presentation/Links/WebLinkComputer.cs`, `OscLinkProvider.cs`, `LinkTracker.cs` (no hover/leave callbacks, no link cache; the link under the pointer is recomputed on each pointer event with Ctrl; `Uri` replaces JS `URL` in `isUrl`; OSC 8 links other than http(s) are always ignored) | ✅ | P3-17 |
 
 ## What is not ported
 
