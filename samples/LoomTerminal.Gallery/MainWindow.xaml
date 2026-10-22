@@ -31,6 +31,8 @@
                     SelectionChanged="OnSettingChanged">
                     <x:String>Cascadia Mono</x:String>
                     <x:String>Cascadia Code</x:String>
+                    <x:String>CaskaydiaCove Nerd Font</x:String>
+                    <x:String>CaskaydiaCove Nerd Font Mono</x:String>
                     <x:String>Consolas</x:String>
                     <x:String>Courier New</x:String>
                 </ComboBox>
