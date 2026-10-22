@@ -1,6 +1,6 @@
 # P4-01 — `TerminalControl` public API skeleton
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-23
 - **Size:** S
 
@@ -33,14 +33,14 @@ gallery to a real session so later cards can be checked by hand.
 
 ## Tests
 
-- [ ] Build + manual: the gallery starts a shell (nothing is drawn yet besides the placeholder).
+- [x] Build + manual: the gallery starts a shell (nothing is drawn yet besides the placeholder).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Public API files updated (`./eng/Update-PublicApi.ps1 src/LoomTerminal.WinUI`)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Public API files updated (`./eng/Update-PublicApi.ps1 src/LoomTerminal.WinUI`)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

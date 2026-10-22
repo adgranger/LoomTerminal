@@ -14,7 +14,7 @@ LoomTerminal.WinUI ──► LoomTerminal.Presentation ──► LoomTerminal.Co
 | `LoomTerminal.Core` | `$(LoomNetTargetFramework)` | nothing | Emulator: bytes in, screen state out. Headless. |
 | `LoomTerminal.Pty` | `$(LoomNetTargetFramework)` | nothing | Pseudo terminal and shell detection. OS code in `Windows/` (later `Unix/`). |
 | `LoomTerminal.Presentation` | `$(LoomNetTargetFramework)` | Core, Pty | Render model, input encoding, selection, search, backend interfaces. |
-| `LoomTerminal.WinUI` | `$(LoomWindowsTargetFramework)` | Presentation, Pty | XAML control, Win2D renderer, WinUI input, UIA. |
+| `LoomTerminal.WinUI` | `$(LoomWindowsTargetFramework)` | Presentation | XAML control, Win2D renderer, WinUI input, UIA. |
 
 These rules are **checked by tests** (`tests/LoomTerminal.Architecture.Tests`): allowed references, plain `net11.0`
 TFM and no UI package for the three portable projects, no Windows API in their sources (except `Pty/Windows/`).

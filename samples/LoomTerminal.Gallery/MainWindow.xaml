@@ -10,6 +10,6 @@
             Margin="12,8"
             Style="{StaticResource BodyStrongTextBlockStyle}"
             Text="LoomTerminal — skeleton" />
-        <loom:TerminalControl Grid.Row="1" />
+        <loom:TerminalControl x:Name="Terminal" Grid.Row="1" />
     </Grid>
 </Window>

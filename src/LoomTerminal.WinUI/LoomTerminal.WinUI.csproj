@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LoomTerminal.Presentation\LoomTerminal.Presentation.csproj" />
-    <ProjectReference Include="..\LoomTerminal.Pty\LoomTerminal.Pty.csproj" />
   </ItemGroup>
 
   <ItemGroup>

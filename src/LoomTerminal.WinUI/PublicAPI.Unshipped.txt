@@ -2,7 +2,31 @@
 ~LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(string fullName) -> Microsoft.UI.Xaml.Markup.IXamlType
 ~LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type type) -> Microsoft.UI.Xaml.Markup.IXamlType
 ~LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions() -> Microsoft.UI.Xaml.Markup.XmlnsDefinition[]
+LoomTerminal.WinUI.Controls.LinkActivatedEventArgs
+LoomTerminal.WinUI.Controls.LinkActivatedEventArgs.Handled.get -> bool
+LoomTerminal.WinUI.Controls.LinkActivatedEventArgs.Handled.set -> void
+LoomTerminal.WinUI.Controls.LinkActivatedEventArgs.LinkActivatedEventArgs(System.Uri! uri) -> void
+LoomTerminal.WinUI.Controls.LinkActivatedEventArgs.Uri.get -> System.Uri!
 LoomTerminal.WinUI.Controls.TerminalControl
+LoomTerminal.WinUI.Controls.TerminalControl.BellRang -> System.EventHandler?
+LoomTerminal.WinUI.Controls.TerminalControl.CursorBlink.get -> bool
+LoomTerminal.WinUI.Controls.TerminalControl.CursorBlink.set -> void
+LoomTerminal.WinUI.Controls.TerminalControl.CursorStyle.get -> LoomTerminal.Presentation.Session.TerminalCursorStyle
+LoomTerminal.WinUI.Controls.TerminalControl.CursorStyle.set -> void
+LoomTerminal.WinUI.Controls.TerminalControl.Exited -> System.EventHandler<int>?
+LoomTerminal.WinUI.Controls.TerminalControl.KeyPreview -> System.EventHandler<LoomTerminal.Presentation.Input.KeyPreviewEventArgs!>?
+LoomTerminal.WinUI.Controls.TerminalControl.LineHeight.get -> double
+LoomTerminal.WinUI.Controls.TerminalControl.LineHeight.set -> void
+LoomTerminal.WinUI.Controls.TerminalControl.LinkActivated -> System.EventHandler<LoomTerminal.WinUI.Controls.LinkActivatedEventArgs!>?
+LoomTerminal.WinUI.Controls.TerminalControl.Session.get -> LoomTerminal.Presentation.Session.TerminalSession?
+LoomTerminal.WinUI.Controls.TerminalControl.Session.set -> void
 LoomTerminal.WinUI.Controls.TerminalControl.TerminalControl() -> void
+LoomTerminal.WinUI.Controls.TerminalControl.Theme.get -> LoomTerminal.Presentation.Theming.TerminalTheme!
+LoomTerminal.WinUI.Controls.TerminalControl.Theme.set -> void
+LoomTerminal.WinUI.Controls.TerminalControl.TitleChanged -> System.EventHandler<string!>?
 LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider
 LoomTerminal.WinUI.LoomTerminal_WinUI_XamlTypeInfo.XamlMetaDataProvider.XamlMetaDataProvider() -> void
+static readonly LoomTerminal.WinUI.Controls.TerminalControl.CursorBlinkProperty -> Microsoft.UI.Xaml.DependencyProperty!
+static readonly LoomTerminal.WinUI.Controls.TerminalControl.CursorStyleProperty -> Microsoft.UI.Xaml.DependencyProperty!
+static readonly LoomTerminal.WinUI.Controls.TerminalControl.LineHeightProperty -> Microsoft.UI.Xaml.DependencyProperty!
+static readonly LoomTerminal.WinUI.Controls.TerminalControl.ThemeProperty -> Microsoft.UI.Xaml.DependencyProperty!
