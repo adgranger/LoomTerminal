@@ -57,6 +57,7 @@ Filled by the task cards (✅ done, 🔶 in progress, "replaced", "not ported").
 | `src/common/services/LogService.ts`, `Services.ts` (`ILogService`) | `Core/Services/ILogService.cs` (interface only, test mocks in the test project) | replaced | P1-24 |
 | `src/common/input/WriteBuffer.ts` (ideas only) | `Core/TerminalWriter.cs`, `TerminalWorkItem.cs` (replaces `WriteBuffer`) | ✅ | P1-56 |
 | `src/common/input/Keyboard.ts` (+ test), `Types.ts` (`IKeyboardResult`) | `Presentation/Input/Keyboard.cs`, `KeyboardResult.cs` (`DomKeyCodes.cs` for key codes) | ✅ | P3-03 |
+| `src/browser/Clipboard.ts` (`prepareTextForTerminal`, `bracketTextForPaste`, the `paste` logic) (+ test) | `Presentation/Input/PasteEncoding.cs` (copy, paste events and textarea code not ported: DOM) | ✅ | P3-05 |
 
 ## What is not ported
 

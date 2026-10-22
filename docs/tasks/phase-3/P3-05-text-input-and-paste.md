@@ -1,6 +1,6 @@
 # P3-05 — Text input and paste encoding
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P3-02
 - **Size:** S
 
@@ -29,14 +29,14 @@ Port the helpers that turn typed or pasted text into pty input: line ending norm
 
 ## Tests
 
-- [ ] Port `Clipboard.test.ts`.
-- [ ] New: CRLF and LF both become CR; bracketed paste wraps with `\x1b[200~` / `\x1b[201~`.
+- [x] Port `Clipboard.test.ts`.
+- [x] New: CRLF and LF both become CR; bracketed paste wraps with `\x1b[200~` / `\x1b[201~`.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

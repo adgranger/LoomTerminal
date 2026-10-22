@@ -144,7 +144,7 @@ Session and threads, render frames, input, selection, links, search. **Read [pha
 | [P3-02](phase-3/P3-02-key-event-model.md) | Key event model (`TerminalKeyEvent`) | P3-01 | S | done |
 | [P3-03](phase-3/P3-03-keyboard-evaluation.md) | Port `evaluateKeyboardEvent` (`Keyboard.ts`) | P3-02 | M | done |
 | [P3-04](phase-3/P3-04-key-input-handler.md) | `KeyInputHandler`: from key event to pty bytes, with host shortcuts | P3-03 | M | done |
-| [P3-05](phase-3/P3-05-text-input-and-paste.md) | Text input and paste encoding | P3-02 | S | todo |
+| [P3-05](phase-3/P3-05-text-input-and-paste.md) | Text input and paste encoding | P3-02 | S | done |
 
 ### Step B — Session, theme and frames
 
