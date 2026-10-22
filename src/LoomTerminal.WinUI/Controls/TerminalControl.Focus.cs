@@ -12,7 +12,11 @@ public sealed partial class TerminalControl
         _blinkTimer = DispatcherQueue.CreateTimer();
         _blinkTimer.IsRepeating = false;
         _blinkTimer.Tick += (_, _) => _session?.RefreshFrame();
-        GotFocus += (_, _) => _session?.SetFocus(true);
+        GotFocus += (_, _) =>
+        {
+            UpdateAccessibility();
+            _session?.SetFocus(true);
+        };
         LostFocus += (_, _) => _session?.SetFocus(false);
     }
 
