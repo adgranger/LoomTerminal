@@ -39,6 +39,7 @@ public sealed partial class TerminalControl : Control
         Unloaded += OnUnloaded;
         InitializeLayout();
         InitializeKeyboard();
+        InitializePointer();
     }
 
     /// <inheritdoc />

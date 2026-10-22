@@ -83,6 +83,7 @@ public sealed partial class TerminalControl
         ApplySize();
         _canvas?.Invalidate();
         ScheduleBlink();
+        PumpPointerFrame();
     }
 
     // cols = floor(usable width / cell width), at least 2x1; Resize only when the grid changed, so at most once per

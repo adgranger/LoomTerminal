@@ -49,6 +49,7 @@ public sealed partial class TerminalSession : IDisposable
     private readonly bool _rightClickSelectsWord;
     private readonly bool _customGlyphs;
     private int _disposed;
+    private volatile bool _isOverLink;
     private volatile ModesSnapshot _modes = new(false, false, false, false);
 
     private TerminalSession(IPtyConnection connection, int columns, int rows, TerminalSessionOptions options)
@@ -233,6 +234,7 @@ public sealed partial class TerminalSession : IDisposable
         Post(_ =>
         {
             _links.Handle(e);
+            _isOverLink = _links.Current is not null;
             _pointer.Handle(e, cellHeight);
         });
     }
@@ -304,6 +306,12 @@ public sealed partial class TerminalSession : IDisposable
 
     /// <summary>The clipboard used by copy and paste; without one, they do nothing.</summary>
     public IClipboard? Clipboard { get; set; }
+
+    /// <summary>Whether an application asked for mouse reports (the backend then shows an arrow cursor).</summary>
+    internal bool IsMouseTracking => _modes.MouseTracking;
+
+    /// <summary>Whether the pointer was last over a link that Ctrl+click opens.</summary>
+    internal bool IsOverLink => _isOverLink;
 
     /// <summary>
     /// Right click, as in Windows Terminal: copies the selection and clears it, or pastes when nothing is selected.
