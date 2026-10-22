@@ -34,6 +34,9 @@ public sealed partial class TerminalControl : Control
     private Win2DTextMeasurer? _measurer;
     private RenderFrame? _lastFrame;
 
+    /// <summary>How long the last frame took to draw (for diagnostics, e.g. a status bar).</summary>
+    public TimeSpan LastFrameTime { get; private set; }
+
     /// <summary>Creates the control.</summary>
     public TerminalControl()
     {
@@ -59,6 +62,7 @@ public sealed partial class TerminalControl : Control
 
     private void OnCanvasDraw(CanvasControl sender, CanvasDrawEventArgs args)
     {
+        var started = System.Diagnostics.Stopwatch.GetTimestamp();
         var scale = _scale;
         var font = CurrentFont();
         var metrics = (_measurer ??= new Win2DTextMeasurer(sender)).Measure(font, scale);
@@ -74,6 +78,7 @@ public sealed partial class TerminalControl : Control
         _layoutCache.Capacity = 16 * Math.Max(1, frame.Lines.Count);
         var surface = new Win2DRenderSurface(args.DrawingSession, sender, _layoutCache, font, Win2DTextMeasurer.ResolveFamily(font), scale);
         FrameRenderer.Render(frame, metrics, surface, _session?.CustomGlyphs ?? true, _composition);
+        LastFrameTime = System.Diagnostics.Stopwatch.GetElapsedTime(started);
     }
 
     // Device (re)creation, or a DPI change: cached metrics and layouts belong to the old device.

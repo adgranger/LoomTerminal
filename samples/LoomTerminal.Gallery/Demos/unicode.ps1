@@ -1,0 +1,20 @@
+# CJK, emoji, combining marks and box drawing. Run in pwsh 7.
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+
+"CJK:       日本語 中文字 한국어"
+"Emoji:     😀 🎉 👍 🚀 ❤"
+"Combining: e$([char]0x0301) n$([char]0x0303) a$([char]0x0308)  (precomposed: é ñ ä)"
+"Grid:      |ab|日本|😀|cd|   (the bars must line up with the ruler)"
+"Ruler:     |01|2345|67|89|"
+""
+"Box drawing:"
+"┌──────┬──────┐"
+"│ left │ right│"
+"├──────┼──────┤"
+"│ ████ │ ░▒▓█ │"
+"└──────┴──────┘"
+"╔══════╦══════╗"
+"║ dbl  ║ dbl  ║"
+"╚══════╩══════╝"
+""
+"Powerline: " + [char]0xE0B0 + [char]0xE0B2 + [char]0xE0B4 + [char]0xE0B6 + " (needs a Nerd Font for the glyphs; the shapes are drawn by the control)"

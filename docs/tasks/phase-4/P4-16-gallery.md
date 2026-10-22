@@ -1,6 +1,6 @@
 # P4-16 — Gallery: shells in tabs, settings, demo scripts
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-14, P4-15, P4-11, P4-09, P4-04
 - **Size:** M
 
@@ -31,10 +31,10 @@ feature, and the VIGO parity checklist.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
 - [ ] `rtk dotnet publish samples/LoomTerminal.Gallery -c Release -r win-x64` — 0 IL/AOT warnings, app starts
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

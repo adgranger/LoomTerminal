@@ -9,15 +9,18 @@ LoomTerminal.WinUI.Controls.LinkActivatedEventArgs.LinkActivatedEventArgs(System
 LoomTerminal.WinUI.Controls.LinkActivatedEventArgs.Uri.get -> System.Uri!
 LoomTerminal.WinUI.Controls.TerminalControl
 LoomTerminal.WinUI.Controls.TerminalControl.BellRang -> System.EventHandler?
+LoomTerminal.WinUI.Controls.TerminalControl.Columns.get -> int
 LoomTerminal.WinUI.Controls.TerminalControl.CursorBlink.get -> bool
 LoomTerminal.WinUI.Controls.TerminalControl.CursorBlink.set -> void
 LoomTerminal.WinUI.Controls.TerminalControl.CursorStyle.get -> LoomTerminal.Presentation.Session.TerminalCursorStyle
 LoomTerminal.WinUI.Controls.TerminalControl.CursorStyle.set -> void
 LoomTerminal.WinUI.Controls.TerminalControl.Exited -> System.EventHandler<int>?
 LoomTerminal.WinUI.Controls.TerminalControl.KeyPreview -> System.EventHandler<LoomTerminal.Presentation.Input.KeyPreviewEventArgs!>?
+LoomTerminal.WinUI.Controls.TerminalControl.LastFrameTime.get -> System.TimeSpan
 LoomTerminal.WinUI.Controls.TerminalControl.LineHeight.get -> double
 LoomTerminal.WinUI.Controls.TerminalControl.LineHeight.set -> void
 LoomTerminal.WinUI.Controls.TerminalControl.LinkActivated -> System.EventHandler<LoomTerminal.WinUI.Controls.LinkActivatedEventArgs!>?
+LoomTerminal.WinUI.Controls.TerminalControl.Rows.get -> int
 LoomTerminal.WinUI.Controls.TerminalControl.Session.get -> LoomTerminal.Presentation.Session.TerminalSession?
 LoomTerminal.WinUI.Controls.TerminalControl.Session.set -> void
 LoomTerminal.WinUI.Controls.TerminalControl.TerminalControl() -> void

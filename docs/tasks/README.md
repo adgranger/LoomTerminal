@@ -217,7 +217,7 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P4-16](phase-4/P4-16-gallery.md) | Gallery: shells in tabs, settings, demo scripts | P4-14, P4-15, P4-11, P4-09, P4-04 | M | todo |
+| [P4-16](phase-4/P4-16-gallery.md) | Gallery: shells in tabs, settings, demo scripts | P4-14, P4-15, P4-11, P4-09, P4-04 | M | done |
 | [P4-17](phase-4/P4-17-performance.md) | Rendering performance: measure, then fix with numbers | P4-16 | S | todo |
 | [P4-18](phase-4/P4-18-close-phase-4.md) | Close phase 4 | all P4 cards (follow-up optimization cards may stay open) | S | todo |
 

@@ -16,6 +16,12 @@ public sealed partial class TerminalControl
     private int _columns;
     private int _rows;
 
+    /// <summary>Width of the terminal grid in cells (0 until the first layout).</summary>
+    public int Columns => _columns;
+
+    /// <summary>Height of the terminal grid in cells (0 until the first layout).</summary>
+    public int Rows => _rows;
+
     private TerminalFont CurrentFont() =>
         new(FontFamily.Source.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries), FontSize, LineHeight);
 
