@@ -1,6 +1,6 @@
 # P4-08 — Character input (`CharacterReceived`), dead keys, surrogate pairs
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-07
 - **Size:** S
 
@@ -27,9 +27,9 @@ Deliver printable characters (including dead-key compositions and characters out
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

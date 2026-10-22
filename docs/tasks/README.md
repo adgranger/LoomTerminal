@@ -199,7 +199,7 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
 | [P4-07](phase-4/P4-07-keyboard.md) | Keyboard: `VirtualKey` → `TerminalKeyEvent`, AltGr, host shortcuts | P4-06 | M | done |
-| [P4-08](phase-4/P4-08-character-input.md) | Character input (`CharacterReceived`), dead keys, surrogate pairs | P4-07 | S | todo |
+| [P4-08](phase-4/P4-08-character-input.md) | Character input (`CharacterReceived`), dead keys, surrogate pairs | P4-07 | S | done |
 | [P4-09](phase-4/P4-09-ime.md) | IME composition with `CoreTextEditContext` | P4-08 | M | todo |
 | [P4-10](phase-4/P4-10-pointer.md) | Pointer: selection, mouse reporting, wheel, links, cursor shape | P4-06 | M | todo |
 | [P4-11](phase-4/P4-11-clipboard.md) | WinRT clipboard | P4-10 | S | todo |
