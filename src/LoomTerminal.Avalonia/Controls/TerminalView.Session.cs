@@ -1,4 +1,6 @@
+using Avalonia.Controls;
 using Avalonia.Threading;
+using LoomTerminal.Avalonia.Input;
 using LoomTerminal.Presentation.Session;
 
 namespace LoomTerminal.Avalonia.Controls;
@@ -36,6 +38,7 @@ public sealed partial class TerminalView
                 old.Exited -= OnSessionExited;
                 old.Bell -= OnSessionBell;
                 old.FrameAvailable -= OnSessionFrameAvailable;
+                old.Clipboard = null;
             }
 
             _session = value;
@@ -48,6 +51,7 @@ public sealed partial class TerminalView
                 value.Exited += OnSessionExited;
                 value.Bell += OnSessionBell;
                 value.FrameAvailable += OnSessionFrameAvailable;
+                value.Clipboard = new AvaloniaClipboard(() => TopLevel.GetTopLevel(this)?.Clipboard);
                 // Settings made before the session was attached (the host sets them first) reach it now.
                 value.SetTheme(TerminalTheme);
                 value.SetCursorStyle(CursorStyle);

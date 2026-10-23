@@ -1,6 +1,6 @@
 # P6-06 — Avalonia pointer, clipboard and scrollbar
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P6-04
 - **Size:** M
 
@@ -26,13 +26,13 @@ P4-10, P4-11, P4-12.
 
 ## Tests
 
-- [ ] Manual: P4-10 / P4-11 / P4-12 checks in the Avalonia gallery.
+- [ ] Manual: P4-10 / P4-11 / P4-12 checks in the Avalonia gallery (left to a human).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

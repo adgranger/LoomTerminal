@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Media;
 using LoomTerminal.Avalonia.Rendering;
 using LoomTerminal.Presentation.Rendering;
@@ -45,6 +46,7 @@ public sealed partial class TerminalView : TemplatedControl
         FontFamilyProperty.OverrideDefaultValue<TerminalView>(new FontFamily("Cascadia Mono, Consolas, Menlo, DejaVu Sans Mono"));
         FontSizeProperty.OverrideDefaultValue<TerminalView>(14.0);
         FocusableProperty.OverrideDefaultValue<TerminalView>(true);
+        TemplateProperty.OverrideDefaultValue<TerminalView>(DefaultTemplate());
     }
 
     /// <summary>Creates the control.</summary>
@@ -52,6 +54,7 @@ public sealed partial class TerminalView : TemplatedControl
     {
         InitializeFocus();
         InitializeKeyboard();
+        Cursor = new Cursor(StandardCursorType.Arrow);
     }
 
     /// <summary>The colors of the terminal.</summary>
@@ -130,6 +133,7 @@ public sealed partial class TerminalView : TemplatedControl
         }
 
         _lastFrame = frame;
+        UpdateScrollBar(frame);
         // 4 x rows x an average of 4 runs per row.
         _blobs.Capacity = 16 * Math.Max(1, frame.Lines.Count);
         var bounds = new Rect(Bounds.Size);

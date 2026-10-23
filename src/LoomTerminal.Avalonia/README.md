@@ -14,3 +14,6 @@ placeholder (phase 6 in progress); the WinUI control (`LoomTerminal.WinUI`) is i
 - Keyboard: Avalonia `Key` values are not virtual keys, so `AvaloniaKeyMap` holds a full table; AltGr is Ctrl+Alt with the
   right Alt tracked from key down/up. Text arrives through `TextInput` (whole strings, no surrogate buffering). IME goes
   through `TextInputMethodClient` on every platform Avalonia supports (WinUI: Windows 11 only).
+- Pointer: click count comes from `PointerPressedEventArgs.ClickCount`; the cursor is the standard Arrow, Hand over a link
+  with Ctrl down. The scrollbar is a `ScrollBar` in the default template (a `FuncControlTemplate` set in code, no XAML
+  loading) and uses the user-only `Scroll` event instead of a sync flag. `AvaloniaClipboard` hops to the UI thread.

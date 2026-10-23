@@ -21,6 +21,7 @@ public sealed partial class TerminalView
     protected override void OnKeyDown(KeyEventArgs e)
     {
         base.OnKeyDown(e);
+        OnControlKeyChanged(e.Key, e.KeyModifiers);
         if (e.Key == Key.RightAlt)
         {
             _rightAltDown = true;
@@ -61,6 +62,7 @@ public sealed partial class TerminalView
     protected override void OnKeyUp(KeyEventArgs e)
     {
         base.OnKeyUp(e);
+        OnControlKeyChanged(e.Key, e.KeyModifiers);
         _keyWasSent = false;
         if (e.Key == Key.RightAlt)
         {

@@ -76,6 +76,7 @@ public sealed partial class TerminalView
     private void OnFrame()
     {
         ApplySize();
+        PumpPointerFrame();
         InvalidateVisual();
         NotifyImeCursorMoved();
         ScheduleBlink();
