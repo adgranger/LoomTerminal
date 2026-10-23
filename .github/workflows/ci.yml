@@ -99,6 +99,8 @@ jobs:
 
   pack:
     name: Pack NuGet packages
+    # Not on pull requests: the release workflow (dry run) packs and tests the packages.
+    if: github.event_name != 'pull_request'
     runs-on: windows-latest
     needs: [build-and-test]
     steps:
