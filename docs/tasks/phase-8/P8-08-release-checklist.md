@@ -1,6 +1,6 @@
 # P8-08 — Release checklist (needs a human)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P8-07
 - **Size:** S (one Markdown file)
 
@@ -60,15 +60,15 @@ external setup that only the user can do. An agent writes the file; **the boxes 
 
 ## Tests
 
-- [ ] Every command, path and section name in the file exists as spelled (`rtk git grep`); the list in section 2
+- [x] Every command, path and section name in the file exists as spelled (`rtk git grep`); the list in section 2
   matches the unticked sections of `docs/manual-tests.md` at that moment
 - [ ] `HUMAN:` the user goes through the checklist before the first tag and ticks it. **PENDING: needs a human.**
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
