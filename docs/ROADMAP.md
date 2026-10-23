@@ -1,6 +1,6 @@
 # Roadmap
 
-Every phase is split into small task cards: see [`docs/tasks/README.md`](tasks/README.md) (125 cards).
+Every phase is split into small task cards: see [`docs/tasks/README.md`](tasks/README.md) (142 cards).
 
 | Phase | Content | Cards | Done when |
 |---|---|---|---|
@@ -12,6 +12,7 @@ Every phase is split into small task cards: see [`docs/tasks/README.md`](tasks/R
 | 5 | **VIGO integration**: packages, `LoomTerminal.Pty` in VIGO, native terminal view, removal of the WebView2 terminal, parity | P5-01 … P5-05 | Feature parity list below is green in VIGO |
 | 6 | **Avalonia on Windows**: Skia measurer and surface, control, input, accessibility, gallery | P6-01 … P6-08 | No change needed in Core or Presentation (if one is, the abstraction leaks) |
 | 7 | **Unix pty** (native forkpty shim), shell detection, cross-platform CI, Avalonia on Linux and macOS | P7-01 … P7-07 | Same tests green on the three OSes |
+| 8 | **First release (NuGet)**: version from the git tag, package metadata and README checks, changelog, release workflow (tag → gates → nuget.org + GitHub Release, with a dry run), runbook, release checklist | P8-01 … P8-08 | Creating the first `v*` tag publishes the four packages; the user-only steps are in [RELEASING.md](RELEASING.md) (independent of phase 5) |
 
 ## Feature parity with VIGO's terminal (xterm.js 6.0, ADR-071 in VIGO)
 
