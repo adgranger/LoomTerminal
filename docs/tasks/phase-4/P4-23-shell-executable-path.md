@@ -1,6 +1,6 @@
 # P4-23 — Real executable of a detected shell (app execution aliases)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-18
 - **Size:** S
 
@@ -55,24 +55,24 @@ icon (P4-24).
 
 ## Tests
 
-- [ ] New: `Parse_returns_the_target_of_an_app_execution_alias` (buffer built in the test with the layout above and the
+- [x] New: `Parse_returns_the_target_of_an_app_execution_alias` (buffer built in the test with the layout above and the
   three strings of the verified example plus `"0"`)
-- [ ] New: `Parse_returns_null_for_another_reparse_tag` (tag `0xA000000C`, symlink)
-- [ ] New: `Parse_returns_null_for_a_truncated_buffer` (the valid buffer cut in the middle of the third string, and an
+- [x] New: `Parse_returns_null_for_another_reparse_tag` (tag `0xA000000C`, symlink)
+- [x] New: `Parse_returns_null_for_a_truncated_buffer` (the valid buffer cut in the middle of the third string, and an
   empty span)
-- [ ] New: `Resolve_returns_a_regular_file_unchanged` (`Environment.ProcessPath`)
-- [ ] New: `An_installed_alias_resolves_to_a_readable_file`: first `*.exe` in `%LOCALAPPDATA%\Microsoft\WindowsApps`
+- [x] New: `Resolve_returns_a_regular_file_unchanged` (`Environment.ProcessPath`)
+- [x] New: `An_installed_alias_resolves_to_a_readable_file`: first `*.exe` in `%LOCALAPPDATA%\Microsoft\WindowsApps`
   with the `ReparsePoint` attribute; `Assert.Skip` when there is none; the result differs from the alias, exists, and
   has a length > 0
-- [ ] New (`WindowsShellLocatorTests`): `Every_detected_shell_has_an_existing_executable` — `ExecutablePath` not null,
+- [x] New (`WindowsShellLocatorTests`): `Every_detected_shell_has_an_existing_executable` — `ExecutablePath` not null,
   `File.Exists`, `new FileInfo(path).Length > 0`
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Update-PublicApi.ps1 src/LoomTerminal.Pty` — run, public API file updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk proxy pwsh -NoProfile -File eng/Update-PublicApi.ps1 src/LoomTerminal.Pty` — run, public API file updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

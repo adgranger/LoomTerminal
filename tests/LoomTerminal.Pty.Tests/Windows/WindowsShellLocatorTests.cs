@@ -16,6 +16,15 @@ public sealed class WindowsShellLocatorTests
         Assert.All(shells, s => Assert.False(string.IsNullOrWhiteSpace(s.CommandLine)));
     }
 
+    [Fact]
+    public void Every_detected_shell_has_an_existing_executable() =>
+        Assert.All(Shells.Detect(), s =>
+        {
+            Assert.NotNull(s.ExecutablePath);
+            Assert.True(File.Exists(s.ExecutablePath));
+            Assert.True(new FileInfo(s.ExecutablePath).Length > 0);
+        });
+
     [Theory]
     [InlineData(@"C:\Program Files\Git\bin\bash.exe", "\"C:\\Program Files\\Git\\bin\\bash.exe\"")]
     [InlineData(@"C:\Windows\System32\cmd.exe", @"C:\Windows\System32\cmd.exe")]

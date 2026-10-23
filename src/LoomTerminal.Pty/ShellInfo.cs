@@ -7,6 +7,12 @@ namespace LoomTerminal.Pty;
 /// <remarks>Threading: immutable.</remarks>
 public sealed record ShellInfo(string Id, string Name, string CommandLine)
 {
+    /// <summary>
+    /// The executable file that runs, with Microsoft Store app execution aliases resolved to the real file;
+    /// null when unknown (shells not created by <see cref="Shells.Detect"/>).
+    /// </summary>
+    public string? ExecutablePath { get; init; }
+
     /// <inheritdoc />
     public override string ToString() => Name;
 }

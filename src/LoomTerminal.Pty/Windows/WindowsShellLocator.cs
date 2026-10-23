@@ -21,18 +21,18 @@ internal static class WindowsShellLocator
             ?? FirstExisting(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "PowerShell", "7", "pwsh.exe"));
         if (pwsh is not null)
         {
-            shells.Add(new ShellInfo(ShellIds.PowerShell7, "PowerShell 7", $"{Quote(pwsh)} -NoLogo"));
+            shells.Add(new ShellInfo(ShellIds.PowerShell7, "PowerShell 7", $"{Quote(pwsh)} -NoLogo") { ExecutablePath = AppExecutionAlias.Resolve(pwsh) });
         }
 
         string windowsPowerShell = Path.Combine(Environment.SystemDirectory, "WindowsPowerShell", "v1.0", "powershell.exe");
         if (File.Exists(windowsPowerShell))
         {
-            shells.Add(new ShellInfo(ShellIds.WindowsPowerShell, "Windows PowerShell", $"{Quote(windowsPowerShell)} -NoLogo"));
+            shells.Add(new ShellInfo(ShellIds.WindowsPowerShell, "Windows PowerShell", $"{Quote(windowsPowerShell)} -NoLogo") { ExecutablePath = windowsPowerShell });
         }
 
         if (FindGitBash() is { } bash)
         {
-            shells.Add(new ShellInfo(ShellIds.GitBash, "Git Bash", $"{Quote(bash)} --login -i"));
+            shells.Add(new ShellInfo(ShellIds.GitBash, "Git Bash", $"{Quote(bash)} --login -i") { ExecutablePath = bash });
         }
 
         string cmd = Environment.GetEnvironmentVariable("ComSpec") is { Length: > 0 } comSpec && File.Exists(comSpec)
@@ -40,7 +40,7 @@ internal static class WindowsShellLocator
             : Path.Combine(Environment.SystemDirectory, "cmd.exe");
         if (File.Exists(cmd))
         {
-            shells.Add(new ShellInfo(ShellIds.Cmd, "Command Prompt", Quote(cmd)));
+            shells.Add(new ShellInfo(ShellIds.Cmd, "Command Prompt", Quote(cmd)) { ExecutablePath = cmd });
         }
 
         string wsl = Path.Combine(Environment.SystemDirectory, "wsl.exe");
@@ -48,7 +48,7 @@ internal static class WindowsShellLocator
         {
             foreach (string distribution in WslDistributions())
             {
-                shells.Add(new ShellInfo(ShellIds.WslPrefix + distribution, $"WSL: {distribution}", $"{Quote(wsl)} -d {Quote(distribution)}"));
+                shells.Add(new ShellInfo(ShellIds.WslPrefix + distribution, $"WSL: {distribution}", $"{Quote(wsl)} -d {Quote(distribution)}") { ExecutablePath = wsl });
             }
         }
 

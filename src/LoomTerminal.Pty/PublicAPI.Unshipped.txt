@@ -32,6 +32,8 @@ LoomTerminal.Pty.ShellInfo.CommandLine.get -> string!
 LoomTerminal.Pty.ShellInfo.CommandLine.init -> void
 LoomTerminal.Pty.ShellInfo.Deconstruct(out string! Id, out string! Name, out string! CommandLine) -> void
 LoomTerminal.Pty.ShellInfo.Equals(LoomTerminal.Pty.ShellInfo? other) -> bool
+LoomTerminal.Pty.ShellInfo.ExecutablePath.get -> string?
+LoomTerminal.Pty.ShellInfo.ExecutablePath.init -> void
 LoomTerminal.Pty.ShellInfo.Id.get -> string!
 LoomTerminal.Pty.ShellInfo.Id.init -> void
 LoomTerminal.Pty.ShellInfo.Name.get -> string!
