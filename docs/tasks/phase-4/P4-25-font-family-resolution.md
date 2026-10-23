@@ -1,6 +1,6 @@
 # P4-25 — Font family resolution and symbol fallback order
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-18
 - **Size:** S
 
@@ -60,25 +60,25 @@ given code point.
 
 ## Tests
 
-- [ ] New: `Primary_is_the_first_installed_requested_family`
-- [ ] New: `Primary_falls_back_to_Cascadia_Mono_then_Consolas`
-- [ ] New: `Fallbacks_keep_the_requested_order_without_the_primary`
-- [ ] New: `Symbol_fallbacks_prefer_one_cell_Nerd_Fonts` (installed: `CaskaydiaCove NFP`, `CaskaydiaCove NF`,
+- [x] New: `Primary_is_the_first_installed_requested_family`
+- [x] New: `Primary_falls_back_to_Cascadia_Mono_then_Consolas`
+- [x] New: `Fallbacks_keep_the_requested_order_without_the_primary`
+- [x] New: `Symbol_fallbacks_prefer_one_cell_Nerd_Fonts` (installed: `CaskaydiaCove NFP`, `CaskaydiaCove NF`,
   `CaskaydiaCove NFM`, `Symbols Nerd Font Mono`, `Segoe UI` → `Symbols Nerd Font Mono`, `CaskaydiaCove NFM`,
   `CaskaydiaCove NF`, `CaskaydiaCove NFP`)
-- [ ] New: `A_requested_Nerd_Font_is_not_repeated_in_symbol_fallbacks`
-- [ ] New: `Theory: SymbolRank` (`"JetBrainsMono Nerd Font Mono"` 1, `"Hack Nerd Font"` 3, `"Hack Nerd Font Propo"` 4,
+- [x] New: `A_requested_Nerd_Font_is_not_repeated_in_symbol_fallbacks`
+- [x] New: `Theory: SymbolRank` (`"JetBrainsMono Nerd Font Mono"` 1, `"Hack Nerd Font"` 3, `"Hack Nerd Font Propo"` 4,
   `"Consolas"` −1, `"NFL Sans"` −1)
-- [ ] New: `FamilyFor_uses_symbol_fallbacks_only_for_private_use_code_points` (fake `hasCharacter`)
-- [ ] New: `FamilyFor_returns_the_primary_when_no_family_has_the_glyph`
-- [ ] New: `Theory: IsPrivateUse` (0xE0A0 true, 0xF0001 true, 0x41 false, 0x2500 false)
+- [x] New: `FamilyFor_uses_symbol_fallbacks_only_for_private_use_code_points` (fake `hasCharacter`)
+- [x] New: `FamilyFor_returns_the_primary_when_no_family_has_the_glyph`
+- [x] New: `Theory: IsPrivateUse` (0xE0A0 true, 0xF0001 true, 0x41 false, 0x2500 false)
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --project tests/LoomTerminal.Presentation.Tests -c Release` — all green
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --project tests/LoomTerminal.Presentation.Tests -c Release` — all green
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
