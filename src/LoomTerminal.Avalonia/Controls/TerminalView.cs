@@ -1,19 +1,22 @@
 using Avalonia;
-using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Media;
-using Avalonia.Rendering.SceneGraph;
-using Avalonia.Skia;
+using LoomTerminal.Avalonia.Rendering;
+using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.Presentation.Session;
 using LoomTerminal.Presentation.Theming;
-using SkiaSharp;
 
 namespace LoomTerminal.Avalonia.Controls;
 
-/// <summary>
-/// The terminal control for Avalonia. Placeholder until P6-02: it only proves the Skia draw path.
-/// </summary>
-/// <remarks>Threading: UI thread only.</remarks>
-public sealed class TerminalView : Control
+/// <summary>The terminal control for Avalonia, drawn with Skia.</summary>
+/// <remarks>
+/// <para>
+/// In progress (phase 6): the grid is drawn and sized to the control; input and the scrollbar come with the next
+/// cards, see docs/ROADMAP.md.
+/// </para>
+/// <para>Threading: like every Avalonia control, use it on the UI thread only.</para>
+/// </remarks>
+public sealed partial class TerminalView : TemplatedControl
 {
     /// <summary>Identifies <see cref="TerminalTheme"/>.</summary>
     public static readonly StyledProperty<TerminalTheme> TerminalThemeProperty =
@@ -31,10 +34,21 @@ public sealed class TerminalView : Control
     public static readonly StyledProperty<bool> CursorBlinkProperty =
         AvaloniaProperty.Register<TerminalView, bool>(nameof(CursorBlink));
 
+    private readonly SkiaTextBlobCache _blobs = new(256);
+    private readonly SkiaTextMeasurer _measurer = new();
+    private TerminalFont? _font;
+    private string? _family;
+    private RenderFrame? _lastFrame;
+
     static TerminalView()
     {
-        AffectsRender<TerminalView>(TerminalThemeProperty, LineHeightProperty, CursorStyleProperty, CursorBlinkProperty);
+        FontFamilyProperty.OverrideDefaultValue<TerminalView>(new FontFamily("Cascadia Mono, Consolas, Menlo, DejaVu Sans Mono"));
+        FontSizeProperty.OverrideDefaultValue<TerminalView>(14.0);
+        FocusableProperty.OverrideDefaultValue<TerminalView>(true);
     }
+
+    /// <summary>Creates the control.</summary>
+    public TerminalView() => InitializeFocus();
 
     /// <summary>The colors of the terminal.</summary>
     public TerminalTheme TerminalTheme
@@ -64,35 +78,62 @@ public sealed class TerminalView : Control
         set => SetValue(CursorBlinkProperty, value);
     }
 
+    private TerminalFont CurrentFont() =>
+        _font ??= new(FontFamily.FamilyNames.ToArray(), FontSize, LineHeight, Weight: (int)FontWeight);
+
     /// <inheritdoc />
-    public override void Render(DrawingContext context) =>
-        context.Custom(new PlaceholderDrawOperation(new Rect(Bounds.Size)));
-
-    private sealed class PlaceholderDrawOperation(Rect bounds) : ICustomDrawOperation
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
-        public Rect Bounds => bounds;
-
-        public bool HitTest(Point p) => bounds.Contains(p);
-
-        public bool Equals(ICustomDrawOperation? other) => false;
-
-        public void Render(ImmediateDrawingContext context)
+        base.OnPropertyChanged(change);
+        if (change.Property == FontFamilyProperty || change.Property == FontSizeProperty
+            || change.Property == LineHeightProperty || change.Property == FontWeightProperty)
         {
-            if (context.TryGetFeature<ISkiaSharpApiLeaseFeature>() is not { } feature)
-            {
-                return;
-            }
+            _font = null;
+            _family = null;
+            _blobs.Clear();
+            RequestFrame();
+        }
+        else if (change.Property == PaddingProperty || change.Property == BoundsProperty)
+        {
+            RequestFrame();
+        }
+        else if (change.Property == TerminalThemeProperty)
+        {
+            // The blob cache does not key on colors: just redraw.
+            _session?.SetTheme(TerminalTheme);
+            RequestFrame();
+        }
+        else if (change.Property == CursorStyleProperty)
+        {
+            _session?.SetCursorStyle(CursorStyle);
+        }
+        else if (change.Property == CursorBlinkProperty)
+        {
+            _session?.SetCursorBlink(CursorBlink);
+            RequestFrame();
+        }
+    }
 
-            using ISkiaSharpApiLease lease = feature.Lease();
-            SKCanvas canvas = lease.SkCanvas;
-            canvas.Clear(new SKColor(0x1e, 0x1e, 0x1e));
-            using var font = new SKFont(SKTypeface.FromFamilyName("Consolas"), 16);
-            using var paint = new SKPaint { Color = new SKColor(0xcc, 0xcc, 0xcc), IsAntialias = true };
-            canvas.DrawText("LoomTerminal.Avalonia", 8, 24, font, paint);
+    /// <inheritdoc />
+    public override void Render(DrawingContext context)
+    {
+        TerminalFont font = CurrentFont();
+        CellMetrics metrics = _measurer.Measure(font, _scale);
+        RenderFrame? frame = _session?.TryTakeFrame() ?? _lastFrame;
+        if (frame is null)
+        {
+            return;
         }
 
-        public void Dispose()
+        _lastFrame = frame;
+        // 4 x rows x an average of 4 runs per row.
+        _blobs.Capacity = 16 * Math.Max(1, frame.Lines.Count);
+        var bounds = new Rect(Bounds.Size);
+        using (context.PushTransform(Matrix.CreateTranslation(Padding.Left, Padding.Top)))
         {
+            context.Custom(new TerminalDrawOperation(
+                bounds, frame, metrics, _blobs, font, _family ??= SkiaTextMeasurer.ResolveFamily(font),
+                _scale, _session?.CustomGlyphs ?? true, compositionText: null));
         }
     }
 }

@@ -18,5 +18,6 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="LoomTerminal.WinUI" />
+    <InternalsVisibleTo Include="LoomTerminal.Avalonia" />
   </ItemGroup>
 </Project>
