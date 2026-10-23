@@ -4,9 +4,11 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 using LoomTerminal.Avalonia.Controls;
 using LoomTerminal.Presentation.Links;
+using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.Presentation.Session;
 using LoomTerminal.Presentation.Theming;
 using LoomTerminal.Pty;
@@ -35,6 +37,7 @@ public sealed partial class MainWindow : Window, ILinkHandler
 
     private readonly List<TabStripItem> _tabs = [];
     private ShellInfo? _lastShell;
+    private TerminalFont? _windowsTerminalFont;
 
     /// <summary>Creates the window and opens a tab for the first detected shell.</summary>
     public MainWindow()
@@ -83,13 +86,18 @@ public sealed partial class MainWindow : Window, ILinkHandler
         var label = new TextBlock { Text = shell.Name, VerticalAlignment = VerticalAlignment.Center };
         var close = new Button
         {
-            Content = "x", Padding = new(4, 0), Background = Brushes.Transparent, BorderThickness = new(0),
+            Content = "✕", FontSize = 11, Padding = new(6, 4), CornerRadius = new(4), Background = Brushes.Transparent, BorderThickness = new(0),
             VerticalAlignment = VerticalAlignment.Center,
         };
         var header = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6 };
         if (ShellIcons.Load(shell.ExecutablePath) is { } icon)
         {
-            header.Children.Add(new Image { Source = icon, Width = 16, Height = 16 });
+            var image = new Image
+            {
+                Source = icon, Width = 14, Height = 14, Stretch = Stretch.Uniform, VerticalAlignment = VerticalAlignment.Center,
+            };
+            RenderOptions.SetBitmapInterpolationMode(image, BitmapInterpolationMode.HighQuality);
+            header.Children.Add(image);
         }
 
         header.Children.Add(label);
@@ -179,7 +187,7 @@ public sealed partial class MainWindow : Window, ILinkHandler
     private void OnSettingChanged(object? sender, RoutedEventArgs e)
     {
         // Raised while InitializeComponent builds the page, before every control exists.
-        if (BlinkSwitch is null)
+        if (BlinkSwitch is null || WindowsTerminalFontSwitch is null)
         {
             return;
         }
@@ -203,11 +211,31 @@ public sealed partial class MainWindow : Window, ILinkHandler
         terminal.TerminalTheme = string.IsNullOrWhiteSpace(BackgroundBox.Text)
             ? theme
             : theme with { Background = BackgroundBox.Text.Trim() };
-        terminal.FontFamily = new FontFamily((string)((ComboBoxItem)FontFamilyBox.SelectedItem!).Content!);
-        terminal.FontSize = FontSizeSlider.Value * 96 / 72;
+        if (_windowsTerminalFont is { } font)
+        {
+            terminal.FontFamily = new FontFamily(string.Join(", ", font.Families));
+            terminal.FontSize = font.Size;
+            terminal.FontWeight = (FontWeight)font.Weight;
+        }
+        else
+        {
+            terminal.FontFamily = new FontFamily((string)((ComboBoxItem)FontFamilyBox.SelectedItem!).Content!);
+            terminal.FontSize = FontSizeSlider.Value * 96 / 72;
+            terminal.FontWeight = FontWeight.Normal;
+        }
+
         terminal.LineHeight = LineHeightSlider.Value;
         terminal.CursorStyle = (TerminalCursorStyle)CursorStyleBox.SelectedIndex;
         terminal.CursorBlink = BlinkSwitch.IsChecked == true;
+    }
+
+    // The settings of Windows Terminal are read only when the user asks for them, once per switch-on.
+    private void OnWindowsTerminalFontToggled(object? sender, RoutedEventArgs e)
+    {
+        bool on = WindowsTerminalFontSwitch.IsChecked == true;
+        _windowsTerminalFont = on ? WindowsTerminalFont.Read() : null;
+        FontFamilyBox.IsEnabled = FontSizeSlider.IsEnabled = !on;
+        OnSettingChanged(sender, e);
     }
 
     private void UpdateStatus() =>

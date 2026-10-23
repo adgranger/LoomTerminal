@@ -9,8 +9,6 @@ namespace LoomTerminal.AvaloniaGallery;
 /// <remarks>Threading: UI thread only.</remarks>
 internal static partial class ShellIcons
 {
-    private const int Size = 32;
-
     private static readonly Dictionary<string, Bitmap?> Cache = new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>Returns the icon of <paramref name="executablePath"/>, or <c>null</c> when it cannot be loaded.</summary>
@@ -70,13 +68,20 @@ internal static partial class ShellIcons
 
         try
         {
+            // The "large" icon has the size of the system icon metric, which grows with the display scale.
+            if (GetObjectW(info.ColorBitmap, Marshal.SizeOf<BitmapInfo>(), out var bm) == 0 || bm.Width <= 0 || bm.Height <= 0)
+            {
+                return null;
+            }
+
+            int width = bm.Width, height = bm.Height;
             // A negative height asks for top-down rows.
-            var header = new BitmapInfoHeader { Size = 40, Width = Size, Height = -Size, Planes = 1, BitCount = 32 };
-            var pixels = new byte[Size * Size * 4];
+            var header = new BitmapInfoHeader { Size = 40, Width = width, Height = -height, Planes = 1, BitCount = 32 };
+            var pixels = new byte[width * height * 4];
             var dc = GetDC(0);
-            var rows = GetDIBits(dc, info.ColorBitmap, 0, Size, pixels, ref header, 0);
+            var rows = GetDIBits(dc, info.ColorBitmap, 0, (uint)height, pixels, ref header, 0);
             _ = ReleaseDC(0, dc);
-            if (rows != Size)
+            if (rows != height)
             {
                 return null;
             }
@@ -97,7 +102,7 @@ internal static partial class ShellIcons
             }
 
             var bitmap = new WriteableBitmap(
-                new PixelSize(Size, Size), new Vector(96, 96), PixelFormat.Bgra8888, AlphaFormat.Unpremul);
+                new PixelSize(width, height), new Vector(96, 96), PixelFormat.Bgra8888, AlphaFormat.Unpremul);
             using var frame = bitmap.Lock();
             Marshal.Copy(pixels, 0, frame.Address, pixels.Length);
             return bitmap;
@@ -117,6 +122,18 @@ internal static partial class ShellIcons
         public int YHotspot;
         public nint MaskBitmap;
         public nint ColorBitmap;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct BitmapInfo
+    {
+        public int Type;
+        public int Width;
+        public int Height;
+        public int WidthBytes;
+        public ushort Planes;
+        public ushort BitsPixel;
+        public nint Bits;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -154,6 +171,9 @@ internal static partial class ShellIcons
 
     [LibraryImport("gdi32.dll")]
     private static partial int GetDIBits(nint dc, nint bitmap, uint start, uint lines, byte[] bits, ref BitmapInfoHeader info, uint usage);
+
+    [LibraryImport("gdi32.dll")]
+    private static partial int GetObjectW(nint handle, int size, out BitmapInfo bitmap);
 
     [LibraryImport("gdi32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
