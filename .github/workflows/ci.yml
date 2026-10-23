@@ -82,12 +82,7 @@ jobs:
       - name: Start the gallery (x64 only)
         if: matrix.rid == 'win-x64'
         shell: pwsh
-        run: |
-          $exe = 'samples/LoomTerminal.Gallery/bin/Release/net11.0-windows10.0.26100.0/win-x64/publish/LoomTerminal.Gallery.exe'
-          $process = Start-Process $exe -PassThru
-          Start-Sleep -Seconds 10
-          if ($process.HasExited) { throw "The AOT app exited at startup with code $($process.ExitCode)." }
-          Stop-Process $process
+        run: ./eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery -NoPublish
 
       - name: Run a command through the AOT pty harness (x64 only)
         if: matrix.rid == 'win-x64'

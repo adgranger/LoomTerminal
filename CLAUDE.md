@@ -32,6 +32,7 @@ rtk test dotnet test --solution LoomTerminal.slnx -c Release  # MUST pass
 rtk test dotnet test --project tests/LoomTerminal.Core.Tests -c Release   # faster loop on Core
 rtk proxy pwsh -NoProfile -File eng/Update-PublicApi.ps1 src/LoomTerminal.Pty   # after adding PUBLIC members (prefer internal!)
 rtk dotnet publish samples/LoomTerminal.Gallery -c Release -r win-x64   # Native AOT check (needs the VS C++ workload)
+rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery   # AOT publish + start + crash check
 ```
 
 A card is done only when the Release build has **0 warnings** and **all tests pass**.

@@ -226,7 +226,7 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P4-20](phase-4/P4-20-aot-smoke-test-script.md) | Automated smoke test of a Native AOT app | P4-18 | S | todo |
+| [P4-20](phase-4/P4-20-aot-smoke-test-script.md) | Automated smoke test of a Native AOT app | P4-18 | S | done |
 | [P4-21](phase-4/P4-21-package-metadata-and-content-check.md) | Package metadata, symbols and content check | P4-18 | S | todo |
 | [P4-22](phase-4/P4-22-package-consumer-aot-test.md) | A throwaway app consumes only the packages and AOT-publishes | P4-20, P4-21 | M | todo |
 | [P4-23](phase-4/P4-23-shell-executable-path.md) | Real executable of a detected shell (app execution aliases) | P4-18 | S | todo |

@@ -1,6 +1,6 @@
 # P4-20 — Automated smoke test of a Native AOT app
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-18
 - **Size:** S (a PowerShell script and a CI step, no product code)
 
@@ -53,18 +53,18 @@ broken AOT build is caught without a human. Later cards (P4-22, P4-24, P4-26) us
 
 ## Tests
 
-- [ ] Run `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — passes.
-- [ ] Negative check (not committed): temporarily add `throw new InvalidOperationException("smoke");` at the end of
+- [x] Run `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — passes.
+- [x] Negative check (not committed): temporarily add `throw new InvalidOperationException("smoke");` at the end of
   `MainWindow`'s constructor, run the script with `-Seconds 5`, see it fail on the exit or crash log check, revert.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — exit code 0 (needs the VS
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — exit code 0 (needs the VS
   C++ workload, see ADR 0001 "Known issues")
-- [ ] The negative check above failed as expected and was reverted (`rtk git status` shows only the files of this card)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] The negative check above failed as expected and was reverted (`rtk git status` shows only the files of this card)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
