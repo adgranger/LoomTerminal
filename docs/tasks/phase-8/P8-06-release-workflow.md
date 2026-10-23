@@ -1,6 +1,6 @@
 # P8-06 — Release workflow: tag → gates → nuget.org → GitHub Release (and a dry run)
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P8-04, P8-05
 - **Size:** M (one workflow file, about 150 lines of YAML)
 
@@ -70,10 +70,10 @@ runs the gates and uploads the packages (dry run).
 
 ## Tests
 
-- [ ] The YAML is valid: `rtk proxy python -I -c "import yaml,sys; yaml.safe_load(open('.github/workflows/release.yml'))"`
+- [x] The YAML is valid: `rtk proxy python -I -c "import yaml,sys; yaml.safe_load(open('.github/workflows/release.yml'))"`
   if PyYAML is installed; otherwise load it with `actionlint` if available; otherwise re-read it line by line against
-  this card and say in the Notes which check was possible
-- [ ] `rtk git grep -n '\${{ *\(github\|inputs\)' .github/workflows/release.yml` — every match is inside an `env:`
+  this card and say in the Notes which check was possible (PyYAML and actionlint absent: line-by-line re-read; every `${{ github|inputs }}` match is in `env:`, the `steps`/`needs` outputs in `run:` are regex-validated)
+- [x] `rtk git grep -n '\${{ *\(github\|inputs\)' .github/workflows/release.yml` — every match is inside an `env:`
   block, a step `if:`, or a `with:` value, never in a `run:` body (steps 4 of `build` and 3–4 of `publish` use
   `needs`/`steps` outputs that were validated; say so in the Notes)
 - [ ] `HUMAN:` after the commit is on `main`: Actions → Release → "Run workflow" with `version` = `0.0.0-dryrun.1`:
@@ -83,11 +83,11 @@ runs the gates and uploads the packages (dry run).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `release.yml` exists, has exactly the two triggers, the two jobs and the steps above
-- [ ] `rtk git status` shows only `.github/workflows/release.yml`, the card and the index
-- [ ] Card status and `docs/tasks/README.md` updated (the two `HUMAN:` boxes stay unticked; status `done` means the
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `release.yml` exists, has exactly the two triggers, the two jobs and the steps above
+- [x] `rtk git status` shows only `.github/workflows/release.yml`, the card and the index
+- [x] Card status and `docs/tasks/README.md` updated (the two `HUMAN:` boxes stay unticked; status `done` means the
   file is delivered)
 
 ## Out of scope
