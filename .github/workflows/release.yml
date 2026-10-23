@@ -102,6 +102,7 @@ jobs:
     environment: nuget
     permissions:
       contents: write
+      id-token: write # the OIDC token that NuGet/login exchanges for a temporary nuget.org API key
     steps:
       - uses: actions/checkout@v7
 
@@ -119,18 +120,25 @@ jobs:
           name: release-notes
           path: artifacts
 
-      - name: Check the API key
+      - name: Check the nuget.org user name
         shell: pwsh
         env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          NUGET_USER: ${{ secrets.NUGET_USER }}
         run: |
-          if ([string]::IsNullOrEmpty($env:NUGET_API_KEY)) { throw 'The secret NUGET_API_KEY is not set in the environment "nuget" (see docs/RELEASING.md).' }
+          if ([string]::IsNullOrEmpty($env:NUGET_USER)) { throw 'The secret NUGET_USER is not set in the environment "nuget" (see docs/RELEASING.md).' }
+
+      # Trusted Publishing: exchanges the OIDC token for an API key valid one hour, so it runs right before the push.
+      - name: NuGet login (OIDC)
+        id: login
+        uses: NuGet/login@v1.2.0
+        with:
+          user: ${{ secrets.NUGET_USER }}
 
       # Dependencies first. Pushing a .nupkg also pushes its sibling .snupkg. --skip-duplicate makes a re-run safe.
       - name: Push to nuget.org
         shell: pwsh
         env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
           VERSION: ${{ needs.build.outputs.version }}
         run: |
           foreach ($id in 'LoomTerminal.Core', 'LoomTerminal.Pty', 'LoomTerminal.Presentation', 'LoomTerminal.WinUI') {

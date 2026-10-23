@@ -58,8 +58,10 @@ On a Windows 11 machine or VM without Visual Studio, outside the repository:
 - [ ] **HUMAN:** the four ids are free (`LoomTerminal.Core`, `LoomTerminal.Pty`, `LoomTerminal.Presentation`,
   `LoomTerminal.WinUI`)
 - [ ] **HUMAN:** ID prefix reservation `LoomTerminal.` requested (optional)
-- [ ] **HUMAN:** API key created; expiry date noted: ________
-- [ ] **HUMAN:** GitHub environment `nuget` with a required reviewer and the secret `NUGET_API_KEY`
+- [ ] **HUMAN:** Trusted Publishing policy created (owner `adgranger`, repository `LoomTerminal`, workflow
+  `release.yml`, environment `nuget`, glob `LoomTerminal.*`); no API key exists
+- [ ] **HUMAN:** GitHub environment `nuget` with a required reviewer and the secret `NUGET_USER` (nuget.org profile
+  name)
 - [ ] **HUMAN:** tag ruleset on `v*`
 - [ ] **HUMAN:** branch ruleset on `main`
 
