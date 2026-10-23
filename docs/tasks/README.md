@@ -255,7 +255,7 @@ Same behavior as WinUI, drawn with Skia. **Read [phase-6/README.md](phase-6/READ
 |---|---|---|---|---|
 | [P6-01](phase-6/P6-01-avalonia-project.md) | `LoomTerminal.Avalonia` project, sample and CI | P5-05 (or P4-18 if VIGO integration is postponed) | S | done |
 | [P6-02](phase-6/P6-02-skia-text-measurer.md) | Skia text measurer | P6-01 | S | done |
-| [P6-03](phase-6/P6-03-skia-render-surface.md) | Skia render surface (text, rectangles, decorations, custom glyphs) | P6-02 | M | todo |
+| [P6-03](phase-6/P6-03-skia-render-surface.md) | Skia render surface (text, rectangles, decorations, custom glyphs) | P6-02 | M | done |
 | [P6-04](phase-6/P6-04-control-layout-frames.md) | Avalonia control: size, scaling, frames, session events | P6-03 | M | todo |
 | [P6-05](phase-6/P6-05-keyboard-text-ime.md) | Avalonia keyboard, text input and IME | P6-04 | M | todo |
 | [P6-06](phase-6/P6-06-pointer-clipboard-scrollbar.md) | Avalonia pointer, clipboard and scrollbar | P6-04 | M | todo |
