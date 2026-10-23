@@ -1,6 +1,6 @@
 # P7-05 — Cross-platform CI: tests and Avalonia AOT on Linux and macOS
 
-- **Status:** todo
+- **Status:** in progress
 - **Depends on:** P7-03
 - **Size:** S
 

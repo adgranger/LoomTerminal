@@ -23,15 +23,15 @@ public sealed class AppExecutionAliasTests
     private static byte[] Alias() => Buffer(
         0x8000001B, "Microsoft.PowerShell_8wekyb3d8bbwe", "Microsoft.PowerShell_8wekyb3d8bbwe!App", Target, "0");
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public void Parse_returns_the_target_of_an_app_execution_alias() =>
         Assert.Equal(Target, AppExecutionAlias.ParseTarget(Alias()));
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public void Parse_returns_null_for_another_reparse_tag() =>
         Assert.Null(AppExecutionAlias.ParseTarget(Buffer(0xA000000C, "a", "b", Target, "0")));
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public void Parse_returns_null_for_a_truncated_buffer()
     {
         byte[] valid = Alias();
@@ -42,7 +42,7 @@ public sealed class AppExecutionAliasTests
         Assert.Null(AppExecutionAlias.ParseTarget([]));
     }
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public void Resolve_returns_a_regular_file_unchanged()
     {
         string path = Environment.ProcessPath!;
@@ -50,7 +50,7 @@ public sealed class AppExecutionAliasTests
         Assert.Equal(path, AppExecutionAlias.Resolve(path));
     }
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public void An_installed_alias_resolves_to_a_readable_file()
     {
         string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Microsoft", "WindowsApps");
