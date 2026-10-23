@@ -59,7 +59,11 @@ public sealed partial class MainWindow : Window
     {
         var terminal = new TerminalControl();
         var tab = new TabViewItem { Header = shell.Name, Content = terminal };
-        terminal.TitleChanged += (_, title) => tab.Header = title;
+        terminal.TitleChanged += (_, title) =>
+        {
+            tab.Header = TabHeader(shell, title);
+            ToolTipService.SetToolTip(tab, string.IsNullOrWhiteSpace(title) ? shell.Name : $"{shell.Name} — {title}");
+        };
         terminal.Exited += (_, code) => tab.Header = $"{shell.Name} [exited {code}]";
         terminal.KeyPreview += (_, e) =>
         {
@@ -74,6 +78,27 @@ public sealed partial class MainWindow : Window
         terminal.Session = TerminalSession.Start(new PtyStartOptions(shell.CommandLine));
         Tabs.TabItems.Add(tab);
         Tabs.SelectedItem = tab;
+        _ = SetIconAsync(tab, shell.ExecutablePath);
+    }
+
+    private static async Task SetIconAsync(TabViewItem tab, string? executablePath)
+    {
+        if (await ShellIcons.LoadAsync(executablePath) is { } icon)
+        {
+            tab.IconSource = new ImageIconSource { ImageSource = icon };
+        }
+    }
+
+    // ConPTY reports the executable path as the first title: keep the friendly name until the shell says more.
+    private static string TabHeader(ShellInfo shell, string? title)
+    {
+        if (string.IsNullOrWhiteSpace(title)
+            || (Path.IsPathFullyQualified(title) && title.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)))
+        {
+            return shell.Name;
+        }
+
+        return title;
     }
 
     // Closing a tab disposes its session, which kills the shell.

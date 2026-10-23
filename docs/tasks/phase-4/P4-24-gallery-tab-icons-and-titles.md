@@ -1,6 +1,6 @@
 # P4-24 — Gallery tabs: shell icon, friendly name and shell title
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-20, P4-23
 - **Size:** S
 
@@ -59,11 +59,11 @@ sets replaces the name only when it says something; the raw executable path that
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — exit code 0
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — exit code 0
 - [ ] **Manual (human):** the check above, ticked in `docs/manual-tests.md`
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
@@ -73,3 +73,7 @@ sets replaces the name only when it says something; the raw executable path that
 ## Suggested commit message
 
 `feat(gallery): show the shell icon and a friendly name in each tab`
+
+## Notes
+
+The manual checks (Tests section and the "Manual (human)" criterion) are deferred to the NuGet phase by the user's decision; they are listed in `docs/manual-tests.md` and left unticked.

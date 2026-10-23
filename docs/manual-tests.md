@@ -81,3 +81,8 @@ Next to the exe, in `Demos\` (run them in pwsh 7: `& .\Demos\colors.ps1`):
 - [ ] Closing a tab kills its shell (no leftover `pwsh` / `conhost` / `OpenConsole` in Task Manager); closing the window kills all
 - [ ] The status bar follows the selected tab and a window resize
 - [ ] `stress.ps1` completes; the window stays responsive and the frame time stays reasonable
+
+## Gallery tabs (P4-24)
+
+- [ ] Every shell of the **+** menu opens a tab with its icon and its friendly name; `pwsh` shows "PowerShell 7", not the WindowsApps path (if the Store PowerShell has no icon, write it in the card's Notes: follow-up card)
+- [ ] `$Host.UI.RawUI.WindowTitle = 'hello'` in pwsh changes the header to "hello"; the tooltip shows "PowerShell 7 — hello"
