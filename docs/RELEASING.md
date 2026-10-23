@@ -10,7 +10,8 @@ Steps prefixed **You:** can only be done by the repository owner (accounts, secr
    `main`, CHANGELOG section present, Release build with 0 warnings, all tests, `eng/Test-Packages.ps1` (pack, content
    check, Native AOT consumer app).
 3. Job "Publish to nuget.org and GitHub" waits for your approval of the `nuget` environment.
-4. It pushes `LoomTerminal.Core`, `.Pty`, `.Presentation`, `.WinUI` (in that order) with their symbols (`.snupkg`).
+4. It logs in to nuget.org with Trusted Publishing (`NuGet/login@v1.2.0`, a temporary key from the GitHub OIDC token;
+   only this job has `id-token: write`) and pushes `LoomTerminal.Core`, `.Pty`, `.Presentation`, `.WinUI` (in that order) with their symbols (`.snupkg`).
 5. It creates the GitHub Release with the same files and the CHANGELOG notes.
 
 The version of the packages is the tag. `VersionPrefix`/`VersionSuffix` in `Directory.Build.props` are for local builds
@@ -28,13 +29,20 @@ nuget.org:
 - [ ] **You (optional):** request the ID prefix reservation `LoomTerminal.` (nuget.org → account menu →
   "Contact support" / "Reserve ID prefix" form). It takes days and gives the verified check mark; your first push owns
   the ids anyway.
-- [ ] **You:** create an API key (Account → API keys): scope "Push new packages and package versions", glob pattern
-  `LoomTerminal.*`, expiry 365 days (note the date in a calendar), owner = your account.
+- [ ] **You:** create the Trusted Publishing policy (account menu → "Trusted Publishing" → add a policy), owner = your
+  account, repository owner `adgranger`, repository `LoomTerminal`, workflow file `release.yml` (file name only, no
+  path), environment `nuget`, scopes: publish new packages and new versions, glob pattern `LoomTerminal.*` (values are
+  case-insensitive). There is no API key: the workflow trades a short-lived GitHub OIDC token for a temporary key
+  (valid one hour) right before the push ([docs](https://learn.microsoft.com/nuget/nuget-org/trusted-publishing)).
+- [ ] **You:** if the repository is private, the policy is only *temporarily active* for 7 days until the first
+  successful publish (nuget.org needs the repository ids from the first token); restart the window in the policy list
+  if it expires before the tag.
 
 GitHub:
 
 - [ ] **You:** Settings → Environments → `nuget`: required reviewer = you; deployment branches/tags limited to `v*`.
-- [ ] **You:** add the secret `NUGET_API_KEY` **to that environment** (not as a repository secret).
+- [ ] **You:** add the secret `NUGET_USER` **to that environment**: your nuget.org profile name (the user name, not
+  your e-mail address). It is the only value the workflow needs; there is no key to store or rotate.
 - [ ] **You:** Settings → Rules → Rulesets: a tag ruleset on `v*` (restrict creation to admins, block deletion and
   force-push).
 - [ ] **You:** a branch ruleset on `main` requiring the four CI checks "Build and test", "Native AOT publish (win-x64)",
@@ -100,8 +108,8 @@ dotnet new console && dotnet add package LoomTerminal.Pty --prerelease && dotnet
 |---|---|
 | (a) A gate failed before the push | Fix, delete the remote tag (`git push origin :refs/tags/v<version>`) and the local one (`git tag -d v<version>`), tag again. Allowed because nothing was published. |
 | (b) The publish job failed halfway | "Re-run failed jobs" (`--skip-duplicate` makes it safe). |
-| (c) A bad version reached nuget.org | It cannot be deleted. **Unlist** it: nuget.org → Manage Packages → the version → "List in search results" off, or `dotnet nuget delete <id> <version> --source https://api.nuget.org/v3/index.json --api-key <key>` (which only unlists on nuget.org). Mark the GitHub Release as pre-release or edit its notes, then publish the fix as the next version (`alpha.2`, `0.1.1`…). Unlist all four packages of the version together. |
-| (d) The API key leaked | Regenerate it on nuget.org, update the `NUGET_API_KEY` secret of the `nuget` environment. |
+| (c) A bad version reached nuget.org | It cannot be deleted. **Unlist** it: nuget.org → Manage Packages → the version → "List in search results" off, or `dotnet nuget delete <id> <version> --source https://api.nuget.org/v3/index.json --api-key <key>` (which only unlists on nuget.org; the key is one created by hand for this, since the CI key is temporary, or use the web UI). Mark the GitHub Release as pre-release or edit its notes, then publish the fix as the next version (`alpha.2`, `0.1.1`…). Unlist all four packages of the version together. |
+| (d) The publish path is compromised | Delete the Trusted Publishing policy on nuget.org (no long-lived secret exists to rotate), then fix the workflow or the environment rules and create the policy again. |
 
 ## 7. Versions and public API
 
@@ -112,9 +120,6 @@ dotnet new console && dotnet add package LoomTerminal.Pty --prerelease && dotnet
 
 ## 8. Later improvements
 
-- **Trusted Publishing:** nuget.org → Trusted Publishing → policy for repository `adgranger/LoomTerminal`, workflow
-  `release.yml`, environment `nuget`; then replace the API key by `NuGet/login@v1` in `release.yml` and remove the
-  secret (a change to the workflow, to be made in a card of its own).
 - Package icon: `PackageIcon` plus a 128×128 PNG in `Directory.Build.props`, and one more check in `eng/Pack.ps1`.
 - Package signing.
 - `LoomTerminal.Avalonia`: add its id to the publish order and to `eng/Pack.ps1`.
@@ -123,10 +128,21 @@ dotnet new console && dotnet add package LoomTerminal.Pty --prerelease && dotnet
 
 | Symptom | Cause / fix |
 |---|---|
-| 403 on push | The key expired, its glob does not match the id, or its owner is wrong: create a new key (section 2). |
+| 403 on push | The policy scopes or glob pattern do not cover the id, or the policy is inactive (owner left the organization, 7-day window expired): fix the policy (section 2). |
+| "NuGet login" step fails (token exchange refused) | The policy does not match the token: repository owner/name, workflow file name `release.yml` (no path), environment `nuget`, or the policy is inactive. Also check `NUGET_USER` is the profile name, not an e-mail. |
+| "Unable to get ACTIONS_ID_TOKEN_REQUEST_URL" | The job lacks `permissions: id-token: write` (only the publish job has it). |
+| Push fails with "key expired" | The temporary key lasts one hour: the login step must stay right before the push; re-run the failed job. |
 | 409 on push | The version already exists; harmless with `--skip-duplicate`. |
 | "points to a commit that is not on main" | The tag was created on another branch: delete it (case (a)) and tag `main`. |
 | "CHANGELOG.md has no (or an empty) section [x.y.z]" | Rename `[Unreleased]` first (section 3). |
-| "The secret NUGET_API_KEY is not set in the environment "nuget"" | Add it to the environment, not to the repository (section 2). |
+| "The secret NUGET_USER is not set in the environment "nuget"" | Add it to the environment, not to the repository (section 2). |
 | "validation failed" mail from nuget.org | Read the mail. Missing README or license fields would already have failed `eng/Pack.ps1`. |
 | AOT test fails only on the runner | Re-run once; if it persists, run `./eng/Test-Packages.ps1` locally. |
+
+## 10. To verify at the first release
+
+The Trusted Publishing documentation does not say whether a policy can create a package id that does not exist yet on
+nuget.org (the four ids are new) beyond the scope "publish new packages". If the first push of an id is refused with
+403 although the policy matches, publish that first version once by hand with a temporary API key (scoped
+`LoomTerminal.*`, short expiry, deleted afterwards), then let the workflow do the next ones. Also verify at that
+release that the policy leaves the "temporarily active" state after the first successful publish.

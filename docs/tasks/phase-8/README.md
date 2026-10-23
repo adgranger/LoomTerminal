@@ -15,9 +15,9 @@ packages) nor on phases 6–7 (new packages, such as `LoomTerminal.Avalonia`, wi
   over `VersionPrefix`/`VersionSuffix`. Those two properties in `Directory.Build.props` stay as the version of
   **local** builds only; nothing is edited at release time. All four packages always share one version.
 - **First tag:** `v0.1.0-alpha.1` (any later tag works the same way).
-- **Authentication to nuget.org: an API key** stored as the secret `NUGET_API_KEY` of the GitHub environment `nuget`
-  (decided by the user; moving to Trusted Publishing later is described in `docs/RELEASING.md`). The key is scoped to
-  the glob `LoomTerminal.*`, and the publish job needs the environment, so a reviewer can be required.
+- **Authentication to nuget.org: Trusted Publishing (OIDC)** since P8-09 (it replaced the first decision, an API key
+  in the secret `NUGET_API_KEY`). The publish job has `id-token: write`, `NuGet/login` trades the GitHub token for a
+  one-hour key, and the environment `nuget` (required reviewer) holds only the secret `NUGET_USER`. No long-lived key.
 - **Gates before anything is published** (all in one job, fail fast): tag format, tag commit reachable from `main`,
   Release build with 0 warnings, all tests, `eng/Test-Packages.ps1` (pack + content check + AOT consumer app),
   CHANGELOG section present (stable versions). Publishing only starts when every gate passed.

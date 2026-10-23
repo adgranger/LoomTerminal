@@ -43,7 +43,7 @@ phases = {
     '7': ('Phase 7 — Unix pty, Linux and macOS', 'Native spawn shim, Unix pty, cross-platform CI.', [(None, 1, 7)]),
     '8': ('Phase 8 — First release (NuGet)',
           'Everything needed to publish the packages when the first git tag is created. **Read [phase-8/README.md](phase-8/README.md) first.**',
-          [(None, 1, 8)]),
+          [(None, 1, 9)]),
 }
 
 out = ['''# Task cards
