@@ -268,7 +268,7 @@ Native spawn shim, Unix pty, cross-platform CI.
 
 | Card | Title | Depends on | Size | Status |
 |---|---|---|---|---|
-| [P7-01](phase-7/P7-01-unix-pty-design.md) | Design: starting a process under a Unix pty from .NET | P6-08 | S | todo |
+| [P7-01](phase-7/P7-01-unix-pty-design.md) | Design: starting a process under a Unix pty from .NET | P6-08 | S | done |
 | [P7-02](phase-7/P7-02-native-shim.md) | Native shim `libloomterm_pty` and its build | P7-01 (ADR accepted) | S | todo |
 | [P7-03](phase-7/P7-03-unix-pty-connection.md) | `UnixPtyConnection` | P7-02 | M | todo |
 | [P7-04](phase-7/P7-04-unix-shell-detection.md) | Unix shell detection | P7-03 | S | todo |
