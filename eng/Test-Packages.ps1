@@ -4,12 +4,15 @@
 .DESCRIPTION
     Proves that the packages carry everything an app needs (dependencies, buildTransitive PRI workaround, Generic.xaml).
 #>
+param([string] $Version)
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
 Push-Location $root
 try {
-    & (Join-Path $PSScriptRoot 'Pack.ps1')
+    $packArgs = @{}
+    if ($Version) { $packArgs.Version = $Version }
+    & (Join-Path $PSScriptRoot 'Pack.ps1') @packArgs
     if ($LASTEXITCODE -ne 0) { throw 'eng/Pack.ps1 failed.' }
 
     $winui = @(Get-ChildItem 'artifacts/packages' -Filter 'LoomTerminal.WinUI.*.nupkg')

@@ -4,6 +4,7 @@
 .DESCRIPTION
     Not published anywhere: publishing to nuget.org is a manual decision. Fails with the list of all problems found.
 #>
+param([string] $Version)
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
@@ -15,12 +16,15 @@ $sourceLinkUrl = 'https://raw.githubusercontent.com/adgranger/LoomTerminal/'
 New-Item -ItemType Directory -Force $out | Out-Null
 Get-ChildItem $out -Include '*.nupkg', '*.snupkg' -Recurse | Remove-Item -Force
 
+$versionArgs = @(if ($Version) { "-p:Version=$Version" })
+
 foreach ($p in $projects) {
-    dotnet pack (Join-Path $root "src/LoomTerminal.$p") -c Release -o $out -warnaserror
+    dotnet pack (Join-Path $root "src/LoomTerminal.$p") -c Release -o $out -warnaserror @versionArgs
     if ($LASTEXITCODE -ne 0) { throw "dotnet pack failed for LoomTerminal.$p" }
 }
 
-$version = (dotnet msbuild (Join-Path $root 'src/LoomTerminal.Core') -getProperty:PackageVersion).Trim()
+$version = (dotnet msbuild (Join-Path $root 'src/LoomTerminal.Core') -getProperty:PackageVersion @versionArgs).Trim()
+if ($Version -and $version -ne $Version) { throw "PackageVersion is $version, expected $Version." }
 $problems = [System.Collections.Generic.List[string]]::new()
 
 # Expected dependency ids per package; LoomTerminal ids must have the package version.

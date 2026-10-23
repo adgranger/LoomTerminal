@@ -108,6 +108,10 @@ jobs:
         with:
           global-json-file: global.json
 
+      - name: Self-test the release scripts
+        shell: pwsh
+        run: ./eng/Get-ReleaseVersion.ps1 -SelfTest
+
       # Packages are built but NOT published: publishing is a manual, reviewed step.
       - name: Pack and test the packages
         shell: pwsh

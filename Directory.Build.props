@@ -45,6 +45,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/adgranger/LoomTerminal</PackageProjectUrl>
     <RepositoryUrl>https://github.com/adgranger/LoomTerminal</RepositoryUrl>
+    <!-- Version of local builds only; a release passes -p:Version=<tag without v> (docs/tasks/phase-8/README.md). -->
     <VersionPrefix>0.1.0</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <PackageTags>terminal;terminal-emulator;vt100;xterm;conpty;pty;winui;winui3;windows-app-sdk;avalonia</PackageTags>

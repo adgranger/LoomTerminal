@@ -1,6 +1,6 @@
 # P8-01 — Package version computed from the git tag
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-21
 - **Size:** S (two small PowerShell changes and one script, no product code)
 
@@ -60,24 +60,24 @@ Without `-Version` they behave exactly as today (`0.1.0-alpha` from `Directory.B
 
 ## Tests
 
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Get-ReleaseVersion.ps1 -SelfTest` — prints `Self-test passed: <n> cases`
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Get-ReleaseVersion.ps1 v0.1.0-alpha.1` prints exactly `0.1.0-alpha.1`
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1 -Version 9.9.9-test.1` — exit 0 and the eight files are named
+- [x] `rtk proxy pwsh -NoProfile -File eng/Get-ReleaseVersion.ps1 -SelfTest` — prints `Self-test passed: <n> cases`
+- [x] `rtk proxy pwsh -NoProfile -File eng/Get-ReleaseVersion.ps1 v0.1.0-alpha.1` prints exactly `0.1.0-alpha.1`
+- [x] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1 -Version 9.9.9-test.1` — exit 0 and the eight files are named
   `LoomTerminal.<Id>.9.9.9-test.1.nupkg|snupkg`
-- [ ] Negative check: `rtk proxy dotnet msbuild src/LoomTerminal.Core -getProperty:PackageVersion` (no property) still
+- [x] Negative check: `rtk proxy dotnet msbuild src/LoomTerminal.Core -getProperty:PackageVersion` (no property) still
   prints `0.1.0-alpha`
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1 -Version 0.1.0-alpha.1` — exit 0, prints
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1 -Version 0.1.0-alpha.1` — exit 0, prints
   `Package test passed: 0.1.0-alpha.1`
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1` (no argument) — exit 0, prints
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1` (no argument) — exit 0, prints
   `Package test passed: 0.1.0-alpha` (default behavior unchanged)
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Every command of "Tests" above passes
-- [ ] `rtk git status` shows no file under `artifacts/`, no change of `VersionPrefix` / `VersionSuffix`
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Every command of "Tests" above passes
+- [x] `rtk git status` shows no file under `artifacts/`, no change of `VersionPrefix` / `VersionSuffix`
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
