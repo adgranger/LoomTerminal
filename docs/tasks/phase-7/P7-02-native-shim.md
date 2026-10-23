@@ -1,6 +1,6 @@
 # P7-02 — Native shim `libloomterm_pty` and its build
 
-- **Status:** todo
+- **Status:** in progress
 - **Depends on:** P7-01 (ADR accepted)
 - **Size:** S
 
