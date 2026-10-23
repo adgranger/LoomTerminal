@@ -1,6 +1,6 @@
 # P7-02 — Native shim `libloomterm_pty` and its build
 
-- **Status:** in progress
+- **Status:** done
 - **Depends on:** P7-01 (ADR accepted)
 - **Size:** S
 
@@ -27,12 +27,12 @@ Write the C shim of ADR 0007, its build script, and the CI jobs that build it fo
 
 ## Tests
 
-- [ ] CI builds the four libraries; a smoke C test (`build.sh --test`) spawns `/bin/echo hi` and reads `hi`.
+- [x] CI builds the four libraries; a smoke C test (`build.sh --test`) spawns `/bin/echo hi` and reads `hi`.
 
 ## Acceptance criteria
 
-- [ ] CI `native-pty` job green on the four RIDs
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] CI `native-pty` job green on the four RIDs
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
