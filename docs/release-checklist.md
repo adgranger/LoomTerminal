@@ -15,7 +15,7 @@ An agent or the user may run them. Tick with the date and the commit hash.
 - [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green (date / commit: ________)
 - [ ] `rtk proxy pwsh -NoProfile -File eng/Invoke-ReleaseBuild.ps1 -Version <version>` (date / commit: ________)
 - [ ] The CI run of the latest `main` commit is green (jobs "Build and test", "Native AOT publish" for `win-x64` and
-  `win-arm64`, "Pack NuGet packages")
+  `win-arm64`; "Pack NuGet packages" runs on `main` pushes only)
 
 ## 2. Manual tests of the AOT gallery (HUMAN)
 
@@ -59,7 +59,7 @@ On a Windows 11 machine or VM without Visual Studio, outside the repository:
   `LoomTerminal.WinUI`)
 - [ ] **HUMAN:** ID prefix reservation `LoomTerminal.` requested (optional)
 - [ ] **HUMAN:** Trusted Publishing policy created (owner `adgranger`, repository `LoomTerminal`, workflow
-  `release.yml`, environment `nuget`, glob `LoomTerminal.*`); no API key exists
+  `release.yml`, environment `nuget`, scope "Push new packages and package versions"); no API key exists
 - [ ] **HUMAN:** GitHub environment `nuget` with a required reviewer and the secret `NUGET_USER` (nuget.org profile
   name)
 - [ ] **HUMAN:** tag ruleset on `v*`
