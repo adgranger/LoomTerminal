@@ -49,6 +49,11 @@ grid, and each non-ASCII grapheme is drawn with the first listed family that has
 is bundled, so without one they show as missing-glyph boxes. `FontWeight`, `FontSize` and `LineHeight` apply live.
 Fonts installed while the app runs are seen after a restart.
 
+To use the font of the user's Windows Terminal default profile, call `WindowsTerminalFont.Read()`
+(`LoomTerminal.Presentation.Rendering`) and apply the result (`Families` joined with ", ", `Size` in DIPs, `Weight`).
+It reads another application's settings file, so the control never calls it: a host opts in explicitly. Without a
+readable file it returns Windows Terminal's defaults (Cascadia Mono, 12 pt, regular).
+
 ## Events
 
 All events are raised on the UI thread (they are marshaled from the session's parser thread).

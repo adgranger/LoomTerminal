@@ -36,11 +36,16 @@
                     <x:String>Consolas</x:String>
                     <x:String>Courier New</x:String>
                 </ComboBox>
+                <ToggleSwitch
+                    x:Name="WindowsTerminalFontSwitch"
+                    Header="Font from Windows Terminal"
+                    Toggled="OnWindowsTerminalFontToggled" />
                 <Slider
                     x:Name="FontSizeSlider"
-                    Header="Font size"
-                    Maximum="32"
-                    Minimum="8"
+                    Header="Font size (pt)"
+                    Maximum="24"
+                    Minimum="6"
+                    StepFrequency="1"
                     Value="12"
                     ValueChanged="OnSettingChanged" />
                 <Slider

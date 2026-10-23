@@ -91,4 +91,7 @@ Next to the exe, in `Demos\` (run them in pwsh 7: `& .\Demos\colors.ps1`):
 
 - [ ] Font family **Cascadia Mono**, a Nerd Font installed (e.g. CaskaydiaCove NF): `icons.ps1` shows every icon, aligned on the ruler; oh-my-posh or starship prompt icons render
 - [ ] `unicode.ps1` is unchanged (CJK, emoji, box drawing)
-- [ ] `FontWeight` is not exposed in the gallery yet: checked in P4-27
+
+## Windows Terminal font (P4-27)
+
+- [ ] Gallery font size is in points (12 by default); switch "Font from Windows Terminal" on: the face, size and weight of Windows Terminal's default profile apply (compare side by side: same glyph size and weight), the family box and size slider are disabled; off restores the gallery settings

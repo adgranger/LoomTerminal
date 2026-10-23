@@ -233,7 +233,7 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 | [P4-24](phase-4/P4-24-gallery-tab-icons-and-titles.md) | Gallery tabs: shell icon, friendly name and shell title | P4-20, P4-23 | S | done |
 | [P4-25](phase-4/P4-25-font-family-resolution.md) | Font family resolution and symbol fallback order | P4-18 | S | done |
 | [P4-26](phase-4/P4-26-winui-glyph-font-fallback.md) | WinUI: per-glyph font fallback, font weight, cached font | P4-20, P4-25 | M | done |
-| [P4-27](phase-4/P4-27-windows-terminal-font-settings.md) | Windows Terminal font: defaults, and the user's settings on request | P4-26 | M | todo |
+| [P4-27](phase-4/P4-27-windows-terminal-font-settings.md) | Windows Terminal font: defaults, and the user's settings on request | P4-26 | M | done |
 
 ## Phase 5 — Integration into VIGO
 

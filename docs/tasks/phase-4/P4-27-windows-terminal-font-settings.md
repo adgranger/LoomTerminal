@@ -1,6 +1,6 @@
 # P4-27 — Windows Terminal font: defaults, and the user's settings on request
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-26
 - **Size:** M
 
@@ -69,30 +69,30 @@ The Gallery shows font sizes in points like Windows Terminal (12 pt by default) 
 
 ## Tests
 
-- [ ] New: `Empty_settings_give_the_Windows_Terminal_defaults` (`"{}"` → Cascadia Mono, 16, 400)
-- [ ] New: `Defaults_font_applies_to_the_default_profile`
-- [ ] New: `The_default_profile_overrides_the_defaults` (by guid, mixed case)
-- [ ] New: `The_default_profile_can_be_named`
-- [ ] New: `Legacy_font_properties_are_read`
-- [ ] New: `Comments_and_trailing_commas_are_accepted`
-- [ ] New: `A_face_list_is_split_on_commas`
-- [ ] New: `Size_is_converted_from_points_to_DIPs` (10.5 pt → 14)
-- [ ] New: `Theory: weight names and numbers` (`"semi-light"` 350, `"bold"` 700, `"extra-black"` 950, `600` 600,
+- [x] New: `Empty_settings_give_the_Windows_Terminal_defaults` (`"{}"` → Cascadia Mono, 16, 400)
+- [x] New: `Defaults_font_applies_to_the_default_profile`
+- [x] New: `The_default_profile_overrides_the_defaults` (by guid, mixed case)
+- [x] New: `The_default_profile_can_be_named`
+- [x] New: `Legacy_font_properties_are_read`
+- [x] New: `Comments_and_trailing_commas_are_accepted`
+- [x] New: `A_face_list_is_split_on_commas`
+- [x] New: `Size_is_converted_from_points_to_DIPs` (10.5 pt → 14)
+- [x] New: `Theory: weight names and numbers` (`"semi-light"` 350, `"bold"` 700, `"extra-black"` 950, `600` 600,
   `"heavy"` 400, `0` 400)
-- [ ] New: `Profiles_as_an_array_are_read`
-- [ ] New: `Malformed_json_gives_the_defaults`
-- [ ] New: `Settings_paths_are_the_Store_Preview_then_unpackaged_files`
+- [x] New: `Profiles_as_an_array_are_read`
+- [x] New: `Malformed_json_gives_the_defaults`
+- [x] New: `Settings_paths_are_the_Store_Preview_then_unpackaged_files`
 - [ ] Manual (AOT gallery): the switch on applies the face/size/weight of Windows Terminal's default profile (compare
   side by side with Windows Terminal: same glyph size and weight); off restores the gallery settings.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Update-PublicApi.ps1 src/LoomTerminal.Presentation` — run, public API file updated
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — exit code 0
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk proxy pwsh -NoProfile -File eng/Update-PublicApi.ps1 src/LoomTerminal.Presentation` — run, public API file updated
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — exit code 0
 - [ ] **Manual (human):** the side-by-side check above, ticked in `docs/manual-tests.md`
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using LoomTerminal.Gallery.Diagnostics;
 using LoomTerminal.Presentation.Input;
+using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.Presentation.Session;
 using LoomTerminal.Presentation.Theming;
 using LoomTerminal.Pty;
@@ -8,6 +9,7 @@ using LoomTerminal.WinUI.Controls;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Text;
 using Microsoft.UI.Xaml.Media;
 
 namespace LoomTerminal.Gallery;
@@ -29,6 +31,7 @@ public sealed partial class MainWindow : Window
     private readonly DispatcherQueueTimer _statusTimer;
     private readonly List<double> _intervals = [];
     private long _lastTick;
+    private TerminalFont? _windowsTerminalFont;
 
     /// <summary>Creates the window and opens a tab for the first detected shell.</summary>
     public MainWindow()
@@ -144,7 +147,7 @@ public sealed partial class MainWindow : Window
     private void OnSettingChanged(object sender, object e)
     {
         // Raised while InitializeComponent builds the page, before every control exists.
-        if (Tabs is null || BlinkSwitch is null)
+        if (Tabs is null || BlinkSwitch is null || WindowsTerminalFontSwitch is null)
         {
             return;
         }
@@ -159,11 +162,30 @@ public sealed partial class MainWindow : Window
     private void ApplySettings(TerminalControl terminal)
     {
         terminal.Theme = LightTheme.IsOn ? LightThemeColors : DarkThemeColors;
-        terminal.FontFamily = new FontFamily((string)FontFamilyBox.SelectedItem);
-        terminal.FontSize = FontSizeSlider.Value;
+        if (_windowsTerminalFont is { } font)
+        {
+            terminal.FontFamily = new FontFamily(string.Join(", ", font.Families));
+            terminal.FontSize = font.Size;
+            terminal.FontWeight = new Windows.UI.Text.FontWeight { Weight = (ushort)font.Weight };
+        }
+        else
+        {
+            terminal.FontFamily = new FontFamily((string)FontFamilyBox.SelectedItem);
+            terminal.FontSize = FontSizeSlider.Value * 96 / 72;
+            terminal.FontWeight = FontWeights.Normal;
+        }
+
         terminal.LineHeight = LineHeightSlider.Value;
         terminal.CursorStyle = (TerminalCursorStyle)CursorStyleBox.SelectedIndex;
         terminal.CursorBlink = BlinkSwitch.IsOn;
+    }
+
+    // The settings of Windows Terminal are read only when the user asks for them, once per switch-on.
+    private void OnWindowsTerminalFontToggled(object sender, RoutedEventArgs e)
+    {
+        _windowsTerminalFont = WindowsTerminalFontSwitch.IsOn ? WindowsTerminalFont.Read() : null;
+        FontFamilyBox.IsEnabled = FontSizeSlider.IsEnabled = !WindowsTerminalFontSwitch.IsOn;
+        OnSettingChanged(sender, e);
     }
 
     // Subscribing keeps the compositor ticking at 60 Hz, which distorts idle CPU: off by default.

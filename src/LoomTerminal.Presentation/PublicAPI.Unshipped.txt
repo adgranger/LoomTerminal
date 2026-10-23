@@ -382,6 +382,7 @@ LoomTerminal.Presentation.Rendering.TextRunStyle.Underline.get -> LoomTerminal.P
 LoomTerminal.Presentation.Rendering.TextRunStyle.Underline.init -> void
 LoomTerminal.Presentation.Rendering.TextRunStyle.UnderlineColor.get -> uint?
 LoomTerminal.Presentation.Rendering.TextRunStyle.UnderlineColor.init -> void
+LoomTerminal.Presentation.Rendering.WindowsTerminalFont
 LoomTerminal.Presentation.Search.SearchOptions
 LoomTerminal.Presentation.Search.SearchOptions.<Clone>$() -> LoomTerminal.Presentation.Search.SearchOptions!
 LoomTerminal.Presentation.Search.SearchOptions.CaseSensitive.get -> bool
@@ -612,6 +613,8 @@ static LoomTerminal.Presentation.Rendering.TerminalFont.operator !=(LoomTerminal
 static LoomTerminal.Presentation.Rendering.TerminalFont.operator ==(LoomTerminal.Presentation.Rendering.TerminalFont? left, LoomTerminal.Presentation.Rendering.TerminalFont? right) -> bool
 static LoomTerminal.Presentation.Rendering.TextRunStyle.operator !=(LoomTerminal.Presentation.Rendering.TextRunStyle left, LoomTerminal.Presentation.Rendering.TextRunStyle right) -> bool
 static LoomTerminal.Presentation.Rendering.TextRunStyle.operator ==(LoomTerminal.Presentation.Rendering.TextRunStyle left, LoomTerminal.Presentation.Rendering.TextRunStyle right) -> bool
+static LoomTerminal.Presentation.Rendering.WindowsTerminalFont.Default.get -> LoomTerminal.Presentation.Rendering.TerminalFont!
+static LoomTerminal.Presentation.Rendering.WindowsTerminalFont.Read() -> LoomTerminal.Presentation.Rendering.TerminalFont!
 static LoomTerminal.Presentation.Search.SearchOptions.operator !=(LoomTerminal.Presentation.Search.SearchOptions? left, LoomTerminal.Presentation.Search.SearchOptions? right) -> bool
 static LoomTerminal.Presentation.Search.SearchOptions.operator ==(LoomTerminal.Presentation.Search.SearchOptions? left, LoomTerminal.Presentation.Search.SearchOptions? right) -> bool
 static LoomTerminal.Presentation.Search.SearchResult.operator !=(LoomTerminal.Presentation.Search.SearchResult? left, LoomTerminal.Presentation.Search.SearchResult? right) -> bool
