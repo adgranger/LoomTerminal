@@ -22,22 +22,17 @@ internal sealed class Win2DTextMeasurer : ITextMeasurer
         _resourceCreator = resourceCreator;
     }
 
-    /// <summary>Resolves the installed family used to draw <paramref name="font"/>.</summary>
+    // shortcut: fonts installed while the app runs are seen after a restart; watch font changes if users ask.
+    private static readonly Lazy<HashSet<string>> InstalledFamilies =
+        new(() => new HashSet<string>(CanvasTextFormat.GetSystemFontFamilies(), StringComparer.OrdinalIgnoreCase));
+
+    /// <summary>Resolves the installed families used to draw <paramref name="font"/>.</summary>
     /// <param name="font">The font.</param>
-    /// <returns>The first installed family of the list, else Cascadia Mono, else Consolas.</returns>
-    public static string ResolveFamily(TerminalFont font)
+    /// <returns>The primary family, the requested fallbacks and the Nerd Font symbol fallbacks.</returns>
+    internal static ResolvedFontFamilies ResolveFamilies(TerminalFont font)
     {
         ArgumentNullException.ThrowIfNull(font);
-        var installed = new HashSet<string>(CanvasTextFormat.GetSystemFontFamilies(), StringComparer.OrdinalIgnoreCase);
-        foreach (string family in font.Families)
-        {
-            if (installed.Contains(family))
-            {
-                return family;
-            }
-        }
-
-        return installed.Contains("Cascadia Mono") ? "Cascadia Mono" : "Consolas";
+        return FontFamilyResolver.Resolve(font.Families, InstalledFamilies.Value);
     }
 
     /// <inheritdoc />
@@ -61,7 +56,7 @@ internal sealed class Win2DTextMeasurer : ITextMeasurer
     {
         using var format = new CanvasTextFormat
         {
-            FontFamily = ResolveFamily(font),
+            FontFamily = ResolveFamilies(font).Primary,
             FontSize = (float)font.Size,
             FontWeight = new FontWeight { Weight = (ushort)font.Weight },
             WordWrapping = CanvasWordWrapping.NoWrap,

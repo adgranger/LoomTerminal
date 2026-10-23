@@ -86,3 +86,9 @@ Next to the exe, in `Demos\` (run them in pwsh 7: `& .\Demos\colors.ps1`):
 
 - [ ] Every shell of the **+** menu opens a tab with its icon and its friendly name; `pwsh` shows "PowerShell 7", not the WindowsApps path (if the Store PowerShell has no icon, write it in the card's Notes: follow-up card)
 - [ ] `$Host.UI.RawUI.WindowTitle = 'hello'` in pwsh changes the header to "hello"; the tooltip shows "PowerShell 7 — hello"
+
+## Glyph font fallback (P4-26)
+
+- [ ] Font family **Cascadia Mono**, a Nerd Font installed (e.g. CaskaydiaCove NF): `icons.ps1` shows every icon, aligned on the ruler; oh-my-posh or starship prompt icons render
+- [ ] `unicode.ps1` is unchanged (CJK, emoji, box drawing)
+- [ ] `FontWeight` is not exposed in the gallery yet: checked in P4-27

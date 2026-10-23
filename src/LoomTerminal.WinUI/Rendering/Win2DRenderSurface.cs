@@ -1,5 +1,6 @@
 // Inspired by LoomEditor: src/LoomEditor.Rendering/Win2D/Win2DRenderSurface.cs
 using System.Globalization;
+using System.Text;
 using LoomTerminal.Presentation.Rendering;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Geometry;
@@ -20,7 +21,7 @@ internal sealed class Win2DRenderSurface : IRenderSurface
     private readonly ICanvasResourceCreator _resourceCreator;
     private readonly TextRunLayoutCache _cache;
     private readonly TerminalFont _font;
-    private readonly string _family;
+    private readonly GlyphFamilyMap _families;
     private readonly double _scale;
 
     /// <summary>Wraps a drawing session.</summary>
@@ -28,15 +29,15 @@ internal sealed class Win2DRenderSurface : IRenderSurface
     /// <param name="resourceCreator">The device used to create text layouts.</param>
     /// <param name="cache">The layout cache shared between frames.</param>
     /// <param name="font">The terminal font.</param>
-    /// <param name="family">The resolved family (<see cref="Win2DTextMeasurer.ResolveFamily"/>).</param>
+    /// <param name="families">The per-glyph family choice (<see cref="Win2DTextMeasurer.ResolveFamilies"/>).</param>
     /// <param name="scale">Rasterization scale.</param>
-    public Win2DRenderSurface(CanvasDrawingSession session, ICanvasResourceCreator resourceCreator, TextRunLayoutCache cache, TerminalFont font, string family, double scale)
+    public Win2DRenderSurface(CanvasDrawingSession session, ICanvasResourceCreator resourceCreator, TextRunLayoutCache cache, TerminalFont font, GlyphFamilyMap families, double scale)
     {
         _session = session;
         _resourceCreator = resourceCreator;
         _cache = cache;
         _font = font;
-        _family = family;
+        _families = families;
         _scale = scale;
     }
 
@@ -54,7 +55,7 @@ internal sealed class Win2DRenderSurface : IRenderSurface
         var top = row * metrics.Height;
         if (IsPrintableAscii(text))
         {
-            DrawLayout(text, column * metrics.Width, top, metrics, style, color);
+            DrawLayout(text, _families.Primary, column * metrics.Width, top, metrics, style, color);
             return;
         }
 
@@ -64,7 +65,8 @@ internal sealed class Win2DRenderSurface : IRenderSurface
         while (enumerator.MoveNext())
         {
             var grapheme = (string)enumerator.Current;
-            DrawLayout(grapheme, cell * metrics.Width, top, metrics, style, color);
+            var family = _families.FamilyFor(Rune.TryGetRuneAt(grapheme, 0, out var rune) ? rune.Value : grapheme[0]);
+            DrawLayout(grapheme, family, cell * metrics.Width, top, metrics, style, color);
             cell += CellWidth(grapheme);
         }
     }
@@ -200,22 +202,22 @@ internal sealed class Win2DRenderSurface : IRenderSurface
         _session.Transform = saved;
     }
 
-    private void DrawLayout(string text, double x, double top, in CellMetrics metrics, in TextRunStyle style, Color color)
+    private void DrawLayout(string text, string family, double x, double top, in CellMetrics metrics, in TextRunStyle style, Color color)
     {
-        var key = new TextRunLayoutKey(text, style.Bold, style.Italic, _family, _font.Size, _scale);
+        var key = new TextRunLayoutKey(text, style.Bold, style.Italic, family, _font.Size, _scale);
         var bold = style.Bold;
         var italic = style.Italic;
-        var layout = _cache.GetOrCreate(key, () => CreateLayout(text, bold, italic));
+        var layout = _cache.GetOrCreate(key, () => CreateLayout(text, family, bold, italic));
         // Align the layout baseline on the cell baseline (which includes the extra line height).
         var y = top + metrics.Baseline - layout.LineMetrics[0].Baseline;
         _session.DrawTextLayout(layout, (float)x, (float)y, color);
     }
 
-    private CanvasTextLayout CreateLayout(string text, bool bold, bool italic)
+    private CanvasTextLayout CreateLayout(string text, string family, bool bold, bool italic)
     {
         using var format = new CanvasTextFormat
         {
-            FontFamily = _family,
+            FontFamily = family,
             FontSize = (float)_font.Size,
             FontWeight = new FontWeight { Weight = (ushort)(bold ? _font.BoldWeight : _font.Weight) },
             FontStyle = italic ? FontStyle.Italic : FontStyle.Normal,

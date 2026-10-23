@@ -23,7 +23,7 @@ public sealed partial class TerminalControl
     public int Rows => _rows;
 
     private TerminalFont CurrentFont() =>
-        new(FontFamily.Source.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries), FontSize, LineHeight);
+        _font ??= new(FontFamily.Source.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries), FontSize, LineHeight, Weight: FontWeight.Weight);
 
     private void InitializeLayout()
     {
@@ -32,10 +32,13 @@ public sealed partial class TerminalControl
         Loaded += OnLoaded;
         InitializeFocus();
         // Font, line height, padding, theme and cursor settings change what is drawn.
-        foreach (var property in new[] { FontFamilyProperty, FontSizeProperty, LineHeightProperty })
+        foreach (var property in new[] { FontFamilyProperty, FontSizeProperty, LineHeightProperty, FontWeightProperty })
         {
             RegisterPropertyChangedCallback(property, (_, _) =>
             {
+                _font = null;
+                _glyphFamilies?.Dispose();
+                _glyphFamilies = null;
                 _layoutCache.Clear();
                 RequestFrame();
             });

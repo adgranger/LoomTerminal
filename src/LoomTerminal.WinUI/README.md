@@ -41,6 +41,14 @@ Terminal.Theme = Terminal.Theme with { Background = "#1e1e1e", Foreground = "#d4
 
 Other dependency properties: `CursorBlink`, `CursorStyle`, `LineHeight`.
 
+## Fonts
+
+`FontFamily` takes a comma-separated list ("Cascadia Mono, Segoe UI Emoji"): the first installed family draws the
+grid, and each non-ASCII grapheme is drawn with the first listed family that has a glyph for it. Nerd Font icons
+(oh-my-posh, starship) come from any installed Nerd Font, even when the primary family is plain Cascadia Mono; no font
+is bundled, so without one they show as missing-glyph boxes. `FontWeight`, `FontSize` and `LineHeight` apply live.
+Fonts installed while the app runs are seen after a restart.
+
 ## Events
 
 All events are raised on the UI thread (they are marshaled from the session's parser thread).

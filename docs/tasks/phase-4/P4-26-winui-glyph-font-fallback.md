@@ -1,6 +1,6 @@
 # P4-26 — WinUI: per-glyph font fallback, font weight, cached font
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-20, P4-25
 - **Size:** M
 
@@ -71,11 +71,11 @@ other families of `FontFamily` ("Cascadia Mono, Segoe UI Emoji") are real fallba
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — exit code 0
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery` — exit code 0
 - [ ] **Manual (human):** the two checks above, ticked in `docs/manual-tests.md`
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
