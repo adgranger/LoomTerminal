@@ -1,5 +1,7 @@
 # Manual tests
 
+The remaining unticked items are part of [docs/release-checklist.md](release-checklist.md).
+
 The gallery is the manual test bench of the WinUI control. Run every item once in the **AOT-published** gallery
 (a Debug build is fine for a quick loop) and tick it:
 

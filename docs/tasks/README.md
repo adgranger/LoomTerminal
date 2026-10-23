@@ -289,6 +289,6 @@ Everything needed to publish the packages when the first git tag is created. **R
 | [P8-05](phase-8/P8-05-release-build-script.md) | One script runs every release gate | P8-02 | S | done |
 | [P8-06](phase-8/P8-06-release-workflow.md) | Release workflow: tag → gates → nuget.org → GitHub Release (and a dry run) | P8-04, P8-05 | M | done |
 | [P8-07](phase-8/P8-07-releasing-runbook.md) | `docs/RELEASING.md`: the runbook for the user | P8-06 | S | done |
-| [P8-08](phase-8/P8-08-release-checklist.md) | Release checklist (needs a human) | P8-07 | S | todo |
+| [P8-08](phase-8/P8-08-release-checklist.md) | Release checklist (needs a human) | P8-07 | S | done |
 
 **142 cards.** Status values: `todo`, `in progress`, `done`. Follow-up cards found while working are added at the end of their phase, numbered after its last card.
