@@ -8,7 +8,11 @@ param(
     [Parameter(Mandatory, Position = 0)][string] $Project,
     [string] $Runtime = 'win-x64',
     [int] $Seconds = 10,
-    [switch] $NoPublish
+    [switch] $NoPublish,
+    # For apps that do not start a shell (placeholder controls).
+    [switch] $NoShell,
+    # Build first, then publish with --no-build (Avalonia: a recompiling publish drops the compiled XAML).
+    [switch] $BuildFirst
 )
 
 $ErrorActionPreference = 'Stop'
@@ -20,7 +24,13 @@ if (-not $NoPublish) {
     $logDir = Join-Path (Get-Location) 'artifacts/aot-smoke'
     New-Item -ItemType Directory -Force $logDir | Out-Null
     $log = Join-Path $logDir "$name-publish.log"
-    dotnet publish $Project -c Release -r $Runtime -warnaserror 2>&1 | Tee-Object -FilePath $log
+    $publishArgs = @()
+    if ($BuildFirst) {
+        dotnet build $Project -c Release -r $Runtime -warnaserror 2>&1 | Tee-Object -FilePath $log
+        if ($LASTEXITCODE -ne 0) { Write-Error "The build of $name failed with exit code $LASTEXITCODE."; exit 1 }
+        $publishArgs = @('--no-build')
+    }
+    dotnet publish $Project -c Release -r $Runtime -warnaserror @publishArgs 2>&1 | Tee-Object -FilePath $log -Append
     if ($LASTEXITCODE -ne 0) { Write-Error "The AOT publish of $name failed with exit code $LASTEXITCODE."; exit 1 }
     $warnings = @(Select-String -Path $log -Pattern 'warning (IL|AOT|CS|CA|NETSDK)\d+')
     if ($warnings.Count -gt 0) { $warnings; Write-Error "The AOT publish of $name produced warnings."; exit 1 }
@@ -42,7 +52,7 @@ try {
     if ($process.HasExited) { throw "The AOT app exited at startup with code $($process.ExitCode)." }
     if ($process.MainWindowHandle -eq 0) { throw 'The AOT app is running but has no window.' }
     $children = @(Get-CimInstance Win32_Process -Filter "ParentProcessId=$($process.Id)")
-    if ($children.Count -eq 0) { throw 'The AOT app has no child process: the shell behind ConPTY did not start.' }
+    if (-not $NoShell -and $children.Count -eq 0) { throw 'The AOT app has no child process: the shell behind ConPTY did not start.' }
     if (Test-Path $crashLog) { Get-Content $crashLog; throw "The AOT app wrote its crash log: $crashLog" }
 
     Write-Host "AOT smoke test passed: $name ($Runtime), alive after $Seconds s, $($children.Count) child process(es)."

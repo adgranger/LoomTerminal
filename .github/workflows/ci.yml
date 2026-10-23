@@ -97,6 +97,20 @@ jobs:
           name: gallery-${{ matrix.rid }}
           path: samples/LoomTerminal.Gallery/bin/Release/net11.0-windows10.0.26100.0/${{ matrix.rid }}/publish
 
+  aot-avalonia:
+    name: Native AOT publish (Avalonia, win-x64)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      - name: Publish the Avalonia sample, start it
+        shell: pwsh
+        run: ./eng/Test-AotApp.ps1 samples/LoomTerminal.AvaloniaGallery -NoShell -BuildFirst
+
   pack:
     name: Pack NuGet packages
     # Not on pull requests: the release workflow (dry run) packs and tests the packages.

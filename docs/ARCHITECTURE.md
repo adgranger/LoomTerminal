@@ -6,7 +6,7 @@
 LoomTerminal.WinUI ──► LoomTerminal.Presentation ──► LoomTerminal.Core
         │                        │
         └────────────────────────┴──► LoomTerminal.Pty
-(later) LoomTerminal.Avalonia ──► Presentation, Pty
+LoomTerminal.Avalonia ──► Presentation
 ```
 
 | Project | TFM | May reference | Role |

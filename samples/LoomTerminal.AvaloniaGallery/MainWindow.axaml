@@ -1,0 +1,7 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loom="using:LoomTerminal.Avalonia.Controls"
+        x:Class="LoomTerminal.AvaloniaGallery.MainWindow"
+        Title="LoomTerminal - Avalonia gallery" Width="900" Height="600">
+  <loom:TerminalView />
+</Window>

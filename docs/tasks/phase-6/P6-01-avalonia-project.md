@@ -1,6 +1,6 @@
 # P6-01 — `LoomTerminal.Avalonia` project, sample and CI
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P5-05 (or P4-18 if VIGO integration is postponed)
 - **Size:** S
 
@@ -30,14 +30,22 @@ and the architecture rules for the new project.
 
 ## Tests
 
-- [ ] Architecture tests green; the AOT sample starts locally (if the VS C++ workload is present) or on CI.
+- [x] Architecture tests green; the AOT sample starts locally (if the VS C++ workload is present) or on CI.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
 - [ ] CI AOT job for the Avalonia sample green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Card status and `docs/tasks/README.md` updated
+
+## Implementation notes
+
+- Avalonia 12.1.4 (ADR 0006). `Theme` is named `TerminalTheme` (`StyledElement.Theme` exists); see the project README.
+- The library is `IsPackable=false` until P6-08 (the package job and `eng/Pack.ps1` are untouched).
+- Under Native AOT a publish that recompiles drops Avalonia's compiled XAML: the sample is built, then published with
+  the no-build option (`eng/Test-AotApp.ps1 -BuildFirst`). The AOT job of CI is `aot-avalonia`.
+- The "CI AOT job green" criterion is only checked once the branch is pushed; the same script passes locally.
 
 ## Out of scope
 
