@@ -79,6 +79,12 @@ public sealed partial class MainWindow : Window
             tab.Header = TabHeader(shell, title);
             ToolTipService.SetToolTip(tab, string.IsNullOrWhiteSpace(title) ? shell.Name : $"{shell.Name} — {title}");
         };
+        // The control only reports the Ctrl+click: opening the link is up to the host.
+        terminal.LinkActivated += (_, e) =>
+        {
+            e.Handled = true;
+            _ = Windows.System.Launcher.LaunchUriAsync(e.Uri);
+        };
         terminal.Exited += (_, code) => tab.Header = $"{shell.Name} [exited {code}]";
         terminal.KeyPreview += (_, e) =>
         {
@@ -90,7 +96,8 @@ public sealed partial class MainWindow : Window
             }
         };
         ApplySettings(terminal);
-        terminal.Session = TerminalSession.Start(new PtyStartOptions(shell.CommandLine));
+        terminal.Session = TerminalSession.Start(
+            new PtyStartOptions(shell.CommandLine), new TerminalSessionOptions { Scrollback = 10_000 });
         Tabs.TabItems.Add(tab);
         Tabs.SelectedItem = tab;
         _ = SetIconAsync(tab, shell.ExecutablePath);

@@ -172,7 +172,7 @@ public sealed partial class TerminalControl
         UpdateCursorShape();
     }
 
-    // IBeam normally, Hand over a link opened by Ctrl+click, Arrow while an application tracks the mouse.
+    // The standard Arrow, Hand over a link opened by Ctrl+click.
     private void UpdateCursorShape()
     {
         if (_session is not { } session)
@@ -188,7 +188,6 @@ public sealed partial class TerminalControl
         }
 
         (_cursorIsArrow, _cursorIsHand, _cursorSet) = (arrow, hand, true);
-        ProtectedCursor = InputSystemCursor.Create(
-            arrow ? InputSystemCursorShape.Arrow : hand ? InputSystemCursorShape.Hand : InputSystemCursorShape.IBeam);
+        ProtectedCursor = InputSystemCursor.Create(hand ? InputSystemCursorShape.Hand : InputSystemCursorShape.Arrow);
     }
 }

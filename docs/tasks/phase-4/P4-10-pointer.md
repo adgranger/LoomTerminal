@@ -25,7 +25,7 @@ Forward WinUI pointer events to the session as `TerminalPointerEvent`s (P3-12) a
   `DeltaMode = Line` and `WheelDeltaY = -MouseWheelDelta / 120.0 × 3` (3 lines per notch, as browsers report on
   Windows). Touchpads send small deltas: `ConsumeWheelEvent` accumulates the fractions, as in JS.
 - Right button press → `Session.HandleRightClick()` (P3-16), no context menu.
-- Cursor shape (`ProtectedCursor`, set in code): `IBeam` normally, `Hand` over a link while Ctrl is down, `Arrow` when
+- Cursor shape (`ProtectedCursor`, set in code): `Arrow` normally (the user asked for the standard pointer, not the text I-beam), `Hand` over a link while Ctrl is down, `Arrow` when
   mouse reporting is active.
 - `KeyDown`/`KeyUp` of Ctrl update the hovered link even without pointer movement.
 
