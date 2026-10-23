@@ -12,6 +12,21 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="LoomTerminal.Pty.Tests" />
+  </ItemGroup>
+
+  <!-- Projects that reference this one (tests, samples) get the shim of the machine they build on next to their output. -->
+  <PropertyGroup>
+    <LoomNativeOs Condition="$([MSBuild]::IsOSPlatform('Linux'))">linux</LoomNativeOs>
+    <LoomNativeOs Condition="$([MSBuild]::IsOSPlatform('OSX'))">osx</LoomNativeOs>
+    <LoomNativeArch>$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture.ToString().ToLowerInvariant())</LoomNativeArch>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(LoomNativeOs)' != ''">
+    <None Include="$(MSBuildThisFileDirectory)../../artifacts/native/$(LoomNativeOs)-$(LoomNativeArch)/libloomterm_pty.*" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" Pack="false" Visible="false" />
+  </ItemGroup>
+
   <!-- The Unix pty shim (src/native/pty/build.sh) is built per RID into artifacts/native/<rid>/; absent on Windows-only builds. -->
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)../../artifacts/native/linux-x64/libloomterm_pty.*" Pack="true" PackagePath="runtimes/linux-x64/native" Visible="false" />

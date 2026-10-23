@@ -1,10 +1,14 @@
 // libloomterm_pty: starts a process under a pseudo terminal (ADR 0007).
 // fork() is unsafe from a running .NET process, so the fork happens here and the child does nothing but
-// chdir + execve: no malloc, no stdio. Resize (TIOCSWINSZ) and wait (waitpid) are done from C#.
+// chdir + execve: no malloc, no stdio. Resize, wait and kill are small wrappers so that C# never calls the variadic
+// ioctl (broken through P/Invoke on Apple arm64) nor depends on how "libc" resolves.
 #define _GNU_SOURCE
+#include <errno.h>
+#include <signal.h>
 #include <stddef.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #if defined(__APPLE__)
 #include <util.h>
@@ -41,6 +45,42 @@ EXPORT int loomterm_spawn(const char* file, char* const argv[], char* const envp
     *masterFd = master;
     *pid = (int)child;
     return 0;
+}
+
+// Sets the size of the pty. Returns 0, or -1 (errno is set).
+EXPORT int loomterm_resize(int masterFd, int cols, int rows)
+{
+    struct winsize size = { (unsigned short)rows, (unsigned short)cols, 0, 0 };
+    return ioctl(masterFd, TIOCSWINSZ, &size);
+}
+
+// Blocks until the child ends. Returns its exit code, 128 + signal when it was killed, or -1.
+EXPORT int loomterm_wait(int pid)
+{
+    int status = 0;
+    pid_t result;
+    do
+    {
+        result = waitpid((pid_t)pid, &status, 0);
+    } while (result < 0 && errno == EINTR);
+
+    if (result < 0)
+    {
+        return -1;
+    }
+
+    if (WIFEXITED(status))
+    {
+        return WEXITSTATUS(status);
+    }
+
+    return WIFSIGNALED(status) ? 128 + WTERMSIG(status) : -1;
+}
+
+// Sends a signal to the whole process group of the child (forkpty made it a session leader: group id == pid).
+EXPORT int loomterm_kill_group(int pid, int signal)
+{
+    return kill(-(pid_t)pid, signal);
 }
 
 #ifdef LOOMTERM_TEST

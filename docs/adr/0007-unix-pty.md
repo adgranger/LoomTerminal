@@ -22,7 +22,10 @@ pseudo terminal: a new session whose controlling terminal is the pty slave, with
   `int loomterm_spawn(const char* file, char* const argv[], char* const envp[], const char* cwd, int cols, int rows,
   int* masterFd, int* pid)`. It calls `forkpty`; in the child it only does `chdir`, then `execve` (or `_exit(127)` on
   failure).
-- Resize and wait are done from C# with `ioctl(TIOCSWINSZ)` and `waitpid` through `[LibraryImport("libc")]`.
+- Resize, wait and kill are three more one-line exports of the shim (`loomterm_resize`, `loomterm_wait`,
+  `loomterm_kill_group`) instead of P/Invokes of `ioctl`, `waitpid` and `kill` in libc. Why (decided in P7-03):
+  `ioctl` is variadic, which is not callable through P/Invoke on Apple arm64, `TIOCSWINSZ` has a different value on
+  Linux and macOS, and the `"libc"` library name does not resolve the same way on every Linux.
 - The shim is built per RID (`linux-x64`, `linux-arm64`, `osx-x64`, `osx-arm64`) by a script and by CI, and shipped in
   the Pty package under `runtimes/<rid>/native/` (same approach as LoomEditor's Oniguruma build).
 
