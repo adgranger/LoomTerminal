@@ -285,7 +285,7 @@ Everything needed to publish the packages when the first git tag is created. **R
 | [P8-01](phase-8/P8-01-version-from-tag.md) | Package version computed from the git tag | P4-21 | S | done |
 | [P8-02](phase-8/P8-02-package-metadata-checks.md) | nuspec metadata checks | P8-01 | S | done |
 | [P8-03](phase-8/P8-03-package-readmes.md) | A README for each package, written for nuget.org | P8-02 | S | done |
-| [P8-04](phase-8/P8-04-changelog-and-release-notes.md) | CHANGELOG and release notes extraction | P8-01 | S | todo |
+| [P8-04](phase-8/P8-04-changelog-and-release-notes.md) | CHANGELOG and release notes extraction | P8-01 | S | done |
 | [P8-05](phase-8/P8-05-release-build-script.md) | One script runs every release gate | P8-02 | S | todo |
 | [P8-06](phase-8/P8-06-release-workflow.md) | Release workflow: tag → gates → nuget.org → GitHub Release (and a dry run) | P8-04, P8-05 | M | todo |
 | [P8-07](phase-8/P8-07-releasing-runbook.md) | `docs/RELEASING.md`: the runbook for the user | P8-06 | S | todo |

@@ -1,6 +1,6 @@
 # P8-04 — CHANGELOG and release notes extraction
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P8-01
 - **Size:** S (a Markdown file and one PowerShell script)
 
@@ -57,18 +57,18 @@ Release.
 
 ## Tests
 
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Get-ReleaseNotes.ps1 -SelfTest` — prints `Self-test passed: <n> cases`
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Get-ReleaseNotes.ps1 -Version 0.1.0-alpha.1` fails with the "rename
+- [x] `rtk proxy pwsh -NoProfile -File eng/Get-ReleaseNotes.ps1 -SelfTest` — prints `Self-test passed: <n> cases`
+- [x] `rtk proxy pwsh -NoProfile -File eng/Get-ReleaseNotes.ps1 -Version 0.1.0-alpha.1` fails with the "rename
   [Unreleased]" message (the real changelog is not renamed yet: this is expected), and succeeds with `-AllowMissing`
   (empty output, warning on stderr)
-- [ ] `rtk git grep -n "\[Unreleased\]" CHANGELOG.md` finds the heading
+- [x] `rtk git grep -n "\[Unreleased\]" CHANGELOG.md` finds the heading
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Every command of "Tests" above behaves as written
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Every command of "Tests" above behaves as written
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
