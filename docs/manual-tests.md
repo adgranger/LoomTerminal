@@ -27,7 +27,7 @@ Next to the exe, in `Demos\` (run them in pwsh 7: `& .\Demos\colors.ps1`):
 
 - [ ] Scrollback 10,000 lines; cursor blink; font size 12, line height 1.15 (gallery defaults)
 - [ ] Font stack Cascadia Mono / Cascadia Code, then Nerd Font fallbacks (oh-my-posh, starship glyphs)
-- [ ] Unicode 11 character widths (`unicode.ps1`: the bars of the "Grid" line match the ruler)
+- [x] Unicode 11 character widths (`unicode.ps1`: the bars of the "Grid" line match the ruler)
 - [ ] ConPTY-aware reflow: shrink and widen the window with long lines on screen, no duplicated or lost text
 - [ ] Theme set live by the host: the theme switch changes background, foreground, cursor and selection of every tab
 - [ ] Links: Ctrl+click on an https URL raises `LinkActivated`; a plain click only selects
@@ -42,7 +42,7 @@ Next to the exe, in `Demos\` (run them in pwsh 7: `& .\Demos\colors.ps1`):
 
 - [ ] `dir`, a colored `git log --graph` and `echo 日本語 😀` stay on the grid; resizing keeps text crisp at 100 % and 150 %
 - [ ] An oh-my-posh or starship prompt renders with seamless separators
-- [ ] `styles.ps1`: five underline styles, strikethrough, overline; DECSCUSR 1–6 change the cursor shape; an unfocused window shows the outline cursor
+- [x] `styles.ps1`: five underline styles, strikethrough, overline; DECSCUSR 1–6 change the cursor shape; an unfocused window shows the outline cursor
 - [ ] `mode con` (cmd) reports the size shown in the status bar after a resize
 - [ ] No redraw loop when idle (Task Manager CPU ≈ 0 %)
 - [ ] Moving the window between 100 % and 150 % monitors keeps text crisp
@@ -80,7 +80,7 @@ Next to the exe, in `Demos\` (run them in pwsh 7: `& .\Demos\colors.ps1`):
 - [ ] The **+** menu lists the installed shells; each one starts in a new tab
 - [ ] Closing a tab kills its shell (no leftover `pwsh` / `conhost` / `OpenConsole` in Task Manager); closing the window kills all
 - [ ] The status bar follows the selected tab and a window resize
-- [ ] `stress.ps1` completes; the window stays responsive and the frame time stays reasonable
+- [x] `stress.ps1` completes; the window stays responsive and the frame time stays reasonable
 
 ## Gallery tabs (P4-24)
 
@@ -89,8 +89,8 @@ Next to the exe, in `Demos\` (run them in pwsh 7: `& .\Demos\colors.ps1`):
 
 ## Glyph font fallback (P4-26)
 
-- [ ] Font family **Cascadia Mono**, a Nerd Font installed (e.g. CaskaydiaCove NF): `icons.ps1` shows every icon, aligned on the ruler; oh-my-posh or starship prompt icons render
-- [ ] `unicode.ps1` is unchanged (CJK, emoji, box drawing)
+- [x] Font family **Cascadia Mono**, a Nerd Font installed (e.g. CaskaydiaCove NF): `icons.ps1` shows every icon, aligned on the ruler; oh-my-posh or starship prompt icons render
+- [x] `unicode.ps1` is unchanged (CJK, emoji, box drawing)
 
 ## Windows Terminal font (P4-27)
 
