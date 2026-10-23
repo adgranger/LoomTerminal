@@ -83,9 +83,22 @@ foreach ($p in $projects) {
             if ($meta.license.type -ne 'expression' -or $meta.license.'#text' -ne 'MIT') {
                 $problems.Add("$id.nuspec: license is not the MIT expression")
             }
-            if (-not $meta.repository -or [string]::IsNullOrWhiteSpace($meta.repository.commit)) {
-                $problems.Add("$id.nuspec: repository has no commit")
+            if (-not $meta.repository -or $meta.repository.type -ne 'git' -or
+                -not "$($meta.repository.url)".StartsWith('https://github.com/adgranger/LoomTerminal') -or
+                "$($meta.repository.commit)" -notmatch '^[0-9a-fA-F]{40}$') {
+                $problems.Add("$id.nuspec: repository must be git, under https://github.com/adgranger/LoomTerminal, with a 40-hex commit")
             }
+            if ($meta.id -ne $id) { $problems.Add("$id.nuspec: id is '$($meta.id)'") }
+            if ($meta.version -ne $version) { $problems.Add("$id.nuspec: version is '$($meta.version)', expected $version") }
+            if ($meta.authors -ne 'LoomTerminal contributors') { $problems.Add("$id.nuspec: authors is '$($meta.authors)'") }
+            if ([string]::IsNullOrWhiteSpace($meta.copyright)) { $problems.Add("$id.nuspec: copyright is empty") }
+            if ($meta.projectUrl -ne 'https://github.com/adgranger/LoomTerminal') { $problems.Add("$id.nuspec: projectUrl is '$($meta.projectUrl)'") }
+            $tags = @("$($meta.tags)" -split '\s+')
+            if ('terminal' -notin $tags -or 'xterm' -notin $tags) { $problems.Add("$id.nuspec: tags must contain terminal and xterm") }
+            if ("$($meta.description)".Length -lt 40 -or $meta.description -eq $id) { $problems.Add("$id.nuspec: description is too short or equals the id") }
+            if ([string]::IsNullOrWhiteSpace($meta.releaseNotes)) { $problems.Add("$id.nuspec: releaseNotes is empty") }
+            if ($meta.readme -ne 'README.md') { $problems.Add("$id.nuspec: readme is '$($meta.readme)', expected README.md") }
+            if ($meta.requireLicenseAcceptance -eq 'true') { $problems.Add("$id.nuspec: requireLicenseAcceptance is not false") }
 
             $found = @{}
             foreach ($group in @($meta.dependencies.group)) {

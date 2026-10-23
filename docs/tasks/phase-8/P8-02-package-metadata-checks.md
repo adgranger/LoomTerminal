@@ -1,6 +1,6 @@
 # P8-02 — nuspec metadata checks
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P8-01
 - **Size:** S (MSBuild property and extra checks in `eng/Pack.ps1`)
 
@@ -46,19 +46,19 @@ P4-21 this is the "package metadata check" run on every CI build and before ever
 
 ## Tests
 
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1` — exit 0
-- [ ] Negative check (not committed), one at a time, run `eng/Pack.ps1`, see it fail naming the right field for the
+- [x] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1` — exit 0
+- [x] Negative check (not committed), one at a time, run `eng/Pack.ps1`, see it fail naming the right field for the
   four packages, revert: (a) delete `PackageReleaseNotes` from `Directory.Build.props` (`releaseNotes`); (b) change
   `Authors` to `x` (`authors`); (c) change `PackageProjectUrl` to `https://example.com` (`projectUrl`)
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1 -Version 0.1.0-alpha.1` — exit 0 (still works with `-Version`)
+- [x] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1 -Version 0.1.0-alpha.1` — exit 0 (still works with `-Version`)
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1` — exit 0
-- [ ] The three negative checks failed as expected and were reverted (`rtk git status` shows only this card's files)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1` — exit 0
+- [x] The three negative checks failed as expected and were reverted (`rtk git status` shows only this card's files)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
