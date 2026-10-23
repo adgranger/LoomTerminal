@@ -1,6 +1,6 @@
 # P8-05 — One script runs every release gate
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P8-02
 - **Size:** S (one PowerShell script)
 
@@ -40,18 +40,18 @@ so the same command can be run on a developer machine before tagging.
 
 ## Tests
 
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Invoke-ReleaseBuild.ps1 -Version 1.2` fails at step 0 in under a few
+- [x] `rtk proxy pwsh -NoProfile -File eng/Invoke-ReleaseBuild.ps1 -Version 1.2` fails at step 0 in under a few
   seconds, before any `dotnet` call, with the "not a release version" message
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Invoke-ReleaseBuild.ps1 -Version v0.1.0-alpha.1` — exit 0, prints
+- [x] `rtk proxy pwsh -NoProfile -File eng/Invoke-ReleaseBuild.ps1 -Version v0.1.0-alpha.1` — exit 0, prints
   `Release build passed: 0.1.0-alpha.1 …`; the eight files in `artifacts/packages` carry that version
-- [ ] `rtk git status` shows no tracked file modified by the run (only git-ignored outputs)
+- [x] `rtk git status` shows no tracked file modified by the run (only git-ignored outputs)
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Both commands of "Tests" behave as written
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Both commands of "Tests" behave as written
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
