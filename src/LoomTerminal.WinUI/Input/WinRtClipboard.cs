@@ -2,16 +2,50 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using LoomTerminal.Presentation.Input;
+using Microsoft.UI.Dispatching;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace LoomTerminal.WinUI.Input;
 
 /// <summary>The WinRT clipboard behind <see cref="IClipboard"/>.</summary>
-/// <remarks>Threading: UI thread only (the WinRT clipboard requires it).</remarks>
+/// <remarks>
+/// Threading: create it on the UI thread. The session calls it after awaiting parser-thread work, so every call hops
+/// back to the UI thread, which the WinRT clipboard requires.
+/// </remarks>
 internal sealed class WinRtClipboard : IClipboard
 {
+    private readonly DispatcherQueue _dispatcher = DispatcherQueue.GetForCurrentThread();
+
+    private Task<T> OnUiThread<T>(Func<Task<T>> action)
+    {
+        if (_dispatcher.HasThreadAccess)
+        {
+            return action();
+        }
+
+        var completion = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
+        if (!_dispatcher.TryEnqueue(async () =>
+            {
+                try
+                {
+                    completion.SetResult(await action());
+                }
+                catch (Exception ex)
+                {
+                    completion.SetException(ex);
+                }
+            }))
+        {
+            completion.SetResult(default!); // the window is closing: nothing to read or write
+        }
+
+        return completion.Task;
+    }
+
     /// <inheritdoc />
-    public async Task<string?> GetTextAsync()
+    public Task<string?> GetTextAsync() => OnUiThread(GetTextCoreAsync);
+
+    private static async Task<string?> GetTextCoreAsync()
     {
         try
         {
@@ -27,7 +61,9 @@ internal sealed class WinRtClipboard : IClipboard
     }
 
     /// <inheritdoc />
-    public Task SetTextAsync(string text)
+    public Task SetTextAsync(string text) => OnUiThread(() => SetTextCore(text));
+
+    private static Task<bool> SetTextCore(string text)
     {
         try
         {
@@ -41,6 +77,6 @@ internal sealed class WinRtClipboard : IClipboard
             Debug.WriteLine($"LoomTerminal: clipboard write failed: {ex.Message}");
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(true);
     }
 }

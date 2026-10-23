@@ -58,6 +58,22 @@ public class ClipboardTests
     }
 
     [Fact]
+    public async Task Ctrl_C_copies_a_selection_made_while_the_shell_is_silent()
+    {
+        var fake = new FakePtyConnection();
+        var clipboard = new FakeClipboard();
+        using var session = TerminalSession.Attach(fake, 80, 24);
+        session.Clipboard = clipboard;
+        await SelectHelloAsync(fake, session);
+
+        // No output arrives after the selection, as when the user drags the mouse at a prompt.
+        var outcome = session.SendKey(Key(DomKeyCodes.KeyC, "c", ctrl: true, shift: false));
+
+        Assert.Equal(KeyInputOutcome.Copy, outcome);
+        await WaitUntilAsync(() => Task.FromResult(clipboard.Text?.Contains("hello", StringComparison.Ordinal) == true));
+    }
+
+    [Fact]
     public async Task Ctrl_V_pastes_with_bracketed_paste_when_the_mode_is_on()
     {
         var fake = new FakePtyConnection();
