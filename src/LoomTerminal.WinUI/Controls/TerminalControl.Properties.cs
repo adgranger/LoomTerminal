@@ -6,10 +6,6 @@ namespace LoomTerminal.WinUI.Controls;
 
 public sealed partial class TerminalControl
 {
-    /// <summary>Identifies <see cref="Theme"/>.</summary>
-    public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register(
-        nameof(Theme), typeof(TerminalTheme), typeof(TerminalControl), new PropertyMetadata(DefaultTheme));
-
     /// <summary>Identifies <see cref="LineHeight"/>.</summary>
     public static readonly DependencyProperty LineHeightProperty = DependencyProperty.Register(
         nameof(LineHeight), typeof(double), typeof(TerminalControl), new PropertyMetadata(1.15));
@@ -48,6 +44,11 @@ public sealed partial class TerminalControl
         BrightCyan = "#29b8db",
         BrightWhite = "#e5e5e5",
     };
+
+    // Declared after DefaultTheme: static initializers run in order, the default must not be null.
+    /// <summary>Identifies <see cref="Theme"/>.</summary>
+    public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register(
+        nameof(Theme), typeof(TerminalTheme), typeof(TerminalControl), new PropertyMetadata(DefaultTheme));
 
     /// <summary>The colors of the terminal.</summary>
     public TerminalTheme Theme

@@ -1,6 +1,6 @@
 # P4-22 — A throwaway app consumes only the packages and AOT-publishes
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-20, P4-21
 - **Size:** M (a tiny WinUI app outside the solution, a script, a CI step)
 
@@ -68,18 +68,18 @@ the AOT smoke test (P4-20) on it. This proves the packages carry everything an a
 
 ## Tests
 
-- [ ] `eng/Test-Packages.ps1` passes.
-- [ ] Negative check (not committed): comment out the `buildTransitive` `None` item in
+- [x] `eng/Test-Packages.ps1` passes.
+- [x] Negative check (not committed): comment out the `buildTransitive` `None` item in
   `src/LoomTerminal.WinUI/LoomTerminal.WinUI.csproj`, run the script: `eng/Pack.ps1` must fail on the missing targets
   file; revert.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1` — exit code 0
-- [ ] `rtk git status` shows no file under `artifacts/` or `eng/package-test/**/bin|obj` (all git-ignored)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1` — exit code 0
+- [x] `rtk git status` shows no file under `artifacts/` or `eng/package-test/**/bin|obj` (all git-ignored)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
