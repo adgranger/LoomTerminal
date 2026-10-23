@@ -1,6 +1,6 @@
 # P6-02 — Skia text measurer
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P6-01
 - **Size:** S
 
@@ -30,9 +30,9 @@ snapping to device pixels with Avalonia's `RenderScaling`, baseline / underline 
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    LoomTerminal.Avalonia: the terminal control for Avalonia (Skia). The ONLY project that knows about Avalonia.
+    Cross-platform TFM; only the Pty layer is Windows-specific for now.
+  -->
+  <PropertyGroup>
+    <TargetFramework>$(LoomNetTargetFramework)</TargetFramework>
+    <RootNamespace>LoomTerminal.Avalonia</RootNamespace>
+    <PackageId>LoomTerminal.Avalonia</PackageId>
+    <Description>LoomTerminal: a native, Native AOT-compatible terminal control for Avalonia (Skia, no web view).</Description>
+    <!-- Not shipped yet: the control is a placeholder until P6-08. -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Skia" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoomTerminal.Presentation\LoomTerminal.Presentation.csproj" />
+  </ItemGroup>
+</Project>

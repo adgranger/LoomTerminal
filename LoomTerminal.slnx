@@ -9,18 +9,21 @@
     <Project Path="src/LoomTerminal.Pty/LoomTerminal.Pty.csproj" />
     <Project Path="src/LoomTerminal.Presentation/LoomTerminal.Presentation.csproj" />
     <Project Path="src/LoomTerminal.WinUI/LoomTerminal.WinUI.csproj" />
+    <Project Path="src/LoomTerminal.Avalonia/LoomTerminal.Avalonia.csproj" />
   </Folder>
   <Folder Name="/samples/">
     <Project Path="samples/LoomTerminal.Gallery/LoomTerminal.Gallery.csproj">
       <!-- A WinUI app needs a real platform: "Any CPU" builds of the solution build the gallery as x64. -->
       <Platform Solution="*|Any CPU" Project="x64" />
     </Project>
+    <Project Path="samples/LoomTerminal.AvaloniaGallery/LoomTerminal.AvaloniaGallery.csproj" />
     <Project Path="samples/LoomTerminal.PtyConsole/LoomTerminal.PtyConsole.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/LoomTerminal.Core.Tests/LoomTerminal.Core.Tests.csproj" />
     <Project Path="tests/LoomTerminal.Pty.Tests/LoomTerminal.Pty.Tests.csproj" />
     <Project Path="tests/LoomTerminal.Presentation.Tests/LoomTerminal.Presentation.Tests.csproj" />
+    <Project Path="tests/LoomTerminal.Avalonia.Tests/LoomTerminal.Avalonia.Tests.csproj" />
     <Project Path="tests/LoomTerminal.Architecture.Tests/LoomTerminal.Architecture.Tests.csproj" />
     <Project Path="tests/LoomTerminal.Benchmarks/LoomTerminal.Benchmarks.csproj" />
   </Folder>

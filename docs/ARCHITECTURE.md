@@ -6,7 +6,7 @@
 LoomTerminal.WinUI ──► LoomTerminal.Presentation ──► LoomTerminal.Core
         │                        │
         └────────────────────────┴──► LoomTerminal.Pty
-(later) LoomTerminal.Avalonia ──► Presentation, Pty
+LoomTerminal.Avalonia ──► Presentation
 ```
 
 | Project | TFM | May reference | Role |
@@ -33,6 +33,13 @@ costs one renderer and one input adapter. In particular:
   is shared, so both backends type the same bytes.
 - **Measurement is the backend's job.** `ITextMeasurer` (cell size, baseline, glyph width, font fallback) is
   implemented per backend: DirectWrite and Skia measure differently.
+
+## Backends
+
+| Backend | Control | Drawing | Notes |
+|---|---|---|---|
+| WinUI 3 | `LoomTerminal.WinUI` | Win2D / DirectWrite | UI Automation text pattern |
+| Avalonia | `LoomTerminal.Avalonia` | Skia (`ICustomDrawOperation`) | Phase 6 needed no change in Core or Presentation beyond one `InternalsVisibleTo`; differences are listed in its README |
 
 ## Data flow and threading
 

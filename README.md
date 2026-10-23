@@ -1,6 +1,6 @@
 # LoomTerminal
 
-**A native terminal control for WinUI 3, with Avalonia next: a C# terminal emulator ported from xterm.js.**
+**A native terminal control for WinUI 3, and Avalonia: a C# terminal emulator ported from xterm.js.**
 
 - **Native**: no WebView2, no JavaScript. C# all the way, drawn with DirectWrite (through Win2D) on Windows.
 - **Native AOT compatible**: no run-time reflection; CI publishes the samples with `PublishAot=true` and zero warnings.
@@ -11,7 +11,7 @@
 
 > **Status: `0.1.0-alpha`.** `LoomTerminal.Pty` (Windows ConPTY), the emulator core (`LoomTerminal.Core`, ported from
 > xterm.js and checked against it), the presentation layer and the WinUI 3 control (`LoomTerminal.WinUI`, see its
-> [README](src/LoomTerminal.WinUI/README.md)) are written; the Gallery sample runs real shells in tabs. Packages are
+> [README](src/LoomTerminal.WinUI/README.md)) are written; the Gallery sample runs real shells in tabs. The Avalonia control (`LoomTerminal.Avalonia`, Windows only until phase 7, not yet in the NuGet release) and its gallery are written too. Packages are
 > published to nuget.org when a version tag is pushed (see [docs/RELEASING.md](docs/RELEASING.md)); no version is
 > published yet. See [docs/ROADMAP.md](docs/ROADMAP.md).
 
@@ -25,7 +25,7 @@
 | `LoomTerminal.Pty` | `net11.0` | Start a shell behind a pseudo terminal (ConPTY; openpty planned) and detect installed shells |
 | `LoomTerminal.Presentation` | `net11.0` | Render model, key/mouse encoding, selection, search: shared by every UI backend |
 | `LoomTerminal.WinUI` | `net11.0-windows` | The WinUI 3 control and its Win2D renderer |
-| `LoomTerminal.Avalonia` | `net11.0` | *(planned)* The Avalonia control and its Skia renderer |
+| `LoomTerminal.Avalonia` | `net11.0` | The Avalonia control and its Skia renderer (Windows for now), see its [README](src/LoomTerminal.Avalonia/README.md) |
 
 ## Install (from the first release)
 

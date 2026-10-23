@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Avalonia demo app for LoomTerminal. CI publishes it with Native AOT (win-x64).
+    Build, then publish WITHOUT rebuilding (a publish that recompiles loses Avalonia's compiled XAML under AOT):
+      dotnet build samples/LoomTerminal.AvaloniaGallery -c Release -r win-x64
+      dotnet publish samples/LoomTerminal.AvaloniaGallery -c Release -r win-x64 (with the no-build option)
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(LoomNetTargetFramework)</TargetFramework>
+    <RootNamespace>LoomTerminal.AvaloniaGallery</RootNamespace>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <PublishAot>true</PublishAot>
+    <IsAotCompatible>true</IsAotCompatible>
+    <PublishDocumentationFile>false</PublishDocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LoomTerminal.Gallery\Demos\*.ps1" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" LinkBase="Demos" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LoomTerminal.Avalonia\LoomTerminal.Avalonia.csproj" />
+  </ItemGroup>
+</Project>

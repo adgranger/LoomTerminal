@@ -19,6 +19,7 @@ public class DependencyRulesTests
         ["LoomTerminal.Pty"] = [],
         ["LoomTerminal.Presentation"] = ["LoomTerminal.Core", "LoomTerminal.Pty"],
         ["LoomTerminal.WinUI"] = ["LoomTerminal.Presentation"],
+        ["LoomTerminal.Avalonia"] = ["LoomTerminal.Presentation"],
     };
 
     private static readonly string[] UiPackages =

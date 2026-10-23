@@ -1,6 +1,6 @@
 # P6-08 — Close phase 6
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** all P6 cards
 - **Size:** S (docs)
 
@@ -22,9 +22,9 @@ Record what the Avalonia port taught about the architecture, and document the co
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

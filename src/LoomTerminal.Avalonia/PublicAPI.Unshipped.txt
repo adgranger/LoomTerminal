@@ -1,0 +1,23 @@
+#nullable enable
+LoomTerminal.Avalonia.Controls.TerminalView
+LoomTerminal.Avalonia.Controls.TerminalView.BellRang -> System.EventHandler?
+LoomTerminal.Avalonia.Controls.TerminalView.Columns.get -> int
+LoomTerminal.Avalonia.Controls.TerminalView.CursorBlink.get -> bool
+LoomTerminal.Avalonia.Controls.TerminalView.CursorBlink.set -> void
+LoomTerminal.Avalonia.Controls.TerminalView.CursorStyle.get -> LoomTerminal.Presentation.Session.TerminalCursorStyle
+LoomTerminal.Avalonia.Controls.TerminalView.CursorStyle.set -> void
+LoomTerminal.Avalonia.Controls.TerminalView.Exited -> System.EventHandler<int>?
+LoomTerminal.Avalonia.Controls.TerminalView.LineHeight.get -> double
+LoomTerminal.Avalonia.Controls.TerminalView.LineHeight.set -> void
+LoomTerminal.Avalonia.Controls.TerminalView.Rows.get -> int
+LoomTerminal.Avalonia.Controls.TerminalView.Session.get -> LoomTerminal.Presentation.Session.TerminalSession?
+LoomTerminal.Avalonia.Controls.TerminalView.Session.set -> void
+LoomTerminal.Avalonia.Controls.TerminalView.TerminalTheme.get -> LoomTerminal.Presentation.Theming.TerminalTheme!
+LoomTerminal.Avalonia.Controls.TerminalView.TerminalTheme.set -> void
+LoomTerminal.Avalonia.Controls.TerminalView.TerminalView() -> void
+LoomTerminal.Avalonia.Controls.TerminalView.TitleChanged -> System.EventHandler<string!>?
+override LoomTerminal.Avalonia.Controls.TerminalView.Render(Avalonia.Media.DrawingContext! context) -> void
+static readonly LoomTerminal.Avalonia.Controls.TerminalView.CursorBlinkProperty -> Avalonia.StyledProperty<bool>!
+static readonly LoomTerminal.Avalonia.Controls.TerminalView.CursorStyleProperty -> Avalonia.StyledProperty<LoomTerminal.Presentation.Session.TerminalCursorStyle>!
+static readonly LoomTerminal.Avalonia.Controls.TerminalView.LineHeightProperty -> Avalonia.StyledProperty<double>!
+static readonly LoomTerminal.Avalonia.Controls.TerminalView.TerminalThemeProperty -> Avalonia.StyledProperty<LoomTerminal.Presentation.Theming.TerminalTheme!>!
