@@ -12,7 +12,8 @@
 > **Status: `0.1.0-alpha`.** `LoomTerminal.Pty` (Windows ConPTY), the emulator core (`LoomTerminal.Core`, ported from
 > xterm.js and checked against it), the presentation layer and the WinUI 3 control (`LoomTerminal.WinUI`, see its
 > [README](src/LoomTerminal.WinUI/README.md)) are written; the Gallery sample runs real shells in tabs. Packages are
-> built locally, not published yet. See [docs/ROADMAP.md](docs/ROADMAP.md).
+> published to nuget.org when a version tag is pushed (see [docs/RELEASING.md](docs/RELEASING.md)); no version is
+> published yet. See [docs/ROADMAP.md](docs/ROADMAP.md).
 
 <!-- TODO: screenshot of the Gallery (docs/images/gallery.png), to be taken by hand: ![Gallery](docs/images/gallery.png) -->
 
@@ -25,6 +26,14 @@
 | `LoomTerminal.Presentation` | `net11.0` | Render model, key/mouse encoding, selection, search: shared by every UI backend |
 | `LoomTerminal.WinUI` | `net11.0-windows` | The WinUI 3 control and its Win2D renderer |
 | `LoomTerminal.Avalonia` | `net11.0` | *(planned)* The Avalonia control and its Skia renderer |
+
+## Install (from the first release)
+
+Packages: `LoomTerminal.Core`, `LoomTerminal.Pty`, `LoomTerminal.Presentation`, `LoomTerminal.WinUI`.
+
+```powershell
+dotnet add package LoomTerminal.WinUI --prerelease
+```
 
 ## Using the pseudo terminal today
 

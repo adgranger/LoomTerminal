@@ -1,6 +1,6 @@
 # P8-07 — `docs/RELEASING.md`: the runbook for the user
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P8-06
 - **Size:** S (documentation only)
 
@@ -87,17 +87,17 @@ blocks, one command per block; every step that only the user can do is prefixed 
 
 ## Tests
 
-- [ ] Every path, script, parameter, job name, secret and environment name written in the document exists in the
+- [x] Every path, script, parameter, job name, secret and environment name written in the document exists in the
   repository exactly as spelled (check with `rtk git grep`); every link works, except the link to `docs/release-checklist.md`, which P8-08 creates (write it anyway)
-- [ ] `rtk git grep -n "not published yet" README.md` — still says so only if no tag exists (`rtk git tag` is empty)
+- [x] `rtk git grep -n "not published yet" README.md` — still says so only if no tag exists (`rtk git tag` is empty)
 - [ ] `HUMAN:` the user reads the "One-time setup" and "Cut the release" sections once and confirms they are
   unambiguous. Not ticked by an agent.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
