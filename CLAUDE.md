@@ -20,8 +20,12 @@ Read `docs/ARCHITECTURE.md` once; `docs/ROADMAP.md` says what each phase deliver
   `rtk proxy <cmd>` when the raw output is needed). `rtk dotnet test` breaks the Microsoft.Testing.Platform
   handshake: always `rtk test dotnet test …`.
 - Everything written in the repository is in **English**: code, comments, docs, test names, commit messages.
-- **Commits:** never commit, never stage, never push, never create branches. Propose ONE commit message
-  (Conventional Commits, English, **no trailer**: no `Co-Authored-By`, no "Generated with").
+- **Git:** `main` is protected. Work on a feature branch named after the work (`feature/<name>`, `docs/<name>`,
+  `fix/<name>`), never on `main`. When a card is verified, stage only its files and make ONE GPG-signed commit
+  (`git commit -S`, Conventional Commits, English, **no trailer**: no `Co-Authored-By`, no "Generated with"), then push
+  the branch. Never push to `main`, never merge, never create a tag, never publish to nuget.org. The user opens and
+  merges the pull request (`gh` may not be logged in). Branches may be stacked on each other when a card depends on an
+  unmerged one.
 - Before a structural choice not covered by an ADR or a card: present the options and wait for a decision.
 
 ## Commands (repository root)

@@ -31,8 +31,8 @@ nuget.org:
   the ids anyway.
 - [ ] **You:** create the Trusted Publishing policy (account menu → "Trusted Publishing" → add a policy), owner = your
   account, repository owner `adgranger`, repository `LoomTerminal`, workflow file `release.yml` (file name only, no
-  path), environment `nuget`, scopes: publish new packages and new versions, glob pattern `LoomTerminal.*` (values are
-  case-insensitive). There is no API key: the workflow trades a short-lived GitHub OIDC token for a temporary key
+  path), environment `nuget`, scopes: "Push" with "Push new packages and package versions" (the form has no glob pattern; "Unlist or
+  relist" can stay unchecked; values are case-insensitive). There is no API key: the workflow trades a short-lived GitHub OIDC token for a temporary key
   (valid one hour) right before the push ([docs](https://learn.microsoft.com/nuget/nuget-org/trusted-publishing)).
 - [ ] **You:** if the repository is private, the policy is only *temporarily active* for 7 days until the first
   successful publish (nuget.org needs the repository ids from the first token); restart the window in the policy list
@@ -46,7 +46,8 @@ GitHub:
 - [ ] **You:** Settings → Rules → Rulesets: a tag ruleset on `v*` (restrict creation to admins, block deletion and
   force-push).
 - [ ] **You:** a branch ruleset on `main` requiring the four CI checks "Build and test", "Native AOT publish (win-x64)",
-  "Native AOT publish (win-arm64)" and "Pack NuGet packages", and a linear history (signed commits optional).
+  and "Native AOT publish (win-arm64)", and a linear history (signed commits optional). Do not require "Pack NuGet
+  packages": that job runs only on pushes to `main` and on demand, so a pull request would wait for it forever.
 - [ ] **You:** Settings → Actions → General: default workflow permissions "Read repository contents".
 
 ## 3. Before the tag
@@ -54,7 +55,7 @@ GitHub:
 - [ ] [docs/release-checklist.md](release-checklist.md) is done.
 - [ ] `main` is green.
 - [ ] In `CHANGELOG.md`, rename `## [Unreleased]` to `## [<version>] - <YYYY-MM-DD>` and add a new empty
-  `## [Unreleased]` above it; commit and push to `main`.
+  `## [Unreleased]` above it; commit it on a branch and merge it through a pull request.
 - [ ] Local gates:
 
 ```powershell
@@ -128,7 +129,7 @@ dotnet new console && dotnet add package LoomTerminal.Pty --prerelease && dotnet
 
 | Symptom | Cause / fix |
 |---|---|
-| 403 on push | The policy scopes or glob pattern do not cover the id, or the policy is inactive (owner left the organization, 7-day window expired): fix the policy (section 2). |
+| 403 on push | The policy scopes do not cover the id, or the policy is inactive (owner left the organization, 7-day window expired): fix the policy (section 2). |
 | "NuGet login" step fails (token exchange refused) | The policy does not match the token: repository owner/name, workflow file name `release.yml` (no path), environment `nuget`, or the policy is inactive. Also check `NUGET_USER` is the profile name, not an e-mail. |
 | "Unable to get ACTIONS_ID_TOKEN_REQUEST_URL" | The job lacks `permissions: id-token: write` (only the publish job has it). |
 | Push fails with "key expired" | The temporary key lasts one hour: the login step must stay right before the push; re-run the failed job. |
@@ -143,6 +144,6 @@ dotnet new console && dotnet add package LoomTerminal.Pty --prerelease && dotnet
 
 The Trusted Publishing documentation does not say whether a policy can create a package id that does not exist yet on
 nuget.org (the four ids are new) beyond the scope "publish new packages". If the first push of an id is refused with
-403 although the policy matches, publish that first version once by hand with a temporary API key (scoped
+403 although the policy matches, publish that first version once by hand with a temporary API key (scoped to
 `LoomTerminal.*`, short expiry, deleted afterwards), then let the workflow do the next ones. Also verify at that
 release that the policy leaves the "temporarily active" state after the first successful publish.
