@@ -222,6 +222,19 @@ Win2D renderer and WinUI input. **Read [phase-4/README.md](phase-4/README.md) fi
 | [P4-18](phase-4/P4-18-close-phase-4.md) | Close phase 4 | all P4 cards (follow-up optimization cards may stay open) | S | done |
 | [P4-19](phase-4/P4-19-complete-rendering-measurements.md) | Complete the rendering measurements | P4-17 | S | todo |
 
+### Step E — AOT smoke test, packages, shell tabs, fonts (before Avalonia)
+
+| Card | Title | Depends on | Size | Status |
+|---|---|---|---|---|
+| [P4-20](phase-4/P4-20-aot-smoke-test-script.md) | Automated smoke test of a Native AOT app | P4-18 | S | todo |
+| [P4-21](phase-4/P4-21-package-metadata-and-content-check.md) | Package metadata, symbols and content check | P4-18 | S | todo |
+| [P4-22](phase-4/P4-22-package-consumer-aot-test.md) | A throwaway app consumes only the packages and AOT-publishes | P4-20, P4-21 | M | todo |
+| [P4-23](phase-4/P4-23-shell-executable-path.md) | Real executable of a detected shell (app execution aliases) | P4-18 | S | todo |
+| [P4-24](phase-4/P4-24-gallery-tab-icons-and-titles.md) | Gallery tabs: shell icon, friendly name and shell title | P4-20, P4-23 | S | todo |
+| [P4-25](phase-4/P4-25-font-family-resolution.md) | Font family resolution and symbol fallback order | P4-18 | S | todo |
+| [P4-26](phase-4/P4-26-winui-glyph-font-fallback.md) | WinUI: per-glyph font fallback, font weight, cached font | P4-20, P4-25 | M | todo |
+| [P4-27](phase-4/P4-27-windows-terminal-font-settings.md) | Windows Terminal font: defaults, and the user's settings on request | P4-26 | M | todo |
+
 ## Phase 5 — Integration into VIGO
 
 Changes happen in `D:\VIGO`, under VIGO's rules. **Read [phase-5/README.md](phase-5/README.md) first.**
@@ -263,4 +276,4 @@ Native spawn shim, Unix pty, cross-platform CI.
 | [P7-06](phase-7/P7-06-avalonia-linux-macos.md) | Avalonia on Linux and macOS: platform details | P7-04, P7-05 | M | todo |
 | [P7-07](phase-7/P7-07-close-phase-7.md) | Close phase 7 and prepare 1.0 | all P7 cards | S | todo |
 
-**126 cards.** Status values: `todo`, `in progress`, `done`. Follow-up cards found while working are added at the end of their phase, numbered after its last card.
+**134 cards.** Status values: `todo`, `in progress`, `done`. Follow-up cards found while working are added at the end of their phase, numbered after its last card.
