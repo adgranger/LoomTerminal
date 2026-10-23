@@ -26,12 +26,23 @@ public sealed partial class MainWindow : Window
     private static readonly TerminalTheme DarkThemeColors =
         new() { Foreground = "#cccccc", Background = "#1e1e1e", Cursor = "#aeafad", SelectionBackground = "#264f78" };
 
+    // The default scheme of Windows Terminal ("Campbell").
+    private static readonly TerminalTheme CampbellThemeColors = new()
+    {
+        Foreground = "#cccccc", Background = "#0c0c0c", Cursor = "#ffffff", SelectionBackground = "#ffffff40",
+        Black = "#0c0c0c", Red = "#c50f1f", Green = "#13a10e", Yellow = "#c19c00",
+        Blue = "#0037da", Magenta = "#881798", Cyan = "#3a96dd", White = "#cccccc",
+        BrightBlack = "#767676", BrightRed = "#e74856", BrightGreen = "#16c60c", BrightYellow = "#f9f1a5",
+        BrightBlue = "#3b78ff", BrightMagenta = "#b4009e", BrightCyan = "#61d6d6", BrightWhite = "#f2f2f2",
+    };
+
     private const int MaxIntervals = 3600;
 
     private readonly DispatcherQueueTimer _statusTimer;
     private readonly List<double> _intervals = [];
     private long _lastTick;
     private TerminalFont? _windowsTerminalFont;
+    private ShellInfo? _lastShell;
 
     /// <summary>Creates the window and opens a tab for the first detected shell.</summary>
     public MainWindow()
@@ -60,6 +71,7 @@ public sealed partial class MainWindow : Window
 
     private void AddTab(ShellInfo shell)
     {
+        _lastShell = shell;
         var terminal = new TerminalControl();
         var tab = new TabViewItem { Header = shell.Name, Content = terminal };
         terminal.TitleChanged += (_, title) =>
@@ -124,9 +136,18 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private void OnAddTabButtonClick(TabView sender, object args)
+    private void OnNewTabClick(object sender, RoutedEventArgs e)
     {
-        var menu = new MenuFlyout();
+        if (_lastShell is { } shell)
+        {
+            AddTab(shell);
+        }
+    }
+
+    // Anchored to the whole button group, like the menu of Windows Terminal; the list follows the installed shells.
+    private void OnShellListClick(object sender, RoutedEventArgs e)
+    {
+        var menu = new MenuFlyout { Placement = Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.BottomEdgeAlignedLeft };
         foreach (var shell in Shells.Detect())
         {
             var item = new MenuFlyoutItem { Text = shell.Name };
@@ -134,7 +155,7 @@ public sealed partial class MainWindow : Window
             menu.Items.Add(item);
         }
 
-        menu.ShowAt(sender);
+        menu.ShowAt(NewTabGroup);
     }
 
     private void OnTabSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -161,7 +182,16 @@ public sealed partial class MainWindow : Window
     // The control does not follow the app theme itself: the host sets Theme.
     private void ApplySettings(TerminalControl terminal)
     {
-        terminal.Theme = LightTheme.IsOn ? LightThemeColors : DarkThemeColors;
+        var theme = ThemeBox.SelectedIndex switch
+        {
+            1 => LightThemeColors,
+            2 => CampbellThemeColors,
+            _ => DarkThemeColors,
+        };
+        // An invalid color means "use the default" (TerminalTheme), so a half-typed value is harmless.
+        terminal.Theme = string.IsNullOrWhiteSpace(BackgroundBox.Text)
+            ? theme
+            : theme with { Background = BackgroundBox.Text.Trim() };
         if (_windowsTerminalFont is { } font)
         {
             terminal.FontFamily = new FontFamily(string.Join(", ", font.Families));

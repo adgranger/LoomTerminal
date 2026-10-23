@@ -10,19 +10,61 @@
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
             Grid.Column="0"
-            AddTabButtonClick="OnAddTabButtonClick"
+            IsAddTabButtonVisible="False"
             SelectionChanged="OnTabSelectionChanged"
-            TabCloseRequested="OnTabCloseRequested" />
+            TabCloseRequested="OnTabCloseRequested">
+            <TabView.TabStripFooter>
+                <!-- Like Windows Terminal: "+" opens the last used shell, the chevron lists the shells. -->
+                <StackPanel
+                    x:Name="NewTabGroup"
+                    Margin="4,0,0,4"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <!-- Only the background changes on hover: no border, no divider. -->
+                        <SolidColorBrush x:Key="ButtonBorderBrush" Color="Transparent" />
+                        <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent" />
+                        <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent" />
+                        <SolidColorBrush x:Key="ButtonBackground" Color="Transparent" />
+                    </StackPanel.Resources>
+                    <Button
+                        Width="32"
+                        Height="32"
+                        Padding="0"
+                        Click="OnNewTabClick"
+                        ToolTipService.ToolTip="New tab">
+                        <FontIcon FontSize="14" Glyph="&#xE710;" />
+                    </Button>
+                    <Button
+                        Width="32"
+                        Height="32"
+                        Padding="0"
+                        Click="OnShellListClick"
+                        ToolTipService.ToolTip="Choose a shell">
+                        <FontIcon FontSize="10" Glyph="&#xE70D;" />
+                    </Button>
+                </StackPanel>
+            </TabView.TabStripFooter>
+        </TabView>
 
         <ScrollViewer Grid.Column="1" Width="240" Padding="12">
             <StackPanel Spacing="10">
                 <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="Settings" />
-                <ToggleSwitch
-                    x:Name="LightTheme"
+                <ComboBox
+                    x:Name="ThemeBox"
+                    HorizontalAlignment="Stretch"
                     Header="Theme"
-                    OffContent="Dark"
-                    OnContent="Light"
-                    Toggled="OnSettingChanged" />
+                    SelectedIndex="0"
+                    SelectionChanged="OnSettingChanged">
+                    <x:String>Dark (VS Code)</x:String>
+                    <x:String>Light (VS Code)</x:String>
+                    <x:String>Campbell (Windows Terminal)</x:String>
+                </ComboBox>
+                <TextBox
+                    x:Name="BackgroundBox"
+                    Header="Background override"
+                    PlaceholderText="#0c0c0c"
+                    TextChanged="OnSettingChanged" />
                 <ComboBox
                     x:Name="FontFamilyBox"
                     HorizontalAlignment="Stretch"

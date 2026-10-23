@@ -65,6 +65,7 @@ public sealed partial class TerminalControl
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
+        RestoreCanvas();
         if (XamlRoot is not { } root || ReferenceEquals(root, _observedRoot))
         {
             return;

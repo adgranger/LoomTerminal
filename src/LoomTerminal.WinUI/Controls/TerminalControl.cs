@@ -31,6 +31,8 @@ public sealed partial class TerminalControl : Control
 
     private readonly TextRunLayoutCache _layoutCache = new(256);
     private CanvasControl? _canvas;
+    // Where the canvas lives in the template: a canvas released on Unloaded is recreated there on the next Loaded.
+    private Panel? _canvasHost;
     private Win2DTextMeasurer? _measurer;
     private TerminalFont? _font;
     private GlyphFamilyMap? _glyphFamilies;
@@ -59,8 +61,25 @@ public sealed partial class TerminalControl : Control
         DetachCanvas();
         _canvas = GetTemplateChild(CanvasPartName) as CanvasControl
             ?? throw new InvalidOperationException($"The TerminalControl template must contain a CanvasControl named '{CanvasPartName}'.");
+        _canvasHost = _canvas.Parent as Panel;
         _canvas.Draw += OnCanvasDraw;
         _canvas.CreateResources += OnCanvasCreateResources;
+        AttachScrollBar();
+    }
+
+    // A tab host (TabView, ...) unloads the control when it is not shown and loads it again later: Unloaded released
+    // the Win2D canvas, which cannot be reused, so give the template a new one.
+    private void RestoreCanvas()
+    {
+        if (_canvas is not null || _canvasHost is not { } host)
+        {
+            return;
+        }
+
+        _canvas = new CanvasControl { ClearColor = Microsoft.UI.Colors.Transparent };
+        _canvas.Draw += OnCanvasDraw;
+        _canvas.CreateResources += OnCanvasCreateResources;
+        host.Children.Insert(0, _canvas);
         AttachScrollBar();
     }
 

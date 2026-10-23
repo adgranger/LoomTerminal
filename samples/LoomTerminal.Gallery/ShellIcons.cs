@@ -28,11 +28,25 @@ internal static class ShellIcons
         return task;
     }
 
+    // Git's bin\bash.exe has no icon of its own: Windows Terminal shows the one of git-bash.exe at the Git root.
+    private static string IconSource(string path)
+    {
+        if (Path.GetFileName(path).Equals("bash.exe", StringComparison.OrdinalIgnoreCase)
+            && Path.GetDirectoryName(Path.GetDirectoryName(path)) is { } root
+            && Path.Combine(root, "git-bash.exe") is var gitBash
+            && File.Exists(gitBash))
+        {
+            return gitBash;
+        }
+
+        return path;
+    }
+
     private static async Task<ImageSource?> LoadCoreAsync(string path)
     {
         try
         {
-            var file = await StorageFile.GetFileFromPathAsync(path);
+            var file = await StorageFile.GetFileFromPathAsync(IconSource(path));
             using var thumbnail = await file.GetThumbnailAsync(ThumbnailMode.SingleItem, 32);
             var bitmap = new BitmapImage();
             await bitmap.SetSourceAsync(thumbnail);
