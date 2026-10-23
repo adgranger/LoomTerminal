@@ -1,6 +1,6 @@
 # P4-21 — Package metadata, symbols and content check
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P4-18
 - **Size:** S (MSBuild properties and a PowerShell script)
 
@@ -63,16 +63,16 @@ README and the third-party notice, then checks the content of every package and 
 
 ## Tests
 
-- [ ] Run `eng/Pack.ps1` once after deleting `NOTICE.md` from the pack item (temporarily): it must fail and name
+- [x] Run `eng/Pack.ps1` once after deleting `NOTICE.md` from the pack item (temporarily): it must fail and name
   `NOTICE.md` for the four packages; revert.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1` — exit code 0, four `.nupkg` and four `.snupkg` listed
-- [ ] The negative check above failed as expected and was reverted
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1` — exit code 0, four `.nupkg` and four `.snupkg` listed
+- [x] The negative check above failed as expected and was reverted
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

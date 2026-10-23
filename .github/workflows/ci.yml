@@ -110,11 +110,8 @@ jobs:
 
       # Packages are built but NOT published: publishing is a manual, reviewed step.
       - name: Pack
-        run: |
-          dotnet pack src/LoomTerminal.Core -c Release -o artifacts/packages
-          dotnet pack src/LoomTerminal.Pty -c Release -o artifacts/packages
-          dotnet pack src/LoomTerminal.Presentation -c Release -o artifacts/packages
-          dotnet pack src/LoomTerminal.WinUI -c Release -o artifacts/packages
+        shell: pwsh
+        run: ./eng/Pack.ps1
 
       - uses: actions/upload-artifact@v7
         with:

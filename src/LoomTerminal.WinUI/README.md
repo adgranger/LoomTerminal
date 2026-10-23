@@ -53,6 +53,23 @@ All events are raised on the UI thread (they are marshaled from the session's pa
 | `LinkActivated` (`LinkActivatedEventArgs`) | Ctrl+click on a link; set `Handled` to open it yourself |
 | `KeyPreview` (`KeyPreviewEventArgs`) | Before a key is encoded; set `Handled` to claim a shortcut |
 
+## Packages
+
+Four packages share one version (`VersionPrefix` + `VersionSuffix` in `Directory.Build.props`):
+
+```text
+LoomTerminal.WinUI ──> LoomTerminal.Presentation ──> LoomTerminal.Core
+        │                        └─────────────────> LoomTerminal.Pty
+        ├──> Microsoft.WindowsAppSDK
+        └──> Microsoft.Graphics.Win2D
+```
+
+They are built into `artifacts/packages` (`.nupkg` and `.snupkg`), not published to nuget.org. To build and check them:
+
+```powershell
+./eng/Pack.ps1
+```
+
 ## Native AOT notes
 
 - Publish with `dotnet publish -c Release -r win-x64` (needs the Visual Studio "Desktop development with C++"
