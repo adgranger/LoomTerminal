@@ -25,6 +25,7 @@ public sealed partial class TerminalView
     {
         base.OnLostFocus(e);
         _session?.SetFocus(false);
+        ResetKeyboardState();
     }
 
     // The frame bakes the blink phase: one timer, re-armed at the next phase change and stopped when the session

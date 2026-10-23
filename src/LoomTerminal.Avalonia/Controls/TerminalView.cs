@@ -48,7 +48,11 @@ public sealed partial class TerminalView : TemplatedControl
     }
 
     /// <summary>Creates the control.</summary>
-    public TerminalView() => InitializeFocus();
+    public TerminalView()
+    {
+        InitializeFocus();
+        InitializeKeyboard();
+    }
 
     /// <summary>The colors of the terminal.</summary>
     public TerminalTheme TerminalTheme
@@ -133,7 +137,7 @@ public sealed partial class TerminalView : TemplatedControl
         {
             context.Custom(new TerminalDrawOperation(
                 bounds, frame, metrics, _blobs, font, _family ??= SkiaTextMeasurer.ResolveFamily(font),
-                _scale, _session?.CustomGlyphs ?? true, compositionText: null));
+                _scale, _session?.CustomGlyphs ?? true, _composition));
         }
     }
 }

@@ -77,6 +77,7 @@ public sealed partial class TerminalView
     {
         ApplySize();
         InvalidateVisual();
+        NotifyImeCursorMoved();
         ScheduleBlink();
     }
 
