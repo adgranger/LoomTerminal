@@ -1,7 +1,80 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:loom="using:LoomTerminal.Avalonia.Controls"
         x:Class="LoomTerminal.AvaloniaGallery.MainWindow"
-        Title="LoomTerminal - Avalonia gallery" Width="900" Height="600">
-  <loom:TerminalView />
+        Title="LoomTerminal - Avalonia gallery" Width="1100" Height="700">
+  <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,Auto">
+    <Grid RowDefinitions="Auto,*">
+      <StackPanel Orientation="Horizontal">
+        <TabStrip x:Name="Tabs" SelectionChanged="OnTabSelectionChanged" />
+        <!-- Like Windows Terminal: "+" opens the last used shell, the chevron lists the shells. -->
+        <StackPanel x:Name="NewTabGroup" Orientation="Horizontal" Margin="4,0,0,0" VerticalAlignment="Center">
+          <StackPanel.Styles>
+            <!-- Only the background changes on hover: no border, same size for both buttons. -->
+            <Style Selector="StackPanel#NewTabGroup > Button">
+              <Setter Property="Width" Value="32" />
+              <Setter Property="Height" Value="32" />
+              <Setter Property="Padding" Value="0" />
+              <Setter Property="Background" Value="Transparent" />
+              <Setter Property="BorderThickness" Value="0" />
+              <Setter Property="HorizontalContentAlignment" Value="Center" />
+              <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+          </StackPanel.Styles>
+          <Button Content="+" FontSize="16" Click="OnNewTabClick" ToolTip.Tip="New tab" />
+          <Button Content="v" FontSize="10" Click="OnShellListClick" ToolTip.Tip="Choose a shell" />
+        </StackPanel>
+      </StackPanel>
+      <ContentControl x:Name="TerminalHost" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+    </Grid>
+
+    <ScrollViewer Grid.Column="1" Width="240">
+      <StackPanel Spacing="10" Margin="12">
+        <TextBlock FontWeight="SemiBold" Text="Settings" />
+        <StackPanel Spacing="4">
+          <TextBlock Text="Theme" />
+          <ComboBox x:Name="ThemeBox" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="OnSettingChanged">
+            <ComboBoxItem>Dark (VS Code)</ComboBoxItem>
+            <ComboBoxItem>Light (VS Code)</ComboBoxItem>
+            <ComboBoxItem>Campbell (Windows Terminal)</ComboBoxItem>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel Spacing="4">
+          <TextBlock Text="Background override" />
+          <TextBox x:Name="BackgroundBox" PlaceholderText="#0c0c0c" TextChanged="OnSettingChanged" />
+        </StackPanel>
+        <StackPanel Spacing="4">
+          <TextBlock Text="Font family" />
+          <ComboBox x:Name="FontFamilyBox" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="OnSettingChanged">
+            <ComboBoxItem>Cascadia Mono</ComboBoxItem>
+            <ComboBoxItem>Cascadia Code</ComboBoxItem>
+            <ComboBoxItem>CaskaydiaCove Nerd Font</ComboBoxItem>
+            <ComboBoxItem>CaskaydiaCove Nerd Font Mono</ComboBoxItem>
+            <ComboBoxItem>Consolas</ComboBoxItem>
+            <ComboBoxItem>Courier New</ComboBoxItem>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel Spacing="4">
+          <TextBlock Text="Font size (pt)" />
+          <Slider x:Name="FontSizeSlider" Minimum="6" Maximum="24" TickFrequency="1" IsSnapToTickEnabled="True" Value="12" ValueChanged="OnSettingChanged" />
+        </StackPanel>
+        <StackPanel Spacing="4">
+          <TextBlock Text="Line height" />
+          <Slider x:Name="LineHeightSlider" Minimum="1" Maximum="2" TickFrequency="0.05" IsSnapToTickEnabled="True" Value="1.15" ValueChanged="OnSettingChanged" />
+        </StackPanel>
+        <StackPanel Spacing="4">
+          <TextBlock Text="Cursor style" />
+          <ComboBox x:Name="CursorStyleBox" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="OnSettingChanged">
+            <ComboBoxItem>Block</ComboBoxItem>
+            <ComboBoxItem>Underline</ComboBoxItem>
+            <ComboBoxItem>Bar</ComboBoxItem>
+          </ComboBox>
+        </StackPanel>
+        <ToggleSwitch x:Name="BlinkSwitch" Content="Cursor blink" IsCheckedChanged="OnSettingChanged" />
+      </StackPanel>
+    </ScrollViewer>
+
+    <Border Grid.Row="1" Grid.ColumnSpan="2" Padding="12,4">
+      <TextBlock x:Name="StatusText" FontSize="12" />
+    </Border>
+  </Grid>
 </Window>

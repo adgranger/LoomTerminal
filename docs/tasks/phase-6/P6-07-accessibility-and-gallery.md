@@ -1,6 +1,6 @@
 # P6-07 — Avalonia accessibility and gallery parity
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P6-05, P6-06
 - **Size:** M
 
@@ -30,9 +30,16 @@ P4-15, P4-16.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] Card status and `docs/tasks/README.md` updated
+
+## Notes
+
+- The manual checklist (`docs/manual-tests.md`, "Avalonia gallery") needs a human at the keyboard: left unticked.
+- Not in the Avalonia gallery (WinUI only): the Windows Terminal font switch and the frame statistics.
+- Fixed on the way: `TerminalView.Render` updated the scrollbar, which crashed the AOT-published gallery ("Visual was
+  invalidated during the render pass"); the update is now posted to the dispatcher.
 
 ## Out of scope
 

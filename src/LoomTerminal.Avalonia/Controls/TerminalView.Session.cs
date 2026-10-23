@@ -38,6 +38,8 @@ public sealed partial class TerminalView
                 old.Exited -= OnSessionExited;
                 old.Bell -= OnSessionBell;
                 old.FrameAvailable -= OnSessionFrameAvailable;
+                old.TextAnnounced -= OnSessionTextAnnounced;
+                old.AccessibilityEnabled = false;
                 old.Clipboard = null;
             }
 
@@ -51,6 +53,8 @@ public sealed partial class TerminalView
                 value.Exited += OnSessionExited;
                 value.Bell += OnSessionBell;
                 value.FrameAvailable += OnSessionFrameAvailable;
+                value.TextAnnounced += OnSessionTextAnnounced;
+                value.AccessibilityEnabled = _accessibilityRequested;
                 value.Clipboard = new AvaloniaClipboard(() => TopLevel.GetTopLevel(this)?.Clipboard);
                 // Settings made before the session was attached (the host sets them first) reach it now.
                 value.SetTheme(TerminalTheme);

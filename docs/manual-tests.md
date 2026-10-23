@@ -97,3 +97,17 @@ Next to the exe, in `Demos\` (run them in pwsh 7: `& .\Demos\colors.ps1`):
 ## Windows Terminal font (P4-27)
 
 - [ ] Gallery font size is in points (12 by default); switch "Font from Windows Terminal" on: the face, size and weight of Windows Terminal's default profile apply (compare side by side: same glyph size and weight), the family box and size slider are disabled; off restores the gallery settings
+
+## Avalonia gallery (P6-07)
+
+Same bench, `samples/LoomTerminal.AvaloniaGallery` (build, then publish without rebuilding, see its csproj). Run the
+items of the sections above that apply, plus:
+
+- [ ] Tabs: **+** opens a tab with the last used shell, the chevron lists the shells in a menu under the button group; each tab shows the shell icon (Git Bash: the icon of `git-bash.exe`) and its friendly name; the shell title replaces it
+- [ ] Switching tabs back and forth keeps every terminal drawing (the control is detached and attached again)
+- [ ] Ctrl+Shift+T opens a tab with the same shell; closing a tab (x) kills its shell; closing the window kills all
+- [ ] Settings: theme (Dark, Light, Campbell), background override, font family and size, line height, cursor style and blink apply live to every tab; scrollback is 10,000 lines
+- [ ] Ctrl+click on an https URL opens the browser; a plain click only selects
+- [ ] Narrator reads new output as it arrives (no line navigation: Avalonia has no text pattern, see the README of `LoomTerminal.Avalonia`)
+- [ ] Demo scripts in `Demos\` run (`colors.ps1`, `styles.ps1`, `unicode.ps1`, `stress.ps1`, `icons.ps1`)
+- [ ] The AOT-published exe starts and stays up (checked once by the agent on Windows: starts, no crash after 10 s)

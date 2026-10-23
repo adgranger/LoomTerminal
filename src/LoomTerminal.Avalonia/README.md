@@ -17,3 +17,9 @@ placeholder (phase 6 in progress); the WinUI control (`LoomTerminal.WinUI`) is i
 - Pointer: click count comes from `PointerPressedEventArgs.ClickCount`; the cursor is the standard Arrow, Hand over a link
   with Ctrl down. The scrollbar is a `ScrollBar` in the default template (a `FuncControlTemplate` set in code, no XAML
   loading) and uses the user-only `Scroll` event instead of a sync flag. `AvaloniaClipboard` hops to the UI thread.
+- Accessibility: Avalonia 12 has no UI Automation text pattern, so `TerminalViewAutomationPeer` (a `Document`, polite live
+  region) cannot expose the visible lines: screen readers get the name and the announcements of new output only (the
+  announcement is the name of the live region). Avalonia gives no "a client listens" flag: text capture is switched on
+  the first time a platform client asks for the peer.
+- No `LinkActivated` or `KeyPreview` events yet: a host opens links with `TerminalSession.LinkHandler` and claims keys
+  with a tunnelling `KeyDown` handler (the Avalonia gallery does both).

@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Media;
+using Avalonia.Threading;
 using LoomTerminal.Avalonia.Rendering;
 using LoomTerminal.Presentation.Rendering;
 using LoomTerminal.Presentation.Session;
@@ -133,7 +134,8 @@ public sealed partial class TerminalView : TemplatedControl
         }
 
         _lastFrame = frame;
-        UpdateScrollBar(frame);
+        // Changing the scrollbar invalidates visuals, which is forbidden while rendering: defer it.
+        Dispatcher.UIThread.Post(() => UpdateScrollBar(frame));
         // 4 x rows x an average of 4 runs per row.
         _blobs.Capacity = 16 * Math.Max(1, frame.Lines.Count);
         var bounds = new Rect(Bounds.Size);
