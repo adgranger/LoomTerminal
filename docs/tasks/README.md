@@ -260,7 +260,7 @@ Same behavior as WinUI, drawn with Skia. **Read [phase-6/README.md](phase-6/READ
 | [P6-05](phase-6/P6-05-keyboard-text-ime.md) | Avalonia keyboard, text input and IME | P6-04 | M | done |
 | [P6-06](phase-6/P6-06-pointer-clipboard-scrollbar.md) | Avalonia pointer, clipboard and scrollbar | P6-04 | M | done |
 | [P6-07](phase-6/P6-07-accessibility-and-gallery.md) | Avalonia accessibility and gallery parity | P6-05, P6-06 | M | done |
-| [P6-08](phase-6/P6-08-close-phase-6.md) | Close phase 6 | all P6 cards | S | todo |
+| [P6-08](phase-6/P6-08-close-phase-6.md) | Close phase 6 | all P6 cards | S | done |
 
 ## Phase 7 — Unix pty, Linux and macOS
 

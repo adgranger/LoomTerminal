@@ -1,7 +1,19 @@
 # LoomTerminal.Avalonia
 
-The terminal control for Avalonia (`LoomTerminal.Avalonia.Controls.TerminalView`), drawn with Skia. Still a
-placeholder (phase 6 in progress); the WinUI control (`LoomTerminal.WinUI`) is its specification.
+The terminal control for Avalonia (`LoomTerminal.Avalonia.Controls.TerminalView`), drawn with Skia, on Windows
+(ConPTY) for now. The WinUI control (`LoomTerminal.WinUI`) is its specification. Targets plain `net11.0`, references
+`LoomTerminal.Presentation` only, and is Native AOT compatible (compiled bindings, no XAML loading by reflection).
+
+## Usage
+
+```csharp
+// xmlns:loom="using:LoomTerminal.Avalonia.Controls"  ->  <loom:TerminalView x:Name="Terminal" />
+Terminal.Session = TerminalSession.Start(
+    new PtyStartOptions(Shells.Detect()[0].CommandLine), new TerminalSessionOptions { Scrollback = 10_000 });
+```
+
+`samples/LoomTerminal.AvaloniaGallery` is the full example (tabs, shell menu, settings, demo scripts). See
+`PublicAPI.Unshipped.txt` for the public surface.
 
 ## Differences from the WinUI control
 
