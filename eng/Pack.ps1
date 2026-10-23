@@ -76,6 +76,15 @@ foreach ($p in $projects) {
                 continue
             }
 
+            $readmeEntry = $zip.GetEntry('README.md')
+            if ($readmeEntry) {
+                $readme = Read-Entry $readmeEntry
+                if (-not $readme.Contains("dotnet add package $id")) { $problems.Add("$id.nupkg README.md: it does not contain 'dotnet add package $id'") }
+                foreach ($m in [regex]::Matches($readme, '\]\((?!https?://|#|mailto:)[^)]+\)')) {
+                    $problems.Add("$id.nupkg README.md: relative link $($m.Value) breaks on nuget.org")
+                }
+            }
+
             $nuspecEntry = $zip.Entries | Where-Object { $_.FullName -like '*.nuspec' } | Select-Object -First 1
             if (-not $nuspecEntry) { $problems.Add("$id.nupkg has no .nuspec"); continue }
             $nuspec = [xml](Read-Entry $nuspecEntry)

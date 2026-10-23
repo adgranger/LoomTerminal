@@ -1,6 +1,6 @@
 # P8-03 — A README for each package, written for nuget.org
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P8-02
 - **Size:** S (four Markdown files and one extra check in `eng/Pack.ps1`)
 
@@ -52,21 +52,21 @@ link (broken on nuget.org) or does not name its package.
 
 ## Tests
 
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1` — exit 0
-- [ ] Negative check (not committed): add `[x](docs/ARCHITECTURE.md)` to `src/LoomTerminal.Pty/README.md`, run
+- [x] `rtk proxy pwsh -NoProfile -File eng/Pack.ps1` — exit 0
+- [x] Negative check (not committed): add `[x](docs/ARCHITECTURE.md)` to `src/LoomTerminal.Pty/README.md`, run
   `eng/Pack.ps1`: fails and names `LoomTerminal.Pty.nupkg README.md`; revert. Then remove the `## Install` line of
   `src/LoomTerminal.Core/README.md`: fails and names Core; revert
-- [ ] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1` — exit 0
+- [x] `rtk proxy pwsh -NoProfile -File eng/Test-Packages.ps1` — exit 0
 - [ ] `HUMAN:` open each `.nupkg` in NuGet Package Explorer (or read the README on nuget.org after the first publish)
   and check the rendering. Not ticked by an agent.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
-- [ ] The negative checks failed as expected and were reverted
-- [ ] `rtk git grep -n "](" -- src/*/README.md` shows no relative target
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] The negative checks failed as expected and were reverted
+- [x] `rtk git grep -n "](" -- src/*/README.md` shows no relative target
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

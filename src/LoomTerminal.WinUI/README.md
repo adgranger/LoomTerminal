@@ -3,7 +3,15 @@
 A native WinUI 3 terminal control (Win2D drawing, no WebView2), Native AOT compatible. The control contains no
 terminal logic: it forwards input to a `TerminalSession` (from `LoomTerminal.Presentation`) and draws its frames.
 
-Status: `0.1.0-alpha`, not published to nuget.org.
+## Install
+
+```powershell
+dotnet add package LoomTerminal.WinUI --prerelease
+```
+
+`--prerelease` is needed while the version has a suffix (for example `0.1.0-alpha.1`). Windows App SDK 2.5.1 and Win2D
+come transitively. The app must be an unpackaged or packaged WinUI 3 app targeting `net11.0-windows10.0.26100.0` or
+later.
 
 ## Use it in XAML
 
@@ -77,7 +85,9 @@ LoomTerminal.WinUI ──> LoomTerminal.Presentation ──> LoomTerminal.Core
         └──> Microsoft.Graphics.Win2D
 ```
 
-They are built into `artifacts/packages` (`.nupkg` and `.snupkg`), not published to nuget.org. To build and check them:
+They are built into `artifacts/packages` (`.nupkg` and `.snupkg`) by `./eng/Pack.ps1`. Tagged releases are published to
+nuget.org by the release workflow ([docs/RELEASING.md](https://github.com/adgranger/LoomTerminal/blob/main/docs/RELEASING.md)). To build and check them
+locally:
 
 ```powershell
 ./eng/Pack.ps1
