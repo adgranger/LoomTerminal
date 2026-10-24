@@ -49,6 +49,12 @@ public sealed record TerminalSessionOptions
     /// <summary>Whether box-drawing, block, shade and powerline characters are drawn as vectors (as xterm.js <c>customGlyphs</c>) instead of font glyphs.</summary>
     public bool CustomGlyphs { get; init; } = true;
 
+    /// <summary>
+    /// Whether Option acts as Meta on macOS (xterm.js <c>macOptionIsMeta</c>). Off by default: Option+letter types
+    /// accented characters.
+    /// </summary>
+    public bool MacOptionIsMeta { get; init; }
+
     /// <summary>Colors of the terminal; <see langword="null"/> uses the defaults.</summary>
     public TerminalTheme? Theme { get; init; }
 

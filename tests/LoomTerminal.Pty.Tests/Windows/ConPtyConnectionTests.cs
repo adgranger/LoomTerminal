@@ -12,7 +12,7 @@ public sealed class ConPtyConnectionTests
 
     private static CancellationToken Ct => TestContext.Current.CancellationToken;
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public async Task Command_output_comes_back_and_exit_code_is_reported()
     {
         using IPtyConnection pty = PseudoTerminal.Start(new PtyStartOptions($"\"{Cmd}\" /c echo loom-hello & exit 3"));
@@ -23,7 +23,7 @@ public sealed class ConPtyConnectionTests
         Assert.Equal(3, await pty.Exited.WaitAsync(TimeSpan.FromSeconds(20), Ct));
     }
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public async Task Typed_input_reaches_the_shell()
     {
         using IPtyConnection pty = PseudoTerminal.Start(new PtyStartOptions($"\"{Cmd}\""));
@@ -36,7 +36,7 @@ public sealed class ConPtyConnectionTests
         Assert.Contains("loom-$((6*7))x", output, StringComparison.Ordinal);
     }
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public async Task Working_directory_is_the_one_given()
     {
         DirectoryInfo directory = Directory.CreateTempSubdirectory("loom-conpty-");
@@ -56,7 +56,7 @@ public sealed class ConPtyConnectionTests
         }
     }
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public async Task Environment_changes_reach_the_shell()
     {
         var options = new PtyStartOptions($"\"{Cmd}\" /c echo [%TERM%][%LOOM_TEST%][%TERM_PROGRAM%]")
@@ -70,7 +70,7 @@ public sealed class ConPtyConnectionTests
         Assert.Contains("[xterm-256color][on][Loom]", output, StringComparison.Ordinal);
     }
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public async Task Resize_is_seen_by_the_shell()
     {
         using IPtyConnection pty = PseudoTerminal.Start(new PtyStartOptions($"\"{Cmd}\""));
@@ -83,7 +83,7 @@ public sealed class ConPtyConnectionTests
         Assert.Contains("120", output, StringComparison.Ordinal);
     }
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public async Task Disposing_kills_the_shell_and_what_it_started()
     {
         // The shell starts a child that outlives it unless the job object kills it.
@@ -98,7 +98,7 @@ public sealed class ConPtyConnectionTests
         ping.Dispose();
     }
 
-    [Fact]
+    [Fact(Skip = "Windows only", SkipUnless = nameof(Platform.IsWindows), SkipType = typeof(Platform))]
     public void A_missing_program_fails_with_IOException()
     {
         Assert.Throws<IOException>(() => PseudoTerminal.Start(new PtyStartOptions(@"C:\this\does\not\exist.exe")));

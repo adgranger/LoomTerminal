@@ -35,3 +35,18 @@ Terminal.Session = TerminalSession.Start(
   the first time a platform client asks for the peer.
 - No `LinkActivated` or `KeyPreview` events yet: a host opens links with `TerminalSession.LinkHandler` and claims keys
   with a tunnelling `KeyDown` handler (the Avalonia gallery does both).
+
+## Platform notes
+
+- **Windows** is the reference platform (ConPTY). **Linux and macOS** use the Unix pty of `LoomTerminal.Pty`
+  (`libloomterm_pty`, ADR 0007): the library must sit next to the application, which a published app or a project
+  reference with the shim built into `artifacts/native/<rid>` does.
+- **Default font** when the host sets none: Windows `Cascadia Mono, Consolas`; macOS `Menlo, SF Mono`; Linux
+  `DejaVu Sans Mono, Liberation Mono, monospace`.
+- **macOS keyboard:** Cmd+C copies the selection (with no selection nothing happens: Ctrl+C is the interrupt), Cmd+V
+  pastes, Cmd+K clears the scrollback. Ctrl+C and Ctrl+V are plain control characters there. Option is not Meta by
+  default, so Option+letter types accented characters; set `TerminalSessionOptions.MacOptionIsMeta` to make it Meta.
+- **Linux keyboard:** the Windows rules: Ctrl+Shift+C copies (Ctrl+C when text is selected), Ctrl+V and Ctrl+Shift+V paste.
+- **Linux input methods** go through Avalonia's IBus and Fcitx support; they have not been checked by hand yet (see
+  the manual tests).
+

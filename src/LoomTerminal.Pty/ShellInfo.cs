@@ -32,6 +32,18 @@ public static class ShellIds
     /// <summary>Command Prompt (<c>cmd.exe</c>).</summary>
     public const string Cmd = "cmd";
 
+    /// <summary>GNU Bash (Linux, macOS).</summary>
+    public const string Bash = "bash";
+
+    /// <summary>Z shell (Linux, macOS).</summary>
+    public const string Zsh = "zsh";
+
+    /// <summary>fish (Linux, macOS).</summary>
+    public const string Fish = "fish";
+
+    /// <summary>The POSIX <c>sh</c> (Linux, macOS).</summary>
+    public const string Sh = "sh";
+
     /// <summary>Prefix of a WSL distribution: <c>wsl:Ubuntu</c>.</summary>
     public const string WslPrefix = "wsl:";
 }

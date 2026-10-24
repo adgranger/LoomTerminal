@@ -1,9 +1,13 @@
 #nullable enable
+const LoomTerminal.Pty.ShellIds.Bash = "bash" -> string!
 const LoomTerminal.Pty.ShellIds.Cmd = "cmd" -> string!
+const LoomTerminal.Pty.ShellIds.Fish = "fish" -> string!
 const LoomTerminal.Pty.ShellIds.GitBash = "git-bash" -> string!
 const LoomTerminal.Pty.ShellIds.PowerShell7 = "pwsh" -> string!
+const LoomTerminal.Pty.ShellIds.Sh = "sh" -> string!
 const LoomTerminal.Pty.ShellIds.WindowsPowerShell = "powershell" -> string!
 const LoomTerminal.Pty.ShellIds.WslPrefix = "wsl:" -> string!
+const LoomTerminal.Pty.ShellIds.Zsh = "zsh" -> string!
 LoomTerminal.Pty.IPtyConnection
 LoomTerminal.Pty.IPtyConnection.Exited.get -> System.Threading.Tasks.Task<int>!
 LoomTerminal.Pty.IPtyConnection.Output.get -> System.Threading.Channels.ChannelReader<byte[]!>!

@@ -5,24 +5,37 @@
 - **Native**: no WebView2, no JavaScript. C# all the way, drawn with DirectWrite (through Win2D) on Windows.
 - **Native AOT compatible**: no run-time reflection; CI publishes the samples with `PublishAot=true` and zero warnings.
 - **Portable core**: the emulator (`LoomTerminal.Core`) and the presentation layer run headless on any .NET 11
-  platform; a UI backend only draws and forwards input. WinUI 3 first, Avalonia (Windows, macOS, Linux) second.
+  platform; a UI backend only draws and forwards input. WinUI 3 on Windows, Avalonia on Windows, Linux and macOS.
 - **xterm.js, ported faithfully**: same parser state machine, same buffer model, xterm.js tests ported.
 - **MIT licensed.** Sibling project of [LoomEditor](https://github.com/adgranger/LoomEditor) (Monaco for WinUI 3).
 
-> **Status: `0.1.0-alpha`.** `LoomTerminal.Pty` (Windows ConPTY), the emulator core (`LoomTerminal.Core`, ported from
+> **Status: `0.1.0-alpha`.** `LoomTerminal.Pty` (Windows ConPTY, Linux and macOS through a small native shim, see
+> [ADR 0007](docs/adr/0007-unix-pty.md)), the emulator core (`LoomTerminal.Core`, ported from
 > xterm.js and checked against it), the presentation layer and the WinUI 3 control (`LoomTerminal.WinUI`, see its
-> [README](src/LoomTerminal.WinUI/README.md)) are written; the Gallery sample runs real shells in tabs. The Avalonia control (`LoomTerminal.Avalonia`, Windows only until phase 7, not yet in the NuGet release) and its gallery are written too. Packages are
+> [README](src/LoomTerminal.WinUI/README.md)) are written; the Gallery sample runs real shells in tabs. The Avalonia control (`LoomTerminal.Avalonia`, see its
+> [README](src/LoomTerminal.Avalonia/README.md); not yet in the NuGet release) and its gallery are written too, and
+> CI builds, tests and AOT-publishes it on Windows, Linux and macOS; the manual checklists on Linux and macOS are
+> still to be run by hand ([docs/manual-tests.md](docs/manual-tests.md)). Packages are
 > published to nuget.org when a version tag is pushed (see [docs/RELEASING.md](docs/RELEASING.md)); no version is
 > published yet. See [docs/ROADMAP.md](docs/ROADMAP.md).
 
 <!-- TODO: screenshot of the Gallery (docs/images/gallery.png), to be taken by hand: ![Gallery](docs/images/gallery.png) -->
+
+## Supported platforms
+
+| Platform | UI | Pseudo terminal | State |
+|---|---|---|---|
+| Windows 10 1809+ | WinUI 3 (`LoomTerminal.WinUI`) | ConPTY | CI: build, tests, Native AOT |
+| Windows | Avalonia (`LoomTerminal.Avalonia`) | ConPTY | CI: build, tests, Native AOT |
+| Linux (x64, arm64) | Avalonia | `libloomterm_pty` shim | CI: build, tests, Native AOT (x64); manual checklist pending |
+| macOS (x64, arm64) | Avalonia | `libloomterm_pty` shim | CI: build, tests, Native AOT (arm64); manual checklist pending |
 
 ## Packages
 
 | Package | Target | Content |
 |---|---|---|
 | `LoomTerminal.Core` | `net11.0` | VT parser, escape sequence handlers, buffers, scrollback, reflow |
-| `LoomTerminal.Pty` | `net11.0` | Start a shell behind a pseudo terminal (ConPTY; openpty planned) and detect installed shells |
+| `LoomTerminal.Pty` | `net11.0` | Start a shell behind a pseudo terminal (ConPTY on Windows, a native `forkpty` shim on Linux and macOS) and detect installed shells |
 | `LoomTerminal.Presentation` | `net11.0` | Render model, key/mouse encoding, selection, search: shared by every UI backend |
 | `LoomTerminal.WinUI` | `net11.0-windows` | The WinUI 3 control and its Win2D renderer |
 | `LoomTerminal.Avalonia` | `net11.0` | The Avalonia control and its Skia renderer (Windows for now), see its [README](src/LoomTerminal.Avalonia/README.md) |
