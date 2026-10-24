@@ -11,7 +11,7 @@ Every phase is split into small task cards: see [`docs/tasks/README.md`](tasks/R
 | 4 | **WinUI control**: Win2D measurer and surface, custom glyphs, decorations, layout/DPI/frames, keyboard, IME, pointer, clipboard, scrollbar, focus, theming, UIA, gallery, performance | P4-01 … P4-18 ✅ Gallery runs a real shell, AOT published (manual checklist pending, rendering measurements: P4-19) |
 | 5 | **VIGO integration**: packages, `LoomTerminal.Pty` in VIGO, native terminal view, removal of the WebView2 terminal, parity | P5-01 … P5-05 | Feature parity list below is green in VIGO |
 | 6 | **Avalonia on Windows**: Skia measurer and surface, control, input, accessibility, gallery | P6-01 … P6-08 | ✅ Avalonia control and gallery on Windows, AOT published (manual checklist pending). No change needed in Core or Presentation (if one is, the abstraction leaks) |
-| 7 | **Unix pty** (native forkpty shim), shell detection, cross-platform CI, Avalonia on Linux and macOS | P7-01 … P7-07 | Same tests green on the three OSes |
+| 7 | **Unix pty** (native forkpty shim), shell detection, cross-platform CI, Avalonia on Linux and macOS | P7-01 … P7-07 | ✅ Same tests green on the three OSes (CI); manual checklists on Linux and macOS pending |
 | 8 | **First release (NuGet)**: version from the git tag, package metadata and README checks, changelog, release workflow (tag → gates → nuget.org + GitHub Release, with a dry run), runbook, release checklist | P8-01 … P8-08 | Creating the first `v*` tag publishes the four packages; the user-only steps are in [RELEASING.md](RELEASING.md) (independent of phase 5) |
 
 ### Abstraction leaks found
@@ -40,6 +40,18 @@ The native control must match what VIGO's `TerminalView` does today before it re
 Deferred in VIGO and therefore not required for parity, but planned after phase 7: search UI (the engine is in P3-18),
 OSC 133 shell integration marks, `path:line` file links, OSC 52 clipboard, scrollback restore, ligatures, grapheme
 clusters (`addon-unicode-graphemes`).
+
+## Before 1.0
+
+The decision to publish is the maintainer's; what is left:
+
+- [ ] Manual checklists run on Linux (X11, Wayland) and macOS ([manual-tests.md](manual-tests.md)).
+- [ ] API review: move `PublicAPI.Unshipped.txt` to `PublicAPI.Shipped.txt` once the surface is frozen.
+- [ ] Add `LoomTerminal.Avalonia` and the native pty shim (`runtimes/<rid>/native/`) to the release workflow, `Pack.ps1`
+      and the changelog ([RELEASING.md](RELEASING.md)); first nuget.org publication.
+- [ ] Deferred features: search UI in the samples (the engine exists), OSC 133 shell integration, OSC 52 clipboard,
+      `path:line` file links, scrollback restore, ligatures, grapheme clusters (`addon-unicode-graphemes`).
+- [ ] Performance follow-ups (rendering measurements: P4-19, see [performance.md](performance.md)).
 
 ## Possible later improvements to `LoomTerminal.Pty`
 
