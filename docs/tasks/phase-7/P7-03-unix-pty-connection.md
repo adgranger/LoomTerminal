@@ -1,6 +1,6 @@
 # P7-03 — `UnixPtyConnection`
 
-- **Status:** in progress
+- **Status:** done
 - **Depends on:** P7-02
 - **Size:** M
 
@@ -43,9 +43,9 @@ Implement `IPtyConnection` on Linux and macOS over the native shim, with the sam
 ## Acceptance criteria
 
 - [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] Tests green on Linux and macOS CI (P7-05) and still green on Windows
+- [x] Tests green on Linux and macOS CI (P7-05) and still green on Windows
 - [x] Public API unchanged (only internal types added)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

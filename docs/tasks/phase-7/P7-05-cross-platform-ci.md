@@ -1,6 +1,6 @@
 # P7-05 — Cross-platform CI: tests and Avalonia AOT on Linux and macOS
 
-- **Status:** in progress
+- **Status:** done
 - **Depends on:** P7-03
 - **Size:** S
 
@@ -25,12 +25,12 @@ Run the portable test suites on Linux and macOS, and publish the Avalonia galler
 
 ## Tests
 
-- [ ] CI green on the three OSes.
+- [x] CI green on the three OSes.
 
 ## Acceptance criteria
 
-- [ ] CI green
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] CI green
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
