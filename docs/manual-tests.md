@@ -111,3 +111,18 @@ items of the sections above that apply, plus:
 - [ ] Narrator reads new output as it arrives (no line navigation: Avalonia has no text pattern, see the README of `LoomTerminal.Avalonia`)
 - [ ] Demo scripts in `Demos\` run (`colors.ps1`, `styles.ps1`, `unicode.ps1`, `stress.ps1`, `icons.ps1`)
 - [ ] The AOT-published exe starts and stays up (checked once by the agent on Windows: starts, no crash after 10 s)
+
+## Linux and macOS (P7-06)
+
+Run the Avalonia gallery (`samples/LoomTerminal.AvaloniaGallery`) on Ubuntu (X11 and Wayland) and on macOS, plus:
+
+- [ ] Ubuntu X11: the gallery starts a shell (the login shell first in the shell menu), colors and the default font look right
+- [ ] Ubuntu Wayland: same
+- [ ] macOS: same, default font Menlo
+- [ ] Linux: Ctrl+Shift+C copies, Ctrl+V and Ctrl+Shift+V paste, Ctrl+C interrupts when nothing is selected
+- [ ] macOS: Cmd+C copies a selection (nothing without one), Cmd+V pastes, Cmd+K clears the scrollback, Ctrl+C interrupts
+- [ ] macOS: Option+E then E types an accented e; with `MacOptionIsMeta` Option+B moves back one word in bash/zsh
+- [ ] Linux: IBus or Fcitx composition (for example Japanese or Chinese) shows the preedit text and commits it
+- [ ] macOS: the system input methods compose and commit
+- [ ] The AOT-published gallery starts and stays up on both
+

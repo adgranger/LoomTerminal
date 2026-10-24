@@ -273,7 +273,7 @@ Native spawn shim, Unix pty, cross-platform CI.
 | [P7-03](phase-7/P7-03-unix-pty-connection.md) | `UnixPtyConnection` | P7-02 | M | done |
 | [P7-04](phase-7/P7-04-unix-shell-detection.md) | Unix shell detection | P7-03 | S | done |
 | [P7-05](phase-7/P7-05-cross-platform-ci.md) | Cross-platform CI: tests and Avalonia AOT on Linux and macOS | P7-03 | S | done |
-| [P7-06](phase-7/P7-06-avalonia-linux-macos.md) | Avalonia on Linux and macOS: platform details | P7-04, P7-05 | M | todo |
+| [P7-06](phase-7/P7-06-avalonia-linux-macos.md) | Avalonia on Linux and macOS: platform details | P7-04, P7-05 | M | in progress |
 | [P7-07](phase-7/P7-07-close-phase-7.md) | Close phase 7 and prepare 1.0 | all P7 cards | S | todo |
 
 ## Phase 8 — First release (NuGet)

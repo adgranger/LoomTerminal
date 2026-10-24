@@ -44,7 +44,10 @@ public sealed partial class TerminalView : TemplatedControl
 
     static TerminalView()
     {
-        FontFamilyProperty.OverrideDefaultValue<TerminalView>(new FontFamily("Cascadia Mono, Consolas, Menlo, DejaVu Sans Mono"));
+        FontFamilyProperty.OverrideDefaultValue<TerminalView>(new FontFamily(
+            OperatingSystem.IsMacOS() ? "Menlo, SF Mono"
+            : OperatingSystem.IsLinux() ? "DejaVu Sans Mono, Liberation Mono, monospace"
+            : "Cascadia Mono, Consolas"));
         FontSizeProperty.OverrideDefaultValue<TerminalView>(14.0);
         FocusableProperty.OverrideDefaultValue<TerminalView>(true);
         TemplateProperty.OverrideDefaultValue<TerminalView>(DefaultTemplate());

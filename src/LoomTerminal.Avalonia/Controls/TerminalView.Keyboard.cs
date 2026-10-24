@@ -55,7 +55,8 @@ public sealed partial class TerminalView
         // LeaveToTextInput and Ignored stay unhandled: TextInput delivers the text.
         KeyInputOutcome outcome = session.SendKey(ev);
         _keyWasSent = outcome is KeyInputOutcome.Sent;
-        e.Handled = outcome is KeyInputOutcome.Sent or KeyInputOutcome.Copy or KeyInputOutcome.Paste or KeyInputOutcome.HandledByHost;
+        e.Handled = outcome is KeyInputOutcome.Sent or KeyInputOutcome.Copy or KeyInputOutcome.Paste or KeyInputOutcome.ClearScrollback
+            or KeyInputOutcome.HandledByHost;
     }
 
     /// <inheritdoc />

@@ -1,6 +1,6 @@
 # P7-06 — Avalonia on Linux and macOS: platform details
 
-- **Status:** todo
+- **Status:** in progress
 - **Depends on:** P7-04, P7-05
 - **Size:** M
 
@@ -27,13 +27,13 @@ as Meta), and the checklist run on both.
 
 ## Tests
 
-- [ ] New (Presentation): the macOS key rules above.
+- [x] New (Presentation): the macOS key rules above.
 - [ ] Manual: the checklist on Ubuntu (X11 and Wayland) and macOS.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk test dotnet test --solution LoomTerminal.slnx -c Release` — all green
 - [ ] Checklist ticked on Linux and macOS
 - [ ] Card status and `docs/tasks/README.md` updated
 
