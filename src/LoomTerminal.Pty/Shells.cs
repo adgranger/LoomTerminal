@@ -1,3 +1,4 @@
+using LoomTerminal.Pty.Unix;
 using LoomTerminal.Pty.Windows;
 
 namespace LoomTerminal.Pty;
@@ -8,9 +9,12 @@ public static class Shells
 {
     /// <summary>
     /// Installed shells, in a sensible menu order (on Windows: PowerShell 7, Windows PowerShell, Git Bash,
-    /// Command Prompt, then the WSL distributions, default first). No process is started.
+    /// Command Prompt, then the WSL distributions, default first; on Linux and macOS: the login shell, then the other
+    /// entries of <c>/etc/shells</c>, started as login shells). No process is started.
     /// </summary>
     /// <returns>The shells found; empty on an unsupported operating system.</returns>
     public static IReadOnlyList<ShellInfo> Detect() =>
-        OperatingSystem.IsWindows() ? WindowsShellLocator.Detect() : [];
+        OperatingSystem.IsWindows() ? WindowsShellLocator.Detect()
+        : OperatingSystem.IsLinux() || OperatingSystem.IsMacOS() ? UnixShellLocator.Detect()
+        : [];
 }

@@ -23,4 +23,22 @@ internal static unsafe partial class UnixPtyNative
 
     [LibraryImport("loomterm_pty", EntryPoint = "loomterm_kill_group", SetLastError = true)]
     public static partial int KillGroup(int pid, int signal);
+
+    [LibraryImport("loomterm_pty", EntryPoint = "loomterm_login_shell")]
+    private static partial int LoginShell(byte* buffer, int size);
+
+    /// <summary>The login shell of the current user in the passwd database; null when unknown or the shim is missing.</summary>
+    public static string? LoginShell()
+    {
+        byte* buffer = stackalloc byte[512];
+        try
+        {
+            int length = LoginShell(buffer, 512);
+            return length > 0 ? System.Text.Encoding.UTF8.GetString(buffer, length) : null;
+        }
+        catch (Exception e) when (e is DllNotFoundException or EntryPointNotFoundException)
+        {
+            return null;
+        }
+    }
 }

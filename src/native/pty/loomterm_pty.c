@@ -5,7 +5,9 @@
 #define _GNU_SOURCE
 #include <errno.h>
 #include <signal.h>
+#include <pwd.h>
 #include <stddef.h>
+#include <string.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -83,9 +85,28 @@ EXPORT int loomterm_kill_group(int pid, int signal)
     return kill(-(pid_t)pid, signal);
 }
 
+// Copies the login shell of the current user (passwd database) into buffer. Returns its length, or -1.
+EXPORT int loomterm_login_shell(char* buffer, int size)
+{
+    struct passwd entry, *found = NULL;
+    char scratch[1024];
+    if (getpwuid_r(getuid(), &entry, scratch, sizeof(scratch), &found) != 0 || found == NULL || entry.pw_shell == NULL)
+    {
+        return -1;
+    }
+
+    size_t length = strlen(entry.pw_shell);
+    if (length >= (size_t)size)
+    {
+        return -1;
+    }
+
+    memcpy(buffer, entry.pw_shell, length + 1);
+    return (int)length;
+}
+
 #ifdef LOOMTERM_TEST
 #include <stdio.h>
-#include <string.h>
 
 // Smoke test (build.sh --test): spawn /bin/echo hi and read "hi" from the master.
 int main(void)

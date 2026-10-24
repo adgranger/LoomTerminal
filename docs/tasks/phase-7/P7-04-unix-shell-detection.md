@@ -1,6 +1,6 @@
 # P7-04 — Unix shell detection
 
-- **Status:** todo
+- **Status:** in progress
 - **Depends on:** P7-03
 - **Size:** S
 
@@ -30,9 +30,9 @@
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
 - [ ] Tests green on the three OSes
-- [ ] Public API files updated
+- [x] Public API files updated
 - [ ] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
