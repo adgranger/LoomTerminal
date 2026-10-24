@@ -1,6 +1,6 @@
 # P7-06 — Avalonia on Linux and macOS: platform details
 
-- **Status:** in progress
+- **Status:** done
 - **Depends on:** P7-04, P7-05
 - **Size:** M
 
