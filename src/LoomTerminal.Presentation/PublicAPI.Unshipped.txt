@@ -87,6 +87,7 @@ LoomTerminal.Presentation.Input.IClipboard
 LoomTerminal.Presentation.Input.IClipboard.GetTextAsync() -> System.Threading.Tasks.Task<string?>!
 LoomTerminal.Presentation.Input.IClipboard.SetTextAsync(string! text) -> System.Threading.Tasks.Task!
 LoomTerminal.Presentation.Input.KeyInputOutcome
+LoomTerminal.Presentation.Input.KeyInputOutcome.ClearScrollback = 6 -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Input.KeyInputOutcome.Copy = 2 -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Input.KeyInputOutcome.HandledByHost = 0 -> LoomTerminal.Presentation.Input.KeyInputOutcome
 LoomTerminal.Presentation.Input.KeyInputOutcome.Ignored = 5 -> LoomTerminal.Presentation.Input.KeyInputOutcome
@@ -425,6 +426,7 @@ LoomTerminal.Presentation.Session.TerminalSession
 LoomTerminal.Presentation.Session.TerminalSession.AccessibilityEnabled.get -> bool
 LoomTerminal.Presentation.Session.TerminalSession.AccessibilityEnabled.set -> void
 LoomTerminal.Presentation.Session.TerminalSession.Bell -> System.Action?
+LoomTerminal.Presentation.Session.TerminalSession.ClearScrollback() -> void
 LoomTerminal.Presentation.Session.TerminalSession.ClearSearch() -> void
 LoomTerminal.Presentation.Session.TerminalSession.ClearSelection() -> void
 LoomTerminal.Presentation.Session.TerminalSession.Clipboard.get -> LoomTerminal.Presentation.Input.IClipboard?
@@ -470,6 +472,8 @@ LoomTerminal.Presentation.Session.TerminalSessionOptions.CursorStyle.init -> voi
 LoomTerminal.Presentation.Session.TerminalSessionOptions.CustomGlyphs.get -> bool
 LoomTerminal.Presentation.Session.TerminalSessionOptions.CustomGlyphs.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Equals(LoomTerminal.Presentation.Session.TerminalSessionOptions? other) -> bool
+LoomTerminal.Presentation.Session.TerminalSessionOptions.MacOptionIsMeta.get -> bool
+LoomTerminal.Presentation.Session.TerminalSessionOptions.MacOptionIsMeta.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.RightClickSelectsWord.get -> bool
 LoomTerminal.Presentation.Session.TerminalSessionOptions.RightClickSelectsWord.init -> void
 LoomTerminal.Presentation.Session.TerminalSessionOptions.Scrollback.get -> int

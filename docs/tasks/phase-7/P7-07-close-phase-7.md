@@ -1,6 +1,6 @@
 # P7-07 — Close phase 7 and prepare 1.0
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** all P7 cards
 - **Size:** S (docs)
 
@@ -18,12 +18,12 @@ Document the cross-platform state, and list what remains before a 1.0 release (t
 
 ## Tests
 
-- [ ] CI green on the three OSes.
+- [x] CI green on the three OSes.
 
 ## Acceptance criteria
 
-- [ ] Docs updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] Docs updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

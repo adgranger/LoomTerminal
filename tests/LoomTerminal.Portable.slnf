@@ -1,0 +1,18 @@
+{
+  "solution": {
+    "path": "..\\LoomTerminal.slnx",
+    "projects": [
+      "src\\LoomTerminal.Core\\LoomTerminal.Core.csproj",
+      "src\\LoomTerminal.Pty\\LoomTerminal.Pty.csproj",
+      "src\\LoomTerminal.Presentation\\LoomTerminal.Presentation.csproj",
+      "src\\LoomTerminal.Avalonia\\LoomTerminal.Avalonia.csproj",
+      "samples\\LoomTerminal.AvaloniaGallery\\LoomTerminal.AvaloniaGallery.csproj",
+      "samples\\LoomTerminal.PtyConsole\\LoomTerminal.PtyConsole.csproj",
+      "tests\\LoomTerminal.Core.Tests\\LoomTerminal.Core.Tests.csproj",
+      "tests\\LoomTerminal.Pty.Tests\\LoomTerminal.Pty.Tests.csproj",
+      "tests\\LoomTerminal.Presentation.Tests\\LoomTerminal.Presentation.Tests.csproj",
+      "tests\\LoomTerminal.Avalonia.Tests\\LoomTerminal.Avalonia.Tests.csproj",
+      "tests\\LoomTerminal.Architecture.Tests\\LoomTerminal.Architecture.Tests.csproj"
+    ]
+  }
+}

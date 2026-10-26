@@ -111,6 +111,66 @@ jobs:
         shell: pwsh
         run: ./eng/Test-AotApp.ps1 samples/LoomTerminal.AvaloniaGallery -NoShell -BuildFirst
 
+  portable-tests:
+    name: Portable tests (${{ matrix.rid }})
+    needs: [native-pty]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { rid: linux-x64, os: ubuntu-latest }
+          - { rid: osx-arm64, os: macos-latest }
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      # The Pty tests start real shells behind the pty shim built by native-pty: it must sit in artifacts/native/<rid>.
+      - uses: actions/download-artifact@v7
+        with:
+          name: native-pty-${{ matrix.rid }}
+          path: artifacts/native/${{ matrix.rid }}
+
+      # The solution filter leaves out the WinUI projects. Windows-only tests are skipped at run time.
+      - name: Build (Release, warnings as errors)
+        run: dotnet build tests/LoomTerminal.Portable.slnf -c Release
+
+      - name: Test
+        run: dotnet test --solution tests/LoomTerminal.Portable.slnf -c Release --no-build
+
+  avalonia-aot-unix:
+    name: Native AOT publish (Avalonia, ${{ matrix.rid }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { rid: linux-x64, os: ubuntu-latest }
+          - { rid: osx-arm64, os: macos-latest }
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      - name: Install the native AOT toolchain (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y clang zlib1g-dev
+
+      # Build, then publish WITHOUT rebuilding (a publish that recompiles loses Avalonia's compiled XAML under AOT).
+      # Any trimming/AOT warning (IL2xxx, IL3xxx) fails the job.
+      - name: Publish the Avalonia gallery with PublishAot
+        run: |
+          set -o pipefail
+          dotnet build samples/LoomTerminal.AvaloniaGallery -c Release -r ${{ matrix.rid }}
+          dotnet publish samples/LoomTerminal.AvaloniaGallery -c Release -r ${{ matrix.rid }} --no-build 2>&1 | tee publish.log
+          if grep -E 'warning (IL|AOT)[0-9]+' publish.log; then echo "The AOT publish produced warnings."; exit 1; fi
+          test -x samples/LoomTerminal.AvaloniaGallery/bin/Release/net11.0/${{ matrix.rid }}/publish/LoomTerminal.AvaloniaGallery
+
   pack:
     name: Pack NuGet packages
     # Not on pull requests: the release workflow (dry run) packs and tests the packages.
@@ -139,3 +199,27 @@ jobs:
         with:
           name: nuget-packages
           path: artifacts/packages
+
+  native-pty:
+    name: Native pty shim (${{ matrix.rid }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { rid: linux-x64, os: ubuntu-latest }
+          - { rid: linux-arm64, os: ubuntu-24.04-arm }
+          - { rid: osx-x64, os: macos-15-intel }
+          - { rid: osx-arm64, os: macos-latest }
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build the shim and run its smoke test
+        run: sh src/native/pty/build.sh --test
+
+      - name: Upload the library
+        uses: actions/upload-artifact@v7
+        with:
+          name: native-pty-${{ matrix.rid }}
+          path: artifacts/native/${{ matrix.rid }}/libloomterm_pty.*
+          if-no-files-found: error

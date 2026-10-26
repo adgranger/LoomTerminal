@@ -38,8 +38,11 @@ public class ClipboardTests
         await WaitUntilAsync(async () => (await session.GetSelectionTextAsync()).Contains("hello", StringComparison.Ordinal));
     }
 
+    // "ctrl" is the copy and paste modifier of the platform: Ctrl on Windows and Linux, Cmd on macOS (where Ctrl+C is the interrupt).
     private static TerminalKeyEvent Key(int code, string key, bool ctrl, bool shift) =>
-        new(code, key, ctrl, Alt: false, shift, Meta: false, TerminalKeyEventType.KeyDown);
+        OperatingSystem.IsMacOS()
+            ? new(code, key, Ctrl: false, Alt: false, Shift: false, Meta: ctrl, TerminalKeyEventType.KeyDown)
+            : new(code, key, ctrl, Alt: false, shift, Meta: false, TerminalKeyEventType.KeyDown);
 
     [Fact]
     public async Task Ctrl_Shift_C_copies_the_selection_and_keeps_it()

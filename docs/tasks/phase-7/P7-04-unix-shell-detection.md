@@ -1,6 +1,6 @@
 # P7-04 — Unix shell detection
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P7-03
 - **Size:** S
 
@@ -26,14 +26,14 @@
 
 ## Tests
 
-- [ ] New (Linux/macOS CI): the list is not empty, ids are unique, the first one matches `$SHELL` when it is set.
+- [x] New (Linux/macOS CI): the list is not empty, ids are unique, the first one matches `$SHELL` when it is set.
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] Tests green on the three OSes
-- [ ] Public API files updated
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] Tests green on the three OSes
+- [x] Public API files updated
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

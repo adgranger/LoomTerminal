@@ -32,6 +32,7 @@ public sealed partial class TerminalSession : IDisposable
     private readonly CancellationTokenSource _cts = new();
     private readonly Thread _thread;
     private readonly KeyInputHandler _keyHandler = new();
+    private readonly bool _macOptionIsMeta;
     private readonly RenderFrameBuilder _builder;
     private readonly ViewportController _viewport;
     private readonly SelectionService _selection;
@@ -55,6 +56,7 @@ public sealed partial class TerminalSession : IDisposable
     private TerminalSession(IPtyConnection connection, int columns, int rows, TerminalSessionOptions options)
     {
         _connection = connection;
+        _macOptionIsMeta = options.MacOptionIsMeta;
         _core = new TerminalCore(CreateCoreOptions(columns, rows, options));
         _core.OnData.Subscribe(data => _connection.Write(Encoding.UTF8.GetBytes(data)));
         _core.OnBinary.Subscribe(data => _connection.Write(Encoding.Latin1.GetBytes(data)));
@@ -245,6 +247,9 @@ public sealed partial class TerminalSession : IDisposable
     /// <summary>Scrolls the viewport to the oldest line of the scrollback.</summary>
     public void ScrollToTop() => Post(core => core.ScrollToTop());
 
+    /// <summary>Erases the scrollback and keeps the screen (the effect of <c>CSI 3 J</c>).</summary>
+    public void ClearScrollback() => Post(core => core.Write("\x1b[3J"));
+
     /// <summary>Scrolls the viewport to the bottom, where it follows the output.</summary>
     public void ScrollToBottom() => Post(core => core.ScrollToBottom());
 
@@ -318,11 +323,15 @@ public sealed partial class TerminalSession : IDisposable
     {
         ArgumentNullException.ThrowIfNull(ev);
         var modes = _modes;
-        var result = _keyHandler.Handle(ev, new KeyContext(modes.ApplicationCursorKeys, modes.HasSelection, OperatingSystem.IsMacOS()));
+        var result = _keyHandler.Handle(ev, new KeyContext(modes.ApplicationCursorKeys, modes.HasSelection, OperatingSystem.IsMacOS(), _macOptionIsMeta));
         if (result is { Outcome: KeyInputOutcome.Sent, Data: { } data })
         {
             _cursorBlink.Restart();
             Post(core => core.Input(data));
+        }
+        else if (result.Outcome == KeyInputOutcome.ClearScrollback)
+        {
+            ClearScrollback();
         }
         else if (result.Outcome == KeyInputOutcome.Copy)
         {
@@ -478,6 +487,7 @@ public sealed partial class TerminalSession : IDisposable
         Cols = columns,
         Rows = rows,
         Scrollback = options.Scrollback,
+        MacOptionIsMeta = options.MacOptionIsMeta,
         ScrollOnUserInput = options.ScrollOnUserInput,
         CursorStyle = options.CursorStyle switch
         {

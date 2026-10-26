@@ -4,7 +4,7 @@ namespace LoomTerminal.Architecture.Tests;
 
 /// <summary>
 /// The emulator and the presentation layer must stay portable (Avalonia on macOS and Linux): their source files do not
-/// use Windows or WinUI namespaces or APIs. LoomTerminal.Pty may, but only in its per-OS folders (Windows/).
+/// use Windows or WinUI namespaces or APIs. LoomTerminal.Pty may, but only in its per-OS folders (Windows/, Unix/).
 /// </summary>
 public partial class PlatformNeutralSourceTests
 {
@@ -12,7 +12,7 @@ public partial class PlatformNeutralSourceTests
     {
         "LoomTerminal.Core",
         "LoomTerminal.Presentation",
-        // The public API of Pty is portable; only Windows/ talks to Win32.
+        // The public API of Pty is portable; only Windows/ talks to Win32 and Unix/ to the native shim.
         "LoomTerminal.Pty",
     };
 
@@ -29,7 +29,8 @@ public partial class PlatformNeutralSourceTests
         string[] offenders = Directory.EnumerateFiles(folder, "*.cs", SearchOption.AllDirectories)
             .Where(file => !file.Contains(separator + "obj" + separator, StringComparison.Ordinal)
                 && !file.Contains(separator + "bin" + separator, StringComparison.Ordinal)
-                && !file.Contains(separator + "Windows" + separator, StringComparison.Ordinal))
+                && !file.Contains(separator + "Windows" + separator, StringComparison.Ordinal)
+                && !file.Contains(separator + "Unix" + separator, StringComparison.Ordinal))
             .Where(file => WindowsSpecificApi().IsMatch(File.ReadAllText(file)))
             .Select(file => Path.GetRelativePath(RepositoryLayout.Root.FullName, file))
             .ToArray();

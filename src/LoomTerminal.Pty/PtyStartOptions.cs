@@ -4,6 +4,8 @@ namespace LoomTerminal.Pty;
 /// <param name="CommandLine">
 /// Full command line: executable (quoted when its path holds a space) followed by its arguments,
 /// for example <c>"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo</c>. See <see cref="ShellInfo.CommandLine"/>.
+/// On Linux and macOS the line is split with POSIX shell rules (single and double quotes, backslash; no expansion, no
+/// <c>sh -c</c>) and the executable is looked up on <c>PATH</c>.
 /// </param>
 /// <remarks>Threading: immutable.</remarks>
 public sealed record PtyStartOptions(string CommandLine)

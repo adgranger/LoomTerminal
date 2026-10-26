@@ -20,6 +20,9 @@ public enum KeyInputOutcome
 
     /// <summary>Nothing to do.</summary>
     Ignored,
+
+    /// <summary>Clear the scrollback (macOS Cmd+K); the session has already done it. Last, so existing values keep theirs.</summary>
+    ClearScrollback,
 }
 
 /// <summary>Decision for one key event.</summary>

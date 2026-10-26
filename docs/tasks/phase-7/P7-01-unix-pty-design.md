@@ -1,6 +1,6 @@
 # P7-01 — Design: starting a process under a Unix pty from .NET
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P6-08
 - **Size:** S (ADR only)
 
@@ -36,8 +36,8 @@ Decide how `LoomTerminal.Pty` starts a shell under a pseudo terminal on Linux an
 
 ## Acceptance criteria
 
-- [ ] ADR written, reviewed by the user (status `proposed` until then)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] ADR written, reviewed by the user (status `proposed` until then)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 

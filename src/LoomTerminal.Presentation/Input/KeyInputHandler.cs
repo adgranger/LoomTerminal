@@ -28,15 +28,36 @@ internal sealed class KeyInputHandler
         }
 
         var isPrintable = ev.Key.Length == 1;
+        if (!ev.AltGraph && ctx.IsMac && ev.Meta && !ev.Ctrl && !ev.Alt)
+        {
+            // macOS: Cmd+C copies a selection (without one nothing happens: Ctrl+C is the interrupt), Cmd+V pastes,
+            // Cmd+K clears the scrollback.
+            if (ev.KeyCode == DomKeyCodes.KeyC)
+            {
+                return new KeyInputResult(ctx.HasSelection ? KeyInputOutcome.Copy : KeyInputOutcome.Ignored);
+            }
+
+            if (ev.KeyCode == DomKeyCodes.KeyV)
+            {
+                return new KeyInputResult(KeyInputOutcome.Paste);
+            }
+
+            if (ev.KeyCode == DomKeyCodes.KeyK)
+            {
+                return new KeyInputResult(KeyInputOutcome.ClearScrollback);
+            }
+        }
+
         if (!ev.AltGraph)
         {
             // Copy: Ctrl+Shift+C, or Ctrl+C while text is selected (otherwise Ctrl+C is the interrupt of the shell).
-            if (ev.Ctrl && !ev.Alt && ev.KeyCode == DomKeyCodes.KeyC && (ev.Shift || ctx.HasSelection))
+            // On macOS Ctrl+C and Ctrl+V are plain control characters: copy and paste are on Cmd.
+            if (!ctx.IsMac && ev.Ctrl && !ev.Alt && ev.KeyCode == DomKeyCodes.KeyC && (ev.Shift || ctx.HasSelection))
             {
                 return new KeyInputResult(KeyInputOutcome.Copy);
             }
 
-            if ((ev.Ctrl && !ev.Alt && ev.KeyCode == DomKeyCodes.KeyV)
+            if ((!ctx.IsMac && ev.Ctrl && !ev.Alt && ev.KeyCode == DomKeyCodes.KeyV)
                 || (ev.Shift && !ev.Ctrl && ev.KeyCode == DomKeyCodes.Insert))
             {
                 return new KeyInputResult(KeyInputOutcome.Paste);

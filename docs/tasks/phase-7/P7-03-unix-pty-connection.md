@@ -1,6 +1,6 @@
 # P7-03 — `UnixPtyConnection`
 
-- **Status:** todo
+- **Status:** done
 - **Depends on:** P7-02
 - **Size:** M
 
@@ -36,16 +36,16 @@ Implement `IPtyConnection` on Linux and macOS over the native shim, with the sam
 
 ## Tests
 
-- [ ] Port the ConPTY tests (output + exit code, input, working directory, environment, resize via `stty size`,
+- [x] Port the ConPTY tests (output + exit code, input, working directory, environment, resize via `stty size`,
       dispose kills children (`sleep 120 &`), missing program throws `IOException`). They run on Linux/macOS CI only
       (`[SupportedOSPlatform]` + a runtime skip on Windows).
 
 ## Acceptance criteria
 
-- [ ] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
-- [ ] Tests green on Linux and macOS CI (P7-05) and still green on Windows
-- [ ] Public API unchanged (only internal types added)
-- [ ] Card status and `docs/tasks/README.md` updated
+- [x] `rtk dotnet build LoomTerminal.slnx -c Release` — 0 warnings
+- [x] Tests green on Linux and macOS CI (P7-05) and still green on Windows
+- [x] Public API unchanged (only internal types added)
+- [x] Card status and `docs/tasks/README.md` updated
 
 ## Out of scope
 
