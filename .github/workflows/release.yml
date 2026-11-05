@@ -25,9 +25,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # The Unix pty shim of each RID is compiled on its own OS and packed into LoomTerminal.Pty (runtimes/<rid>/native).
+  native-pty:
+    name: Native pty shim (${{ matrix.rid }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - { rid: linux-x64, os: ubuntu-latest }
+          - { rid: linux-arm64, os: ubuntu-24.04-arm }
+          - { rid: osx-x64, os: macos-15-intel }
+          - { rid: osx-arm64, os: macos-latest }
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build the shim and run its smoke test
+        run: sh src/native/pty/build.sh --test
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: native-pty-${{ matrix.rid }}
+          path: artifacts/native/${{ matrix.rid }}/libloomterm_pty.*
+          if-no-files-found: error
+
   build:
     name: Gates and packages
     runs-on: windows-latest
+    needs: native-pty
     outputs:
       version: ${{ steps.version.outputs.version }}
       prerelease: ${{ steps.version.outputs.prerelease }}
@@ -64,9 +89,22 @@ jobs:
           New-Item -ItemType Directory -Force artifacts | Out-Null
           ./eng/Get-ReleaseNotes.ps1 -Version ${{ steps.version.outputs.version }} -OutFile artifacts/release-notes.md ${{ steps.version.outputs.prerelease == 'true' && '-AllowMissing' || '' }}
 
+      # One folder per RID: artifacts/native/<rid>/libloomterm_pty.*, where LoomTerminal.Pty.csproj looks for them.
+      - name: Download the native pty shims
+        uses: actions/download-artifact@v7
+        with:
+          pattern: native-pty-*
+          path: artifacts/native
+          merge-multiple: false
+
+      # download-artifact makes one folder per artifact (native-pty-<rid>); the project expects <rid>.
+      - name: Name the shim folders after their RID
+        shell: pwsh
+        run: Get-ChildItem artifacts/native -Directory | ForEach-Object { Rename-Item $_.FullName ($_.Name -replace '^native-pty-', '') }
+
       - name: Release build
         shell: pwsh
-        run: ./eng/Invoke-ReleaseBuild.ps1 -Version ${{ steps.version.outputs.version }}
+        run: ./eng/Invoke-ReleaseBuild.ps1 -Version ${{ steps.version.outputs.version }} -RequireNative
 
       - name: Upload the packages
         uses: actions/upload-artifact@v7
@@ -141,7 +179,7 @@ jobs:
           NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
           VERSION: ${{ needs.build.outputs.version }}
         run: |
-          foreach ($id in 'LoomTerminal.Core', 'LoomTerminal.Pty', 'LoomTerminal.Presentation', 'LoomTerminal.WinUI') {
+          foreach ($id in 'LoomTerminal.Core', 'LoomTerminal.Pty', 'LoomTerminal.Presentation', 'LoomTerminal.WinUI', 'LoomTerminal.Avalonia') {
             dotnet nuget push "artifacts/packages/$id.$env:VERSION.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
             if ($LASTEXITCODE -ne 0) { throw "Pushing $id $env:VERSION failed." }
           }

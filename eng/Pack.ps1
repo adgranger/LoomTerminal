@@ -1,16 +1,20 @@
 <#
 .SYNOPSIS
-    Packs the four LoomTerminal libraries into artifacts/packages and checks the content of every package.
+    Packs the five LoomTerminal libraries into artifacts/packages and checks the content of every package.
 .DESCRIPTION
     Not published anywhere: publishing to nuget.org is a manual decision. Fails with the list of all problems found.
 #>
-param([string] $Version)
+param(
+    [string] $Version,
+    # Release builds: the Pty package must carry the Unix shim of every RID (built into artifacts/native/<rid>/).
+    [switch] $RequireNative
+)
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $root = Split-Path -Parent $PSScriptRoot
 $out = Join-Path $root 'artifacts/packages'
-$projects = 'Core', 'Pty', 'Presentation', 'WinUI'
+$projects = 'Core', 'Pty', 'Presentation', 'WinUI', 'Avalonia'
 $sourceLinkUrl = 'https://raw.githubusercontent.com/adgranger/LoomTerminal/'
 
 New-Item -ItemType Directory -Force $out | Out-Null
@@ -33,6 +37,7 @@ $dependencies = @{
     Pty          = @()
     Presentation = @('LoomTerminal.Core', 'LoomTerminal.Pty')
     WinUI        = @('LoomTerminal.Presentation', 'Microsoft.WindowsAppSDK', 'Microsoft.Graphics.Win2D')
+    Avalonia     = @('LoomTerminal.Presentation', 'Avalonia', 'Avalonia.Skia')
 }
 
 function Read-Entry($entry) {
@@ -42,7 +47,7 @@ function Read-Entry($entry) {
 
 foreach ($ext in 'nupkg', 'snupkg') {
     $files = @(Get-ChildItem $out -Filter "*.$ext")
-    if ($files.Count -ne 4) { $problems.Add("expected 4 .$ext files, found $($files.Count)") }
+    if ($files.Count -ne $projects.Count) { $problems.Add("expected $($projects.Count) .$ext files, found $($files.Count)") }
 }
 
 foreach ($p in $projects) {
@@ -121,6 +126,14 @@ foreach ($p in $projects) {
             }
             foreach ($d in $found.Keys) {
                 if ($d -notin $dependencies[$p]) { $problems.Add("$id.nuspec: unexpected dependency $d") }
+            }
+
+            if ($p -eq 'Pty' -and $RequireNative) {
+                foreach ($rid in 'linux-x64', 'linux-arm64', 'osx-x64', 'osx-arm64') {
+                    if (-not ($names | Where-Object { $_ -like "runtimes/$rid/native/libloomterm_pty.*" })) {
+                        $problems.Add("$id.nupkg misses runtimes/$rid/native/libloomterm_pty.*")
+                    }
+                }
             }
 
             if ($p -eq 'WinUI') {

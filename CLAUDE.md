@@ -37,7 +37,7 @@ rtk test dotnet test --project tests/LoomTerminal.Core.Tests -c Release   # fast
 rtk proxy pwsh -NoProfile -File eng/Update-PublicApi.ps1 src/LoomTerminal.Pty   # after adding PUBLIC members (prefer internal!)
 rtk dotnet publish samples/LoomTerminal.Gallery -c Release -r win-x64   # Native AOT check (needs the VS C++ workload)
 rtk proxy pwsh -NoProfile -File eng/Test-AotApp.ps1 samples/LoomTerminal.Gallery   # AOT publish + start + crash check
-rtk proxy pwsh -NoProfile -File eng/Invoke-ReleaseBuild.ps1 -Version 0.1.0-alpha.1   # every release gate, local dry run
+rtk proxy pwsh -NoProfile -File eng/Invoke-ReleaseBuild.ps1 -Version 0.2.0   # every release gate, local dry run
 rtk proxy pwsh -NoProfile -File eng/Get-ReleaseVersion.ps1 -SelfTest   # also eng/Get-ReleaseNotes.ps1 -SelfTest
 ```
 

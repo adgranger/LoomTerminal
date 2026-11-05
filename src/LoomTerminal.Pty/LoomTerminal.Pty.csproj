@@ -7,7 +7,7 @@
   <PropertyGroup>
     <TargetFramework>$(LoomNetTargetFramework)</TargetFramework>
     <RootNamespace>LoomTerminal.Pty</RootNamespace>
-    <Description>Pseudo terminal for LoomTerminal: Windows ConPTY (macOS and Linux planned), Native AOT-compatible.</Description>
+    <Description>Pseudo terminal for LoomTerminal: Windows ConPTY and a native forkpty shim for Linux and macOS, Native AOT-compatible.</Description>
     <!-- Source-generated [LibraryImport] stubs use pointers. -->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
