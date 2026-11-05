@@ -8,6 +8,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-05
+
+### Added
+
+- `LoomTerminal.Avalonia`: new package, the terminal control for Avalonia (`TerminalView`) drawn with Skia, with keyboard, IME, pointer, clipboard, scrollbar and accessibility support. Native AOT compatible, checked by CI on Windows, Linux and macOS.
+- `LoomTerminal.Pty`: Unix pseudo terminal (Linux and macOS) through a native `forkpty` shim shipped in the package (`runtimes/<rid>/native` for `linux-x64`, `linux-arm64`, `osx-x64` and `osx-arm64`), with shell detection.
+- Cross-platform CI: build, tests and the shim smoke test on Windows, Linux and macOS.
+
+### Changed
+
+- The release workflow builds the Unix shim on each OS and now publishes five packages: `LoomTerminal.Core`, `.Pty`, `.Presentation`, `.WinUI` and `.Avalonia`.
+- `LoomTerminal.Presentation` and `LoomTerminal.Core` need no change for Avalonia: the abstractions held.
+
+### Notes
+
+- The manual checklists on Linux (X11, Wayland) and macOS are not done yet ([docs/manual-tests.md](docs/manual-tests.md)).
+
 ## [0.1.0-alpha.1] - 2026-10-23
 
 ### Added

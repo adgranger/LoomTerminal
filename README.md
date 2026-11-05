@@ -42,10 +42,11 @@
 
 ## Install (from the first release)
 
-Packages: `LoomTerminal.Core`, `LoomTerminal.Pty`, `LoomTerminal.Presentation`, `LoomTerminal.WinUI`.
+Packages: `LoomTerminal.Core`, `LoomTerminal.Pty`, `LoomTerminal.Presentation`, `LoomTerminal.WinUI`, `LoomTerminal.Avalonia`.
 
 ```powershell
-dotnet add package LoomTerminal.WinUI --prerelease
+dotnet add package LoomTerminal.WinUI      # WinUI 3
+dotnet add package LoomTerminal.Avalonia   # Avalonia (Windows, Linux, macOS)
 ```
 
 ## Using the pseudo terminal today

@@ -1,8 +1,16 @@
 # LoomTerminal.Avalonia
 
 The terminal control for Avalonia (`LoomTerminal.Avalonia.Controls.TerminalView`), drawn with Skia, on Windows
-(ConPTY) for now. The WinUI control (`LoomTerminal.WinUI`) is its specification. Targets plain `net11.0`, references
+(ConPTY), Linux and macOS (Unix pty). The WinUI control (`LoomTerminal.WinUI`) is its specification. Targets plain `net11.0`, references
 `LoomTerminal.Presentation` only, and is Native AOT compatible (compiled bindings, no XAML loading by reflection).
+
+## Install
+
+```powershell
+dotnet add package LoomTerminal.Avalonia
+```
+
+The Unix pty shim comes with `LoomTerminal.Pty` (`runtimes/<rid>/native`).
 
 ## Usage
 

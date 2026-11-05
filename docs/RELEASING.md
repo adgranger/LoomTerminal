@@ -9,9 +9,11 @@ Steps prefixed **You:** can only be done by the repository owner (accounts, secr
 2. Job "Gates and packages" runs every gate and stops at the first failure: tag format, tag commit reachable from
    `main`, CHANGELOG section present, Release build with 0 warnings, all tests, `eng/Test-Packages.ps1` (pack, content
    check, Native AOT consumer app).
+   Before it, four "Native pty shim" jobs (Linux and macOS, x64 and arm64) build the Unix shim packed into `LoomTerminal.Pty`;
+   the gates fail if one is missing (`-RequireNative`).
 3. Job "Publish to nuget.org and GitHub" waits for your approval of the `nuget` environment.
 4. It logs in to nuget.org with Trusted Publishing (`NuGet/login@v1.2.0`, a temporary key from the GitHub OIDC token;
-   only this job has `id-token: write`) and pushes `LoomTerminal.Core`, `.Pty`, `.Presentation`, `.WinUI` (in that order) with their symbols (`.snupkg`).
+   only this job has `id-token: write`) and pushes `LoomTerminal.Core`, `.Pty`, `.Presentation`, `.WinUI`, `.Avalonia` (in that order) with their symbols (`.snupkg`).
 5. It creates the GitHub Release with the same files and the CHANGELOG notes.
 
 The version of the packages is the tag. `VersionPrefix`/`VersionSuffix` in `Directory.Build.props` are for local builds
@@ -22,8 +24,8 @@ only; nothing is edited at release time.
 nuget.org:
 
 - [ ] **You:** create an account with 2FA enabled.
-- [ ] **You:** check that the four ids are free: `https://www.nuget.org/packages/<id>` must return 404 for
-  `LoomTerminal.Core`, `LoomTerminal.Pty`, `LoomTerminal.Presentation`, `LoomTerminal.WinUI`. If one is taken, stop and
+- [ ] **You:** check that the five ids are free: `https://www.nuget.org/packages/<id>` must return 404 for
+  `LoomTerminal.Core`, `LoomTerminal.Pty`, `LoomTerminal.Presentation`, `LoomTerminal.WinUI`, `LoomTerminal.Avalonia`. If one is taken, stop and
   choose another id before tagging (ids are in the csproj files, `eng/Pack.ps1`, `eng/Test-Packages.ps1`, the workflow
   and the package READMEs).
 - [ ] **You (optional):** request the ID prefix reservation `LoomTerminal.` (nuget.org → account menu →
@@ -59,11 +61,11 @@ GitHub:
 - [ ] Local gates:
 
 ```powershell
-./eng/Invoke-ReleaseBuild.ps1 -Version 0.1.0-alpha.1
+./eng/Invoke-ReleaseBuild.ps1 -Version 0.2.0
 ```
 
 - [ ] **You:** dry run on GitHub: Actions → Release → Run workflow → enter the version. It must be green and the
-  `nuget-packages` artifact must hold eight files (four `.nupkg`, four `.snupkg`). Nothing is published.
+  `nuget-packages` artifact must hold ten files (five `.nupkg`, five `.snupkg`). Nothing is published.
 
 ## 4. Cut the release
 
@@ -74,13 +76,13 @@ git switch main && git pull
 ```
 
 ```bash
-git tag -s v0.1.0-alpha.1 -m "v0.1.0-alpha.1"
+git tag -s v0.2.0 -m "v0.2.0"
 ```
 
 (a plain `git tag -a` also works)
 
 ```bash
-git push origin v0.1.0-alpha.1
+git push origin v0.2.0
 ```
 
 Open the run in the Actions tab, approve the `nuget` environment, and wait for green.
@@ -92,14 +94,14 @@ Never move or reuse a tag that was pushed: a published version is immutable.
 nuget.org validates and indexes the packages (a few minutes up to an hour; the page says "validating" first, and the
 symbols appear on the package page).
 
-- [ ] **You:** check the four package pages: README rendering, license, repository link, "Symbols".
+- [ ] **You:** check the five package pages: README rendering, license, repository link, "Symbols".
 - [ ] **You:** install check in a scratch folder:
 
 ```bash
 dotnet new console && dotnet add package LoomTerminal.Pty --prerelease && dotnet restore
 ```
 
-- [ ] **You:** check the GitHub Release: four `.nupkg`, four `.snupkg`, notes.
+- [ ] **You:** check the GitHub Release: five `.nupkg`, five `.snupkg`, notes.
 - [ ] Optional: add the nuget badges to `README.md`, and set `VersionPrefix`/`VersionSuffix` of local builds to the
   next version.
 
@@ -109,12 +111,12 @@ dotnet new console && dotnet add package LoomTerminal.Pty --prerelease && dotnet
 |---|---|
 | (a) A gate failed before the push | Fix, delete the remote tag (`git push origin :refs/tags/v<version>`) and the local one (`git tag -d v<version>`), tag again. Allowed because nothing was published. |
 | (b) The publish job failed halfway | "Re-run failed jobs" (`--skip-duplicate` makes it safe). |
-| (c) A bad version reached nuget.org | It cannot be deleted. **Unlist** it: nuget.org → Manage Packages → the version → "List in search results" off, or `dotnet nuget delete <id> <version> --source https://api.nuget.org/v3/index.json --api-key <key>` (which only unlists on nuget.org; the key is one created by hand for this, since the CI key is temporary, or use the web UI). Mark the GitHub Release as pre-release or edit its notes, then publish the fix as the next version (`alpha.2`, `0.1.1`…). Unlist all four packages of the version together. |
+| (c) A bad version reached nuget.org | It cannot be deleted. **Unlist** it: nuget.org → Manage Packages → the version → "List in search results" off, or `dotnet nuget delete <id> <version> --source https://api.nuget.org/v3/index.json --api-key <key>` (which only unlists on nuget.org; the key is one created by hand for this, since the CI key is temporary, or use the web UI). Mark the GitHub Release as pre-release or edit its notes, then publish the fix as the next version (`alpha.2`, `0.1.1`…). Unlist all five packages of the version together. |
 | (d) The publish path is compromised | Delete the Trusted Publishing policy on nuget.org (no long-lived secret exists to rotate), then fix the workflow or the environment rules and create the policy again. |
 
 ## 7. Versions and public API
 
-- Order: `alpha.N` → `beta.N` → `rc.N` → stable. One version for the four packages.
+- Order: `alpha.N` → `beta.N` → `rc.N` → stable. One version for the five packages.
 - The `PublicAPI.Unshipped.txt` files are moved into `PublicAPI.Shipped.txt` when the first **stable** version is cut
   (not for alphas).
 - A package id never changes.
@@ -143,7 +145,7 @@ dotnet new console && dotnet add package LoomTerminal.Pty --prerelease && dotnet
 ## 10. To verify at the first release
 
 The Trusted Publishing documentation does not say whether a policy can create a package id that does not exist yet on
-nuget.org (the four ids are new) beyond the scope "publish new packages". If the first push of an id is refused with
+nuget.org (LoomTerminal.Avalonia is a new id) beyond the scope "publish new packages". If the first push of an id is refused with
 403 although the policy matches, publish that first version once by hand with a temporary API key (scoped to
 `LoomTerminal.*`, short expiry, deleted afterwards), then let the workflow do the next ones. Also verify at that
 release that the policy leaves the "temporarily active" state after the first successful publish.
